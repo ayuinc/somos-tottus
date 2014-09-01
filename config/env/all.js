@@ -3,7 +3,7 @@
 module.exports = {
 	app: {
 		title: 'somos-tottus',
-		description: 'Red social para los empleados de Tottus',
+		description: 'Red Social para los empleados de tottus',
 		keywords: 'MongoDB, Express, AngularJS, Node.js'
 	},
 	port: process.env.PORT || 3000,
