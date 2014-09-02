@@ -56,7 +56,6 @@ var UserSchema = new Schema({
         },
         dateOfBirth     : {
             type: Date,
-            required: true,
             default: null
         },
         placeOfBirth    : {
