@@ -36,35 +36,6 @@ var validateLocalStrategyPassword = function(password) {
 //      employee
 
 var UserSchema = new Schema({
-    personal: {
-        firstName       : {
-            type: String,
-            trim: true,
-            required: true,
-            default: ''
-        },
-        lastName        : {
-            type: String,
-            trim: true,
-            required: true,
-            default: ''
-        },
-        displayName     : {
-            type: String,
-            trim: true,
-            default: ''
-        },
-        dateOfBirth     : {
-            type: Date,
-            default: null
-        },
-        placeOfBirth    : {
-            type: String,
-            trim: true,
-            required: true,
-            default: ''
-        }
-    },
     email: {
         type: String,
         trim: true,
@@ -73,6 +44,24 @@ var UserSchema = new Schema({
         match: [/.+\@.+\..+/, 'Please fill a valid email address']
     },
     username: {
+        type: String,
+        unique: 'testing error message',
+        required: 'Please fill in a username',
+        trim: true
+    },
+    isRegistered: {
+        type: String,
+        unique: 'testing error message',
+        required: 'Please fill in a username',
+        trim: true
+    },
+    tottusId: {
+        type: String,
+        unique: 'testing error message',
+        required: 'Please fill in a username',
+        trim: true
+    },
+    companyId: {
         type: String,
         unique: 'testing error message',
         required: 'Please fill in a username',
@@ -112,7 +101,150 @@ var UserSchema = new Schema({
     },
     resetPasswordExpires: {
         type: Date
-    }
+    },
+    personal: {
+        DNI: {
+            type: String,
+            trim: true,
+            required: true,
+            default: ''
+        },
+        firstName: {
+            type: String,
+            trim: true,
+            required: true,
+            default: ''
+        },
+        lastName: {
+            type: String,
+            trim: true,
+            required: true,
+            default: ''
+        },
+        dateOfBirth: {
+            type: Date,
+            trim: true,
+            default: null
+        },
+        educationLevel: {
+            type: String,
+            trim: true,
+            required: true,
+            default: ''
+        },
+        interests: {
+            type: String,
+            trim: true,
+            required: true,
+            default: ''
+        },
+        gender: {
+            type: String,
+            trim: true,
+            required: true,
+            default: ''
+        }
+    },
+    assets: {
+        profilePicURL: {
+            type: String,
+            trim: true,
+            required: true,
+            default: ''
+        }
+    },
+    address: {
+        city: {
+            type: String,
+            trim: true,
+            required: true,
+            default: ''
+        },
+        address: {
+            type: String,
+            trim: true,
+            required: true,
+            default: ''
+        }
+    },
+    organizational: {
+        currentJobPosition: {
+            type: String,
+            trim: true,
+            required: true,
+            default: ''
+        },
+        area: {
+            type: String,
+            trim: true,
+            required: true,
+            default: ''
+        },
+        branch: {
+            type: String,
+            trim: true,
+            required: true,
+            default: ''
+        },
+        branchId: {
+            type: String,
+            trim: true,
+            required: true,
+            default: ''
+        },
+        jobType: {
+            type: String,
+            trim: true,
+            required: true,
+            default: ''
+        },
+        phoneNumTottus: {
+            type: String,
+            required: true,
+            default: ''
+        },
+        jobPositionHistory: {
+            name: {
+                type: String,
+                required: true,
+                default: ''
+            },
+            startDate: {
+                type: String,
+                required: true,
+                default: ''
+            },
+            endDate: {
+                type: String,
+                required: true,
+                default: ''
+            },
+            location: {
+                type: String,
+                required: true,
+                default: ''
+            }
+        }
+    },
+    demographic: {
+        maritalStatus: {
+            type: String,
+            required: true,
+            default: ''
+        },
+        children: {
+            type: String,
+            required: true,
+            default: ''
+        }
+    },
+    contact: {
+        phoneNumHome: {
+            type: String,
+            required: true,
+            default: ''
+        }    
+    }  
 });
 
 /**
