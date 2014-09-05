@@ -6,12 +6,13 @@
 var should = require('should'),
 	mongoose = require('mongoose'),
 	User = mongoose.model('User'),
-	Comment = mongoose.model('Comment');
+	Comment = mongoose.model('Comment'),
+	Post = mongoose.model('Post');
 
 /**
  * Globals
  */
-var user, comment;
+var user, comment, post;
 
 /**
  * Unit tests
@@ -19,22 +20,70 @@ var user, comment;
 describe('Comment Model Unit Tests:', function() {
 	beforeEach(function(done) {
 		user = new User({
-			firstName: 'Full',
-			lastName: 'Name',
-			displayName: 'Full Name',
-			email: 'test@test.com',
-			username: 'username',
-			password: 'password'
-		});
+            companyId: 'test@test.com',
+            tottusId: 'test@test.com',
+            password: 'password',
+            username: 'username1232',
+            provider: 'local',
+            email: 'test@test.com',
+            isRegistered: 'false',
+            assets: {
+                    profilePicURL       : 'http://sadasdsa.com'
+            },
+            contact: {
+                    phoneNumHome       : '95823453'
+            },
+            demographic: {
+                    maritalStatus       : 'single',
+                    children       : '0'
+            },
+            address: {
+                    city       : 'Lima',
+                    address          : 'Av. Flora Trista 433'
+            },
+            personal: {
+                firstName       : 'Carmen',
+                lastName        : 'Perez',
+                DNI     : '54784931',
+                dateOfBirth    : '12/4/1992',
+                gender : 'M',
+                educationLevel    : 'B. S.',
+                carnetCONADIS    : '421323435',
+                interests : 'Music, Dota2'
+            },
+            organizational: {
+                    currentJobPosition       : 'Reponedor',
+                    area        : 'Pasillo',
+                    branch    : 'Atencion al Publico',
+                    branchId    : 'E12',
+                    jobType    : 'Atencion al Publico',
+                    jobPositionHistory: {
+                        name: 'Panadero',
+                        startDate: '12/1/2014',
+                        endDate: '10/5/2014',
+                        location: 'Atocongo',
+                    },
+                    phoneNumTottus : '013458395'
+            }
+        });
 
-		user.save(function() { 
-			comment = new Comment({
-				// Add model fields
-				// ...
-			});
+		user.save();
 
-			done();
-		});
+		post = new Post({
+            detail:     'test',
+            userId:     user._id
+        });
+
+        post.save();
+
+        comment = new Comment({
+        	postId: 	post._id,
+        	userId: 	user._id,
+        	text: 		'Mi first comment!'
+        });
+
+
+		done();
 	});
 
 	describe('Method Save', function() {
@@ -49,6 +98,7 @@ describe('Comment Model Unit Tests:', function() {
 	afterEach(function(done) { 
 		Comment.remove().exec();
 		User.remove().exec();
+		Post.remove().exec();
 
 		done();
 	});
