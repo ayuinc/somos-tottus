@@ -82,6 +82,18 @@ describe('Post Model Unit Tests:', function() {
         });
     });
 
+    describe('Method newComment', function() {
+        it('should be able to register a comment into a post', function(done) {
+            var commentData = {
+                userId: user._id,
+                text: 'Mi first comment!'
+            };
+
+            post.newComment(commentData);
+            done();
+        });
+    });
+
     afterEach(function(done) { 
         Post.remove().exec();
         User.remove().exec();
