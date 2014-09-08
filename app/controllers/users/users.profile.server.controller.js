@@ -55,12 +55,3 @@ exports.me = function(req, res) {
 	res.jsonp(req.user || null);
 };
 
-exports.list = function(req, res) {
-// Init Variables
-    User.find(function(err, users) {
-        if(err){
-            res.send(err);
-        }
-        res.json(users);
-	});
-};

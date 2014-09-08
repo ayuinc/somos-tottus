@@ -5,12 +5,14 @@
  */
 var should = require('should'),
 	mongoose = require('mongoose'),
+	request = require('supertest'),
 	User = mongoose.model('User');
 
 /**
  * Globals
  */
 var user, user2;
+var localURL = 'http://localhost:3000';
 
 /**
  * Unit tests
@@ -142,6 +144,22 @@ describe('User Model Unit Tests:', function() {
 				done();
 			});
 		});
+
+        it('should return a list of all the users in JSON format', function(done) {
+            request(localURL)
+                .get('/users')
+                .expect('Content-Type', /json/)
+                .expect(200)
+                .end(function(err,res) {
+                    if (err) {
+                        throw err;
+                    }
+                    res.body[0].should.have.property('_id');
+                    res.body[0].should.have.property('username');
+                    res.body[0].created.should.not.equal(null);
+                    done();
+                });
+        });
 	});
 
 	after(function(done) {
