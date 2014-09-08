@@ -51,20 +51,20 @@ var UserSchema = new Schema({
     },
     isRegistered: {
         type: String,
-        unique: 'testing error message',
-        required: 'Please fill in a username',
+        //unique: 'testing error message',
+        //required: 'Please fill in a username',
         trim: true
     },
     tottusId: {
         type: String,
-        unique: 'testing error message',
-        required: 'Please fill in a username',
+        //unique: 'testing error message',
+        //required: 'Please fill in a username',
         trim: true
     },
     companyId: {
         type: String,
-        unique: 'testing error message',
-        required: 'Please fill in a username',
+        //unique: 'testing error message',
+        //required: 'Please fill in a username',
         trim: true
     },
     password: {
@@ -76,8 +76,8 @@ var UserSchema = new Schema({
         type: String
     },
     provider: {
-        type: String,
-        required: 'Provider is required'
+        type: String
+        //required: 'Provider is required'
     },
     providerData: {},
     additionalProvidersData: {},
@@ -106,7 +106,7 @@ var UserSchema = new Schema({
         DNI: {
             type: String,
             trim: true,
-            required: true,
+            //required: true,
             default: ''
         },
         firstName: {
@@ -118,7 +118,7 @@ var UserSchema = new Schema({
         lastName: {
             type: String,
             trim: true,
-            required: true,
+            //required: true,
             default: ''
         },
         dateOfBirth: {
@@ -129,19 +129,19 @@ var UserSchema = new Schema({
         educationLevel: {
             type: String,
             trim: true,
-            required: true,
+            //required: true,
             default: ''
         },
         interests: {
             type: String,
             trim: true,
-            required: true,
+            //required: true,
             default: ''
         },
         gender: {
             type: String,
             trim: true,
-            required: true,
+            //required: true,
             default: ''
         }
     },
@@ -149,7 +149,7 @@ var UserSchema = new Schema({
         profilePicURL: {
             type: String,
             trim: true,
-            required: true,
+            //required: true,
             default: ''
         }
     },
@@ -157,13 +157,13 @@ var UserSchema = new Schema({
         city: {
             type: String,
             trim: true,
-            required: true,
+            //required: true,
             default: ''
         },
         address: {
             type: String,
             trim: true,
-            required: true,
+            //required: true,
             default: ''
         }
     },
@@ -171,57 +171,57 @@ var UserSchema = new Schema({
         currentJobPosition: {
             type: String,
             trim: true,
-            required: true,
+            //required: true,
             default: ''
         },
         area: {
             type: String,
             trim: true,
-            required: true,
+            //required: true,
             default: ''
         },
         branch: {
             type: String,
             trim: true,
-            required: true,
+            //required: true,
             default: ''
         },
         branchId: {
             type: String,
             trim: true,
-            required: true,
+            //required: true,
             default: ''
         },
         jobType: {
             type: String,
             trim: true,
-            required: true,
+            //required: true,
             default: ''
         },
         phoneNumTottus: {
             type: String,
-            required: true,
+            //required: true,
             default: ''
         },
         jobPositionHistory: {
             name: {
                 type: String,
-                required: true,
+                //required: true,
                 default: ''
             },
             startDate: {
                 type: String,
-                required: true,
+                //required: true,
                 default: ''
             },
             endDate: {
                 type: String,
-                required: true,
+                //required: true,
                 default: ''
             },
             location: {
                 type: String,
-                required: true,
+                //required: true,
                 default: ''
             }
         }
@@ -229,19 +229,19 @@ var UserSchema = new Schema({
     demographic: {
         maritalStatus: {
             type: String,
-            required: true,
+            //required: true,
             default: ''
         },
         children: {
             type: String,
-            required: true,
+            //required: true,
             default: ''
         }
     },
     contact: {
         phoneNumHome: {
             type: String,
-            required: true,
+            //required: true,
             default: ''
         }    
     }  

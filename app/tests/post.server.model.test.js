@@ -69,7 +69,7 @@ describe('Post Model Unit Tests:', function() {
         user.save();
 
         post = new Post({
-            detail:     "test",
+            detail:     'test',
             userId:     user._id
         });
 
