@@ -34,7 +34,7 @@ describe('User Model Unit Tests:', function() {
 					phoneNumHome       : '95823453'
 			},
 			demographic: {
-					maritalStatus       : 'single',
+					maritalStatus  : 'single',
 					children       : '0'
 			},
 			address: {
@@ -44,6 +44,7 @@ describe('User Model Unit Tests:', function() {
 			personal: {
 			    firstName       : 'Carmen',
 			    lastName        : 'Perez',
+			    displayName     : '',
 			    DNI     : '54784931',
 			    dateOfBirth    : '12/4/1992',
 			    gender : 'M',
@@ -86,11 +87,12 @@ describe('User Model Unit Tests:', function() {
 			},
 			address: {
 					city       : 'Lima',
-					address          : 'Av. Flora Trista 433'
+					address    : 'Av. Flora Trista 433'
 			},
 			personal: {
 			    firstName       : 'Carmen',
 			    lastName        : 'Perez',
+			    displayName     : '',
 			    DNI     : '54784931',
 			    dateOfBirth    : '12/4/1992',
 			    gender : 'M',

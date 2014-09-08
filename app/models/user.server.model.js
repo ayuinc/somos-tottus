@@ -110,6 +110,11 @@ var UserSchema = new Schema({
             //required: true,
             default: ''
         },
+        displayName: {
+            type: String,
+            trim: true,
+            default: ''
+        },
         firstName: {
             type: String,
             trim: true,
