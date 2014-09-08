@@ -5,6 +5,7 @@
  */
 var should = require('should'),
     mongoose = require('mongoose'),
+    request = require('supertest'),
     User = mongoose.model('User'),
     Post = mongoose.model('Post');
 
@@ -12,6 +13,7 @@ var should = require('should'),
  * Globals
  */
 var user, post;
+var localURL='http://localhost:3000';
 
 /**
  * Unit tests
@@ -79,6 +81,21 @@ describe('Post Model Unit Tests:', function() {
     describe('Method Save', function() {
         it('should be able to save without problems', function(done) {
             post.save(done);
+        });
+
+        it('should be able to show the posts list in JSON format', function(done) {
+            request(localURL)
+                .get('/posts')
+                .expect('Content-Type', /json/)
+                .expect(200)
+                .end(function(err,res) {
+                    if (err) {
+                        throw err;
+                    }
+                    console.log(res.body)
+                    //res.body[0].should.have.property('_id');
+                    done();
+                });
         });
     });
 
