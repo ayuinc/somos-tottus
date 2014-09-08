@@ -39,6 +39,7 @@ var UserSchema = new Schema({
     email: {
         type: String,
         trim: true,
+        unique: true,
         default: '',
         validate: [validateLocalStrategyProperty, 'Please fill in your email'],
         match: [/.+\@.+\..+/, 'Please fill a valid email address']
@@ -122,7 +123,7 @@ var UserSchema = new Schema({
             default: ''
         },
         dateOfBirth: {
-            type: Date,
+            type: String,
             trim: true,
             default: null
         },
