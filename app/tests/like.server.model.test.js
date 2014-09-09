@@ -71,14 +71,14 @@ describe('Like Model Unit Tests:', function() {
 
 		post = new Post({
             detail:     'asdadas',
-            userId:     user._id
+            user:     user
         });
 
         post.save();
 
         like = new Like({
-        	postId: 	post._id,
-        	userId: 	user._id
+        	post: 	post,
+        	user: 	user
         });
         
         done();

@@ -71,8 +71,8 @@ describe('Post Model Unit Tests:', function() {
         user.save();
 
         post = new Post({
-            detail:     'test',
-            userId:     user._id
+            detail: 'wewewewe',
+            user: user
         });
 
         done();
@@ -92,7 +92,7 @@ describe('Post Model Unit Tests:', function() {
                     if (err) {
                         throw err;
                     }
-                    console.log(res.body)
+
                     //res.body[0].should.have.property('_id');
                     done();
                 });
@@ -102,7 +102,7 @@ describe('Post Model Unit Tests:', function() {
     describe('Method newComment', function() {
         it('should be able to register a comment into a post', function(done) {
             var commentData = {
-                userId: user._id,
+                user: user,
                 text: 'Mi first comment!'
             };
 

@@ -70,16 +70,16 @@ describe('Comment Model Unit Tests:', function() {
 		user.save();
 
 		post = new Post({
-            detail:     'test',
-            userId:     user._id
+            detail: 'test',
+            user: user
         });
 
         post.save();
 
         comment = new Comment({
-        	postId: 	post._id,
-        	userId: 	user._id,
-        	text: 		'Mi first comment!'
+        	post: post,
+        	user: user,
+        	text: 'Mi first comment!'
         });
 
 

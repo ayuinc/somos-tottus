@@ -12,12 +12,14 @@ var mongoose = require('mongoose'),
 var LikeSchema = new Schema({
     // Like model fields   
     // ...
-    postId:    {
-        type: Schema.Types.ObjectId,
+    post:    {
+        type: Schema.ObjectId,
+        ref: 'Post',
         required: true
     },
-    userId:    {
-        type: Schema.Types.ObjectId,
+    user:    {
+        type: Schema.ObjectId,
+        ref: 'User',
         required: true
     }
 });

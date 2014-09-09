@@ -13,14 +13,16 @@ var mongoose = require('mongoose'),
 var PostSchema = new Schema({
     // Post model fields   
     // ...
-    userId:     {
-        type: Schema.Types.ObjectId,
+    user: {
+        type: Schema.ObjectId,
+        ref: 'User',
         required: true
     },
     detail:     {
         type: String,
+        default: '',
         trim: true,
-        required: 'Please fill in a textfield',
+        required: 'Detail cannot be blank',
     },
     likes:      {
         type    : [{type: Schema.Types.ObjectId, required: true}],
@@ -35,8 +37,8 @@ var PostSchema = new Schema({
 PostSchema.methods.newComment = function(data) {
     var _this = this;
     var comment = new Comment({
-        postId: _this._id,
-        userId: data.userId,
+        post: _this,
+        user: data.user,
         text: data.text
     });
     comment.save();

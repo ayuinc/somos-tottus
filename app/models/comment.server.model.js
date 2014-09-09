@@ -12,14 +12,15 @@ var mongoose = require('mongoose'),
 var CommentSchema = new Schema({
 	// Comment model fields   
 	// ...
-	postId:    {
-	    type: Schema.Types.ObjectId,
-	    required: true
-	},
-	userId:    {
-	    type: Schema.Types.ObjectId,
-	    required: true
-	},
+	post: {
+        type: Schema.ObjectId,
+        ref: 'Post',
+        required: true
+    },
+	user: {
+        type: Schema.ObjectId,
+        ref: 'User'
+    },
 	text: 		{
 		type: String,
 		required: 'Please fill in a textfield',
