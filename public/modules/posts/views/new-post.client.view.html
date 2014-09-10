@@ -1,0 +1,22 @@
+<section class="row" data-ng-controller="PostsController">
+    <h3 class="col-md-12 text-center">Write a new Post</h3> 
+    <div class="col-xs-offset-2 col-xs-8 col-md-offset-5 col-md-2">
+        <form name="postForm" data-ng-submit="new()" class="signin form-horizontal" novalidate autocomplete="off">
+            <fieldset>
+                <div class="form-group" ng-class="{ 'has-error': postForm.detail.$dirty && postForm.detail.$invalid }">
+                    <label class="control-label" for="detail">Detail</label>
+                    <div class="controls">
+                        <textarea name="detail" data-ng-model="detail" id="detail" class="form-control" cols="30" rows="10" placeholder="detail"></textarea>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <input type="submit" class="btn btn-default">
+                </div>
+                <div data-ng-show="error" class="text-danger">
+                    <strong data-ng-bind="error"></strong>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</section>
