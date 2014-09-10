@@ -15,7 +15,7 @@ angular.module('posts').config(['$stateProvider',
         }).
         state('showPost', {
             url: '/posts/:postId',
-            templateUrl: 'modules/posts/views/show-post.client.views.html'
+            templateUrl: 'modules/posts/views/show-post.client.view.html'
         });
     }
 ]);

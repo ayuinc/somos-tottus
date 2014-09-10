@@ -1,13 +1,13 @@
 'use strict';
 
-angular.module('posts').controller('PostsController', ['$scope', '$location', 'Authentication', 'Posts',
+angular.module('posts').controller('PostsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Posts',
     function($scope, $stateParams, $location, Authentication, Posts) {
         $scope.authentication = Authentication;
 
         // If user is signed in then redirect back home
         // if ($scope.authentication.user) $location.path('/');
 
-        $scope.create = function() {
+        $scope.new = function() {
             var post = new Posts({
                 detail: this.detail
             });
