@@ -11,8 +11,13 @@
                 by
                 <span data-ng-bind="post.user.personal.displayName"></span>
             </small>
-
-            <p class="list-group-item-text" data-ng-bind="post.detail"></p>
+            <p class="list-group-item-text" data-ng-bind="post.detail"></p> 
+            <p class="btn btn-primary list-group-item-button" data-ng-click="remove();">
+              <i class="glyphicon glyphicon-trash"></i>
+            </p>
+            <p class="btn btn-primary list-group-item-button" data-ng-click="edit();">
+              <i class="glyphicon glyphicon-edit"></i>
+            </p>
         </a>
     </div>
 

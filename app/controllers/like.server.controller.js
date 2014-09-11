@@ -4,39 +4,80 @@
  * Module dependencies.
  */
 var mongoose = require('mongoose'),
+    errorHandler = require('./errors'),
+    Like = mongoose.model('Like'),
     _ = require('lodash');
 
 /**
- * Create a Like
+ * Create a Comment
  */
 exports.create = function(req, res) {
+    var like = new Like(req.body);
+    like.user = req.user;
+    like.post = req.post;
 
+    like.save(function(err) {
+        if(err) {
+            return res.status(400).send({
+                message: errorHandler.getErrorMessage(err)
+            });
+        } else {
+            res.jsonp(like);
+        }
+    });
 };
 
-/**
- * Show the current Like
- */
-exports.read = function(req, res) {
-
+exports.index = function(req, res) {
+    Like.find().sort('-created').populate('user', 'personal.displayName').exec(function(err, likes) {
+        if (err) {
+            return res.status(400).send({
+                message: errorHandler.getErrorMessage(err)
+            });
+        } else {
+            res.jsonp(likes);
+        }
+    });
 };
 
-/**
- * Update a Like
- */
+exports.show = function(req, res) {
+    res.jsonp(req.like);
+};
+
 exports.update = function(req, res) {
+    var like = req.like;
 
+    like = _.extend(like, req.body);
+
+    like.save(function (err) {
+        if(err) {
+            return res.status(400).send({
+                message: errorHandler.getErrorMessage(err)
+            });
+        } else {
+            res.jsonp(like);
+        }
+    });
 };
 
-/**
- * Delete an Like
- */
 exports.delete = function(req, res) {
+    var like = req.like;
 
+    like.remove(function(err) {
+        if(err) {
+            return res.status(400).send({
+                message: errorHandler.getErrorMessage(err)
+            });
+        } else {
+            res.jsonp(like);
+        }
+    });
 };
 
-/**
- * List of Likes
- */
-exports.list = function(req, res) {
-
+exports.hasAuthorization = function(req, res, next) {
+    if (req.like.user.id !== req.user.id) {
+        return res.status(403).send({
+            message: 'Usuario no autorizado'
+        });
+    }
+    next();
 };
