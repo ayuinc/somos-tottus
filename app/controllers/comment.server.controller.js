@@ -12,8 +12,9 @@ var mongoose = require('mongoose'),
  * Create a Comment
  */
 exports.create = function(req, res) {
+    console.log(req);
     var comment = new Comment(req.body);
-    comment.user = req.user;
+    comment.user = req.post.user;
     comment.post = req.post;
 
     comment.save(function(err) {
@@ -30,6 +31,18 @@ exports.create = function(req, res) {
 exports.index = function(req, res) {
     var postId = req.params.postId;
     Comment.find({post:postId}).sort('-created').populate('user', 'personal.displayName').exec(function(err, comments) {
+        if (err) {
+            return res.status(400).send({
+                message: errorHandler.getErrorMessage(err)
+            });
+        } else {
+            res.jsonp(comments);
+        }
+    });
+};
+
+exports.all = function(req, res) {
+    Comment.find().populate('user', 'personal.displayName').exec(function(err, comments) {
         if (err) {
             return res.status(400).send({
                 message: errorHandler.getErrorMessage(err)

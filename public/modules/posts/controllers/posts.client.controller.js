@@ -22,7 +22,6 @@ angular.module('posts').controller('PostsController', ['$scope', '$stateParams',
 
         $scope.comment = function() {
             var comment = new Comments({
-                post: $scope.post,
                 text: this.text
             });
 
