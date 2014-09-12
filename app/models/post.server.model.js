@@ -25,12 +25,19 @@ var PostSchema = new Schema({
         required: 'Detail cannot be blank',
     },
     likes:      {
-        type    : [{type: Schema.Types.ObjectId, required: true}],
+        type    : [{ type: Schema.ObjectId, ref: 'Like' }],
         default : []
     },
     comments:       {
-        type    : [{type: Schema.Types.ObjectId, required: true}],
+        type    : [{ type: Schema.ObjectId, ref: 'Comment' }],
         default : []
+    },
+    updated: {
+        type: Date
+    },
+    created: {
+        type: Date,
+        default: Date.now
     },
 });
 

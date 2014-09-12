@@ -2,7 +2,7 @@
 
 module.exports = function(app) {
     var users = require('../../app/controllers/users'),
-        comments = require('../../app/controllers/comment');
+        comments = require('../../app/controllers/comments');
 
     // --------------------backend--------------------
     // route                                verb                method
@@ -19,7 +19,7 @@ module.exports = function(app) {
     // /comments/new          GET                 create on angular
 
     // app.route('/comments').post(users.requiresLogin, comments.create);
-    app.route('/comments').get(comments.all);
+    app.route('/comments').get(comments.list);
     app.route('/posts/:postId/comments').get(users.requiresLogin, comments.index);
     app.route('/posts/:postId/comments').post(users.requiresLogin, comments.create);
     app.route('/posts/:postId/comments/:commentId').get(comments.show);

@@ -6,15 +6,15 @@
 var mongoose = require('mongoose'),
     errorHandler = require('./errors'),
     Comment = mongoose.model('Comment'),
+    Post = mongoose.model('Post'),
     _ = require('lodash');
 
 /**
  * Create a Comment
  */
 exports.create = function(req, res) {
-    console.log(req);
     var comment = new Comment(req.body);
-    comment.user = req.post.user;
+    comment.user = req.user;
     comment.post = req.post;
 
     comment.save(function(err) {
@@ -24,8 +24,21 @@ exports.create = function(req, res) {
             });
         } else {
             res.jsonp(comment);
+
+            Post.findById(post, function(err, post) {
+                if(err) {
+                    return res.status(400).send({
+                        message: errorHandler.getErrorMessage(err)
+                    });
+                } else {
+                    post.comments.push(comment);
+                    post.save();
+                }
+            });
         }
     });
+
+
 };
 
 exports.index = function(req, res) {
@@ -41,7 +54,7 @@ exports.index = function(req, res) {
     });
 };
 
-exports.all = function(req, res) {
+exports.list = function(req, res) {
     Comment.find().populate('user', 'personal.displayName').exec(function(err, comments) {
         if (err) {
             return res.status(400).send({

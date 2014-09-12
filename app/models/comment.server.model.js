@@ -25,7 +25,14 @@ var CommentSchema = new Schema({
 		type: String,
 		required: 'Please fill in a textfield',
 		trim: true
-	}
+	},
+    updated: {
+        type: Date
+    },
+    created: {
+        type: Date,
+        default: Date.now
+    },
 
 });
 

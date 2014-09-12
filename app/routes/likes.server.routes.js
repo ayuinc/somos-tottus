@@ -2,7 +2,7 @@
 
 module.exports = function(app) {
 	var users = require('../../app/controllers/users'),
-        likes = require('../../app/controllers/like');
+        likes = require('../../app/controllers/likes');
 
     // --------------------backend--------------------
     // route                                verb                method

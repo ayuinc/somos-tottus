@@ -21,7 +21,11 @@ var LikeSchema = new Schema({
         type: Schema.ObjectId,
         ref: 'User',
         required: true
-    }
+    },
+    created: {
+        type: Date,
+        default: Date.now
+    },
 });
 
 mongoose.model('Like', LikeSchema);

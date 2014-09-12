@@ -2,7 +2,7 @@
 
 module.exports = function(app) {
     var users = require('../../app/controllers/users'),
-        posts = require('../../app/controllers/post');
+        posts = require('../../app/controllers/posts');
 
     // --------------------backend--------------------
     // route               verb                method

@@ -28,8 +28,7 @@ angular.module('posts').controller('PostsController', ['$scope', '$stateParams',
             comment.$save({
                 postId: $scope.post._id
             }, function(response) {
-                console.log(response);
-                $location.path('posts/' + response.post._id);
+                $location.path('posts/' + response.post);
                 $scope.text = '';
             }, function(errorResponse) {
                 $scope.error = errorResponse.data.message;
@@ -44,6 +43,8 @@ angular.module('posts').controller('PostsController', ['$scope', '$stateParams',
             $scope.post = Posts.get({
                 postId: $stateParams.postId
             });
+
+            console.log($scope.post);
         };
 
         $scope.remove = function(post) {
