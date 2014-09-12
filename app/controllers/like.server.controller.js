@@ -28,7 +28,8 @@ exports.create = function(req, res) {
 };
 
 exports.index = function(req, res) {
-    Like.find().sort('-created').populate('user', 'personal.displayName').exec(function(err, likes) {
+    var postId = req.params.postId;
+    Like.find({post:postId}).sort('-created').populate('user', 'personal.displayName').exec(function(err, likes) {
         if (err) {
             return res.status(400).send({
                 message: errorHandler.getErrorMessage(err)
@@ -43,6 +44,17 @@ exports.show = function(req, res) {
     res.jsonp(req.like);
 };
 
+exports.all = function(req, res) {
+    Like.find().populate('user', 'personal.displayName').exec(function(err, likes) {
+        if (err) {
+            return res.status(400).send({
+                message: errorHandler.getErrorMessage(err)
+            });
+        } else {
+            res.jsonp(likes);
+        }
+    });
+};
 exports.update = function(req, res) {
     var like = req.like;
 

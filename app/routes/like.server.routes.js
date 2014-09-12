@@ -5,23 +5,23 @@ module.exports = function(app) {
         likes = require('../../app/controllers/like');
 
     // --------------------backend--------------------
-    // route               verb                method
-    // /likes              POST                create post     => post.create()
-    // /likes/:id          GET                 show post       => post.show()
-    // /likes/:id          PUT                 update posts    => post.update()
-    // /likes/:id          DELETE              delete posts    => post.delete()
-
-
+    // route                                verb                method
+    // /likes                            GET                 likes list                   => like.create()
+    // /likes/:likeId                    GET                 show comment                 => like.show()
+    //
+    // /posts/:postId/comments              GET                 list likes per post     => like.create()
+    // /posts/:postId/likes/:likeId         GET                 show like               => like.show()   
+    // /posts/:postId/likes/:likeId         PUT                 update like             => like.update()
+    // /posts/:postId/likes/:likeId         DELETE              delete like             => like.delete()
 
     // --------------------frontend--------------------
     // state               verb                method
-    // /likes/new          GET                 create on angular
-
-   
-    app.route('/likes').get(likes.index);
-    app.route('/likes').post(users.requiresLogin, likes.create);
-    app.route('/likes/:commentId').get(likes.show);
-    app.route('/likes/:commentId').put(users.requiresLogin, likes.hasAuthorization, likes.update);
-    app.route('/likes/:commentId').delete(users.requiresLogin, likes.hasAuthorization, likes.delete);
+    // /comments/new          GET                 create on angular
+    app.route('/likes').get(likes.all);
+    app.route('/posts/:postId/likes').get(users.requiresLogin, likes.index);
+    app.route('/posts/:postId/likes').post(users.requiresLogin, likes.create);
+    app.route('/posts/:postId/likes/:likeId').get(likes.show);
+    app.route('/posts/:postId/likes/:likeId').put(users.requiresLogin, likes.hasAuthorization, likes.update);
+    app.route('/posts/:postId/likes/:likeId').delete(users.requiresLogin, likes.hasAuthorization, likes.delete);
 
 };
