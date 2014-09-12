@@ -18,9 +18,9 @@ module.exports = function(app) {
     // state               verb                method
     // /comments/new          GET                 create on angular
 
-   
+    // app.route('/comments').post(users.requiresLogin, comments.create);
     app.route('/posts/:postId/comments').get(comments.index);
-    app.route('/comments').post(users.requiresLogin, comments.create);
+    app.route('/posts/:postId/comments').post(comments.create);
     app.route('/posts/:postId/comments/:commentId').get(comments.show);
     app.route('/posts/:postId/comments/:commentId').put(users.requiresLogin, comments.hasAuthorization, comments.update);
     app.route('/posts/:postId/comments/:commentId').delete(users.requiresLogin, comments.hasAuthorization, comments.delete);

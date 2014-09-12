@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('posts').controller('PostsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Posts',
-    function($scope, $stateParams, $location, Authentication, Posts) {
+angular.module('posts').controller('PostsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Posts', 'Comments',
+    function($scope, $stateParams, $location, Authentication, Posts, Comments) {
         $scope.authentication = Authentication;
 
         // If user is signed in then redirect back home
@@ -15,6 +15,23 @@ angular.module('posts').controller('PostsController', ['$scope', '$stateParams',
             post.$save(function(response) {
                 $location.path('posts/' + response._id);
                 $scope.detail = '';
+            }, function(errorResponse) {
+                $scope.error = errorResponse.data.message;
+            });
+        };
+
+        $scope.comment = function() {
+            var comment = new Comments({
+                post: $scope.post,
+                text: this.text
+            });
+
+            comment.$save({
+                postId: $scope.post._id
+            }, function(response) {
+                console.log(response);
+                $location.path('posts/' + response.post._id);
+                $scope.text = '';
             }, function(errorResponse) {
                 $scope.error = errorResponse.data.message;
             });
