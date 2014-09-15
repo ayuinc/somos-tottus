@@ -1,0 +1,75 @@
+// Bootstrap 3 Custom Forms
+.form-custom-boxed {
+	input[type="text"],
+	input[type="password"] {
+		background: darken(white, 7%);
+	}
+	input[type="submit"] {
+		@include medium;
+    background: darken(white, 7%);
+    // @include linear-gradient(to top, $gray-lighter, white);
+    border: 1px solid white;
+    text-transform: capitalize;
+	}
+}
+
+.form-custom-full-width {
+  label {
+    font-size: 12px;
+    font-size: rem(12);
+    margin: 0;
+  }
+  input[type="text"],
+  input[type="password"],
+  textarea {
+    background: white;
+    border-bottom: 1px solid darken(white, 7%);
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    outline: none;
+    @include box-shadow(none);
+    border-radius: 0px;
+    padding: 6px 0px;
+    &:focus {
+      border-bottom: 1px solid $brand-info;
+    }
+  }
+  .form-group {
+    padding: ($container-fluid + 3) $container-fluid $container-fluid $container-fluid;
+    margin-bottom: 0;
+    border-bottom: 1px solid darken(white, 7%);
+    .help-block {
+      margin-bottom: 0;
+    }
+    &.has-error {
+      input[type="text"],
+      input[type="password"] {
+      border-bottom: 1px solid $brand-danger;
+      border-top: none;
+      border-left: none;
+      border-right: none;
+      outline: none;
+      @include box-shadow(none);
+        &:focus {
+          border-bottom: 1px solid $brand-danger;
+        }
+      }
+      .help-block {
+        color: $brand-danger;
+      }
+    }
+  }
+}
+
+// Form overrides 
+.select-override {
+  @include user-select(none);
+  position: relative;
+  text-indent: 1px;
+  text-overflow: "";
+  &.input-lg {
+    line-height: 28px;
+    // background: white url(/img/arrow-down.svg) no-repeat 98%;
+  }
+}

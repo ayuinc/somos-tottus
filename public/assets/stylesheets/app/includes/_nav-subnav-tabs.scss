@@ -1,0 +1,42 @@
+.nav-subnav-tabs {
+	width: 100%;
+	position: fixed;
+	bottom: 0;
+	background: white;
+	padding: 7px 0;
+	z-index: 1000;
+	border-top: 1px solid $gray-lighter;
+	ul {
+		text-align: center;
+		margin: 0;
+		li {
+			padding: 0;
+			a {
+				display: block;
+				font-size: 28px;
+				font-size: rem(28);
+				color: $gray;
+			}
+			&.active {
+				a {
+					color: $brand-primary;
+				}
+			}
+			&.posts-index {
+				a {
+					border-right: 1px solid $gray-lighter;
+				}
+			}
+			&.notifications-index {
+				a {
+					border-right: 1px solid $gray-lighter;
+				}
+			}
+			&.nav-drawer {
+				a {
+
+				}
+			}
+		}
+	}
+}

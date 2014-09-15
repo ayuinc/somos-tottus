@@ -23,9 +23,7 @@ exports.create = function(req, res) {
                 message: errorHandler.getErrorMessage(err)
             });
         } else {
-            res.jsonp(comment);
-
-            Post.findById(post, function(err, post) {
+            Post.findById(comment.post._id, function(err, post) {
                 if(err) {
                     return res.status(400).send({
                         message: errorHandler.getErrorMessage(err)
