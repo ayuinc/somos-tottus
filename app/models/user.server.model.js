@@ -51,10 +51,16 @@ var UserSchema = new Schema({
         trim: true
     },
     isRegistered: {
-        type: String,
+        type: Boolean,
+        default: false,
         //unique: 'testing error message',
         //required: 'Please fill in a username',
-        trim: true
+    },
+    isActive: {
+        type: Boolean,
+        default: false,
+        //unique: 'testing error message',
+        //required: 'Please fill in a username',
     },
     tottusId: {
         type: String,
@@ -304,5 +310,7 @@ UserSchema.statics.findUniqueUsername = function(username, suffix, callback) {
         }
     });
 };
+
+
 
 mongoose.model('User', UserSchema); 

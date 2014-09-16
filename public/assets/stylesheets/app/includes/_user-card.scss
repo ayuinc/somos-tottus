@@ -1,0 +1,29 @@
+.user-card {
+	@include clearfix;
+	div {
+		float: left;
+	}
+	.profile-pic {
+		padding-right: 0;
+		a {
+			img {
+				width: 100%;
+				border-radius: $border-radius-base;
+				background: $gray-lighter;
+				padding: 1px;
+			}
+		}
+	}
+	.info {
+		color: $gray;
+		font-size: rem(10);
+		p {
+			margin-top: 0;
+			.name {
+				@include medium;
+				color: $text-color;
+				font-size: $font-size-base;
+			}
+		}
+	}
+}

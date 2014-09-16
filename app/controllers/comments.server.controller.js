@@ -24,7 +24,6 @@ exports.create = function(req, res) {
     //         });
     //     } else {
     //         res.jsonp(comment);
-
     //         Post.findById(post, function(err, post) {
     //             if(err) {
     //                 return res.status(400).send({

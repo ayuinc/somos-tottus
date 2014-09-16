@@ -1,0 +1,41 @@
+.nav-view-action-bar {
+	background: $brand-primary; 
+	padding: ($container-fluid * 2) $container-fluid $container-fluid $container-fluid;
+	width: 100%;
+	position: fixed;
+	top: 0;
+	// height: 42px;
+	z-index: 1000;
+	ul {
+		li {
+			&.view-left-action,
+			&.logo {
+				float: left;
+			}
+			&.view-action-button {
+				float: right;
+			}
+			&.view-left-action {
+
+			}
+			&.logo {
+				a {
+					img {
+						width: 91px;
+						width: rem(91);
+						height: auto;
+					}
+				}
+			}
+			&.view-action-button {
+				a.btn {
+					padding: 3px 5px;
+					padding: rem(3) rem(5);
+					background: white;
+					color: $brand-primary;
+					@include medium;				
+				}
+			}
+		}
+	}
+}

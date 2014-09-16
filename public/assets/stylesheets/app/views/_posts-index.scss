@@ -1,0 +1,91 @@
+.posts-index-item {
+	background: white;
+	min-height: 210px;
+	border-radius: $border-radius-base;
+	margin-top: $container-fluid;
+	@include box-shadow-default;
+	div {
+		@include clearfix;
+	}
+	.meta {
+		padding: $container-fluid;
+	}
+	.meta {
+		text-align: right;
+		span {
+			display: block;
+			font-size: 10px;
+			color: $gray;
+			&:after {
+				content: " ";
+				width: 7px;
+				height: 7px;
+				border-radius: 50%;
+				display: block;
+				float: right;
+				margin-top: 4px;
+				margin-left: 7px;
+			}
+			&.benefit {
+				&:after {
+					border: 1px solid $brand-primary;
+				}
+			}
+			&.benefit.pinned {
+				&:after {
+					background: $brand-primary;
+				}
+			}
+		}
+	}
+	.user-card {
+		
+	}
+	.content-text-placeholder {
+		padding: $container-fluid;
+		p {
+			font-size: $font-size-base;
+		}
+	}
+	.content-img-placeholder {
+		margin-left: -($container-fluid / 2);
+		margin-right: -($container-fluid / 2);
+		@include box-shadow-default;
+		border: 1px solid white;
+		margin-bottom: $container-fluid;
+		a {
+			display: block;
+			img {
+				width: 100%;
+			}
+		}
+	}
+	.counts-and-share {
+		@include clearfix;
+		padding: $container-fluid;
+		li {
+			display: block;
+			a {
+				color: $gray-light;
+			}
+			&.counts-likes,
+			&.counts-comments {
+				float: left;
+			}
+			&.share {
+				float: right;
+			}
+			&.counts-comments {
+				padding-left: $container-fluid;
+			}
+		}
+	}
+	.actions {
+		border-top: 1px solid $gray-lighter;
+		text-align: center;
+		padding: $container-fluid 0;
+		div:first-child {
+			border-right: 1px solid $gray-lighter;
+		}
+	}
+}

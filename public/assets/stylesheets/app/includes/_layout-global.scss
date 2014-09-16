@@ -1,0 +1,25 @@
+html,
+body {
+	height: 100%;
+	min-height: 100%;
+}
+
+.site-wrapper-auth {
+	padding: 21px 0 21px 0 !important;
+}
+
+.site-wrapper {
+	padding: 74px 0 74px 0;
+	position: relative;
+}
+
+.section-heading {
+	padding: ($container-fluid - 3) $container-fluid;
+	font-size: 12px;
+	background: $body-bg;
+	text-transform: uppercase;
+}
+
+.content-wrapper {
+	
+}
