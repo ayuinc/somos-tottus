@@ -26,9 +26,9 @@ module.exports = {
 				'public/lib/angular-ui-router/release/angular-ui-router.js',
 				'public/lib/angular-ui-utils/ui-utils.js',
 				'public/lib/angular-bootstrap/ui-bootstrap-tpls.js',
-				'public/lib/jquery/dist/jquery.js',
-				'public/lib/b3/modal.js',
-				'public/lib/b3/transition.js'
+				'public/lib/jquery/dist/jquery.min.js',
+				'public/lib/b3/js/modal.js',
+				'public/lib/b3/js/transition.js'
 			]
 		},
 		css: [
