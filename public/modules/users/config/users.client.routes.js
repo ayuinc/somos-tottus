@@ -13,6 +13,14 @@ angular.module('users').config(['$stateProvider',
 			url: '/settings/password',
 			templateUrl: 'modules/users/views/settings/change-password.client.view.html'
 		}).
+		state('first_change_password', {
+			url: '/settings/first_change_password',
+			templateUrl: 'modules/users/views/settings/first_change_password.client.view.html'
+		}).
+		state('first-update-profile', {
+			url: '/settings/first_update_profile',
+			templateUrl: 'modules/users/views/settings/first_update_profile.client.view.html'
+		}).
 		state('accounts', {
 			url: '/settings/accounts',
 			templateUrl: 'modules/users/views/settings/social-accounts.client.view.html'

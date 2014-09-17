@@ -36,5 +36,36 @@ angular.module('users').controller('SettingsController', ['$scope', '$http', '$l
 				$scope.error = response.message;
 			});
 		};
+
+		$scope.firstchangeUserPassword = function() {
+			$scope.success = $scope.error = null;
+
+			$http.post('/users/password', $scope.passwordDetails).success(function(response) {
+				// If successful show success message and clear form
+				//$scope.success = true;
+				$scope.passwordDetails = null;
+				$location.path('/settings/first_update_profile');
+			}).error(function(response) {
+				$scope.error = response.message;
+			});
+		};
+
+		$scope.firstupdateUserProfile = function(isValid) {
+			if (isValid){
+				$scope.success = $scope.error = null;
+				var user = new Users($scope.user);
+	
+				user.$update(function(response) {
+					//$scope.success = true;
+					Authentication.user = response;
+					$location.path('/');
+				}, function(response) {
+					$scope.error = response.data.message;
+				});
+			} else {
+				$scope.submitted = true;
+			}
+		};
+
 	}
 ]);
