@@ -1,5 +1,5 @@
 <div class="site-wrapper" data-ng-controller="SettingsController">
-	<div ng-controller="ModalController"></div>
+	<div ng-controller="ModalController" data-ng-init="modalFirstProfileUpdate()"></div>
 	<div class="nav-view-action-bar">
     <ul class="list-unstyled clearfix">
       <!-- <li class="view-left-action"><a href="#"><i class="icon-arrow-back-filled"></i></a></li> -->
@@ -77,7 +77,7 @@
 				</li> -->
 				<li class="col-xs-12 notifications-index">
 					<!-- <a href="#"><i class="icon-bell-filled"></i></a> -->
-					<input type="submit" value="Confirmar" class="btn btn-primary">
+					<input type="submit" value="Confirmar datos" class="btn btn-primary">
 				</li>
 				<!-- <li class="col-xs-4 nav-drawer">
 					<a href="#"><i class="icon-options-filled"></i></a>
