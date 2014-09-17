@@ -12,6 +12,17 @@ angular.module('users').controller('ModalController', ['$scope', '$modal', '$log
                         };
                     }
                 });
-        }
+        };
+        $scope.modalFirstProfileUpdate = function() {
+          $modal.open({
+                    templateUrl: 'modules/users/views/modals/first-profile-update-modal.client.view.html',
+                    backdrop: 'static',
+                    controller: function($scope, $modalInstance) {
+                        $scope.ok = function() {
+                            $modalInstance.close();
+                        };
+                    }
+                });
+        };
     }
 ]);
