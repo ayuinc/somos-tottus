@@ -39,7 +39,7 @@ angular.module('users').controller('AuthenticationController', ['$scope', '$http
 					$location.path('/');
 				}
 				else{
-					$location.path('/settings/first_change_password');
+					$location.path('/settings/first-change-password');
 				}
 			}).error(function(response) {
 				$scope.error = response.message;

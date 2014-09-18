@@ -44,7 +44,7 @@ angular.module('users').controller('SettingsController', ['$scope', '$http', '$l
 				// If successful show success message and clear form
 				//$scope.success = true;
 				$scope.passwordDetails = null;
-				$location.path('/settings/first_update_profile');
+				$location.path('/settings/first-update-profile');
 			}).error(function(response) {
 				$scope.error = response.message;
 			});
