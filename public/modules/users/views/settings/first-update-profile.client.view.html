@@ -1,5 +1,6 @@
+<div ng-controller="ModalController" data-ng-init="modalFirstProfileUpdate()"></div>
+
 <div class="site-wrapper" data-ng-controller="SettingsController">
-	<div ng-controller="ModalController" data-ng-init="modalFirstProfileUpdate()"></div>
 	<div class="nav-view-action-bar">
     <ul class="list-unstyled clearfix">
       <!-- <li class="view-left-action"><a href="#"><i class="icon-arrow-back-filled"></i></a></li> -->
@@ -10,54 +11,54 @@
   <div class="nav-view-indicator">
     <span>Indicador</span>
   </div>
-	<div class="content-wrapper bg-white">
-		<form class="form-custom-full-width" name="userForm" data-ng-submit="firstupdateUserProfile(userForm.$valid)" autocomplete="off">
+  	<form class="form-custom-full-width" name="userForm" data-ng-submit="firstupdateUserProfile(userForm.$valid)" autocomplete="off">
+		<div class="content-wrapper bg-white">
 			<div class="section-heading">Información De Contacto</div>
 			<div class="form-group">
 				<label for="email">Correo Electrónico</label>
-				<input type="text" class="form-control" value="hana@somostottus.pe" id="email" name="email" data-ng-model="user.email">
+				<input type="text" class="form-control" id="email" name="email" data-ng-model="user.email">
 				<div data-ng-show="error" class="text-danger">
-	        <small class="help-block" data-ng-bind="error"></small>
-			  </div>
+	        		<small class="help-block" data-ng-bind="error"></small>
+			  	</div>
 			</div>
 			<div class="form-group">
 				<label for="address">Dirección</label>
-				<textarea class="form-control" value="Angamos 25 int. 350" id="address" name="address" data-ng-model="user.address.address"></textarea>
+				<textarea class="form-control" id="address" name="address" data-ng-model="user.address.address"></textarea>
 			</div>
 			<div class="form-group">
 				<label for="city">Ciudad</label>
-				<input type="text" class="form-control" value="Lima" id="city" name="city" data-ng-model="user.address.city">
+				<input type="text" class="form-control" id="city" name="city" data-ng-model="user.address.city">
 			</div>
 			<div class="form-group">
 				<label for="phoneNumTottus">Celular Tottus</label>
-				<input type="text" class="form-control" value="980504023" id="phoneNumTottus" name="phoneNumTottus" data-ng-model="user.organizational.phoneNumTottus">
+				<input type="text" class="form-control" id="phoneNumTottus" name="phoneNumTottus" data-ng-model="user.organizational.phoneNumTottus">
 			</div>
 			<div class="section-heading">Información Personal</div>
 			<div class="form-group has-error">
 				<label for="firstName">Nombre</label>
-				<input type="text" class="form-control" value="Nombre" id="firstName" name="firstName" data-ng-model="user.personal.firstName">
+				<input type="text" class="form-control" id="firstName" name="firstName" data-ng-model="user.personal.firstName">
 				<small class="help-block">Debes ingresar un nombre real</small>
 			</div>
 			<div class="form-group">
 				<label for="lastName">Apellido</label>
-				<input type="text" class="form-control" value="Apellido" id="lastName" name="lastName" data-ng-model="user.personal.lastName">
+				<input type="text" class="form-control" id="lastName" name="lastName" data-ng-model="user.personal.lastName">
 			</div>
 			<div class="form-group">
 				<label for="DNI">DNI</label>
-				<input type="text" class="form-control" value="DNI" id="DNI" name="DNI" data-ng-model="user.personal.DNI">
+				<input type="text" class="form-control" id="DNI" name="DNI" data-ng-model="user.personal.DNI">
 			</div>
-			<div class="form-group">
+			<!-- <div class="form-group">
 				<label for="carnetCONADIS">carnetCONADIS</label>
-				<input type="text" class="form-control" value="carnetCONADIS" id="carnetCONADIS" name="carnetCONADIS" data-ng-model="user.organizational.carnetCONADIS">
-			</div>
+				<input type="text" class="form-control" id="carnetCONADIS" name="carnetCONADIS" data-ng-model="user.organizational.carnetCONADIS">
+			</div> -->
 			<div class="form-group">
-				<label for="dateOfBirth">Fecha de Nachimiento</label>
-				<input type="text" class="form-control" value="26/12/1989" id="dateOfBirth" name="dateOfBirth" data-ng-model="user.personal.dateOfBirth">
+				<label for="dateOfBirth">Fecha de Nacimiento</label>
+				<input type="text" class="form-control" id="dateOfBirth" name="dateOfBirth" data-ng-model="user.personal.dateOfBirth">
 			</div>
 			<div class="section-heading">Información Laboral</div>
 			<div class="form-group">
 				<label for="currentJobPosition">Cargo Actual</label>
-				<input type="text" class="form-control" value="Escribe tu posición actual" id="currentJobPosition" name="currentJobPosition" data-ng-model="user.organizational.currentJobPosition">
+				<input type="text" class="form-control" id="currentJobPosition" name="currentJobPosition" data-ng-model="user.organizational.currentJobPosition">
 			</div>
 			<div class="form-group">
 				<label for="area">Sección</label>
@@ -71,22 +72,22 @@
 				<label for="branchId">Número de Unidad</label>
 				<input type="text" class="form-control" value="Escribe número de tu unidad" id="branchId" name="branchId" data-ng-model="user.organizational.branchId">
 			</div>
-	</div>
-	<div class="nav-subnav-tabs">
-		<div class="container-fluid">
-			<ul class="list-unstyled row">
-				<!-- <li class="col-xs-4 posts-index">
-					<a href="#"><i class="icon-tottus"></i></a>
-				</li> -->
-				<li class="col-xs-12 notifications-index">
-					<!-- <a href="#"><i class="icon-bell-filled"></i></a> -->
-					<input type="submit" value="Confirmar datos" class="btn btn-primary">
-				</li>
-				<!-- <li class="col-xs-4 nav-drawer">
-					<a href="#"><i class="icon-options-filled"></i></a>
-				</li> -->
-			</ul>
 		</div>
-	</div>
-		</form>
+		<div class="nav-subnav-tabs">
+			<div class="container-fluid">
+				<ul class="list-unstyled row">
+					<!-- <li class="col-xs-4 posts-index">
+						<a href="#"><i class="icon-tottus"></i></a>
+					</li> -->
+					<li class="col-xs-12 notifications-index">
+						<!-- <a href="#"><i class="icon-bell-filled"></i></a> -->
+						<input type="submit" value="Confirmar datos" class="btn btn-primary">
+					</li>
+					<!-- <li class="col-xs-4 nav-drawer">
+						<a href="#"><i class="icon-options-filled"></i></a>
+					</li> -->
+				</ul>
+			</div>
+		</div>
+	</form>
 </div>
