@@ -22,7 +22,7 @@ var PostSchema = new Schema({
         type: String,
         default: '',
         trim: true,
-        required: 'Detail cannot be blank',
+        required: 'Por favor, rellene el cuadro de texto',
     },
     likes:      {
         type    : [{ type: Schema.ObjectId, ref: 'Like' }],

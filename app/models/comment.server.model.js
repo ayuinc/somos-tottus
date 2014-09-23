@@ -23,7 +23,7 @@ var CommentSchema = new Schema({
     },
 	text: 		{
 		type: String,
-		required: 'Please fill in a textfield',
+		required: 'Por favor, rellene el cuadro de texto',
 		trim: true
 	},
     updated: {
