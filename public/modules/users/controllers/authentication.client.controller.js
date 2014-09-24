@@ -25,7 +25,12 @@ angular.module('users').controller('AuthenticationController', ['$scope', '$http
 				$scope.authentication.user = response;
 
 				// And redirect to the index page
-				$location.path('/');
+				if($scope.authentication.user.isRegistered){
+					$location.path('/');
+				}
+				else{
+					$location.path('/settings/first-change-password');
+				}
 			}).error(function(response) {
 				$scope.error = response.message;
 			});
