@@ -47,7 +47,7 @@ var UserSchema = new Schema({
     username: {
         type: String,
         unique: 'El nombre de usuario ya existe',
-        required: 'Por favor, ingrese un username',
+        required: 'Por favor, ingrese un nombre de usuario',
         trim: true
     },
     isRegistered: {
@@ -113,7 +113,7 @@ var UserSchema = new Schema({
         DNI: {
             type: String,
             trim: true,
-            //required: true,
+            required: 'Por favor, ingrese su DNI',
             default: ''
         },
         displayName: {
@@ -125,22 +125,25 @@ var UserSchema = new Schema({
             type: String,
             trim: true,
             required: true,
+            required: 'Por favor, ingrese su nombre',
             default: ''
         },
         lastName: {
             type: String,
             trim: true,
-            //required: true,
+            required: 'Por favor, ingrese su apellido',
             default: ''
         },
         dateOfBirth: {
             type: String,
             trim: true,
+            required: 'Por favor, ingrese su fecha de nacimiento',
             default: null
         },
         educationLevel: {
             type: String,
             trim: true,
+            required: '',
             //required: true,
             default: ''
         },
