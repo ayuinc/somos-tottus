@@ -124,7 +124,6 @@ var UserSchema = new Schema({
         firstName: {
             type: String,
             trim: true,
-            required: true,
             required: 'Por favor, ingrese su nombre',
             default: ''
         },
