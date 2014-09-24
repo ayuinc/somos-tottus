@@ -213,7 +213,7 @@ exports.changePassword = function(req, res, next) {
 											res.status(400).send(err);
 										} else {
 											res.send({
-												message: 'Password changed successfully'
+												message: 'Contraseña actualizada correctamente'
 											});
 										}
 									});
@@ -221,28 +221,28 @@ exports.changePassword = function(req, res, next) {
 							});
 						} else {
 							res.status(400).send({
-								message: 'Passwords do not match'
+								message: 'Las contraseñas no coinciden'
 							});
 						}
 					} else {
 						res.status(400).send({
-							message: 'Current password is incorrect'
+							message: 'La contraseña actual es incorrecta'
 						});
 					}
 				} else {
 					res.status(400).send({
-						message: 'User is not found'
+						message: 'Usuario no registrado'
 					});
 				}
 			});
 		} else {
 			res.status(400).send({
-				message: 'Please provide a new password'
+				message: 'Por favor, ingrese una nueva contraseña'
 			});
 		}
 	} else {
 		res.status(400).send({
-			message: 'User is not signed in'
+			message: 'Usuario no identificado'
 		});
 	}
 };
