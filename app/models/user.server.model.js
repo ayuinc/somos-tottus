@@ -142,7 +142,6 @@ var UserSchema = new Schema({
         educationLevel: {
             type: String,
             trim: true,
-            required: '',
             //required: true,
             default: ''
         },
