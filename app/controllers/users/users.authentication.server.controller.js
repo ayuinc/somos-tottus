@@ -53,7 +53,9 @@ exports.signup = function(req, res) {
 exports.signin = function(req, res, next) {
 	passport.authenticate('local', function(err, user, info) {
 		if (err || !user) {
-			res.status(400).send(info);
+			res.status(400).send({
+				message: 'Por favor, complete los campos requeridos'
+			});
 		} else {
 			// Remove sensitive data before login
 			user.password = undefined;

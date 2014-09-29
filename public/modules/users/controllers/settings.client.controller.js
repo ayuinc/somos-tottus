@@ -51,13 +51,14 @@ angular.module('users').controller('SettingsController', ['$scope', '$http', '$l
 		};
 
 		$scope.firstupdateUserProfile = function(isValid) {
+			console.log('firstupdateUserProfile');
 			if (isValid){
 				$scope.success = $scope.error = null;
 				var user = new Users($scope.user);
 				user.isRegistered = true;
 	
 				user.$update(function(response) {
-					//$scope.success = true;
+					$scope.success = true;
 					Authentication.user = response;
 					$location.path('/');
 				}, function(response) {
