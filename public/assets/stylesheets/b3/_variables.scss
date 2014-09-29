@@ -327,6 +327,11 @@ $grid-gutter-width:         14px !default;
 //** GLOBAL PADDING FOR MOBILE CONTAINER-FLUID MODULES
 $container-fluid:						($grid-gutter-width / 2);
 
+@mixin custom-row {
+	margin-left: -($container-fluid);
+	margin-right: -($container-fluid);
+}
+
 // Navbar collapse
 //** Point at which the navbar becomes uncollapsed.
 $grid-float-breakpoint:     $screen-sm-min !default;

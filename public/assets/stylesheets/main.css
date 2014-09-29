@@ -5880,8 +5880,8 @@ a.not-underline:hover {
     text-fill-color: transparent; } }
 @font-face {
   font-family: 'icomoon';
-  src: url("../icons/icomoon.eot?-2j3bea");
-  src: url("../icons/icomoon.eot?#iefix-2j3bea") format("embedded-opentype"), url("../icons/icomoon.woff?-2j3bea") format("woff"), url("../icons/icomoon.ttf?-2j3bea") format("truetype"), url("../icons/icomoon.svg?-2j3bea#icomoon") format("svg");
+  src: url("/icons/icomoon.eot?-2j3bea");
+  src: url("/icons/icomoon.eot?#iefix-2j3bea") format("embedded-opentype"), url("/icons/icomoon.woff?-2j3bea") format("woff"), url("/icons/icomoon.ttf?-2j3bea") format("truetype"), url("/icons/icomoon.svg?-2j3bea#icomoon") format("svg");
   font-weight: normal;
   font-style: normal; }
 [class^="icon-"], [class*=" icon-"] {
@@ -6067,10 +6067,10 @@ input[type="submit"].btn-action {
 .form-custom-full-width input[type="password"],
 .form-custom-full-width textarea {
   background: white;
-  border-bottom: 1px solid #ededed;
   border-top: none;
   border-left: none;
   border-right: none;
+  border-bottom: none;
   outline: none;
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
@@ -6355,3 +6355,63 @@ input[type="submit"].btn-action {
     color: white;
     margin-bottom: 21px;
     margin-bottom: 1.5rem; }
+
+.toggle-switch {
+  padding-top: 14px !important;
+  padding-bottom: 14px !important; }
+  .toggle-switch:after {
+    content: "";
+    display: table;
+    clear: both; }
+  .toggle-switch .label-name {
+    float: left;
+    padding-top: 7px; }
+  .toggle-switch .toggle {
+    float: right; }
+  .toggle-switch input[type="checkbox"] {
+    display: none; }
+  .toggle-switch label {
+    position: relative;
+    background: #ededed;
+    display: block;
+    width: 56px;
+    height: 30px;
+    border-radius: 50px;
+    border: 1px solid #b8bbbb; }
+    .toggle-switch label .toggle-handle {
+      position: absolute;
+      height: 28px;
+      width: 28px;
+      background: white;
+      border-radius: 50%;
+      border: 1px solid #b8bbbb;
+      -webkit-transition: all 0.2s ease-in-out;
+      -moz-transition: all 0.2s ease-in-out;
+      transition: all 0.2s ease-in-out;
+      z-index: 30; }
+    .toggle-switch label:before, .toggle-switch label:after {
+      position: absolute;
+      font-size: 9px;
+      padding: 9px; }
+    .toggle-switch label:after {
+      content: "No";
+      right: 0; }
+    .toggle-switch label:before {
+      content: "Si";
+      color: white; }
+  .toggle-switch input:checked ~ label {
+    background: #58a742;
+    -webkit-transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out; }
+    .toggle-switch input:checked ~ label .toggle-handle {
+      -webkit-transform: translateX(100%);
+      -moz-transform: translateX(100%);
+      -ms-transform: translateX(100%);
+      -o-transform: translateX(100%);
+      transform: translateX(100%);
+      -webkit-transition: all 0.2s ease-in-out;
+      -moz-transition: all 0.2s ease-in-out;
+      transition: all 0.2s ease-in-out; }
+    .toggle-switch input:checked ~ label:after {
+      display: none; }
