@@ -5,6 +5,7 @@
  */
 var mongoose = require('mongoose'),
     errorHandler = require('./errors'),
+    User = mongoose.model('User'),
     Post = mongoose.model('Post'),
     _ = require('lodash');
 
@@ -24,15 +25,27 @@ exports.create = function(req, res) {
 };
 
 exports.index = function(req, res) {
-    Post.find().sort('-created').populate('user', 'personal.displayName').exec(function(err, posts) {
-        if (err) {
-            return res.status(400).send({
-                message: errorHandler.getErrorMessage(err)
+    Post.find().sort('-created').limit(25)
+        .populate('comments', 'text')
+        .populate('user', 'personal.displayName')
+        .exec(function(err, posts) {
+            User.populate(posts, {
+                path: 'user',
+                select: 'personal.displayName',
+            }, function(err, data) {
+                console.log('posts', data);
+                res.jsonp(data);
             });
-        } else {
-            res.jsonp(posts);
-        }
-    });
+
+            if (err) {
+                return res.status(400).send({
+                    message: errorHandler.getErrorMessage(err)
+                });
+            } else {
+                //res.jsonp(posts);
+                console.log('posts');
+            }
+        });
 };
 
 exports.show = function(req, res) {

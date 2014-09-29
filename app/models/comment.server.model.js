@@ -30,10 +30,16 @@ var CommentSchema = new Schema({
         type: Date
     },
     created: {
-        type: Date,
-        default: Date.now
+        type: Date
     },
 
+});
+
+CommentSchema.pre('save', function(next) {
+    var now = new Date();
+    this.updated = now;
+    if (!this.created) this.created = now;
+    next();
 });
 
 mongoose.model('Comment', CommentSchema);
