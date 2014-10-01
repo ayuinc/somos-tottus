@@ -39,4 +39,14 @@
         </div>
     </div>
     
+    <div class="row">
+        <div class="col-xs-12">
+            <ul>
+                <li data-ng-repeat="comment in post.comments">
+                    <p>{{ comment.text }}</p>
+                    <small>by {{ comment.user.personal.displayName }}</small>
+                </li>
+            </ul>
+        </div>
+    </div>
 </section>

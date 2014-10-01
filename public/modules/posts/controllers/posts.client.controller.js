@@ -25,7 +25,16 @@ angular.module('posts').controller('PostsController', ['$scope', '$stateParams',
                 text: this.text
             });
 
-            comment.create($scope.post._id);
+            comment.create($scope.post._id)
+                .then(function(response) {
+                    $scope.text = '';
+                })
+                .catch(function(err) {
+                    $scope.error = err.data.message;
+                });
+
+            comment.user = $scope.authentication.user;
+            $scope.post.comments.push(comment);
 
             // comment.$save({
             //     postId: $scope.post._id,
