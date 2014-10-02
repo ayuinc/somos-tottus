@@ -1,12 +1,12 @@
 // Rounded borders when no bootstrap
-@mixin rounded-borders($border-radius) {
+@mixin rounded-borders($rounded-borders) {
 	@if $rounded-borders == true {
 		.rounded-borders {
-			border-radius: $border-radius;
+			border-radius: $border-radius-base;
 		}
 	}
 }
-@include rounded-borders($border-radius);
+@include rounded-borders($rounded-borders);
 
 // Border Radius
 .border-radius {

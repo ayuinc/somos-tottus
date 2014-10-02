@@ -280,6 +280,8 @@ $zindex-modal:             1050 !default;
 //
 //## Define the breakpoints at which your layout will change, adapting to different screen sizes.
 
+$breakpoints-sufix-list:  xs, sm, md, lg;
+
 // Extra small screen / phone
 //** Deprecated `$screen-xs` as of v3.0.1
 $screen-xs:                  480px !default;
@@ -326,6 +328,11 @@ $grid-gutter-width:         14px !default;
 
 //** GLOBAL PADDING FOR MOBILE CONTAINER-FLUID MODULES
 $container-fluid:						($grid-gutter-width / 2);
+
+@mixin custom-row {
+	margin-left: -($container-fluid);
+	margin-right: -($container-fluid);
+}
 
 // Navbar collapse
 //** Point at which the navbar becomes uncollapsed.

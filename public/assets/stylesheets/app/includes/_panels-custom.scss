@@ -1,0 +1,52 @@
+.panel {
+	background: white;
+	min-height: 70px;
+	border-radius: $border-radius-base;
+	@include box-shadow-default;
+	padding: ($container-fluid *2) 0;
+	margin-bottom: ($container-fluid*2);
+	@include clearfix;
+	position: relative;
+	> a.edit {
+		text-transform: uppercase;
+		font-size: 10px;
+		color: #b8bbbb;
+		display: bl;
+		display: block;
+		position: absolute;
+		right: $container-fluid;
+		top: $container-fluid;
+	}
+	&.panel-tabs {
+		padding-bottom: 0;
+		border-bottom-left-radius: 0;
+		border-bottom-right-radius: 0;
+		.tabs {
+			@include clearfix;
+			border-top: 1px solid $gray-lighter; 
+			text-align: center;
+			margin-top: 14px;
+			div:first-child {
+				border-right: 1px solid $gray-lighter;
+			}
+		}
+	}
+	&.panel-highlight {
+		border-top-left-radius: 0;
+		border-top-right-radius: 0;
+		border-top: 2px solid $brand-danger;
+	}
+	.panel-row {
+		padding: $container-fluid 0;
+		label {
+			display: block;
+			@include clearfix;
+			a.edit {
+				float: right;
+				padding-top: 4px;
+				font-size: 10px;
+				color: $gray-light;
+			}
+		}
+	}
+}

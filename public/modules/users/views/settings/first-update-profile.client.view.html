@@ -16,7 +16,8 @@
             <div class="section-heading">Información De Contacto</div>
             <div class="form-group">
                 <label for="username">Username</label>
-                <input type="text" id="username" name="username" class="form-control" data-ng-model="credentials.username" placeholder="Username">
+                <input type="text" id="username" name="username" class="form-control" data-ng-model="credentials.username" ng-focus="username = !username" ng-blur="username = !username">
+                <small class="help-block" ng-show="username">Así se mostrará en Somos Tottus</small>
             </div>
             <div class="form-group">
                 <label for="email">Correo Electrónico</label>
@@ -48,13 +49,57 @@
                 <label for="DNI">DNI</label>
                 <input type="text" class="form-control" id="DNI" name="DNI" data-ng-model="user.personal.DNI">
             </div>
+            <div class="form-group toggle-switch">
+                <div class="label-name">
+                    <span>¿Cuentas con Carnet CONADIS?</span>
+                </div>
+                <div class="toggle">
+                    <input type="checkbox" id="carnetCONADIS" name="carnetCONADIS" data-ng-model="user.personal.carnetCODADIS">
+                    <label for="carnetCONADIS">
+                        <div class="toggle-handle"></div>
+                    </label>
+                </div>
+            </div>
             <!-- <div class="form-group">
                 <label for="carnetCONADIS">carnetCONADIS</label>
                 <input type="text" class="form-control" id="carnetCONADIS" name="carnetCONADIS" data-ng-model="user.organizational.carnetCONADIS">
             </div> -->
             <div class="form-group">
-                <label for="dateOfBirth">Fecha de Nacimiento</label>
+                <label for="dateOfBirth">Cumpleaños</label>
                 <input type="text" class="form-control" id="dateOfBirth" name="dateOfBirth" data-ng-model="user.personal.dateOfBirth">
+            </div>
+            <div class="form-group">
+                <label for="educationLevel">Nivel de instrucción</label>
+                <select name="educationLevel" id="educationLevel" class="form-control select-override" data-ng-model="user.personal.educationLevel">
+                    <option value="Secundaria completa" ng-selected="selected">Secundaria completa</option>
+                    <option value="Técnica Completa">Técnica Completa</option>
+                    <option value="Técnica incompleta">Técnica incompleta</option>
+                    <option value="Universitaria Completa">Universitaria Completa</option>
+                    <option value="Universitaria Incompleta">Universitaria Incompleta</option>
+                    <option value="PostGrado">PostGrado</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="maritalStatus">Estado civil</label>
+                <select name="maritalStatus" id="maritalStatus" class="form-control select-override" data-ng-model="user.demographic.maritalStatus">
+                    <option value="Soltero" ng-selected="selected">Soltero</option>
+                    <option value="Casado">Casado</option>
+                    <option value="Viudo">Viudo</option>
+                    <option value="Divorciado">Divorciado</option>
+                    <option value="En una relación">En una relación</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="children">Hijos</label>
+                <input type="text" class="form-control" id="children" name="children" data-ng-model="user.demographic.children">
+            </div>
+            <div class="form-group">
+                <label for="interests">Intereses o Hobbies</label>
+                <textarea class="form-control" id="interests" name="interests" data-ng-model="user.personal.interests"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="phoneNumHome">Teléfono de domicilio</label>
+                <input type="text" class="form-control" id="phoneNumHome" name="phoneNumHome" data-ng-model="user.contact.phoneNumHome">
             </div>
             <div class="section-heading">Información Laboral</div>
             <div class="form-group">
@@ -73,25 +118,31 @@
                 <label for="branchId">Número de Unidad</label>
                 <input type="text" class="form-control" value="Escribe número de tu unidad" id="branchId" name="branchId" data-ng-model="user.organizational.branchId">
             </div>
+            <div class="form-group">
+                <label for="jobType">Modalidad de Trabajo</label>
+                <input type="text" class="form-control" value="Modalidad de trabajo" id="jobType" name="jobType" data-ng-model="user.organizational.jobType">
+            </div>
             <div data-ng-show="error" class="text-center text-danger">
               <strong data-ng-bind="error"></strong>
             </div>
         </div>
-        <div class="nav-subnav-tabs">
+        <!-- <div class="nav-subnav-tabs">
             <div class="container-fluid">
                 <ul class="list-unstyled row">
-                    <!-- <li class="col-xs-4 posts-index">
+                    <li class="col-xs-4 posts-index">
                         <a href="#"><i class="icon-tottus"></i></a>
-                    </li> -->
-                    <li class="col-xs-12 notifications-index">
-                        <!-- <a href="#"><i class="icon-bell-filled"></i></a> -->
-                        <input type="submit" value="Confirmar datos" class="btn btn-primary">
                     </li>
-                    <!-- <li class="col-xs-4 nav-drawer">
+                    <li class="col-xs-12 notifications-index">
+                        <a href="#"><i class="icon-bell-filled"></i></a>
+                    </li>
+                    <li class="col-xs-4 nav-drawer">
                         <a href="#"><i class="icon-options-filled"></i></a>
-                    </li> -->
+                    </li>
                 </ul>
             </div>
+        </div> -->
+        <div class="text-center p-21">
+            <input type="submit" value="Confirmar datos" class="btn btn-primary btn-lg">
         </div>
     </form>
 </div>
