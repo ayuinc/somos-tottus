@@ -23,10 +23,11 @@
   input[type="password"],
   textarea {
     background: white;
-    border-bottom: 1px solid darken(white, 7%);
+    // border-bottom: 1px solid darken(white, 7%);
     border-top: none;
     border-left: none;
     border-right: none;
+    border-bottom: none;
     outline: none;
     @include box-shadow(none);
     border-radius: 0px;

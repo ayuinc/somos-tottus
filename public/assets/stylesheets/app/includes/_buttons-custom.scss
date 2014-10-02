@@ -68,4 +68,17 @@ input[type="submit"] {
 			@include box-shadow(none);
 		}
 	}
+	&.btn-tabs {
+		@include bold;
+		color: $gray-light;
+		display: block;
+		padding: ($container-fluid*2) 0;
+		border-bottom-left-radius: 0;
+		border-bottom-right-radius: 0;
+		&.active {
+			color: $brand-primary;
+			border-bottom: 2px solid $brand-primary;
+			@include box-shadow(none);
+		}
+	}
 }

@@ -7,7 +7,8 @@
 		padding-right: 0;
 		a {
 			img {
-				width: 100%;
+				width: 52px;
+				height: 52px;
 				border-radius: $border-radius-base;
 				background: $gray-lighter;
 				padding: 1px;
@@ -17,8 +18,12 @@
 	.info {
 		color: $gray;
 		font-size: rem(10);
+		height: 52px;
+		display: table;
 		p {
 			margin-top: 0;
+			display: table-cell;
+			vertical-align: middle;
 			.name {
 				@include medium;
 				color: $text-color;
