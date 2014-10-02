@@ -17,11 +17,8 @@ exports.create = function(req, res) {
     comment.user = req.user;
     comment.post = req.post;
 
-    console.log('comment', comment);
-
     comment.save(function(err) {
         if(err) {
-            console.log('server error', errorHandler.getErrorMessage(err));
             return res.status(400).send({
                 message: errorHandler.getErrorMessage(err)
             });
@@ -34,10 +31,9 @@ exports.create = function(req, res) {
                 } else {
                     post.comments.push(comment);
                     post.save();
+                    return res.jsonp(comment);
                 }
             });
-
-            return res.jsonp(comment);
         }
     });
 };

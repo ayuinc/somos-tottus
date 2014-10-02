@@ -24,7 +24,7 @@
                     <div class="form-group" ng-class="{ 'has-error': commentForm.text.$dirty && commentForm.text.$invalid }">
                         <label class="control-label" for="text">Text</label>
                         <div class="controls">
-                            <textarea name="text" data-ng-model="text" id="text" class="form-control" cols="30" rows="10" placeholder="Enter a new comment..."></textarea>
+                            <textarea data-ng-enter="comment()" name="text" data-ng-model="text" id="text" class="form-control" cols="30" rows="10" placeholder="Enter a new comment..."></textarea>
                         </div>
                     </div>
                     
@@ -44,7 +44,7 @@
             <ul>
                 <li data-ng-repeat="comment in post.comments">
                     <p>{{ comment.text }}</p>
-                    <small>by {{ comment.user.personal.displayName }}</small>
+                    <small>by <a data-ng-href="#!/users/{{comment.user._id}}" >{{ comment.user.personal.displayName }}</a></small>
                 </li>
             </ul>
         </div>

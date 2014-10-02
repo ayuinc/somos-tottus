@@ -55,3 +55,6 @@ exports.me = function(req, res) {
 	res.jsonp(req.user || null);
 };
 
+exports.show = function(req, res) {
+    res.jsonp(req.profile || null);
+};
