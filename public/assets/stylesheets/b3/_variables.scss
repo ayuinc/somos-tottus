@@ -2,6 +2,18 @@
 // defaults to true if twbs-font-path function is present (no function => twbs-font-path('') parsed as string == right side)
 // in Sass 3.3 this can be improved with: function-exists(twbs-font-path)
 $bootstrap-sass-asset-helper: (twbs-font-path("") != unquote('twbs-font-path("")')) !default;
+
+//
+// CUSTOM MIXINS
+// --------------------------------------------------
+
+// LIST UNSTYLED
+@mixin list-unstyled {
+  padding-left: 0;
+  list-style: none;
+  margin: 0;
+}
+
 //
 // Variables
 // --------------------------------------------------
@@ -32,10 +44,10 @@ $brand-danger:          #DA3A2F !default;
 
 $brand-inverse: 				#081A26 !default;
 
-$grayscale-list: $gray-darker, $gray-dark, $gray, $gray-light, $gray-lighter;
+$grayscale-list: $gray-darker, $gray-dark, $gray, $gray-light, $gray-lighter, #fff;
 $brand-colors-list: $brand-primary, $brand-success, $brand-info, $brand-warning, $brand-danger;
 
-$grayscale-sufix-list: gray-lighter, gray-light, gray, gray-dark, gray-darker;
+$grayscale-sufix-list: gray-darker, gray-dark, gray, gray-light, gray-lighter, white;
 $brand-colors-sufix-list: primary, success, info, warning, danger;
 
 
@@ -327,6 +339,8 @@ $grid-columns:              12 !default;
 $grid-gutter-width:         14px !default;
 
 //** GLOBAL PADDING FOR MOBILE CONTAINER-FLUID MODULES
+$container-xs: 								((480px + $grid-gutter-width)) !default;
+
 $container-fluid:						($grid-gutter-width / 2);
 
 @mixin custom-row {
