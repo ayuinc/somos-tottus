@@ -41,6 +41,13 @@ var PostSchema = new Schema({
     },
 });
 
+PostSchema.pre('save', function(next) {
+    var now = new Date();
+    this.updated = now;
+    if (!this.created) this.created = now;
+    next();
+});
+
 PostSchema.methods.newComment = function(data) {
     var _this = this;
     var comment = new Comment({
@@ -50,7 +57,7 @@ PostSchema.methods.newComment = function(data) {
     });
     comment.save();
 
-    _this.comments.push(comment._id);
+    _this.comments.push(comment);
     _this.save();
 };
 

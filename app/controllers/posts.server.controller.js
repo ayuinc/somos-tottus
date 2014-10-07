@@ -5,6 +5,8 @@
  */
 var mongoose = require('mongoose'),
     errorHandler = require('./errors'),
+    Comment = mongoose.model('Comment'),
+    User = mongoose.model('User'),
     Post = mongoose.model('Post'),
     _ = require('lodash');
 
@@ -24,15 +26,22 @@ exports.create = function(req, res) {
 };
 
 exports.index = function(req, res) {
-    Post.find().sort('-created').populate('user', 'personal.displayName').exec(function(err, posts) {
-        if (err) {
-            return res.status(400).send({
-                message: errorHandler.getErrorMessage(err)
+    Post.find().sort('-created').limit(25)
+        .populate('comments', 'text')
+        .populate('user', 'personal.displayName')
+        .exec(function(err, posts) {
+            User.populate(posts, {
+                path: 'user',
+                select: 'personal.displayName',
+            }, function(err, data) {
+                if (err) {
+                    return res.status(400).send({
+                        message: errorHandler.getErrorMessage(err)
+                    });
+                }
+                res.jsonp(data);
             });
-        } else {
-            res.jsonp(posts);
-        }
-    });
+        });
 };
 
 exports.show = function(req, res) {
@@ -70,12 +79,27 @@ exports.delete = function(req, res) {
 };
 
 exports.postByID = function(req, res, next, id) {
-    Post.findById(id).populate('user', 'personal.displayName').exec(function(err, post) {
-        if(err) return next(err);
-        if(!post) return next(new Error('Error leyendo post ' + id));
-        req.post = post;
-        next();
-    });
+    Post.findById(id)
+        .populate('user', 'personal.displayName')
+        .populate('comments')
+        .exec(function(err, post) {
+            if(err) return next(err);
+            if(!post) return next(new Error('Error leyendo post ' + id));
+
+            Post.populate(post, {
+                path: 'comments.user',
+                select: 'personal.displayName',
+                model: 'User'
+            }, function(err, data) {
+                if(err) return next(err);
+
+                req.post = data;
+                next();
+            });
+
+            // req.post = post;
+            // next();
+        });
 };
 
 exports.hasAuthorization = function(req, res, next) {

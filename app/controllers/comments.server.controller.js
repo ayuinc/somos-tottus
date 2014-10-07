@@ -17,25 +17,25 @@ exports.create = function(req, res) {
     comment.user = req.user;
     comment.post = req.post;
 
-    // comment.save(function(err) {
-    //     if(err) {
-    //         return res.status(400).send({
-    //             message: errorHandler.getErrorMessage(err)
-    //         });
-    //     } else {
-    //         res.jsonp(comment);
-    //         Post.findById(post, function(err, post) {
-    //             if(err) {
-    //                 return res.status(400).send({
-    //                     message: errorHandler.getErrorMessage(err)
-    //                 });
-    //             } else {
-    //                 post.comments.push(comment);
-    //                 post.save();
-    //             }
-    //         });
-    //     }
-    // });
+    comment.save(function(err) {
+        if(err) {
+            return res.status(400).send({
+                message: errorHandler.getErrorMessage(err)
+            });
+        } else {
+            Post.findById(comment.post, function(err, post) {
+                if(err) {
+                    return res.status(400).send({
+                        message: errorHandler.getErrorMessage(err)
+                    });
+                } else {
+                    post.comments.push(comment);
+                    post.save();
+                    return res.jsonp(comment);
+                }
+            });
+        }
+    });
 };
 
 exports.index = function(req, res) {

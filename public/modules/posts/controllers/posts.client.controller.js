@@ -5,7 +5,7 @@ angular.module('posts').controller('PostsController', ['$scope', '$stateParams',
         $scope.authentication = Authentication;
 
         // If user is signed in then redirect back home
-        // if ($scope.authentication.user) $location.path('/');
+        if (!$scope.authentication.user) $location.path('/');
 
         $scope.new = function() {
             var post = new Posts({
@@ -25,14 +25,26 @@ angular.module('posts').controller('PostsController', ['$scope', '$stateParams',
                 text: this.text
             });
 
-            comment.$save({
-                postId: $scope.post._id
-            }, function(response) {
-                $location.path('posts/' + response.post);
-                $scope.text = '';
-            }, function(errorResponse) {
-                $scope.error = errorResponse.data.message;
-            });
+            $scope.text = '';
+            $scope.post.comments.push({ text: this.text, user: { _id: $scope.authentication.user, personal: { displayName: $scope.authentication.user.personal.displayName} }});
+
+            comment.create($scope.post._id);
+
+            // comment.user = $scope.authentication.user;
+            // $scope.post.comments.push(comment);
+
+            // comment = {};
+
+            // comment.$save({
+            //     postId: $scope.post._id,
+            // }, function(response) {
+            //     console.log('response ', response);
+            //     $location.path('posts/' + response.post);
+            //     $scope.text = '';
+            // }, function(errorResponse) {
+            //     $scope.error = errorResponse.data.message;
+            //     console.log('error', $scope.error);
+            // });
         };
 
         $scope.find = function() {
@@ -43,8 +55,6 @@ angular.module('posts').controller('PostsController', ['$scope', '$stateParams',
             $scope.post = Posts.get({
                 postId: $stateParams.postId
             });
-
-            console.log($scope.post);
         };
 
         $scope.remove = function(post) {

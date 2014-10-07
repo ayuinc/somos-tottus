@@ -24,8 +24,13 @@ var LikeSchema = new Schema({
     },
     created: {
         type: Date,
-        default: Date.now
     },
+});
+
+LikeSchema.pre('save', function(next) {
+    var now = new Date();
+    if (!this.created) this.created = now;
+    next();
 });
 
 mongoose.model('Like', LikeSchema);
