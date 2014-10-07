@@ -9,10 +9,7 @@ angular.module('users').controller('UsersController', ['$scope', '$http', '$loca
 
         // Update a user profile
         $scope.find = function() {
-            $scope.profile = Users.get({
-                userId: $stateParams.userId
-            });
-            console.log('profile', $scope.profile);
+            console.log('Users', Users);
         };
     }
 ]);

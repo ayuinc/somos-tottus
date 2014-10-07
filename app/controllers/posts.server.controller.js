@@ -34,18 +34,13 @@ exports.index = function(req, res) {
                 path: 'user',
                 select: 'personal.displayName',
             }, function(err, data) {
-                console.log('posts', data);
+                if (err) {
+                    return res.status(400).send({
+                        message: errorHandler.getErrorMessage(err)
+                    });
+                }
                 res.jsonp(data);
             });
-
-            if (err) {
-                return res.status(400).send({
-                    message: errorHandler.getErrorMessage(err)
-                });
-            } else {
-                //res.jsonp(posts);
-                console.log('posts');
-            }
         });
 };
 

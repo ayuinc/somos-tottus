@@ -11,7 +11,7 @@
                     Posted on
                     <span data-ng-bind="post.created | date:'mediumDate'"></span>
                     by
-                    <span data-ng-bind="post.user.personal.displayName"></span>
+                    <a data-ng-href="#!/users/{{post.user._id}}" >{{ post.user.personal.displayName }}</a>
                 </b>
             </div>
             <div class="col-xs-2">
