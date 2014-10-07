@@ -1,4 +1,4 @@
-<div class="site-wrapper" data-ng-controller="SettingsController">
+<div class="site-wrapper">
     <div class="nav-view-action-bar">
     <ul class="list-unstyled clearfix">
       <!-- <li class="view-left-action"><a href="#"><i class="icon-arrow-back-filled"></i></a></li> -->
@@ -9,7 +9,7 @@
   <div class="nav-view-indicator">
     <span>Mi perfil</span>
   </div>
-  <div class="container pt-14">
+  <div class="container pt-14" data-ng-controller="SettingsController">
     <div class="panel panel-tabs">
       <a href="#" class="edit">Editar</a>
       <div class="user-card">
@@ -36,23 +36,23 @@
         <h3>Información personal</h3>
         <div class="panel-row">
           <label>Nombre de usuario <a href="#" class="edit">Editar</a></label>
-          <span>gustavoandresibarra</span>
+          <span>{{user.username}}</span>
         </div>
         <div class="panel-row">
           <label>Correo electrónico <a href="#" class="edit">Editar</a></label>
-          <span>gustavoandresibarra@gmail.com</span>
+          <span>{{user.email}}</span>
         </div>
         <div class="panel-row">
           <label for="DNI">DNI <a href="#" class="edit">Editar</a></label>
-          <span></span>
+          <span>{{user.personal.DNI}}</span>
         </div>
         <div class="panel-row">
           <label>¿Cuentas con Carnet CONADIS? <a href="#" class="edit">Editar</a></label>
-          <span></span>
+          <span>{{'user.personal.carnetCODADIS'}}</span>
         </div>
         <div class="panel-row">
           <label for="dateOfBirth">Cumpleaños <a href="#" class="edit">Editar</a></label>
-          <span></span>
+          <span>{{user.personal.dateOfBirth}}</span>
         </div>
       </div>
     </div>
