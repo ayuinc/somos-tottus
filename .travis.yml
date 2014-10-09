@@ -5,3 +5,5 @@ env:
   - NODE_ENV=travis
 services:
   - mongodb
+notifications:
+  email: false
