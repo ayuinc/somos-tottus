@@ -15,6 +15,18 @@
         <div class="content-wrapper bg-white">
             <div class="section-heading">Información De Contacto</div>
             <div class="form-group">
+                <div class="user-card">
+                    <div class="profile-pic col-xs-2">
+                      <a href="#"><img src="assets/img/user-placeholder-2.png" /></a>
+                    </div>
+                    <div class="info col-xs-10">
+                      <p>
+                        <a href="#" class="name">{{user.personal.firstName}} {{user.personal.lastName}}</a><br> <span class="job-position">Gerente Gral.</span> en <span class="area">Tottus Atocongo</span>
+                      </p>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
                 <label for="username">Username</label>
                 <input type="text" id="username" name="username" class="form-control" data-ng-model="credentials.username" ng-focus="username = !username" ng-blur="username = !username">
                 <small class="help-block" ng-show="username">Así se mostrará en Somos Tottus</small>
