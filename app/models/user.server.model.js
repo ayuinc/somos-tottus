@@ -99,8 +99,7 @@ var UserSchema = new Schema({
         type: Date
     },
     created: {
-        type: Date,
-        default: Date.now
+        type: Date
     },
     /* For reset password */
     resetPasswordToken: {
@@ -261,9 +260,19 @@ var UserSchema = new Schema({
 });
 
 /**
- * Hook a pre save method to hash the password
+ * Hook a pre save method to save created and updated fields
  */
 UserSchema.pre('save', function(next) {
+    var now = new Date();
+    this.updated = now;
+    if (!this.created) this.created = now;
+    next();
+});
+
+/**
+ * Hook a pre save method to hash the password
+ */
+UserSchema.pre('save', function(next) {    
     if (this.password && this.password.length > 6) {
         this.salt = new Buffer(crypto.randomBytes(16).toString('base64'), 'base64');
         this.password = this.hashPassword(this.password);
