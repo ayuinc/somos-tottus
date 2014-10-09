@@ -2986,7 +2986,7 @@ input[type="submit"].btn-tabs {
     display: table; }
   .panel:after {
     clear: both; }
-  .panel > h3 {
+  .panel .panel-title {
     text-transform: uppercase; }
   .panel > a.edit {
     text-transform: uppercase;
