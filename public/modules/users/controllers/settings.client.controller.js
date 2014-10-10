@@ -61,7 +61,8 @@ angular.module('users').controller('SettingsController', ['$scope', '$http', '$l
 				user.$update(function(response) {
 					$scope.success = true;
 					Authentication.user = response;
-					$location.path('/');
+					//$location.path('/');
+					$location.path('/posts'); //ruta provicional para la presentacion con Hana
 				}, function(response) {
 					$scope.error = response.data.message;
 				});

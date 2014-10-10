@@ -26,7 +26,8 @@ angular.module('users').controller('AuthenticationController', ['$scope', '$http
 
 				// And redirect to the index page
 				if($scope.authentication.user.isRegistered){
-					$location.path('/');
+					//$location.path('/');
+					$location.path('/posts'); //ruta provicional para la presentacion con Hana
 				}
 				else{
 					$location.path('/settings/first-change-password');
