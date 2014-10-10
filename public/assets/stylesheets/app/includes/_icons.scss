@@ -1,10 +1,10 @@
 @font-face {
 	font-family: 'icomoon';
-	src:url('/assets/icons/icomoon.eot?-2j3bea');
-	src:url('/assets/icons/icomoon.eot?#iefix-2j3bea') format('embedded-opentype'),
-		url('/assets/icons/icomoon.woff?-2j3bea') format('woff'),
-		url('/assets/icons/icomoon.ttf?-2j3bea') format('truetype'),
-		url('/assets/icons/icomoon.svg?-2j3bea#icomoon') format('svg');
+	src:url('/assets/icons/icomoon.eot?ywybr6');
+	src:url('/assets/icons/icomoon.eot?#iefixywybr6') format('embedded-opentype'),
+		url('/assets/icons/icomoon.woff?ywybr6') format('woff'),
+		url('/assets/icons/icomoon.ttf?ywybr6') format('truetype'),
+		url('/assets/icons/icomoon.svg?ywybr6#icomoon') format('svg');
 	font-weight: normal;
 	font-style: normal;
 }
@@ -23,6 +23,15 @@
 	-moz-osx-font-smoothing: grayscale;
 }
 
+.icon-arrow-back-filled:before {
+	content: "\e610";
+}
+.icon-edit-filled:before {
+	content: "\e611";
+}
+.icon-times-filled:before {
+	content: "\e612";
+}
 .icon-cart-filled:before {
 	content: "\e600";
 }
