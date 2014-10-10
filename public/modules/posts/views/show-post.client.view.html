@@ -1,52 +1,85 @@
-<section data-ng-controller="PostsController" data-ng-init="findOne()">
-    <div class="row">
-        <div class="col-sm-8">
-            <small>
-                <em class="text-muted">
-                    Posted on
-                    <span data-ng-bind="post.created | date:'mediumDate'"></span>
-                    by
-                    <span data-ng-bind="post.user.personal.displayName"></span>
-                </em>
-            </small>
-            <p class="lead" data-ng-bind="post.detail"></p>
-        </div>
-        <div class="col-sm-8">
-            <a class="btn btn-primary" data-ng-click="remove();">
-                Remove
-            </a>
-        </div>
+<div class="site-wrapper">
+    <div class="nav-view-action-bar">
+        <ul class="list-unstyled clearfix">
+          <!-- <li class="view-left-action"><a href="#"><i class="icon-arrow-back-filled"></i></a></li> -->
+          <li class="logo"><a href="#"><img src="assets/img/logo-somos-tottus-vertical-light.png" alt="SomosTottus"></a></li>
+          <!-- <li class="view-action-button"><a href="/#!/posts/new" class="btn">Publicar</a></li> -->
+        </ul>
     </div>
-    <div class="row">
-        <div class="col-xs-12">
-            <form name="commentForm" data-ng-submit="comment()" class="signin form-horizontal" novalidate autocomplete="off">
-                <fieldset>
-                    <div class="form-group" ng-class="{ 'has-error': commentForm.text.$dirty && commentForm.text.$invalid }">
-                        <label class="control-label" for="text">Text</label>
-                        <div class="controls">
-                            <textarea data-ng-enter="comment()" name="text" data-ng-model="text" id="text" class="form-control" cols="30" rows="10" placeholder="Enter a new comment..."></textarea>
+    <div class="nav-view-indicator">
+        <span>Publicación</span>
+    </div>
+    <div class="container-fluid">
+        <div class="clearfix">
+            <section data-ng-controller="PostsController" data-ng-init="findOne()">
+                <div class="posts-show-item">
+                    <div class="meta">
+                        <span class="benefit">Beneficios</span>
+                    </div>
+                    <div class="user">
+                        <div class="user-card">
+                            <div class="profile-pic col-xs-2">
+                              <a data-ng-href="#!/users/{{post.user._id}}"><img src="assets/img/user-placeholder-2.png" /></a>
+                            </div>
+                            <div class="info col-xs-10">
+                              <p>
+                                <a data-ng-href="#!/users/{{post.user._id}}" class="name" >{{ post.user.personal.displayName }}</a><br> <span class="job-position">Gerente Gral.</span> en <span class="area">Tottus Atocongo</span> el <span data-ng-bind="post.created | date:'mediumDate'"></span>
+                              </p>
+                            </div>
                         </div>
                     </div>
-                    
-                    <div class="form-group">
-                        <input type="submit" class="btn btn-default">
+                    <div class="content-text-placeholder">
+                        <p data-ng-bind="post.detail"></p>
                     </div>
-                    <div data-ng-show="error" class="text-danger">
-                        <strong data-ng-bind="error"></strong>
+                    <div class="content-img-placeholder">
+                        <a href="#"><img src="assets/img/img-placeholder.png" /></a>
                     </div>
-                </fieldset>
-            </form>
+                    <ul class="counts-and-share list-unstyled">
+                        <li class="counts-likes"><a href="#">25 Me Gusta</a></li>
+                        <li class="counts-comments"><a href="#">3 Comentarios</a></li>
+                        <li class="share"><a href="#">Compartir</a></li>
+                    </ul>
+                    <div class="actions">
+                        <div class="col-xs-6">
+                            <a href="#" class="btn btn-action active">Me Gusta</a>
+                        </div>
+                        <div class="col-xs-6">
+                            <a href="#" class="btn btn-action">Comentar</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="post-show-comments">
+                    <div class="panel">
+                        <h4 class="panel-title">Comentarios</h4>
+                        <hr class="m-0">
+                        <ul data-ng-repeat="comment in post.comments">
+                            <li>
+                                <div class="profile-pic col-xs-2">
+                                    <a data-ng-href="#!/users/{{post.user._id}}"><img src="assets/img/user-placeholder-2.png" /></a>
+                                </div>
+                                <div class="comment-content col-xs-10">
+                                    <p><a data-ng-href="#!/users/{{comment.user._id}}" >{{ comment.user.personal.displayName }}</a> {{ comment.text }}</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>            
+            </section>
         </div>
     </div>
-    
-    <div class="row">
-        <div class="col-xs-12">
-            <ul>
-                <li data-ng-repeat="comment in post.comments">
-                    <p>{{ comment.text }}</p>
-                    <small>by <a data-ng-href="#!/users/{{comment.user._id}}" >{{ comment.user.personal.displayName }}</a></small>
-                </li>
-            </ul>
+    <div class="nav-subnav-tabs">
+        <div class="container-fluid">
+          <ul class="list-unstyled row">
+            <li class="col-xs-4 posts-index active">
+              <a href="#!/posts"><i class="icon-tottus"></i></a>
+            </li>
+            <li class="col-xs-4 notifications-index">
+              <a href="#"><i class="icon-bell-filled"></i></a>
+            </li>
+            <li class="col-xs-4 nav-drawer">
+              <a href="#"><i class="icon-options-filled"></i></a>
+            </li>
+          </ul>
         </div>
     </div>
-</section>
+</div>

@@ -1,4 +1,5 @@
-.posts-index-item {
+.posts-index-item,
+.posts-show-item {
 	background: white;
 	min-height: 210px;
 	border-radius: $border-radius-base;
@@ -86,6 +87,44 @@
 		padding: $container-fluid 0;
 		div:first-child {
 			border-right: 1px solid $gray-lighter;
+		}
+	}
+}
+
+.post-show-comments {
+	margin-top: $container-fluid;
+	.panel-title {
+		padding: $container-fluid ($container-fluid * 2);
+	}
+	ul {
+		padding: $container-fluid * 2;
+		@include list-unstyled;
+		li {
+			@include clearfix;
+			.profile-pic {
+				a {
+					display: block;
+					img {
+						width: 35px;
+						height: 35px;
+						border-radius: $border-radius-base;
+					}
+				}
+				padding-right: 0;
+			}
+			.comment-content {
+				padding: 3px 0;
+				p {
+					font-size: 12px;
+					a {
+						color: $gray-darker;
+						@include medium;
+						&:hover {
+							text-decoration: none;
+						}
+					}
+				}
+			}
 		}
 	}
 }

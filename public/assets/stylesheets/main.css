@@ -3154,7 +3154,8 @@ input[type="submit"].btn-tabs {
       .nav-subnav-tabs ul li.notifications-index a {
         border-right: 1px solid #ededed; }
 
-.posts-index-item {
+.posts-index-item,
+.posts-show-item {
   background: white;
   min-height: 210px;
   border-radius: 3px;
@@ -3162,20 +3163,27 @@ input[type="submit"].btn-tabs {
   -webkit-box-shadow: 0px 3px 3px 0px rgba(49, 50, 51, 0.15);
   -moz-box-shadow: 0px 3px 3px 0px rgba(49, 50, 51, 0.15);
   box-shadow: 0px 3px 3px 0px rgba(49, 50, 51, 0.15); }
-  .posts-index-item div:before, .posts-index-item div:after {
+  .posts-index-item div:before, .posts-index-item div:after,
+  .posts-show-item div:before,
+  .posts-show-item div:after {
     content: " ";
     display: table; }
-  .posts-index-item div:after {
+  .posts-index-item div:after,
+  .posts-show-item div:after {
     clear: both; }
-  .posts-index-item .meta {
+  .posts-index-item .meta,
+  .posts-show-item .meta {
     padding: 7px; }
-  .posts-index-item .meta {
+  .posts-index-item .meta,
+  .posts-show-item .meta {
     text-align: right; }
-    .posts-index-item .meta span {
+    .posts-index-item .meta span,
+    .posts-show-item .meta span {
       display: block;
       font-size: 10px;
       color: #6f7474; }
-      .posts-index-item .meta span:after {
+      .posts-index-item .meta span:after,
+      .posts-show-item .meta span:after {
         content: " ";
         width: 7px;
         height: 7px;
@@ -3184,15 +3192,20 @@ input[type="submit"].btn-tabs {
         float: right;
         margin-top: 4px;
         margin-left: 7px; }
-      .posts-index-item .meta span.benefit:after {
+      .posts-index-item .meta span.benefit:after,
+      .posts-show-item .meta span.benefit:after {
         border: 1px solid #58a742; }
-      .posts-index-item .meta span.benefit.pinned:after {
+      .posts-index-item .meta span.benefit.pinned:after,
+      .posts-show-item .meta span.benefit.pinned:after {
         background: #58a742; }
-  .posts-index-item .content-text-placeholder {
+  .posts-index-item .content-text-placeholder,
+  .posts-show-item .content-text-placeholder {
     padding: 7px; }
-    .posts-index-item .content-text-placeholder p {
+    .posts-index-item .content-text-placeholder p,
+    .posts-show-item .content-text-placeholder p {
       font-size: 14px; }
-  .posts-index-item .content-img-placeholder {
+  .posts-index-item .content-img-placeholder,
+  .posts-show-item .content-img-placeholder {
     margin-left: -3.5px;
     margin-right: -3.5px;
     -webkit-box-shadow: 0px 3px 3px 0px rgba(49, 50, 51, 0.15);
@@ -3200,33 +3213,81 @@ input[type="submit"].btn-tabs {
     box-shadow: 0px 3px 3px 0px rgba(49, 50, 51, 0.15);
     border: 1px solid white;
     margin-bottom: 7px; }
-    .posts-index-item .content-img-placeholder a {
+    .posts-index-item .content-img-placeholder a,
+    .posts-show-item .content-img-placeholder a {
       display: block; }
-      .posts-index-item .content-img-placeholder a img {
+      .posts-index-item .content-img-placeholder a img,
+      .posts-show-item .content-img-placeholder a img {
         width: 100%; }
-  .posts-index-item .counts-and-share {
+  .posts-index-item .counts-and-share,
+  .posts-show-item .counts-and-share {
     padding: 7px; }
-    .posts-index-item .counts-and-share:before, .posts-index-item .counts-and-share:after {
+    .posts-index-item .counts-and-share:before, .posts-index-item .counts-and-share:after,
+    .posts-show-item .counts-and-share:before,
+    .posts-show-item .counts-and-share:after {
       content: " ";
       display: table; }
-    .posts-index-item .counts-and-share:after {
+    .posts-index-item .counts-and-share:after,
+    .posts-show-item .counts-and-share:after {
       clear: both; }
-    .posts-index-item .counts-and-share li {
+    .posts-index-item .counts-and-share li,
+    .posts-show-item .counts-and-share li {
       display: block; }
-      .posts-index-item .counts-and-share li a {
+      .posts-index-item .counts-and-share li a,
+      .posts-show-item .counts-and-share li a {
         color: #b8bbbb; }
-      .posts-index-item .counts-and-share li.counts-likes, .posts-index-item .counts-and-share li.counts-comments {
+      .posts-index-item .counts-and-share li.counts-likes, .posts-index-item .counts-and-share li.counts-comments,
+      .posts-show-item .counts-and-share li.counts-likes,
+      .posts-show-item .counts-and-share li.counts-comments {
         float: left; }
-      .posts-index-item .counts-and-share li.share {
+      .posts-index-item .counts-and-share li.share,
+      .posts-show-item .counts-and-share li.share {
         float: right; }
-      .posts-index-item .counts-and-share li.counts-comments {
+      .posts-index-item .counts-and-share li.counts-comments,
+      .posts-show-item .counts-and-share li.counts-comments {
         padding-left: 7px; }
-  .posts-index-item .actions {
+  .posts-index-item .actions,
+  .posts-show-item .actions {
     border-top: 1px solid #ededed;
     text-align: center;
     padding: 7px 0; }
-    .posts-index-item .actions div:first-child {
+    .posts-index-item .actions div:first-child,
+    .posts-show-item .actions div:first-child {
       border-right: 1px solid #ededed; }
+
+.post-show-comments {
+  margin-top: 7px; }
+  .post-show-comments .panel-title {
+    padding: 7px 14px; }
+  .post-show-comments ul {
+    padding: 14px;
+    padding-left: 0;
+    list-style: none;
+    margin: 0; }
+    .post-show-comments ul li:before, .post-show-comments ul li:after {
+      content: " ";
+      display: table; }
+    .post-show-comments ul li:after {
+      clear: both; }
+    .post-show-comments ul li .profile-pic {
+      padding-right: 0; }
+      .post-show-comments ul li .profile-pic a {
+        display: block; }
+        .post-show-comments ul li .profile-pic a img {
+          width: 35px;
+          height: 35px;
+          border-radius: 3px; }
+    .post-show-comments ul li .comment-content {
+      padding: 3px 0; }
+      .post-show-comments ul li .comment-content p {
+        font-size: 12px; }
+        .post-show-comments ul li .comment-content p a {
+          color: #181919;
+          font-family: "Open Sans", Helvetica, Arial, sans-serif !important;
+          font-weight: 600;
+          font-style: normal; }
+          .post-show-comments ul li .comment-content p a:hover {
+            text-decoration: none; }
 
 .user-auth-wrapper {
   height: 100%;

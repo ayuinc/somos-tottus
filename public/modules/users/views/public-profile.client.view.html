@@ -1,5 +1,50 @@
-<div class="container" data-ng-controller="UsersController" data-ng-init="find();">
-    <div class="row">
-        <div class="col-xs-12">Hello, my name is {{ profile.personal.firstName }} and you're viewing my profile!</div>
+<div class="site-wrapper">
+    <div class="nav-view-action-bar">
+    <ul class="list-unstyled clearfix">
+      <!-- <li class="view-left-action"><a href="#"><i class="icon-arrow-back-filled"></i></a></li> -->
+      <li class="logo"><a href="#"><img src="assets/img/logo-somos-tottus-vertical-light.png" alt="SomosTottus"></a></li>
+      <!-- <li class="view-action-button"><a href="#" class="btn">Acción</a></li> -->
+    </ul>
+  </div>
+  <div class="nav-view-indicator">
+    <span>Mi perfil</span>
+  </div>
+  <div class="container pt-14" data-ng-controller="UsersController" data-ng-init="find();">
+    <div class="panel panel-tabs">
+      <a href="#" class="edit">Editar</a>
+      <div class="user-card">
+        <div class="profile-pic col-xs-2">
+          <a href="#"><img src="assets/img/user-placeholder-2.png" /></a>
+        </div>
+        <div class="info col-xs-10">
+          <p>
+            <a href="#" class="name">{{ user.personal.firstName }} {{ user.personal.lastName }}</a><br> <span class="job-position">Gerente Gral.</span> en <span class="area">Tottus Atocongo</span>
+          </p>
+        </div>
+      </div>
+      <div class="tabs p-ch-0">
+        <div class="col-xs-6">
+          <a href="#" class="btn btn-tabs active">Publicaciones</a>
+        </div>
+        <div class="col-xs-6">
+          <a href="#" class="btn btn-tabs">Información</a>
+        </div>
+      </div>
     </div>
+  </div>
+  <div class="nav-subnav-tabs">
+    <div class="container-fluid">
+      <ul class="list-unstyled row">
+        <li class="col-xs-4 posts-index active">
+          <a href="#!/posts"><i class="icon-tottus"></i></a>
+        </li>
+        <li class="col-xs-4 notifications-index">
+          <a href="#"><i class="icon-bell-filled"></i></a>
+        </li>
+        <li class="col-xs-4 nav-drawer">
+          <a href="#"><i class="icon-options-filled"></i></a>
+        </li>
+      </ul>
+    </div>
+  </div>
 </div>
