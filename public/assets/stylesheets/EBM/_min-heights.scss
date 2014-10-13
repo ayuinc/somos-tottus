@@ -1,29 +1,19 @@
 // Min-Heights
-@mixin min-heights($min-heights) {
-  @if $min-heights == true {
-		@for $i from 1 to 13 {
-		  .mh-#{($i*$times)*10} {
-		  	min-height: (($i*$times)*10) + px !important;
-		  	@if $px-to-rems == true {
-		    	min-height: rem(($i*$times)*10)!important;
-		    }
-		  }
-		}
-	}
+@for $i from 1 through 10 {
+  .mh-#{($i*$times)*10} {
+  	min-height: (($i*$times)*10) + px !important;
+  	@if $px-to-rems == true {
+    	min-height: rem(($i*$times)*10)!important;
+    }
+  }
 }
-@include min-heights($min-heights);
 
 // Min-Heights
-@mixin min-heights-percentage($min-heights) {
-  @if $min-heights == true {
-		@for $i from 1 through 10 {
-		  .mhp-#{$i*10} {
-		  	min-height: percentage($i*0.1) !important;
-		  }
-		}
-	}
+@for $i from 1 through 10 {
+  .mhp-#{$i*10} {
+  	min-height: percentage($i*0.1) !important;
+  }
 }
-@include min-heights-percentage($min-heights);
 
 .vh-100 {
   height: 100vh;

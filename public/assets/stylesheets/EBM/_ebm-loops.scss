@@ -1,88 +1,64 @@
-// Box Model abbreviations list
-$box-model-abbr: p, pt, pr, pb, pl, m, mt, mr, mb, ml;
-$box-model-sides: padding, padding-top, padding-right, padding-bottom, padding-left, margin, margin-top, margin-right, margin-bottom, margin-left;
-$box-model-ch-abbr: p-ch, pt-ch, pr-ch, pb-ch, pl-ch, m-ch, mt-ch, mr-ch, mb-ch, ml-ch;
-$box-model-ch-abbr-percentage: pp-ch, ptp-ch, prp-ch, pbp-ch, plp-ch, mp-ch, mtp-ch, mrp-ch, mbp-ch, mlp-ch;
+/* 
 
-@for $i from 0 through 10 {
-  @for $j from 1 through length($box-model-sides) {
-    .#{nth($box-model-abbr, $j)}-#{$i*$times} {
-      // For <IE8
-      #{nth($box-model-sides, $j)}: ($i*$times) + px !important;
-      // REMs for modern browsers
-      @if $px-to-rems == true {
-        #{nth($box-model-sides, $j)}: rem($i*$times) !important;
-      }
-    }
-    
-    @for $k from 1 through length($breakpoints-sufix-list) {
-      @media #{nth($media-only-list, $k)} {
-        .#{nth($box-model-abbr, $j)}-#{$i*$times}-#{nth($breakpoints-sufix-list, $k)} {          
-          // For <IE8
-          #{nth($box-model-sides, $j)}: ($i*$times) + px !important;
-          // REMs for modern browsers
-          @if $px-to-rems == true {
-            #{nth($box-model-sides, $j)}: rem($i*$times) !important;
-          }
-        }
-        @if $percentage == true {
-          .#{nth($box-model-abbr, $j)}p-#{$i*$times}-#{nth($breakpoints-sufix-list, $k)} {
-            #{nth($box-model-sides, $j)}: percentage(($i*($times/100))) !important; 
-          }
-        }
-      }
-    }
+  Description: EBM or Easy Box Model allows you to easily edit your UI box model margins and paddings 
+  through the browser inspector "elements" tab and make your elements fit on their parent container without
+  recurring to your CSS too often.
+  
+  Author: @MadeByGus
+  Version: 0.5
+  GitHub: https://github.com/netpoe/EBM.git
 
-    @if $percentage == true {
-      .#{nth($box-model-abbr, $j)}p-#{$i*$times} {
-        #{nth($box-model-sides, $j)}: percentage(($i*($times/100))) !important;
-      }
-    }
-  }
-}
+*/
 
-// BOX MODEL CHILDREN ELEMENTS
-@for $i from 0 through 10 {
-  @for $j from 1 through length($box-model-sides) {
+// Set the global measure (range: 1 - 9)
+$times: 7; 
 
-    .#{nth($box-model-ch-abbr, $j)}-#{$i*$times} {
-      > a, > div, > li, > p, > h1, > h2, > h3, > h4, > h5, > h6, > ul, > ol, > section {
-        // For <IE8
-        #{nth($box-model-sides, $j)}: ($i*$times) + px !important;
-        // REMs for modern browsers
-        @if $px-to-rems == true {
-          #{nth($box-model-sides, $j)}: rem($i*$times) !important;
-        }
-      }
-    }
-    @if $percentage == true {
-      .#{nth($box-model-ch-abbr-percentage, $j)}-#{$i*$times} {
-        > a, > div, > li, > p, > h1, > h2, > h3, > h4, > h5, > h6, > ul, > ol, > section {
-          #{nth($box-model-sides, $j)}: percentage(($i*($times/100))) !important;
-        }
-      }
-    }
+// Define the em-base for rems to px conversion
+$px-to-rems: true;    // True if you want them on rems 
+$em-base: 14px; 
 
-    @for $k from 1 through length($breakpoints-sufix-list) {
-      @media #{nth($media-only-list, $k)} {
-        .#{nth($box-model-ch-abbr, $j)}-#{$i*$times}-#{nth($breakpoints-sufix-list, $k)} {
-          > a, > div, > li, > p, > h1, > h2, > h3, > h4, > h5, > h6, > ul, > ol, > section {
-            // For <IE8
-            #{nth($box-model-sides, $j)}: ($i*$times) + px !important;
-            // REMs for modern browsers
-            @if $px-to-rems == true {
-              #{nth($box-model-sides, $j)}: rem($i*$times) !important;
-            }
-          }
-        }
-        @if $percentage == true {
-          .#{nth($box-model-ch-abbr-percentage, $j)}-#{$i*$times}-#{nth($breakpoints-sufix-list, $k)} {
-            > a, > div, > li, > p, > h1, > h2, > h3, > h4, > h5, > h6, > ul, > ol, > section {
-              #{nth($box-model-sides, $j)}: percentage(($i*($times/100))) !important;
-            }
-          }
-        }
-      }
-    }
-  }
-}
+// Include EBM in "%" units?
+$percentage: true;
+
+// Include and determine box shadows:
+$box-shadows: true;
+
+$x-axis: 0px;
+$y-axis: 3px;
+$blur: 3px;
+$size: 0px;
+$color: #313233;
+$alpha: 0.15;
+
+// Include and determine border radius:
+$rounded-borders: true;  // If no bootstrap
+
+// Horizontal Rules Custom
+$include-hr: true;
+
+$hr-width: 2px;
+$hr-style: solid;
+
+@import 
+  "times-range",
+  "strip-units",
+  "px-to-rems",
+  "prefixer",
+  "clearfix",
+  "list-unstyled",
+  "media-queries",
+  "easy-box-model",
+  "ebm-loops-small",
+  "min-heights",
+  "box-shadow",
+  "horizontal-rules",
+  "borders",
+  "backgrounds",
+  "z-index",
+  "positions",
+  "displays",
+  "gbo",
+  "grid-blocks",
+  "grid-lists",
+  "containers-custom",
+  "vertical-align";
