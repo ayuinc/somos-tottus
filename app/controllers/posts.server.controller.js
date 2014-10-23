@@ -82,6 +82,7 @@ exports.postByID = function(req, res, next, id) {
     Post.findById(id)
         .populate('user', 'personal.displayName')
         .populate('comments')
+        .populate('likes')
         .exec(function(err, post) {
             if(err) return next(err);
             if(!post) return next(new Error('Error leyendo post ' + id));

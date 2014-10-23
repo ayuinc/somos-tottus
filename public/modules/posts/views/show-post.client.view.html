@@ -40,11 +40,14 @@
                         <li class="share"><a href="#">Compartir</a></li>
                     </ul>
                     <div class="actions">
-                        <like-post>
-                          <div class="col-xs-6">
-                              <a ng-click="like()" class="btn btn-action active">Me Gusta</a>
-                          </div>
-                        </like-post>
+                        <div class="col-xs-6">
+                            <div ng-if="ng_like == 0">
+                                <a ng-click="like()" class="btn btn-action active">Me Gusta</a>
+                            </div>
+                            <div ng-if="ng_like == 1">
+                                <a class="btn btn-action ">Te Gusta</a>
+                            </div>
+                        </div>
                         <div class="col-xs-6">
                             <a href="#!" class="btn btn-action">Comentar</a>
                         </div>
