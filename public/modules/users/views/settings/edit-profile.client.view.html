@@ -53,7 +53,7 @@
         </div>
         <div class="panel-row">
           <label for="dateOfBirth">Cumpleaños: <a href="#" class="edit" data-ng-show="personalInfo">Editar</a></label>
-          <span>{{user.personal.dateOfBirth}}</span>
+          <span>{{user.personal.dateOfBirth | date: 'd/M/yyyy'}}</span>
         </div>
       </div>
     </div>
