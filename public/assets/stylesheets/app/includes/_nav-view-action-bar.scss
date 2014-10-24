@@ -16,7 +16,16 @@
 				float: right;
 			}
 			&.view-left-action {
-
+				margin-right: 14px;
+				line-height: 0;
+				padding-top: 3px;
+				a {
+					i {
+						font-size: 21px;
+						color: white;
+						font-weight: bold;
+					}
+				}
 			}
 			&.logo {
 				a {
