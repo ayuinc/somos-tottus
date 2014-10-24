@@ -31,8 +31,13 @@
                             <li class="share"><a href="#!">Compartir</a></li>
                         </ul>
                         <div class="actions">
-                            <div class="col-xs-6">
-                                <a href="#!" class="btn btn-action active">Me Gusta</a>
+                            <div ng-cloak class="col-xs-6 data-ng-cloak">
+                                <div ng-if="post.ng_like == false">
+                                    <a ng-click="like_list_posts(post._id, post)" class="btn btn-action active">Me Gusta</a>
+                                </div>
+                                <div ng-if="post.ng_like == true">
+                                    <a class="btn btn-action ">Te Gusta</a>
+                                </div>
                             </div>
                             <div class="col-xs-6">
                                 <a href="#!/posts/{{post._id}}" class="btn btn-action active">Comentar</a>
