@@ -1,69 +1,58 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
-
-<head>
-	<title>{{title}}</title>
-
-	<!-- General META -->
-	<meta charset="utf-8">
-	<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-
-	<!-- Semantic META -->
-	<meta name="keywords" content="{{keywords}}">
-	<meta name="description" content="{{description}}">
-
-	<!-- Facebook META -->
-	<meta property="fb:app_id" content="{{facebookAppId}}">
-	<meta property="og:site_name" content="{{title}}">
-	<meta property="og:title" content="{{title}}">
-	<meta property="og:description" content="{{description}}">
-	<meta property="og:url" content="{{url}}">
-	<meta property="og:image" content="/img/brand/logo.png">
-	<meta property="og:type" content="website">
-
-	<!-- Twitter META -->
-	<meta name="twitter:title" content="{{title}}">
-	<meta name="twitter:description" content="{{description}}">
-	<meta name="twitter:url" content="{{url}}">
-	<meta name="twitter:image" content="/img/brand/logo.png">
-
-	<!-- Fav Icon -->
-	<link href="/modules/core/img/brand/favicon.ico" rel="shortcut icon" type="image/x-icon">
-
-	<!--Application CSS Files-->
-	{% for cssFile in cssFiles %}<link rel="stylesheet" href="{{cssFile}}">
-	{% endfor %}
-
-	<!-- HTML5 Shim -->
-	<!--[if lt IE 9]>
-		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-	<![endif]-->
-	<script async type="text/javascript">
-	  WebFontConfig = {google: { families: [ 'Open+Sans:300italic,400italic,400,600,700,300:latin' ] }};(function() {var wf = document.createElement('script');wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +'://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';wf.type = 'text/javascript';wf.async = 'true';var s = document.getElementsByTagName('script')[0];s.parentNode.insertBefore(wf, s);})(); 
-	</script>
-</head>
-<body data-ng-class="{'bg-primary': isGreen}" data-ng-controller="LayoutController">
-	<!-- <header data-ng-include="'/modules/core/views/header.client.view.html'" class="navbar navbar-fixed-top navbar-inverse"></header> -->
-	<div class="site-wrapper">
-		{% block content %}{% endblock %}
-	</div>
-
-	<!--Embedding The User Object-->
-	<script type="text/javascript">
-		var user = {{ user | json | safe }};
-	</script>
-
-	<!--Application JavaScript Files-->
-	{% for jsFile in jsFiles %}<script type="text/javascript" src="{{jsFile}}"></script>
-	{% endfor %} 
-
-	{% if process.env.NODE_ENV === 'development' %}
-	<!--Livereload script rendered -->
-	<script type="text/javascript" src="http://localhost:35729/livereload.js"></script>
-
-	{% endif %}
-</body>
-
+	<head>
+		<title>{{title}}</title>
+		<!-- General META -->
+		<meta charset="utf-8">
+		<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+		<!-- Semantic META -->
+		<meta name="keywords" content="{{keywords}}">
+		<meta name="description" content="{{description}}">
+		<!-- Facebook META -->
+		<meta property="fb:app_id" content="{{facebookAppId}}">
+		<meta property="og:site_name" content="{{title}}">
+		<meta property="og:title" content="{{title}}">
+		<meta property="og:description" content="{{description}}">
+		<meta property="og:url" content="{{url}}">
+		<meta property="og:image" content="/img/brand/logo.png">
+		<meta property="og:type" content="website">
+		<!-- Twitter META -->
+		<meta name="twitter:title" content="{{title}}">
+		<meta name="twitter:description" content="{{description}}">
+		<meta name="twitter:url" content="{{url}}">
+		<meta name="twitter:image" content="/img/brand/logo.png">
+		<!-- Fav Icon -->
+		<link href="/modules/core/img/brand/favicon.ico" rel="shortcut icon" type="image/x-icon">
+		<!--Application CSS Files-->
+		{% for cssFile in cssFiles %}<link rel="stylesheet" href="{{cssFile}}">
+		{% endfor %}
+		<!-- HTML5 Shim -->
+		<!--[if lt IE 9]>
+			<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+		<script async type="text/javascript">
+		  WebFontConfig = {google: { families: [ 'Open+Sans:300italic,400italic,400,600,700,300:latin' ] }};(function() {var wf = document.createElement('script');wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +'://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';wf.type = 'text/javascript';wf.async = 'true';var s = document.getElementsByTagName('script')[0];s.parentNode.insertBefore(wf, s);})(); 
+		</script>
+	</head>
+	<body data-ng-class="{'bg-primary': isAuth}" data-ng-controller="LayoutController" class="ng-cloak">
+		<div data-ng-class="{'on-bg-green': isAuth}" class="site-wrapper">
+			<div class="nav-view-action-bar" data-ng-if="!isAuth" data-ng-include="'/modules/core/views/view-action-bar.client.view.html'"></div>
+	    <div class="nav-view-indicator" data-ng-if="!isAuth" data-ng-include="'/modules/core/views/view-indicator.client.view.html'"></div>
+			{% block content %}{% endblock %}
+			<div class="nav-subnav-tabs" data-ng-if="!isAuth" data-ng-include="'/modules/core/views/subnav-tabs.client.view.html'"></div>
+		</div>
+		<!--Embedding The User Object-->
+		<script type="text/javascript">
+			var user = {{ user | json | safe }};
+		</script>
+		<!--Application JavaScript Files-->
+		{% for jsFile in jsFiles %}<script type="text/javascript" src="{{jsFile}}"></script>
+		{% endfor %} 
+		{% if process.env.NODE_ENV === 'development' %}
+		<!--Livereload script rendered -->
+		<script type="text/javascript" src="http://localhost:35729/livereload.js"></script>
+		{% endif %}
+	</body>
 </html>
