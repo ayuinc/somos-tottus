@@ -2,12 +2,14 @@
 
 angular.module('core').controller('LayoutController', ['$scope', '$location', 'Authentication', 'Layout',
   function($scope, $location, Authentication, Layout) {
-   	$scope.hasViewActionBar = function($location) {
-   		for (var key in $location) {
-   			console.log(key);
-   		}
-   	};
-   	$scope.hasViewIndicator = function() {};
-   	$scope.hasSubNavTabs = function() {};  	
+  	var isBackgroundGreen = {
+  		'/signin': true,
+  		'/signup': true,
+  		'/settings/first-change-password': true,
+  		'/firstsignin': true
+  	};
+   	$scope.$on('$stateChangeStart', function(){
+   		$scope.isGreen = isBackgroundGreen[$location.$$path];
+   	});
   }   
 ]);
