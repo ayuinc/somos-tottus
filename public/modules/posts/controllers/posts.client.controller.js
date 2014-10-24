@@ -130,18 +130,19 @@ angular.module('posts').controller('PostsController', ['$scope', '$stateParams',
         };
         
         $scope.findOne = function() {
+            $scope.ng_like = false; 
             $scope.post = Posts.get({
                 postId: $stateParams.postId
             });
-            console.log($scope.post);
-            $scope.ng_like = '0'; // me gusta 
-            /**
-            for (var i = $scope.post.likes.length - 1; i >= 0; i--) {
-                if($scope.post.likes[i].user == $scope.authentication.user._id){
-                    $scope.ng_like = '1'; // te gusta 
-                    break;
+            $scope.post.$promise.then(function(post){
+                for (var i = post.likes.length - 1; i >= 0; i--) {
+                    if(post.likes[i].user == $scope.authentication.user._id){
+                        $scope.ng_like = true; // te gusta 
+                        return;
+                    }
                 }
-            };*/
+            });
+            
         };
 
         $scope.remove = function(post) {
