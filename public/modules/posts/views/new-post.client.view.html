@@ -1,7 +1,7 @@
 <section class="row" data-ng-controller="PostsController" data-ng-init="getCredentials();">
     <h3 class="col-md-12 text-center">Write a new Post</h3> 
     <div class="col-xs-offset-2 col-xs-8 col-md-offset-5 col-md-2">
-        <form name="postForm" data-ng-submit="new($files)" class="signin form-horizontal" novalidate autocomplete="off">
+        <form name="postForm" data-ng-submit="new()" class="signin form-horizontal" novalidate autocomplete="off">
             <fieldset>
                 <div class="form-group" ng-class="{ 'has-error': postForm.detail.$dirty && postForm.detail.$invalid }">
                     <label class="control-label" for="detail">Detail</label>
@@ -18,15 +18,24 @@
                 </div>
             </fieldset>
 
+            <input type="file" nv-file-select uploader="uploader"/><br/>
+            <ul>
+                <li ng-repeat="item in uploader.queue">
+                    Name: <span ng-bind="item.file.name"></span><br/>
+                    <div ng-show="uploader.isHTML5" ng-thumb="{ file: item._file, height: 100 }"></div>
+                    <button ng-click="item.upload()">upload</button>
+                </li>
+            </ul>
+
             <!-- <input type="text" ng-model="myModelObj"> -->
-            <input type="file">
+            <!-- <input type="file" ng-file-select="onFileSelect($files)" > -->
             <!-- <input type="file" ng-file-select="onFileSelect($files)" multiple accept="image/*"> -->
             <!-- <div class="button" ng-file-select="onFileSelect($files)" data-multiple="true"></div>
             <div ng-file-drop="onFileSelect($files)" ng-file-drag-over-class="optional-css-class-name-or-function"
                 ng-show="dropSupported">drop files here</div> -->
             <!-- <div ng-file-drop-available="dropSupported=true" 
                 ng-show="!dropSupported">HTML5 Drop File is not supported!</div> -->
-            <button class="btn btn-default" ng-click="upload.abort()">Cancel Upload</button>
+            <!-- <button class="btn btn-default" ng-click="upload.abort()">Cancel Upload</button> -->
         </form>
     </div>
 </section>

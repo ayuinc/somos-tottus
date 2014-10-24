@@ -25,6 +25,10 @@ var PostSchema = new Schema({
         trim: true,
         required: 'Por favor, rellene el cuadro de texto',
     },
+    imgFilePath: {
+        type: String,
+        default: 'assets/img/img-placeholder.png'
+    },
     likes:      {
         type    : [{ type: Schema.ObjectId, ref: 'Like' }],
         default : []
