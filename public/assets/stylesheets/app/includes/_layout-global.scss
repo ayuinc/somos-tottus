@@ -9,8 +9,11 @@ body {
 }
 
 .site-wrapper {
-	padding: 35px 0;
+	padding: 74px 0 74px 0;
 	position: relative;
+	&.on-bg-green {
+		padding: 35px 0 35px 0;
+	}
 }
 
 .section-heading {
