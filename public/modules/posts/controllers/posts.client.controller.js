@@ -50,17 +50,29 @@ angular.module('posts').controller('PostsController', ['$scope', '$stateParams',
                 }, function(errorResponse) {
                     $scope.error = errorResponse.data.message;
                 });
-            }    
+            }
         };
 
-        $scope.like = function() {
+        $scope.like_list_posts = function(id, post_like) {
+            var like = new Likes({
+                post: id
+            });
+            post_like.likes.push({ user: { _id: $scope.authentication.user._id, personal: { displayName: $scope.authentication.user.personal.displayName} }});
+            like.create(post_like._id);
+            for (var i = $scope.posts.length - 1; i >= 0; i--) {
+                if( $scope.posts[i]._id == id ){
+                    $scope.posts[i].ng_like = true;
+                }
+            };
+        };
+
+        $scope.like_show_post = function() {
             var like = new Likes({
                 post: $scope.post._id
             });
             $scope.post.likes.push({ user: { _id: $scope.authentication.user._id, personal: { displayName: $scope.authentication.user.personal.displayName} }});
             like.create($scope.post._id);
-            $scope.ng_like = '0'; // me gusta
-            console.log($scope.post);
+            $scope.ng_like =  true; // me gusta
         };
 
         $scope.comment = function() {
@@ -82,21 +94,33 @@ angular.module('posts').controller('PostsController', ['$scope', '$stateParams',
 
         $scope.find = function() {
             $scope.posts = Posts.query();
+            $scope.posts.$promise.then(function(posts){
+                for (var i = posts.length - 1; i >= 0; i--) {
+                    $scope.posts[i].ng_like = false;
+                    for (var j = posts[i].likes.length - 1; j >= 0; j--) {
+                        if(posts[i].likes[j].user == $scope.authentication.user._id){
+                            $scope.posts[i].ng_like = true; //te gusta 
+                            break;
+                        }
+                    }
+                }
+            });
         };
         
         $scope.findOne = function() {
+            $scope.ng_like = false; 
             $scope.post = Posts.get({
                 postId: $stateParams.postId
             });
-            console.log($scope.post);
-            $scope.ng_like = '0'; // me gusta 
-            /**
-            for (var i = $scope.post.likes.length - 1; i >= 0; i--) {
-                if($scope.post.likes[i].user == $scope.authentication.user._id){
-                    $scope.ng_like = '1'; // te gusta 
-                    break;
+            $scope.post.$promise.then(function(post){
+                for (var i = post.likes.length - 1; i >= 0; i--) {
+                    if(post.likes[i].user == $scope.authentication.user._id){
+                        $scope.ng_like = true; // te gusta 
+                        return;
+                    }
                 }
-            };*/
+            });
+            
         };
 
         $scope.remove = function(post) {

@@ -52,10 +52,12 @@ angular.module('users').controller('SettingsController', ['$scope', '$http', '$l
 		};
 
 		$scope.firstupdateUserProfile = function(isValid) {
-			console.log('firstupdateUserProfile');
 			if (isValid){
+				var bday = new Date($scope.user.personal.yearString, $scope.user.personal.monthString -1, $scope.user.personal.dayString);
 				$scope.success = $scope.error = null;
 				var user = new Users($scope.user);
+				user.personal.dateOfBirth = bday;
+				// console.log(user.personal);
 				user.isRegistered = true;
 	
 				user.$update(function(response) {

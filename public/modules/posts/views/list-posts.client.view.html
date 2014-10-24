@@ -1,14 +1,4 @@
-<div class="site-wrapper">
-    <div class="nav-view-action-bar">
-        <ul class="list-unstyled clearfix">
-          <!-- <li class="view-left-action"><a href="#"><i class="icon-arrow-back-filled"></i></a></li> -->
-          <li class="logo"><a href="#"><img src="assets/img/logo-somos-tottus-vertical-light.png" alt="SomosTottus"></a></li>
-          <li class="view-action-button"><a href="/#!/posts/new" class="btn">Publicar</a></li>
-        </ul>
-    </div>
-    <div class="nav-view-indicator">
-        <span>Muro</span>
-    </div>
+<div>
     <div class="container-fluid">
         <div class="clearfix">
             <section data-ng-controller="PostsController" data-ng-init="find()">
@@ -24,7 +14,7 @@
                                 </div>
                                 <div class="info col-xs-10">
                                   <p>
-                                    <a data-ng-href="#!/users/{{post.user._id}}" class="name" >{{ post.user.personal.displayName }}</a><br> <span class="job-position">Gerente Gral.</span> en <span class="area">Tottus Atocongo</span> el <span data-ng-bind="post.created | date:'mediumDate'"></span>
+                                    <a data-ng-href="#!/users/{{post.user._id}}" class="name" >{{ post.user.personal.displayName }}</a><br> <span class="job-position">Gerente Gral.</span> en <span class="area">Tottus Atocongo</span> en <span data-ng-bind="post.created | date:'mediumDate'"></span>
                                   </p>
                                 </div>
                             </div>
@@ -41,8 +31,13 @@
                             <li class="share"><a href="#!">Compartir</a></li>
                         </ul>
                         <div class="actions">
-                            <div class="col-xs-6">
-                                <a href="#!" class="btn btn-action active">Me Gusta</a>
+                            <div ng-cloak class="col-xs-6 data-ng-cloak">
+                                <div ng-if="post.ng_like == false">
+                                    <a ng-click="like_list_posts(post._id, post)" class="btn btn-action active">Me Gusta</a>
+                                </div>
+                                <div ng-if="post.ng_like == true">
+                                    <a class="btn btn-action ">Te Gusta</a>
+                                </div>
                             </div>
                             <div class="col-xs-6">
                                 <a href="#!/posts/{{post._id}}" class="btn btn-action active">Comentar</a>
@@ -51,21 +46,6 @@
                     </div>
                 </div>
             </section>
-        </div>
-    </div>
-    <div class="nav-subnav-tabs">
-        <div class="container-fluid">
-          <ul class="list-unstyled row">
-            <li class="col-xs-4 posts-index active">
-              <a href="#!/posts"><i class="icon-tottus"></i></a>
-            </li>
-            <li class="col-xs-4 notifications-index">
-              <a href="#"><i class="icon-bell-filled"></i></a>
-            </li>
-            <li class="col-xs-4 nav-drawer">
-              <a href="#"><i class="icon-options-filled"></i></a>
-            </li>
-          </ul>
         </div>
     </div>
 </div>

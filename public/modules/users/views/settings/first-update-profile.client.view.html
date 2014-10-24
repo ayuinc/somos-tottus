@@ -1,16 +1,6 @@
 <div ng-controller="ModalController" data-ng-init="modalFirstProfileUpdate()"></div>
 
-<div class="site-wrapper" data-ng-controller="SettingsController">
-    <div class="nav-view-action-bar">
-    <ul class="list-unstyled clearfix">
-      <!-- <li class="view-left-action"><a href="#"><i class="icon-arrow-back-filled"></i></a></li> -->
-      <li class="logo"><a href="#"><img src="assets/img/logo-somos-tottus-vertical-light.png" alt="SomosTottus"></a></li>
-      <!-- <li class="view-action-button"><a href="#" class="btn">Acción</a></li> -->
-    </ul>
-  </div>
-  <div class="nav-view-indicator">
-    <span>Datos de Usuario</span>
-  </div>
+<div data-ng-controller="SettingsController">
     <form class="form-custom-full-width" name="userForm" data-ng-submit="firstupdateUserProfile(userForm.$valid)" autocomplete="off">
         <div class="content-wrapper bg-white">
             <div class="section-heading">Información De Contacto</div>
@@ -75,7 +65,11 @@
             </div> -->
             <div class="form-group">
                 <label for="dateOfBirth">Cumpleaños</label>
-                <input type="text" class="form-control" id="dateOfBirth" name="dateOfBirth" data-ng-model="user.personal.dateOfBirth">
+                <div class="clearfix">
+                    <div class="col-xs-2"><input type="text" class="form-control" placeholder="DD" data-ng-model="user.personal.dayString"></div>
+                    <div class="col-xs-2"><input type="text" class="form-control" placeholder="MM" data-ng-model="user.personal.monthString"></div>
+                    <div class="col-xs-3"><input type="text" class="form-control" placeholder="YYYY" data-ng-model="user.personal.yearString"></div>
+                </div>
             </div>
             <div class="form-group">
                 <label for="educationLevel">Nivel de instrucción</label>
@@ -116,19 +110,11 @@
                 <input type="text" class="form-control" id="currentJobPosition" name="currentJobPosition" data-ng-model="user.organizational.currentJobPosition">
             </div>
             <div class="form-group">
-                <label for="jobPositionsHistory">Línea de carrera</label>
-                <textarea class="form-control" id="jobPositionsHistory" name="jobPositionsHistory" data-ng-model="user.organizational.jobPositionsHistory"></textarea>
-            </div>
-            <div class="form-group">
                 <label for="firstJobPosition">Ingresé a Tottus como</label>
-                <select name="firstJobPosition" id="firstJobPosition" class="form-control select-override" data-ng-model="user.organizational.firstJobPosition">
-                    <option value="opcion-1">Opción 1</option>
-                    <option value="opcion-2">Opción 2</option>
-                    <option value="opcion-3">Opción 3</option>
-                </select>
+                <input type="text" class="form-control" id="firstJobPosition" name="firstJobPosition" data-ng-model="user.organizational.firstJobPosition">
             </div>
             <div class="form-group">
-                <label for="area">Sección</label>
+                <label for="area">Sección/Área</label>
                 <input type="text" class="form-control" value="Escribe tu sección actual" id="area" name="area" data-ng-model="user.organizational.area">
             </div>
             <div class="form-group">
@@ -141,7 +127,10 @@
             </div>
             <div class="form-group">
                 <label for="jobType">Modalidad de Trabajo</label>
-                <input type="text" class="form-control" value="Modalidad de trabajo" id="jobType" name="jobType" data-ng-model="user.organizational.jobType">
+                <select name="jobType" id="jobType" class="form-control select-override" data-ng-model="user.organizational.jobType">
+                    <option value="Tiempo completo" ng-selected="selected">Tiempo completo</option>
+                    <option value="Medio tiempo">Medio tiempo</option>
+                </select>
             </div>
             <div data-ng-show="error" class="text-center text-danger">
               <strong data-ng-bind="error"></strong>
