@@ -9,10 +9,10 @@ var s3 = {
     bucket: 'tottus',
     acl: 'private',
     pad: function(n) {
-        if ((n+'').length == 1) {
+        if ((n+'').length === 1) {
             return '0' + n;
         }
-        return ''+n;
+        return '' + n;
     }, 
     expiration_date: function() {
         var now = new Date();
