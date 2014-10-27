@@ -1,5 +1,5 @@
 <ul class="list-unstyled clearfix">
   <li data-ng-if="previousPage" class="view-left-action"><a href="{{ previousPage }}"><i class="icon-arrow-back-filled"></i></a></li>
   <li class="logo"><a href="#"><img src="assets/img/logo-somos-tottus-vertical-light.png" alt="SomosTottus"></a></li>
-  <li class="view-action-button"><a href="{{ actionButtonAction }}" class="btn">{{ actionButtonText }}</a></li>
+  <li class="view-action-button" data-ng-if="actionButtonText"><a href="{{ actionButtonAction }}" class="btn">{{ actionButtonText }}</a></li>
 </ul>
