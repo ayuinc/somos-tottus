@@ -9,14 +9,20 @@ angular.module('core').service('Layout', [
           actionButtonText: 'Publicar',
           actionButtonAction: '/#!/posts/new',
           isURL: true
+        },
+        navViewIndicator: {
+          indicatorText: 'Muro'
         }
       },
       '/posts/new': {
         navViewActionBar: {
-          actionButtonText: 'Opciones',
+          // actionButtonText: 'Opciones',
           actionButtonAction: '',
           isURL: true,
           previousPage: '/posts'
+        },
+        navViewIndicator: {
+          indicatorText: 'Nueva publicación'
         }
       },
       '/posts/:stateId': {
@@ -25,6 +31,9 @@ angular.module('core').service('Layout', [
           actionButtonAction: '',
           isURL: true,
           previousPage: '/posts'
+        },
+        navViewIndicator: {
+          indicatorText: 'Publicación'
         }
       }
     };
