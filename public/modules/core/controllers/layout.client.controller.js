@@ -7,39 +7,35 @@ angular.module('core').controller('LayoutController', ['$scope', '$location', 'A
   		'/signin': true,
   		'/signup': true,
   		'/settings/first-change-password': true,
-  		'/firstsignin': true
+      '/firstsignin': true
   	};
-
-    // NAVIGATION CONTROL
-    var pageContent = {
-      '/posts': {
-        navViewActionBar: {
-          actionButtonText: 'Publicar',
-          actionButtonAction: '/#!/posts/new',
-          isURL: true
-        }
-      },
-      '/posts/new': {
-        navViewActionBar: {
-          actionButtonText: 'Opciones',
-          actionButtonAction: '',
-          isURL: true,
-          previousPage: '/posts'
-        }
-      }
+    var isCreatePath = {
+      '/posts/new': true
     };
-
     $scope.$on('$stateChangeStart', function(){
-      var pathName = $location.$$path;
-      var isAuth = isAuthPath[pathName];
-      var previousPage = pageContent[pathName].navViewActionBar.previousPage;
+      var state = $location.$$url;
+      var isAuth = isAuthPath[state];
+      var isCreate = isCreatePath[state];
+      var stateId = state.split('/');
+      if (stateId.length > 2 && stateId[2] != 'new') {
+        var statePath = stateId[1] == 'posts' ? 'posts' : 'users';
+        state = '/' + statePath + '/:stateId';
+      }
       $scope.isAuth = isAuth; // Check if it's on auth paths
-      
-      if (!isAuth) {
-        // console.log(pageContent[pathName].navViewActionBar.actionButtonText);
-        $scope.actionButtonText = pageContent[pathName].navViewActionBar.actionButtonText;
-        $scope.actionButtonAction = pageContent[pathName].navViewActionBar.actionButtonAction;
-        $scope.previousPage = previousPage && '#!' + previousPage;
+      $scope.isCreatePath = isCreate;
+      var stateObj = Layout.getPageContent({state: state, isAuth: isAuthPath[state]});      
+      if (stateObj) {
+        var navViewActionBar = stateObj.navViewActionBar;
+        var navViewIndicator = stateObj.navViewIndicator;
+        if(!isAuth) {
+          // VIEW ACTION BAR
+          $scope.actionButtonText = navViewActionBar.actionButtonText;
+          $scope.actionButtonAction = navViewActionBar.actionButtonAction;
+          $scope.previousPage = navViewActionBar.previousPage && '#!' + navViewActionBar.previousPage;
+
+          // VIEW INDICATOR
+          $scope.indicatorText = navViewIndicator.indicatorText;
+        }
       }
     });
   }   
