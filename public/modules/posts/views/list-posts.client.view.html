@@ -2,6 +2,7 @@
     <div class="container-fluid">
         <div class="clearfix">
             <section data-ng-controller="PostsController" data-ng-init="find()">
+                <script> console.log('working')</script>
                 <div data-ng-repeat="post in posts" ng-class-odd="odd">
                     <div class="posts-index-item">
                         <div class="meta">
@@ -35,7 +36,7 @@
                                 <a href="#" class="btn btn-action active">Me Gusta</a>
                             </div>
                             <div class="col-xs-6">
-                                <a href="#" class="btn btn-action">Comentar</a>
+                                <a href="#!/posts/{{post._id}}/comments/new" class="btn btn-action">Comentar</a>
                             </div>
                         </div>
                     </div>
