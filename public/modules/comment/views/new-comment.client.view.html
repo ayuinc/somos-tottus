@@ -1,8 +1,8 @@
 <div data-ng-controller="CommentsController">
     <div class="bg-white p-14">
-        <form name="commentForm" data-ng-submit="comment()" class="signin form-horizontal" novalidate autocomplete="off">
+        <form name="commentForm" data-ng-submit="addComment()" class="signin form-horizontal" novalidate autocomplete="off">
             <div class="form-group" ng-class="{ 'has-error': commentForm.text.$dirty && commentForm.text.$invalid }">
-                <textarea data-ng-enter="comment()" name="text" data-ng-model="text" id="text" class="form-control" rows="5" placeholder="Escribe un comentario"></textarea>
+                <textarea data-ng-enter="addComment()" name="text" data-ng-model="text" id="text" class="form-control" rows="5" placeholder="Escribe un comentario"></textarea>
             </div>
             <div class="form-group text-right">
                 <input type="submit" class="btn btn-default" value="Publicar">
