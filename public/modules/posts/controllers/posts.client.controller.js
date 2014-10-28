@@ -74,24 +74,6 @@ angular.module('posts').controller('PostsController', ['$scope', '$stateParams',
             like.create($scope.post._id);
             $scope.ng_like =  true; // me gusta
         };
-
-        $scope.comment = function() {
-            var comment = new Comments({
-                text: this.text
-            });
-
-            $scope.post.comments.push({ text: this.text, user: { _id: $scope.authentication.user, personal: { displayName: $scope.authentication.user.personal.displayName} }});
-            $scope.text = '';
-            comment.create($scope.post._id);
-        };
-
-        $scope.getCredentials = function() {
-            AWS.getCredentials().then(function(res) {
-                $scope.credentials = res.data;
-            });
-        };
-
-
         $scope.find = function() {
             $scope.posts = Posts.query();
             $scope.posts.$promise.then(function(posts){
