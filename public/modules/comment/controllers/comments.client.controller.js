@@ -20,11 +20,10 @@ angular.module('comments').controller('CommentsController', ['$scope', '$statePa
 
             comment.$save(function () {
                 window.location.href = '#!/posts/' + $stateParams.postId ;
-            }, function (response) {
+            }, function (errorResponse) {
                 $scope.error = errorResponse.data.message;
             });
-            $scope.text = '';
-        }
+        };
 
     }
 ]);
