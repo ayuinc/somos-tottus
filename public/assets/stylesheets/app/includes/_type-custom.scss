@@ -33,7 +33,7 @@ ul      { font-size: rem($font-size-base);}
 
 // TEXT IN FORMS
 label {
-  text-transform: capitalize;
+  // text-transform: capitalize;
   @include light;
   color: $gray-light;
 }
