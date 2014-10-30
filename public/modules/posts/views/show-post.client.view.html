@@ -21,7 +21,7 @@
                     <div class="content-text-placeholder">
                         <p data-ng-bind="post.detail"></p>
                     </div>
-                    <div data-ng-show="{{post.imgFilePath}}" class="content-img-placeholder">
+                    <div data-ng-show="{{post.imgFilePath | imageFilter}}" class="content-img-placeholder">
                         <a href="#"><img data-ng-src="{{post.imgFilePath}}" /></a>
                     </div>
                     <ul class="counts-and-share list-unstyled">
