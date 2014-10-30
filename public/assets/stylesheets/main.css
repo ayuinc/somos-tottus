@@ -3220,8 +3220,17 @@ input[type="submit"].btn-tabs {
   .posts-show-item .content-text-placeholder {
     padding: 7px; }
     .posts-index-item .content-text-placeholder p,
-    .posts-show-item .content-text-placeholder p {
-      font-size: 14px; }
+    .posts-index-item .content-text-placeholder a,
+    .posts-show-item .content-text-placeholder p,
+    .posts-show-item .content-text-placeholder a {
+      font-size: 14px;
+      color: #4c5050; }
+      .posts-index-item .content-text-placeholder p:hover,
+      .posts-index-item .content-text-placeholder a:hover,
+      .posts-show-item .content-text-placeholder p:hover,
+      .posts-show-item .content-text-placeholder a:hover {
+        color: #4c5050;
+        text-decoration: none; }
   .posts-index-item .content-img-placeholder,
   .posts-show-item .content-img-placeholder {
     margin-left: -3.5px;
@@ -3268,7 +3277,7 @@ input[type="submit"].btn-tabs {
   .posts-show-item .actions {
     border-top: 1px solid #ededed;
     text-align: center;
-    padding: 7px 0; }
+    padding: 12px 0; }
     .posts-index-item .actions > div:first-child,
     .posts-show-item .actions > div:first-child {
       border-right: 1px solid #ededed; }

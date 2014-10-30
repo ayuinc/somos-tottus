@@ -14,13 +14,14 @@
                                 </div>
                                 <div class="info col-xs-10">
                                   <p>
-                                    <a data-ng-href="#!/users/{{post.user._id}}" class="name" >{{ post.user.personal.displayName }}</a><br> <span class="job-position">Gerente Gral.</span> en <span class="area">Tottus Atocongo</span> en <span data-ng-bind="post.created | date:'mediumDate'"></span>
+                                    <a data-ng-href="#!/users/{{post.user._id}}" class="name" >{{ post.user.personal.displayName }}</a><br> <span class="job-position">Gerente Gral.</span><br>El <span class="area">Tottus Atocongo</span> en <span data-ng-bind="post.created | date:'mediumDate'"></span>
                                   </p>
                                 </div>
                             </div>
                         </div>
                         <div class="content-text-placeholder">
-                            <p data-ng-bind="post.detail"></p><a data-ng-href="#!/posts/{{post._id}}" class="see-more">Ver más..</a>
+                            <a data-ng-href="#!/posts/{{post._id}}" data-ng-bind="post.detail"></a>
+                            <!-- <a data-ng-href="#!/posts/{{post._id}}" class="see-more">Ver más..</a> -->
                         </div>
                         <div data-ng-show="{{post.imgFilePath | imageFilter}}" class="content-img-placeholder">
                             <a data-ng-href="#!/posts/{{post._id}}"><img data-ng-src="{{post.imgFilePath}}" /></a>
@@ -28,7 +29,7 @@
                         <ul class="counts-and-share list-unstyled">
                             <li class="counts-likes"><a href="#!">{{post.likes.length}} Me Gusta</a></li>
                             <li class="counts-comments"><a href="#!">{{post.comments.length}} Comentarios</a></li>
-                            <li class="share"><a href="#!">Compartir</a></li>
+                            <!-- <li class="share"><a href="#!">Compartir</a></li> -->
                         </ul>
                         <div class="actions">
                             <div ng-cloak class="col-xs-6 data-ng-cloak">
