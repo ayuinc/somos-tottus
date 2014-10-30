@@ -85,7 +85,7 @@
 		border-top: 1px solid $gray-lighter;
 		text-align: center;
 		padding: $container-fluid 0;
-		div:first-child {
+		> div:first-child {
 			border-right: 1px solid $gray-lighter;
 		}
 	}
