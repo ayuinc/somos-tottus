@@ -1,14 +1,4 @@
-<div class="site-wrapper">
-    <div class="nav-view-action-bar">
-    <ul class="list-unstyled clearfix">
-      <!-- <li class="view-left-action"><a href="#"><i class="icon-arrow-back-filled"></i></a></li> -->
-      <li class="logo"><a href="#"><img src="assets/img/logo-somos-tottus-vertical-light.png" alt="SomosTottus"></a></li>
-      <!-- <li class="view-action-button"><a href="#" class="btn">Acción</a></li> -->
-    </ul>
-  </div>
-  <div class="nav-view-indicator">
-    <span>Mi perfil</span>
-  </div>
+<div>
   <div class="container pt-14" data-ng-controller="SettingsController">
     <div class="panel panel-tabs">
       <a href="#" class="edit">Editar</a>
@@ -49,7 +39,7 @@
         </div>
         <div class="panel-row">
           <label>¿Cuentas con Carnet CONADIS?: <a href="#" class="edit" data-ng-show="personalInfo">Editar</a></label>
-          <span>{{user.personal.carnetCODADIS}}</span>
+          <span>{{user.personal.carnetCONADIS}}</span>
         </div>
         <div class="panel-row">
           <label for="dateOfBirth">Cumpleaños: <a href="#" class="edit" data-ng-show="personalInfo">Editar</a></label>
@@ -126,21 +116,6 @@
           <span></span>
         </div>
       </div>
-    </div>
-  </div>
-  <div class="nav-subnav-tabs">
-    <div class="container-fluid">
-      <ul class="list-unstyled row">
-        <li class="col-xs-4 posts-index active">
-          <a href="#"><i class="icon-tottus"></i></a>
-        </li>
-        <li class="col-xs-4 notifications-index">
-          <a href="#"><i class="icon-bell-filled"></i></a>
-        </li>
-        <li class="col-xs-4 nav-drawer">
-          <a href="#"><i class="icon-options-filled"></i></a>
-        </li>
-      </ul>
     </div>
   </div>
 </div>

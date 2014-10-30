@@ -17,7 +17,9 @@ module.exports = {
 				// 'public/lib/bootstrap/dist/css/bootstrap-theme.css',
 			],
 			js: [
+				// 'public/lib/ng-file-upload/angular-file-upload-shim.js',
 				'public/lib/angular/angular.js',
+				// 'public/lib/ng-file-upload/angular-file-upload.js',
 				'public/lib/angular-resource/angular-resource.js', 
 				'public/lib/angular-cookies/angular-cookies.js', 
 				'public/lib/angular-animate/angular-animate.js', 
@@ -25,10 +27,13 @@ module.exports = {
 				'public/lib/angular-sanitize/angular-sanitize.js', 
 				'public/lib/angular-ui-router/release/angular-ui-router.js',
 				'public/lib/angular-ui-utils/ui-utils.js',
-				'public/lib/angular-bootstrap/ui-bootstrap-tpls.js',
+				'public/lib/es5-shim/es5-shim.min.js',
+				'public/lib/es5-shim/es5-sham.min.js',
 				'public/lib/jquery/dist/jquery.min.js',
-				'public/lib/b3/js/modal.js',
-				'public/lib/b3/js/transition.js'
+				'public/lib/angular-bootstrap/ui-bootstrap-tpls.js',
+				'public/lib/angular-file-upload/angular-file-upload.js',
+				// 'public/lib/b3/js/modal.js',
+				// 'public/lib/b3/js/transition.js',
 			]
 		},
 		css: [

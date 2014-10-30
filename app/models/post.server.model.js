@@ -5,7 +5,8 @@
  */
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema,
-    Comment = mongoose.model('Comment');
+    Comment = mongoose.model('Comment'),
+    Like = mongoose.model('Like');
 
 /**
  * Post Schema
@@ -23,6 +24,10 @@ var PostSchema = new Schema({
         default: '',
         trim: true,
         required: 'Por favor, rellene el cuadro de texto',
+    },
+    imgFilePath: {
+        type: String,
+        default: 'assets/img/img-placeholder.png'
     },
     likes:      {
         type    : [{ type: Schema.ObjectId, ref: 'Like' }],
@@ -58,6 +63,18 @@ PostSchema.methods.newComment = function(data) {
     comment.save();
 
     _this.comments.push(comment);
+    _this.save();
+};
+
+PostSchema.methods.newLike = function(data) {
+    var _this = this;
+    var like = new Like({
+        post: _this,
+        user: data.user,
+    });
+    like.save();
+
+    _this.likes.push(like);
     _this.save();
 };
 

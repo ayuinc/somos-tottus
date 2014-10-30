@@ -14,5 +14,9 @@ module.exports = {
 				pass: process.env.MAILER_PASSWORD || 'MAILER_PASSWORD'
 			}
 		}
+	},
+	s3: {
+		access_key: 'AKIAJX35ISJYQIF2UHGQ',
+		secret_key: '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'
 	}
 };

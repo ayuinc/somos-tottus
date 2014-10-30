@@ -2802,6 +2802,8 @@ body {
 .site-wrapper {
   padding: 74px 0 74px 0;
   position: relative; }
+  .site-wrapper.on-bg-green {
+    padding: 35px 0 35px 0; }
 
 .section-heading {
   padding: 4px 7px;
@@ -3268,8 +3270,8 @@ input[type="submit"].btn-tabs {
     border-top: 1px solid #ededed;
     text-align: center;
     padding: 7px 0; }
-    .posts-index-item .actions div:first-child,
-    .posts-show-item .actions div:first-child {
+    .posts-index-item .actions > div:first-child,
+    .posts-show-item .actions > div:first-child {
       border-right: 1px solid #ededed; }
 
 .post-show-comments {

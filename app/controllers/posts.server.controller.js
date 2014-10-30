@@ -28,6 +28,7 @@ exports.create = function(req, res) {
 exports.index = function(req, res) {
     Post.find().sort('-created').limit(25)
         .populate('comments', 'text')
+        .populate('likes')
         .populate('user', 'personal.displayName')
         .exec(function(err, posts) {
             User.populate(posts, {
@@ -82,6 +83,7 @@ exports.postByID = function(req, res, next, id) {
     Post.findById(id)
         .populate('user', 'personal.displayName')
         .populate('comments')
+        .populate('likes')
         .exec(function(err, post) {
             if(err) return next(err);
             if(!post) return next(new Error('Error leyendo post ' + id));

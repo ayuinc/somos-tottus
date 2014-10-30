@@ -1,14 +1,4 @@
-<div class="site-wrapper">
-    <div class="nav-view-action-bar">
-        <ul class="list-unstyled clearfix">
-          <li class="view-left-action"><a href="/#!/posts"><i class="icon-arrow-back-filled"></i></a></li>
-          <li class="logo"><a href="#"><img src="assets/img/logo-somos-tottus-vertical-light.png" alt="SomosTottus"></a></li>
-          <!-- <li class="view-action-button"><a href="/#!/posts/new" class="btn">Publicar</a></li> -->
-        </ul>
-    </div>
-    <div class="nav-view-indicator">
-        <span>Publicación</span>
-    </div>
+<div>
     <div class="container-fluid">
         <div class="clearfix">
             <section data-ng-controller="PostsController" data-ng-init="findOne()">
@@ -31,22 +21,28 @@
                     <div class="content-text-placeholder">
                         <p data-ng-bind="post.detail"></p>
                     </div>
-                    <div class="content-img-placeholder">
-                        <a href="#"><img src="assets/img/img-placeholder.png" /></a>
+                    <div data-ng-show="{{post.imgFilePath}}" class="content-img-placeholder">
+                        <a href="#"><img data-ng-src="{{post.imgFilePath}}" /></a>
                     </div>
                     <ul class="counts-and-share list-unstyled">
-                        <li class="counts-likes"><a href="#">25 Me Gusta</a></li>
-                        <li class="counts-comments"><a href="#">3 Comentarios</a></li>
+                        <li class="counts-likes"><a>{{post.likes.length}} Me Gusta</a></li>
+                        <li class="counts-comments"><a>{{post.comments.length}} Comentarios</a></li>
                         <li class="share"><a href="#">Compartir</a></li>
                     </ul>
                     <div class="actions">
-                        <div class="col-xs-6">
-                            <a href="#" class="btn btn-action active">Me Gusta</a>
+                        <div ng-cloak class="col-xs-6 data-ng-cloak">
+                            <div ng-if="ng_like == false">
+                                <a ng-click="like_show_post()" class="btn btn-action active">Me Gusta</a>
+                            </div>
+                            <div ng-if="ng_like == true">
+                                <a class="btn btn-action ">Te Gusta</a>
+                            </div>
                         </div>
                         <div class="col-xs-6">
-                            <a href="#" class="btn btn-action">Comentar</a>
+                            <a data-ng-href="#!/posts/{{post._id}}/comments/new" class="btn btn-action">Comentar</a>
                         </div>
                     </div>
+
                 </div>
                 <div class="post-show-comments">
                     <div class="panel">
@@ -63,23 +59,15 @@
                             </li>
                         </ul>
                     </div>
+                </div>
+                <!-- ESTE TEXTAREA debe ir en su propia vista: new-comment.client... -->
+                <div class="form-group" ng-class="{ 'has-error': commentForm.text.$dirty && commentForm.text.$invalid }">
+                    <label class="control-label" for="text">Text</label>
+                    <div class="controls">
+                        <textarea data-ng-enter="comment()" name="text" data-ng-model="text" id="text" class="form-control" cols="30" rows="10" placeholder="Enter a new comment..."></textarea>
+                    </div>
                 </div>            
             </section>
-        </div>
-    </div>
-    <div class="nav-subnav-tabs">
-        <div class="container-fluid">
-          <ul class="list-unstyled row">
-            <li class="col-xs-4 posts-index active">
-              <a href="#!/posts"><i class="icon-tottus"></i></a>
-            </li>
-            <li class="col-xs-4 notifications-index">
-              <a href="#"><i class="icon-bell-filled"></i></a>
-            </li>
-            <li class="col-xs-4 nav-drawer">
-              <a href="#"><i class="icon-options-filled"></i></a>
-            </li>
-          </ul>
         </div>
     </div>
 </div>
