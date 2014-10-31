@@ -21,13 +21,13 @@
                     <div class="content-text-placeholder">
                         <p data-ng-bind="post.detail"></p>
                     </div>
-                    <div data-ng-show="{{post.imgFilePath | imageFilter}}" class="content-img-placeholder">
-                        <a href="#"><img data-ng-src="{{post.imgFilePath}}" /></a>
+                    <div data-ng-show="(post.imgFilePath | imageFilter)" class="content-img-placeholder">
+                        <a href="#!"><img data-ng-src="{{post.imgFilePath}}" /></a>
                     </div>
                     <ul class="counts-and-share list-unstyled">
                         <li class="counts-likes"><a>{{post.likes.length}} Me Gusta</a></li>
                         <li class="counts-comments"><a>{{post.comments.length}} Comentarios</a></li>
-                        <li class="share"><a href="#">Compartir</a></li>
+                        <li class="share"><a href="#!">Compartir</a></li>
                     </ul>
                     <div class="actions">
                         <div ng-cloak class="col-xs-6 data-ng-cloak">
