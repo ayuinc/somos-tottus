@@ -12,6 +12,12 @@ angular.module('posts').controller('PostsController', ['$scope', '$stateParams',
         // If user is signed in then redirect back home
         if (!$scope.authentication.user) $location.path('/');
 
+        $scope.getCredentials = function() {
+            AWS.getCredentials().then(function(res) {
+                $scope.credentials = res.data;
+            });
+        };
+
         $scope.new = function() {
             var post = new Posts({
                 detail: this.detail
