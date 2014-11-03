@@ -9,11 +9,13 @@
                     <div class="user">
                         <div class="user-card">
                             <div class="profile-pic col-xs-2">
-                              <a data-ng-href="#!/users/{{post.user._id}}"><img src="assets/img/user-placeholder-2.png" /></a>
+                              <a data-ng-href="#!/users/{{post.user._id}}">
+                                <img src="assets/img/user-placeholder-2.png" />
+                                </a>
                             </div>
                             <div class="info col-xs-10">
                               <p>
-                                <a data-ng-href="#!/users/{{post.user._id}}" class="name" >{{ post.user.personal.displayName }}</a><br> <span class="job-position">Gerente Gral.</span> en <span class="area">Tottus Atocongo</span> en <span data-ng-bind="post.created | date:'mediumDate'"></span>
+                                <a data-ng-href="#!/users/{{post.user._id}}" class="name" >{{ post.user.personal.displayName }}</a><br> <span class="job-position">Gerente Gral.</span> en <span class="area">Tottus Atocongo</span><br>El <span data-ng-bind="post.created | date:'mediumDate'"></span>
                               </p>
                             </div>
                         </div>
@@ -27,7 +29,7 @@
                     <ul class="counts-and-share list-unstyled">
                         <li class="counts-likes"><a>{{post.likes.length}} Me Gusta</a></li>
                         <li class="counts-comments"><a>{{post.comments.length}} Comentarios</a></li>
-                        <li class="share"><a href="#!">Compartir</a></li>
+                        <!-- <li class="share"><a href="#">Compartir</a></li> -->
                     </ul>
                     <div class="actions">
                         <div ng-cloak class="col-xs-6 data-ng-cloak">
@@ -61,12 +63,12 @@
                     </div>
                 </div>
                 <!-- ESTE TEXTAREA debe ir en su propia vista: new-comment.client... -->
-                <div class="form-group" ng-class="{ 'has-error': commentForm.text.$dirty && commentForm.text.$invalid }">
+                <!-- <div class="form-group" ng-class="{ 'has-error': commentForm.text.$dirty && commentForm.text.$invalid }">
                     <label class="control-label" for="text">Text</label>
                     <div class="controls">
                         <textarea data-ng-enter="comment()" name="text" data-ng-model="text" id="text" class="form-control" cols="30" rows="10" placeholder="Enter a new comment..."></textarea>
                     </div>
-                </div>            
+                </div>   -->          
             </section>
         </div>
     </div>

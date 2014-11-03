@@ -4,44 +4,26 @@ angular.module('comments').controller('CommentsController', ['$scope', '$statePa
     function($scope, $stateParams, $location, Authentication, Posts, Comments) {
         $scope.authentication = Authentication;
 
+        $scope.text = '';
+
         $scope.getPost = function() {
             $scope.post = Posts.get({
                 postId: $stateParams.postId
             });
         };
 
-        $scope.new = function() {
+        $scope.addComment = function(){
             var comment = new Comments({
-                post: $scope.post,
-                text: this.text
+                text: $scope.text,
+                postId: $stateParams.postId
             });
 
-            comment.$save(function(response) {
-                $location.path('posts/' + response.post._id);
-                $scope.text = '';
-            }, function(errorResponse) {
+            comment.$save(function () {
+                window.location.href = '#!/posts/' + $stateParams.postId ;
+            }, function (errorResponse) {
                 $scope.error = errorResponse.data.message;
             });
         };
 
-        $scope.find = function() {
-            $scope.comments = Comments.query({ postId: this.post._id });
-        };
-
-        $scope.remove = function(comment) {
-            if(comment) {
-                comment.$remove();
-
-                for(var i in $scope.comments) {
-                    if($scope.comment[i] === comment) {
-                        $scope.comments.splice(i, 1);
-                    }
-                }
-            } else {
-                $scope.comment.$remove(function() {
-                    $location.path('posts/' + $scope.post._id + '/comments');
-                });
-            }
-        };
     }
 ]);

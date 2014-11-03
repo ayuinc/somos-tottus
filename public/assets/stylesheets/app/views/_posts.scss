@@ -44,8 +44,14 @@
 	}
 	.content-text-placeholder {
 		padding: $container-fluid;
-		p {
+		p,
+		a {
 			font-size: $font-size-base;
+			color: $gray-dark;
+			&:hover {
+				color: $gray-dark;
+				text-decoration: none;
+			}
 		}
 	}
 	.content-img-placeholder {
@@ -84,7 +90,7 @@
 	.actions {
 		border-top: 1px solid $gray-lighter;
 		text-align: center;
-		padding: $container-fluid 0;
+		padding: 12px 0;
 		> div:first-child {
 			border-right: 1px solid $gray-lighter;
 		}
