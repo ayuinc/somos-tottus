@@ -4,7 +4,8 @@ angular.module('core').service('Layout', [
   function() {
    	// NAVIGATION CONTROL
     var pageContentHash = {
-      '/posts': {
+      // POSTS
+      'listPosts': {
         navViewActionBar: {
           actionButtonText: 'Publicar',
           actionButtonAction: '/#!/posts/new',
@@ -14,7 +15,7 @@ angular.module('core').service('Layout', [
           indicatorText: 'Muro'
         }
       },
-      '/posts/new': {
+      'newPost': {
         navViewActionBar: {
           // actionButtonText: 'Opciones',
           actionButtonAction: '',
@@ -25,17 +26,44 @@ angular.module('core').service('Layout', [
           indicatorText: 'Nueva publicación'
         }
       },
-      '/posts/:stateId': {
+      'showPost': {
         navViewActionBar: {
-          actionButtonText: 'Opciones',
-          actionButtonAction: '',
+          // actionButtonText: 'Opciones',
+          // actionButtonAction: '',
           isURL: true,
           previousPage: '/posts'
         },
         navViewIndicator: {
           indicatorText: 'Publicación'
         }
-      }
+      },
+      // COMMENTS
+      'listComments': {},
+      'newComment': {
+        navViewActionBar: {
+          // actionButtonText: 'Publicar',
+          // actionButtonAction: '/#!/posts/new',
+          previousPage: '/posts',
+          isURL: true
+        },
+        navViewIndicator: {
+          indicatorText: 'Escribe un comentario'
+        }
+      },
+      // USERS
+      'public-profile': {},
+      'profile': {},
+      'password': {},
+      'first-change-password': {},
+      'first-update-profile': {},
+      'accounts': {},
+      'signup': {},
+      'signin': {},
+      'firstsignin': {},
+      'forgot': {},
+      'reset-invalid': {},
+      'reset-success': {},
+      'reset': {}
     };
     this.getPageContent = function(stateObj){
     	var pageContent = {};

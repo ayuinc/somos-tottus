@@ -4,23 +4,28 @@ angular.module('core').controller('LayoutController', ['$scope', '$location', 'A
   function($scope, $location, Authentication, Layout) {
     // AUTH PATHS
   	var isAuthPath = {
-  		'/signin': true,
-  		'/signup': true,
-  		'/settings/first-change-password': true,
-      '/firstsignin': true
+  		'signin': true,
+  		'signup': true,
+  		'first-change-password': true,
+      'firstsignin': true
   	};
     var isCreatePath = {
-      '/posts/new': true
+      'newPost': true,
+      'newComment': true
     };
-    $scope.$on('$stateChangeStart', function(){
-      var state = $location.$$url;
+    $scope.$on('$stateChangeStart', function(toState, toParams, fromState, fromParams){
+      // console.log(toState);
+      console.log(toParams);
+      // console.log(fromState);
+      // console.log(fromParams);
+      var state = toParams.name;
       var isAuth = isAuthPath[state];
       var isCreate = isCreatePath[state];
-      var stateId = state.split('/');
-      if (stateId.length > 2 && stateId[2] != 'new') {
-        var statePath = stateId[1] == 'posts' ? 'posts' : 'users';
-        state = '/' + statePath + '/:stateId';
-      }
+      // var stateId = state.split('/');
+      // if (stateId.length > 2 && stateId[2] != 'new') {
+      //   var statePath = stateId[1] == 'posts' ? 'posts' : 'users';
+      //   state = '/' + statePath + '/:stateId';
+      // }
       $scope.isAuth = isAuth; // Check if it's on auth paths
       $scope.isCreatePath = isCreate;
       var stateObj = Layout.getPageContent({state: state, isAuth: isAuthPath[state]});      

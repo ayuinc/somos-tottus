@@ -2717,8 +2717,8 @@ a.not-underline:hover {
     text-fill-color: transparent; } }
 @font-face {
   font-family: 'icomoon';
-  src: url("/assets/icons/icomoon.eot?ywybr6");
-  src: url("/assets/icons/icomoon.eot?#iefixywybr6") format("embedded-opentype"), url("/assets/icons/icomoon.woff?ywybr6") format("woff"), url("/assets/icons/icomoon.ttf?ywybr6") format("truetype"), url("/assets/icons/icomoon.svg?ywybr6#icomoon") format("svg");
+  src: url("/assets/icons/icomoon_v2.eot?-di7ya");
+  src: url("/assets/icons/icomoon_v2.eot?#iefix-di7ya") format("embedded-opentype"), url("/assets/icons/icomoon_v2.woff?-di7ya") format("woff"), url("/assets/icons/icomoon_v2.ttf?-di7ya") format("truetype"), url("/assets/icons/icomoon_v2.svg?-di7ya#icomoon") format("svg");
   font-weight: normal;
   font-style: normal; }
 [class^="icon-"], [class*=" icon-"] {
@@ -2733,15 +2733,6 @@ a.not-underline:hover {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale; }
 
-.icon-arrow-back-filled:before {
-  content: "\e610"; }
-
-.icon-edit-filled:before {
-  content: "\e611"; }
-
-.icon-times-filled:before {
-  content: "\e612"; }
-
 .icon-cart-filled:before {
   content: "\e600"; }
 
@@ -2754,7 +2745,7 @@ a.not-underline:hover {
 .icon-cake-filled:before {
   content: "\e603"; }
 
-.icon-oportunidades-filled:before {
+.icon-chart-filled:before {
   content: "\e604"; }
 
 .icon-options-filled:before {
@@ -2789,6 +2780,18 @@ a.not-underline:hover {
 
 .icon-tottus:before {
   content: "\e60f"; }
+
+.icon-arrow-back-filled:before {
+  content: "\e610"; }
+
+.icon-edit-filled:before {
+  content: "\e611"; }
+
+.icon-times-filled:before {
+  content: "\e612"; }
+
+.icon-picture:before {
+  content: "\e66f"; }
 
 html,
 body {
@@ -3315,6 +3318,22 @@ input[type="submit"].btn-tabs {
           font-style: normal; }
           .post-show-comments ul li .comment-content p a:hover {
             text-decoration: none; }
+
+.upload-field {
+  position: relative; }
+  .upload-field input.upload-input {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+    cursor: pointer;
+    opacity: 0;
+    filter: alpha(opacity=0); }
+  .upload-field a {
+    font-size: 21px;
+    color: #6f7474; }
 
 .user-auth-wrapper {
   height: 100%;
