@@ -12,6 +12,14 @@ angular.module('posts').controller('PostsController', ['$scope', '$stateParams',
         // If user is signed in then redirect back home
         if (!$scope.authentication.user) $location.path('/');
 
+        $scope.uploader.filters.push({
+            name: 'imageFilter',
+            fn: function(item /*{File|FileLikeObject}*/, options) {
+                var type = '|' + item.type.slice(item.type.lastIndexOf('/') + 1) + '|';
+                return '|jpg|png|jpeg|bmp|gif|'.indexOf(type) !== -1;
+            }
+        });
+
         $scope.getCredentials = function() {
             AWS.getCredentials().then(function(res) {
                 $scope.credentials = res.data;
@@ -37,13 +45,16 @@ angular.module('posts').controller('PostsController', ['$scope', '$stateParams',
                         'Content-Type': 'application/octet-stream',
                         filename: 'post_' + response._id + '.' + uploadItem.file.name.split('.').pop(),
                     }];
+
+                    uploadItem.onSuccess = function() {
+                        $scope.detail = '';
+                        $location.path('posts/' + response._id);
+                    };
+
                     uploadItem.upload();
 
                     response.imgFilePath = 'https://s3.amazonaws.com/tottus/post_' + post._id + '.' + uploadItem.file.name.split('.').pop();
                     response.$update();
-
-                    $location.path('posts/' + response._id);
-                    $scope.detail = '';
                 }, function(errorResponse) {
                     $scope.error = errorResponse.data.message;
                 });
