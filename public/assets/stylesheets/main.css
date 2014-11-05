@@ -2717,8 +2717,8 @@ a.not-underline:hover {
     text-fill-color: transparent; } }
 @font-face {
   font-family: 'icomoon';
-  src: url("/assets/icons/icomoon_v2.eot?-di7ya");
-  src: url("/assets/icons/icomoon_v2.eot?#iefix-di7ya") format("embedded-opentype"), url("/assets/icons/icomoon_v2.woff?-di7ya") format("woff"), url("/assets/icons/icomoon_v2.ttf?-di7ya") format("truetype"), url("/assets/icons/icomoon_v2.svg?-di7ya#icomoon") format("svg");
+  src: url("/assets/icons/icomoon_v3.eot?cldmqa");
+  src: url("/assets/icons/icomoon_v3.eot?#iefixcldmqa") format("embedded-opentype"), url("/assets/icons/icomoon_v3.woff?cldmqa") format("woff"), url("/assets/icons/icomoon_v3.ttf?cldmqa") format("truetype"), url("/assets/icons/icomoon_v3.svg?cldmqa#icomoon") format("svg");
   font-weight: normal;
   font-style: normal; }
 [class^="icon-"], [class*=" icon-"] {
@@ -2732,6 +2732,9 @@ a.not-underline:hover {
   /* Better Font Rendering =========== */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale; }
+
+.icon-arrow-right-filled:before {
+  content: "\e613"; }
 
 .icon-cart-filled:before {
   content: "\e600"; }
@@ -2790,8 +2793,11 @@ a.not-underline:hover {
 .icon-times-filled:before {
   content: "\e612"; }
 
-.icon-picture:before {
-  content: "\e66f"; }
+.icon-tags:before {
+  content: "\e682"; }
+
+.icon-clock5:before {
+  content: "\e72b"; }
 
 html,
 body {
@@ -3059,14 +3065,99 @@ input[type="submit"].btn-tabs {
   .list .item {
     display: block;
     padding: 14px 7px;
-    border-bottom: 1px solid #ededed; }
+    border-bottom: 1px solid #ededed;
+    position: relative; }
     .list .item:before, .list .item:after {
       content: " ";
       display: table; }
     .list .item:after {
       clear: both; }
+    .list .item span {
+      line-height: 0; }
     .list .item.item-icon-left i {
       margin-right: 14px; }
+    .list .item.item-thumbnail-left > div img {
+      max-width: 83px;
+      max-height: 83px; }
+    .list .item .item-go {
+      position: absolute;
+      width: 35px;
+      height: 100%;
+      right: 0;
+      top: 0;
+      text-align: center;
+      display: -webkit-box;
+      display: -moz-box;
+      display: box;
+      display: -webkit-flex;
+      display: -moz-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-orient: vertical;
+      -moz-box-orient: vertical;
+      box-orient: vertical;
+      -webkit-flex-direction: column;
+      -moz-flex-direction: column;
+      flex-direction: column;
+      -ms-flex-direction: column;
+      -webkit-box-pack: center;
+      -moz-box-pack: center;
+      box-pack: center;
+      -webkit-justify-content: center;
+      -moz-justify-content: center;
+      -ms-justify-content: center;
+      -o-justify-content: center;
+      justify-content: center;
+      -ms-flex-pack: center;
+      -webkit-box-align: center;
+      -moz-box-align: center;
+      box-align: center;
+      -webkit-align-items: center;
+      -moz-align-items: center;
+      -ms-align-items: center;
+      -o-align-items: center;
+      align-items: center;
+      -ms-flex-align: center; }
+
+.item-go {
+  position: absolute;
+  width: 35px;
+  height: 100%;
+  right: 0;
+  top: 0;
+  text-align: center;
+  display: -webkit-box;
+  display: -moz-box;
+  display: box;
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -moz-box-orient: vertical;
+  box-orient: vertical;
+  -webkit-flex-direction: column;
+  -moz-flex-direction: column;
+  flex-direction: column;
+  -ms-flex-direction: column;
+  -webkit-box-pack: center;
+  -moz-box-pack: center;
+  box-pack: center;
+  -webkit-justify-content: center;
+  -moz-justify-content: center;
+  -ms-justify-content: center;
+  -o-justify-content: center;
+  justify-content: center;
+  -ms-flex-pack: center;
+  -webkit-box-align: center;
+  -moz-box-align: center;
+  box-align: center;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  -o-align-items: center;
+  align-items: center;
+  -ms-flex-align: center; }
 
 .alert-mobile {
   position: absolute;
@@ -3178,7 +3269,7 @@ input[type="submit"].btn-tabs {
     border-radius: 50%;
     color: white; }
   .nav-drawer .list .item span {
-    padding-top: 5px;
+    padding-top: 14px;
     color: #6f7474;
     font-family: "Open Sans", Helvetica, Arial, sans-serif !important;
     font-weight: 300;
