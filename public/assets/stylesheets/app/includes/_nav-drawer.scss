@@ -1,0 +1,28 @@
+.nav-drawer {
+	position: relative;
+	.top {}
+	.center {
+
+	}
+	.bottom {}
+
+	.list {
+		.item {
+			i,span {
+				float: left;
+				display: block;
+			}
+			i {
+				// background: $brand-warning;
+				padding: 7px;
+				border-radius: 50%;
+				color: white;
+			}
+			span {
+				padding-top: 5px;
+				color: $gray;
+				@include light;
+			}
+		}
+	}
+} 

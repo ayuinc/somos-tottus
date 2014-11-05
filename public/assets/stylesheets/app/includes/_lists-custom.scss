@@ -1,0 +1,14 @@
+.list {
+	position: relative;
+	.item {
+		display: block;
+		padding: $grid-gutter-width $container-fluid;
+		@include clearfix;
+		border-bottom: 1px solid $gray-lighter;
+		&.item-icon-left {
+			i {
+				margin-right: $container-fluid * 2;
+			}
+		}
+	}
+}

@@ -38,10 +38,10 @@
 	</head>
 	<body data-ng-class="{'bg-primary': isAuth, 'bg-white': isCreatePath}" data-ng-controller="LayoutController" class="ng-cloak">
 		<div data-ng-class="{'on-bg-green': isAuth}" class="site-wrapper">
-			<div class="nav-view-action-bar" data-ng-if="!isAuth" data-ng-include="'/modules/core/views/view-action-bar.client.view.html'"></div>
-	    <div class="nav-view-indicator" data-ng-if="!isAuth" data-ng-include="'/modules/core/views/view-indicator.client.view.html'"></div>
+			<div class="nav-view-action-bar" data-ng-if="hasNavViewActionBar" data-ng-include="'/modules/core/views/view-action-bar.client.view.html'"></div>
+	    <div class="nav-view-indicator" data-ng-if="hasNavViewIndicator" data-ng-include="'/modules/core/views/view-indicator.client.view.html'"></div>
 			{% block content %}{% endblock %}
-			<div class="nav-subnav-tabs" data-ng-if="!isAuth" data-ng-show="!isCreatePath" data-ng-include="'/modules/core/views/subnav-tabs.client.view.html'"></div>
+			<div class="nav-subnav-tabs" data-ng-if="hasNavSubnavTabs" data-ng-show="!isCreatePath" data-ng-include="'/modules/core/views/subnav-tabs.client.view.html'"></div>
 		</div>
 		<!--Embedding The User Object-->
 		<script type="text/javascript">

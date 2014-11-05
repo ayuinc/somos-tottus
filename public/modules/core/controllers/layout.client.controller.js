@@ -14,33 +14,37 @@ angular.module('core').controller('LayoutController', ['$scope', '$location', 'A
       'newComment': true
     };
     $scope.$on('$stateChangeStart', function(toState, toParams, fromState, fromParams){
-      // console.log(toState);
-      console.log(toParams);
-      // console.log(fromState);
-      // console.log(fromParams);
+      // console.log(toParams);
       var state = toParams.name;
       var isAuth = isAuthPath[state];
       var isCreate = isCreatePath[state];
-      // var stateId = state.split('/');
-      // if (stateId.length > 2 && stateId[2] != 'new') {
-      //   var statePath = stateId[1] == 'posts' ? 'posts' : 'users';
-      //   state = '/' + statePath + '/:stateId';
-      // }
       $scope.isAuth = isAuth; // Check if it's on auth paths
       $scope.isCreatePath = isCreate;
-      var stateObj = Layout.getPageContent({state: state, isAuth: isAuthPath[state]});      
+      var stateObj = Layout.getPageContent({state: state});
       if (stateObj) {
         var navViewActionBar = stateObj.navViewActionBar;
         var navViewIndicator = stateObj.navViewIndicator;
-        if(!isAuth) {
-          // VIEW ACTION BAR
+        var navSubnavTabs = stateObj.navSubnavTabs;
+
+        // VIEW ACTION BAR
+        $scope.hasNavViewActionBar = navViewActionBar.hasThis;
+        if(navViewActionBar.hasThis) {
           $scope.actionButtonText = navViewActionBar.actionButtonText;
           $scope.actionButtonAction = navViewActionBar.actionButtonAction;
           $scope.previousPage = navViewActionBar.previousPage && '#!' + navViewActionBar.previousPage;
+        }
 
-          // VIEW INDICATOR
+        // VIEW INDICATOR
+        $scope.hasNavViewIndicator = navViewIndicator.hasThis;
+        if(navViewIndicator.hasThis) {
           $scope.indicatorText = navViewIndicator.indicatorText;
         }
+
+        // NAV SUBNAV TABS
+        $scope.hasNavSubnavTabs = navSubnavTabs.hasThis;
+        if(navSubnavTabs.hasThis) {
+        }
+
       }
     });
   }   

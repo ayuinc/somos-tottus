@@ -1,11 +1,13 @@
 .user-card {
 	@include clearfix;
-	div {
+	display: block;
+	> div {
 		float: left;
 	}
 	.profile-pic {
 		padding-right: 0;
-		a {
+		a, span {
+			display: block;
 			img {
 				width: 49px;
 				height: 49px;
