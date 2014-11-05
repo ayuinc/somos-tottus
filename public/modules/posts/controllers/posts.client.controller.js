@@ -70,27 +70,46 @@ angular.module('posts').controller('PostsController', ['$scope', '$stateParams',
             }
         };
 
-        $scope.like_list_posts = function(id, post_like) {
+        $scope.likeListPosts = function(id, post_like) {
             var like = new Likes({
                 post: id
             });
-            post_like.likes.push({ user: { _id: $scope.authentication.user._id, personal: { displayName: $scope.authentication.user.personal.displayName} }});
+            post_like.likes.push(
+                { user: 
+                    { _id: $scope.authentication.user._id, 
+                        personal: { 
+                            displayName: $scope.authentication.user.personal.displayName
+                        } 
+                    }
+                }
+            );
+            
             like.create(post_like._id);
             for (var i = $scope.posts.length - 1; i >= 0; i--) {
                 if( $scope.posts[i]._id === id ){
                     $scope.posts[i].ng_like = true;
                 }
-            };
+            }
         };
 
-        $scope.like_show_post = function() {
+        $scope.likeShowPost = function() {
             var like = new Likes({
                 post: $scope.post._id
             });
-            $scope.post.likes.push({ user: { _id: $scope.authentication.user._id, personal: { displayName: $scope.authentication.user.personal.displayName} }});
+            $scope.post.likes.push(
+                { user: 
+                    { _id: $scope.authentication.user._id, 
+                        personal: {
+                            displayName: $scope.authentication.user.personal.displayName
+                        } 
+                    }
+                }
+            );
+            
             like.create($scope.post._id);
             $scope.ng_like =  true; // me gusta
         };
+
         $scope.find = function() {
             $scope.posts = Posts.query();
             $scope.posts.$promise.then(function(posts){
