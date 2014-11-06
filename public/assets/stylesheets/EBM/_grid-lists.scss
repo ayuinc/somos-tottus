@@ -36,4 +36,11 @@ ul.grid-list {
 			display: inline-block;
 		}
 	}
+	&.grid-list-anchors {
+		> li {
+			a {
+				display: block;
+			}
+		}
+	}
 }

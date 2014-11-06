@@ -1,0 +1,52 @@
+.list {
+	position: relative;
+	.item {
+		display: block;
+		padding: $grid-gutter-width $container-fluid;
+		@include clearfix;
+		border-bottom: 1px solid $gray-lighter;
+		position: relative;
+		span {
+			line-height: 0;
+		}
+		&.item-icon-left {
+			i {
+				margin-right: $container-fluid * 2;
+			}
+		}
+		&.item-thumbnail-left {
+			> div {
+				img {
+					// width: 100%;
+					max-width: 83px;
+					max-height: 83px;
+				}
+			}
+		}
+		.item-go {
+			position: absolute;
+			width: 35px;
+			height: 100%;
+			right: 0;
+			top: 0;
+			text-align: center;
+			@include display(flex);
+			@include flex-direction(column);
+			@include justify-content(center);
+			@include align-items(center);
+		}
+	}
+}
+
+.item-go {
+	position: absolute;
+	width: 35px;
+	height: 100%;
+	right: 0;
+	top: 0;
+	text-align: center;
+	@include display(flex);
+	@include flex-direction(column);
+	@include justify-content(center);
+	@include align-items(center);
+}

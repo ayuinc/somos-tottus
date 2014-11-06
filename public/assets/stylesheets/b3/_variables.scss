@@ -44,11 +44,75 @@ $brand-danger:          #DA3A2F !default;
 
 $brand-inverse: 				#081A26 !default;
 
-$grayscale-list: $gray-darker, $gray-dark, $gray, $gray-light, $gray-lighter, #fff;
-$brand-colors-list: $brand-primary, $brand-success, $brand-info, $brand-warning, $brand-danger;
+// TOTTUS CUSTOM
+$brand-vacancies: 				#EA8B32 !default;
+$brand-events: 						#DA427E !default;
+$brand-benefits: 					#58A742 !default;
+$brand-birthdays: 				#DA3A2F !default;
 
-$grayscale-sufix-list: gray-darker, gray-dark, gray, gray-light, gray-lighter, white;
-$brand-colors-sufix-list: primary, success, info, warning, danger;
+// EBM:REF
+// SOCIAL COLORS
+$color-facebook: 		#3B5998 !default;
+$color-twitter: 		#34CCFE !default;
+$color-pinterest: 	#D02420 !default;
+$color-google-plus: #DC4335 !default;
+$color-linkedin: 		#1C87BD !default;
+
+// COLOR LISTS
+// EBM:REF
+$grayscale-list: 
+	$gray-darker, 
+	$gray-dark, 
+	$gray, 
+	$gray-light, 
+	$gray-lighter, 
+	#fff;
+
+$brand-colors-list: 
+	$brand-primary, 
+	$brand-success, 
+	$brand-info, 
+	$brand-warning, 
+	$brand-danger,
+	$brand-vacancies,
+	$brand-events,
+	$brand-benefits,
+	$brand-birthdays;
+
+$social-colors-list: 
+	$color-facebook,
+	$color-twitter, 	
+	$color-pinterest, 
+	$color-google-plus,
+	$color-linkedin; 	
+
+// COLOR SUFIX's
+// EBM:REF
+$grayscale-sufix-list: 
+	'gray-darker', 
+	'gray-dark', 
+	'gray', 
+	'gray-light', 
+	'gray-lighter', 
+	'white';
+
+$brand-colors-sufix-list: 
+	'primary', 
+	'success', 
+	'info', 
+	'warning', 
+	'danger',
+	'vacancies', 
+	'events', 
+	'benefits', 
+	'birthdays';
+
+$social-colors-sufix-list: 
+	'facebook',
+	'twitter',	
+	'pinterest',
+	'google-plus',
+	'linkedin';
 
 
 //== Scaffolding

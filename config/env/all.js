@@ -39,7 +39,8 @@ module.exports = {
 		css: [
 			// 'public/modules/**/css/*.css',
 			'public/assets/stylesheets/main.css',
-			'public/assets/stylesheets/ebm-loops.css'
+			'public/assets/stylesheets/ebm.css'
+			// 'public/assets/stylesheets/ebm-loops.css'
 		],
 		js: [
 			'public/config.js',
