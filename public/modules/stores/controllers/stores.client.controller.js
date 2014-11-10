@@ -1,8 +1,8 @@
 'use strict';
 
 // Stores controller
-angular.module('stores').controller('StoresController', ['$scope', '$stateParams', '$location', 'Authentication', 'Stores', 'Geography'
-	function($scope, $stateParams, $location, Authentication, Stores, Geography) {
+angular.module('stores').controller('StoresController', ['$scope', '$stateParams', '$location', '$http', 'Authentication', 'Stores', 'LocationService',
+	function($scope, $stateParams, $location, $http, Authentication, Stores, LocationService) {
 		$scope.authentication = Authentication;
 
 		// Create new Store
@@ -10,7 +10,9 @@ angular.module('stores').controller('StoresController', ['$scope', '$stateParams
 			// Create new Store object
 			var store = new Stores ({
 				name: this.name,
-				address: this.address
+				address: this.address,
+				region: this.region.region,
+				district: this.district
 			});
 
 			// Redirect after save
@@ -62,6 +64,19 @@ angular.module('stores').controller('StoresController', ['$scope', '$stateParams
 			$scope.store = Stores.get({ 
 				storeId: $stateParams.storeId
 			});
+		};
+
+		// Get locations
+		$scope.getLocations = function() {
+			LocationService.getLocations().then(function(res) {
+				$scope.locations = res.data;
+				console.log('locations', $scope.locations);
+			});
+			console.log('locations', $scope.locations);
+		};
+
+		$scope.updateRegion = function() {
+			$scope.availableDistricts = $scope.region.districts;
 		};
 	}
 ]);
