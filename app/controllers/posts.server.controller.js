@@ -4,7 +4,7 @@
  * Module dependencies.
  */
 var mongoose = require('mongoose'),
-    errorHandler = require('./errors'),
+    errorHandler = require('./errors.server.controller'),
     Comment = mongoose.model('Comment'),
     User = mongoose.model('User'),
     Post = mongoose.model('Post'),
