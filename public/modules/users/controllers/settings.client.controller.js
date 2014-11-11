@@ -73,5 +73,15 @@ angular.module('users').controller('SettingsController', ['$scope', '$http', '$l
 			}
 		};
 
+		/*
+			=================================
+			USER SETTINGS FIELDS
+			=================================
+		*/
+		// Pass the field to be edited to the edit-field view
+		$scope.requestField = function(){};
+		// Render the correspondent form to the edit-field view
+		$scope.requestedField = function(){};
+
 	}
 ]);

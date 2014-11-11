@@ -74,7 +74,22 @@ angular.module('core').service('Layout', [
 
       // USERS
       'public-profile': {},
-      'profile': {},
+      'profile': {
+        navViewActionBar: {
+          hasThis: true,
+          // actionButtonText: 'Publicar',
+          // actionButtonAction: '/#!/posts/new',
+          isURL: true,
+          // previousPage: '/settings/profile'
+        },
+        navViewIndicator: {
+          hasThis: true,
+          indicatorText: 'Mi perfil'
+        },
+        navSubnavTabs: {
+          hasThis: true
+        }
+      },
       'password': {},
       'first-change-password': {
         navViewActionBar: {
@@ -137,6 +152,27 @@ angular.module('core').service('Layout', [
       'reset-invalid': {},
       'reset-success': {},
       'reset': {},
+      /*
+        =================================
+        USER SETTINGS FIELDS
+        =================================
+      */
+      'edit-field': {
+        navViewActionBar: {
+          hasThis: true,
+          // actionButtonText: 'Publicar',
+          // actionButtonAction: '/#!/posts/new',
+          isURL: true,
+          previousPage: '/settings/profile'
+        },
+        navViewIndicator: {
+          hasThis: true,
+          indicatorText: 'Editar información'
+        },
+        navSubnavTabs: {
+          hasThis: false
+        }
+      },
 
       // MENU
       'navigationDrawer': {

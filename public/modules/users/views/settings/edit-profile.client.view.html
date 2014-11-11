@@ -22,11 +22,11 @@
       </div>
     </div>
     <div class="panel panel-highlight">
-      <a href="#" class="edit" data-ng-click="personalInfo = !personalInfo"><span data-ng-show="personalInfo" class="text-danger">Cancelar</span><span data-ng-show="!personalInfo">Editar</span></a>
+      <a href="#!" class="edit" data-ng-click="personalInfo = !personalInfo"><span data-ng-show="personalInfo" class="text-danger">Cancelar</span><span data-ng-show="!personalInfo">Editar</span></a>
       <div class="p-14">
         <h3 class="panel-title">Información personal</h3>
         <div class="panel-row">
-          <label>Nombre de usuario: <a href="#" class="edit" data-ng-show="personalInfo">Editar</a></label>
+          <label>Nombre de usuario: <a href="#!" class="edit" data-ng-show="personalInfo" request-field="'/modules/users/views/settings/edit_form_fields/user.username.client.view.html'">Editar</a></label>
           <span>{{user.username}}</span>
         </div>
         <div class="panel-row">
