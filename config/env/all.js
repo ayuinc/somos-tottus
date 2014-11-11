@@ -32,6 +32,7 @@ module.exports = {
 				'public/lib/jquery/dist/jquery.min.js',
 				'public/lib/angular-bootstrap/ui-bootstrap-tpls.js',
 				'public/lib/angular-file-upload/angular-file-upload.js',
+				'public/lib/restangular/dist/restangular.js'
 				// 'public/lib/b3/js/modal.js',
 				// 'public/lib/b3/js/transition.js',
 			]

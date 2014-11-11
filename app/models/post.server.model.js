@@ -19,6 +19,11 @@ var PostSchema = new Schema({
         ref: 'User',
         required: true
     },
+    name:     {
+        type: String,
+        default: '',
+        trim: true,
+    },
     detail:     {
         type: String,
         default: '',
