@@ -24,7 +24,7 @@
                             <!-- <a data-ng-href="#!/posts/{{post._id}}" class="see-more">Ver más..</a> -->
                         </div>
                         <div data-ng-show="(post.imgFilePath | imageFilter)" class="content-img-placeholder">
-                            <a data-ng-href="#!/posts/{{post._id}}"><img data-ng-src="{{post.imgFilePath}}" /></a>
+                            <a data-ng-href="#!/posts/{{post._id}}"><img lazy-src="{{post.imgFilePath}}" data-ng-src="{{post.imgFilePath}}" /></a>
                         </div>
                         <ul class="counts-and-share list-unstyled">
                             <li class="counts-likes"><a href="#!">{{post.likes.length}} Me Gusta</a></li>
