@@ -1,7 +1,7 @@
 'use strict';
 
 //Setting up route
-angular.module('event').config(['$stateProvider',
+angular.module('events').config(['$stateProvider',
 	function($stateProvider) {
 		// Event state routing
 		$stateProvider.

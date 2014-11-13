@@ -5,7 +5,7 @@
  */
 var mongoose = require('mongoose'),
     errorHandler = require('./errors.server.controller'),
-    EventModel = mongoose.model('Event'),
+    Evt = mongoose.model('Event'),
     User = mongoose.model('User'),
     Post = mongoose.model('Post'),
     _ = require('lodash');
@@ -14,16 +14,28 @@ var mongoose = require('mongoose'),
  * Create a Event
  */
 exports.create = function(req, res) {
+
     var post = new Post(req.body.post);
     post.user = req.user;
 
-    post.save(function(err) {
+    var evt = new Evt(req.body.evt);
+
+    post.save(function(err, post) {
         if(err) {
             return res.status(400).send({
                 message: errorHandler.getErrorMessage(err)
             });
         } else {
-            res.jsonp(post);
+            evt.post = post;
+            evt.save(function(err) {
+                if(err) {
+                    return res.status(400).send({
+                        message: errorHandler.getErrorMessage(err)
+                    });
+                } else {
+                    res.jsonp(evt);
+                }
+            });
         }
     });
 };
@@ -53,8 +65,17 @@ exports.delete = function(req, res) {
  * List of Events
  */
 exports.index = function(req, res) {
-
-};
+    Evt.find().limit(20)
+        .populate('post', 'name detail')
+        .exec(function(err, events) {
+            if(err) {
+                return res.status(400).send({
+                    message: errorHandler.getErrorMessage(err)
+                });
+            }
+            res.jsonp(events);
+        });
+    };
 
 exports.eventByID = function(req, res, next, id) {
 };

@@ -27,21 +27,21 @@ angular.module('posts').directive('ngThumb', ['$window', function($window) {
                 var canvas = element.find('canvas');
                 var reader = new FileReader();
 
-                reader.onload = onLoadFile;
-                reader.readAsDataURL(params.file);
-
-                function onLoadFile(event) {
+                var onLoadFile = function (event) {
                     var img = new Image();
                     img.onload = onLoadImage;
                     img.src = event.target.result;
-                }
+                };
 
-                function onLoadImage() {
+                var onLoadImage = function () {
                     var width = params.width || this.width / this.height * params.height;
                     var height = params.height || this.height / this.width * params.width;
                     canvas.attr({ width: width, height: height });
                     canvas[0].getContext('2d').drawImage(this, 0, 0, width, height);
-                }
+                };
+
+                reader.onload = onLoadFile;
+                reader.readAsDataURL(params.file);
             }
         };
     }]);
