@@ -117,7 +117,7 @@ angular.module('posts').controller('PostsController', ['$scope', '$stateParams',
                     $scope.posts[i].ng_like = false;
                     for (var j = posts[i].likes.length - 1; j >= 0; j--) {
                         if(posts[i].likes[j].user == $scope.authentication.user._id){
-                            $scope.posts[i].ng_like = true; //te gusta 
+                            $scope.posts[i].ng_like = true; 
                             break;
                         }
                     }

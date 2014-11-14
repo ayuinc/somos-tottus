@@ -19,11 +19,21 @@ var PostSchema = new Schema({
         ref: 'User',
         required: true
     },
+    name: {
+        type: String,
+        default: '',
+        trim: true
+    },
     detail:     {
         type: String,
         default: '',
         trim: true,
         required: 'Por favor, rellene el cuadro de texto',
+    },
+    notification:     {
+        type: Schema.ObjectId,
+        ref: 'Notification'/*,
+        required: true*/
     },
     imgFilePath: {
         type: String,
