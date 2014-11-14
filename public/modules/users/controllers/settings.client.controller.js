@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('users').controller('SettingsController', ['$scope', '$http', '$location', 'Users', 'Authentication',
-	function($scope, $http, $location, Users, Authentication) {
-
+angular.module('users').controller('SettingsController', ['$scope', '$state', '$http', '$location', 'Users', 'Authentication',
+	function($scope, $state, $http, $location, Users, Authentication) {
+		debugger;
 		$scope.user = Authentication.user;
 
 		// If user is not signed in then redirect back home
@@ -79,9 +79,8 @@ angular.module('users').controller('SettingsController', ['$scope', '$http', '$l
 			=================================
 		*/
 		// Pass the field to be edited to the edit-field view
-		$scope.requestField = function(){};
+		$scope.requestField = $state.params.field;
 		// Render the correspondent form to the edit-field view
-		$scope.requestedField = function(){};
 
 	}
 ]);

@@ -58,13 +58,17 @@ angular.module('users').config(['$stateProvider',
 			USER SETTINGS ROUTES
 			=================================
 		*/
-		state('edit-field', {
-			url: '/settings/edit-field',
-			templateUrl: 'modules/users/views/settings/edit_form_fields/edit-field.client.view.html'
+		state('edit', {
+			url: '/settings/edit/:field',
+			templateUrl: 'modules/users/views/settings/edit_form_fields/edit.client.view.html'
 		}).
 		state('profile', {
 			url: '/settings/profile',
 			templateUrl: 'modules/users/views/settings/edit-profile.client.view.html'
 		});
+		// .state('update-email', {
+		// 	url: '/settings/edit-email',
+		// 	templateUrl: 'modules/users/views/settings/edit_form_fields/user.email.client.view.html'
+		// });
 	}
 ]);
