@@ -20,13 +20,11 @@ var EventSchema = new Schema({
     },
     start: {
         type: Date,
-        default: Date.now
-        // required: true
+        required: true
     },
     end: {
         type: Date,
-        default: Date.now
-        // required: true
+        required: true
     },
     location:     {
         type: String,

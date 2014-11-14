@@ -14,7 +14,6 @@ var mongoose = require('mongoose'),
  * Create a Event
  */
 exports.create = function(req, res) {
-
     var post = new Post(req.body.post);
     post.user = req.user;
 
@@ -44,7 +43,7 @@ exports.create = function(req, res) {
  * Show the current Event
  */
 exports.show = function(req, res) {
-
+    res.jsonp(req.evt);
 };
 
 /**
@@ -75,9 +74,20 @@ exports.index = function(req, res) {
             }
             res.jsonp(events);
         });
-    };
+};
 
 exports.eventByID = function(req, res, next, id) {
+    Evt.findById(id)
+        .populate('post', 'name detail')
+        .exec(function(err, evt) {
+            if(err) {
+                return res.status(400).send({
+                    message: errorHandler.getErrorMessage(err)
+                });
+            }
+            req.evt = evt;
+            next();
+        });
 };
 
 exports.hasAuthorization = function(req, res, next) {

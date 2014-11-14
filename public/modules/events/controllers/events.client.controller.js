@@ -11,11 +11,27 @@ angular.module('events').controller('EventsController', ['$scope', '$stateParams
         if(!$scope.authentication.user) $location.path('/');
 
         $scope.new = function() {
+            var startDate = new Date(
+                    $scope.evt.startDay.yearString,
+                    $scope.evt.startDay.monthString - 1,
+                    $scope.evt.startDay.dayString,
+                    $scope.evt.startDay.hourString,
+                    $scope.evt.startDay.minuteString
+                );
+
+            var endDate = new Date(
+                    $scope.evt.endDay.yearString,
+                    $scope.evt.endDay.monthString - 1,
+                    $scope.evt.endDay.dayString,
+                    $scope.evt.endDay.hourString,
+                    $scope.evt.endDay.minuteString
+                );
+
             var newEvent = new Events({
                 evt: {
                     location: this.evt.eventLocation,
-                    start: this.evt.startDay,
-                    end: this.evt.endDay
+                    start: startDate,
+                    end: endDate
                 },
                 post: {
                     name: this.post.name,
@@ -29,6 +45,14 @@ angular.module('events').controller('EventsController', ['$scope', '$stateParams
                 console.log('houston', errorResponse.data.message);
                 $scope.error = errorResponse.data.message;
             });
+        };
+
+        $scope.find = function() {
+            $scope.events = Events.query();
+        };
+
+        $scope.findOne = function() {
+            $scope.evt = Events.get({ eventId: $stateParams.eventId })
         };
     }
 ]);
