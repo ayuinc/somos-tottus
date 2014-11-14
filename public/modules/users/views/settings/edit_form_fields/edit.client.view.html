@@ -1,0 +1,7 @@
+<div data-ng-controller="SettingsController">
+	<h3>Editing field: {{user[requestField]}}</h3>
+	<h3>{{requestField}}</h3>
+
+
+	<div ng-include="'modules/users/views/settings/edit_form_fields/user.' + requestField + '.client.view.html'"></div>
+</div>

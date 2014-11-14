@@ -2,7 +2,6 @@
 
 angular.module('users').controller('SettingsController', ['$scope', '$http', '$location', 'Users', 'Authentication', 'getPostsPerUser',
 	function($scope, $http, $location, Users, Authentication, getPostsPerUser) {
-
 		$scope.user = Authentication.user;
 
 		// If user is not signed in then redirect back home
@@ -112,6 +111,15 @@ angular.module('users').controller('SettingsController', ['$scope', '$http', '$l
 				$scope.submitted = true;
 			}
 		};
+
+		/*
+			=================================
+			USER SETTINGS FIELDS
+			=================================
+		*/
+		// Pass the field to be edited to the edit-field view
+		//$scope.requestField = $state.params.field;
+		// Render the correspondent form to the edit-field view
 
 	}
 ]);

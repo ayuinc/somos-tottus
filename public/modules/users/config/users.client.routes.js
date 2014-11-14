@@ -9,10 +9,6 @@ angular.module('users').config(['$stateProvider',
 			url: '/users/:userId',
 			templateUrl: 'modules/users/views/public-profile.client.view.html'
 		}).
-		state('profile', {
-			url: '/settings/profile',
-			templateUrl: 'modules/users/views/settings/edit-profile.client.view.html'
-		}).
 		state('password', {
 			url: '/settings/password',
 			templateUrl: 'modules/users/views/settings/change-password.client.view.html'
@@ -56,6 +52,23 @@ angular.module('users').config(['$stateProvider',
 		state('reset', {
 			url: '/password/reset/:token',
 			templateUrl: 'modules/users/views/password/reset-password.client.view.html'
+		}).
+		/*
+			=================================
+			USER SETTINGS ROUTES
+			=================================
+		*/
+		state('edit', {
+			url: '/settings/edit/:field',
+			templateUrl: 'modules/users/views/settings/edit_form_fields/edit.client.view.html'
+		}).
+		state('profile', {
+			url: '/settings/profile',
+			templateUrl: 'modules/users/views/settings/edit-profile.client.view.html'
 		});
+		// .state('update-email', {
+		// 	url: '/settings/edit-email',
+		// 	templateUrl: 'modules/users/views/settings/edit_form_fields/user.email.client.view.html'
+		// });
 	}
 ]);
