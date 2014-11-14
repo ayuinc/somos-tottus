@@ -1,39 +1,23 @@
-<<<<<<< HEAD
-<div class="benefits">
-	<div class="separator bg-gray-light p-14">
-		<span>Próximos eventos</span>
-	</div>
-	<div class="list">
-		<a href="#!/benefits/benefit" class="item item-thumbnail-left bg-white">
-			<div class="col-xs-3">
-				<img src="assets/img/img-sq.png" alt="" class="img-thumbnail">
-			</div>
-			<div class="col-xs-8 pv-28">
-				<span class="bold text-gray-dark">Tarjeta Somos Salud</span><br>
-				<span class="small text-gray">Vigencia hasta diciembre del 2014</span>
-			</div>
-			<div class="item-go">
-				<i class="icon-arrow-right-filled"></i>
-			</div>
-		</a>
-		<a href="#" class="item item-thumbnail-left bg-white">
-			<div class="col-xs-3">
-				<img src="assets/img/img-sq.png" alt="" class="img-thumbnail">
-			</div>
-			<div class="col-xs-8 pv-28">
-				<span class="bold text-gray-dark">Tarjeta Somos Salud</span><br>
-				<span class="small text-gray">Vigencia hasta diciembre del 2014</span>
-			</div>
-		</a>
-	</div>
-</div>
-=======
 <section data-ng-controller="EventsController" data-ng-init="find()">
-    <div data-ng-repeat="evt in events">
-        <h3 data-ng-bind="evt.post.name"></h3>
-        <p data-ng-bind="evt.post.detail"></p>
-        <small>Inicio: {{ evt.start | date:'yyyy-MM-dd HH:ss a' }}</small>
-        <small>Fin: {{ evt.end | date:'yyyy-MM-dd HH:ss a' }}</small>
-    </div>
+	<div class="benefits">
+		<div class="separator bg-gray-light p-14">
+			<span>Próximos eventos</span>
+		</div>
+		<div class="list">
+			<a data-ng-repeat="evt in events" href="#!/events/{{evt._id}}" class="item item-thumbnail-left bg-white">
+				<div class="col-xs-3">
+					<img src="assets/img/img-sq.png" alt="" class="img-thumbnail">
+				</div>
+				<div class="col-xs-8 pv-28">
+					<span class="bold text-gray-dark" data-ng-bind="evt.post.name"></span><br>
+					<span class="small text-gray" data-ng-bind="evt.post.detail"></span><br>
+					<small>Inicio: {{ evt.start | date:'yyyy-MM-dd HH:ss a' }}</small><br>
+					<small>Fin: {{ evt.end | date:'yyyy-MM-dd HH:ss a' }}</small>
+				</div>
+				<div class="item-go">
+					<i class="icon-arrow-right-filled"></i>
+				</div>
+			</a>
+		</div>
+	</div>
 </section>
->>>>>>> 9d514f311e9e5889f128beed7966dc3f3ab7e928
