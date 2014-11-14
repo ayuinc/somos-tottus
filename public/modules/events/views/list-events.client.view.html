@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <div class="benefits">
 	<div class="separator bg-gray-light p-14">
 		<span>Próximos eventos</span>
@@ -26,3 +27,13 @@
 		</a>
 	</div>
 </div>
+=======
+<section data-ng-controller="EventsController" data-ng-init="find()">
+    <div data-ng-repeat="evt in events">
+        <h3 data-ng-bind="evt.post.name"></h3>
+        <p data-ng-bind="evt.post.detail"></p>
+        <small>Inicio: {{ evt.start | date:'yyyy-MM-dd HH:ss a' }}</small>
+        <small>Fin: {{ evt.end | date:'yyyy-MM-dd HH:ss a' }}</small>
+    </div>
+</section>
+>>>>>>> 9d514f311e9e5889f128beed7966dc3f3ab7e928

@@ -153,6 +153,6 @@ angular.module('posts').directive('lazySrc', ['$window', '$document', function($
 
     return({
         link: link,
-        restrict: "A"
+        restrict: 'A'
     });
 }]);

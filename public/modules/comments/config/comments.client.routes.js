@@ -5,11 +5,11 @@ angular.module('comments').config(['$stateProvider',
         $stateProvider.
         state('listComments', {
             url: '/posts/:postId/comments',
-            templateUrl: 'modules/comment/views/list-comments.client.view.html'
+            templateUrl: 'modules/comments/views/list-comments.client.view.html'
         }).
         state('newComment', {
             url: '/posts/:postId/comments/new',
-            templateUrl: 'modules/comment/views/new-comment.client.view.html'
+            templateUrl: 'modules/comments/views/new-comment.client.view.html'
         });
     }
 ]);
