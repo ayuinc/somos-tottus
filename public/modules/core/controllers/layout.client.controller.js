@@ -42,8 +42,8 @@ angular.module('core').controller('LayoutController', ['$scope', '$location', 'A
 
         // NAV SUBNAV TABS
         $scope.hasNavSubnavTabs = navSubnavTabs.hasThis;
-        if(navSubnavTabs.hasThis) {
-        }
+        // if(navSubnavTabs.hasThis) {
+        // }
 
       }
     });
