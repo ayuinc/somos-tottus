@@ -65,7 +65,15 @@ angular.module('users').config(['$stateProvider',
 		state('profile', {
 			url: '/settings/profile',
 			templateUrl: 'modules/users/views/settings/edit-profile.client.view.html'
-		});
+		}).
+		state('listBirthdays', {
+            url: '/birthdays',
+            templateUrl: 'modules/users/views/birthdays/list-birthdays.client.view.html'
+        }).
+        state('showBirthday', {
+            url: '/birthdays/birthday',
+            templateUrl: 'modules/users/views/birthdays/show-birthday.client.view.html'
+        });
 		// .state('update-email', {
 		// 	url: '/settings/edit-email',
 		// 	templateUrl: 'modules/users/views/settings/edit_form_fields/user.email.client.view.html'
