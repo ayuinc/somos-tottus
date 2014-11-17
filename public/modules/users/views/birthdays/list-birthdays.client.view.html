@@ -1,0 +1,23 @@
+<div class="birthdays">
+	<div class="separator bg-gray-light p-14">
+		<span>Próximos cumpleaños</span>
+	</div>
+	<div class="list">
+		<section data-ng-controller="BirthdaysController" data-ng-init="getBirthdays();">
+			 <div data-ng-repeat="userBirthday in usersBirthday">
+				<a href="#!/users/{{userBirthday._id}}" class="item item-thumbnail-left bg-white">
+					<div class="col-xs-3">
+						<img src="assets/img/img-sq.png" alt="" class="img-thumbnail">
+					</div>
+					<div class="col-xs-8 pv-28">
+						<span class="bold text-gray-dark">{{userBirthday.personal.displayName}}</span><br>
+						<span class="small text-gray">{{userBirthday.organizational.currentJobPosition}} en {{userBirthday.organizational.branch}} cumpleaños el {{ userBirthday.personal.dateOfBirth | date:'dd/MM' }}</span>
+					</div>
+					<div class="item-go">
+						<i class="icon-arrow-right-filled"></i>
+					</div>
+				</a>
+			</div>
+		</section>
+	</div>
+</div>

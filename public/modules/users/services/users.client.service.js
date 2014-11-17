@@ -19,6 +19,16 @@ angular.module('users')
         };
         return profile;
     }   
+])
+.factory('getUsersBirthdays', ['$http', function($http) {
+        var UsersBirthdays = {};
+        UsersBirthdays.getBirthdays = function () {
+            return $http.get('/users/birthdays').then(function(res) {
+                return res.data;
+            });
+        };
+        return UsersBirthdays;
+    }   
 ]);
 
 
