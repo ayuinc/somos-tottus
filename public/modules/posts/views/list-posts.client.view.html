@@ -5,7 +5,7 @@
                 <div data-ng-repeat="post in posts" ng-class-odd="odd">
                     <div class="posts-index-item">
                         <div class="meta">
-                            <span class="benefit">Beneficios</span>
+                            <span class="benefit" data-ng-bind="post.category"></span>
                         </div>
                         <div class="user">
                             <div class="user-card">

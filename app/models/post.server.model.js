@@ -39,6 +39,9 @@ var PostSchema = new Schema({
         type: String,
         default: 'assets/img/img-placeholder.png'
     },
+    category: {
+        type: String
+    },
     likes:      {
         type    : [{ type: Schema.ObjectId, ref: 'Like' }],
         default : []
@@ -59,9 +62,17 @@ var PostSchema = new Schema({
 PostSchema.pre('save', function(next) {
     var now = new Date();
     this.updated = now;
+
+    if (!this.category) this.category = 'Publicación';
     if (!this.created) this.created = now;
     next();
 });
+
+// pre hook, it doesn't work
+// PostSchema.pre('query', function(query, next) {
+//     query.where({ category: 'Publicación' });
+//     next();
+// });
 
 PostSchema.methods.newComment = function(data) {
     var _this = this;

@@ -26,7 +26,10 @@ exports.create = function(req, res) {
 };
 
 exports.index = function(req, res) {
-    Post.find().sort('-created').limit(20)
+    Post.find()
+        .where('category').equals('Publicación')
+        .sort('-created')
+        .limit(20)
         .populate('comments', 'text')
         .populate('likes')
         .populate('user', 'personal.displayName')
