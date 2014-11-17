@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('events').controller('EventsController', ['$scope', '$stateParams', '$location', '$http', 'Authentication', 'Posts', 'Events',
-    function($scope, $stateParams, $location, $http, Authentication, Posts, Events) {
+angular.module('events').controller('EventsController', ['$scope', '$stateParams', '$location', '$http', 'Authentication', 'Posts', 'Events', 'AWS',
+    function($scope, $stateParams, $location, $http, Authentication, Posts, Events, AWS) {
         $scope.authentication = Authentication;
         // $scope.evt = {
         //     startDay: Date.now,
