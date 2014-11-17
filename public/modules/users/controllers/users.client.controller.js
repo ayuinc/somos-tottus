@@ -35,7 +35,7 @@ angular.module('users').controller('UsersController', ['$scope', '$http', '$loca
 
 		$scope.switchPublicProfile = function( option ) {
 			if(option === 'posts'){
-				if ($scope.showProfile.userPosts == ''){
+				if ($scope.showProfile.userPosts === ''){
 					$scope.showProfile.personalInfo = '';
                     $scope.showProfile.userPosts = 'active';
                     $scope.showProfile.statePosts = true;
@@ -43,7 +43,7 @@ angular.module('users').controller('UsersController', ['$scope', '$http', '$loca
 				}
 			}
 			if(option === 'profile'){
-				if ($scope.showProfile.personalInfo == ''){
+				if ($scope.showProfile.personalInfo === ''){
 					$scope.showProfile.personalInfo = 'active';
                     $scope.showProfile.userPosts = '';
                     $scope.showProfile.statePosts = false;
