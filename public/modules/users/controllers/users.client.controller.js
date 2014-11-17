@@ -20,10 +20,10 @@ angular.module('users').controller('UsersController', ['$scope', '$http', '$loca
             });
             getPostsPerUser.getPosts($stateParams.userId).then(function(posts){
                 for (var i = posts.length - 1; i >= 0; i--) {
-                    posts[i].ng_like = false;
+                    posts[i].ngLike = false;
                     for (var j = posts[i].likes.length - 1; j >= 0; j--) {
-                        if(posts[i].likes[j].user == $scope.user._id){
-                            posts[i].ng_like = true; 
+                        if(posts[i].likes[j].user === $scope.user._id){
+                            posts[i].ngLike = true; 
                             break;
                         }
                     }

@@ -87,7 +87,7 @@ angular.module('posts').controller('PostsController', ['$scope', '$stateParams',
             like.create(post_like._id);
             for (var i = $scope.posts.length - 1; i >= 0; i--) {
                 if( $scope.posts[i]._id === id ){
-                    $scope.posts[i].ng_like = true;
+                    $scope.posts[i].ngLike = true;
                 }
             }
         };
@@ -107,17 +107,17 @@ angular.module('posts').controller('PostsController', ['$scope', '$stateParams',
             );
             
             like.create($scope.post._id);
-            $scope.ng_like =  true; // me gusta
+            $scope.ngLike =  true; // me gusta
         };
 
         $scope.find = function() {
             $scope.posts = Posts.query();
             $scope.posts.$promise.then(function(posts){
                 for (var i = posts.length - 1; i >= 0; i--) {
-                    $scope.posts[i].ng_like = false;
+                    $scope.posts[i].ngLike = false;
                     for (var j = posts[i].likes.length - 1; j >= 0; j--) {
-                        if(posts[i].likes[j].user == $scope.authentication.user._id){
-                            $scope.posts[i].ng_like = true; 
+                        if(posts[i].likes[j].user === $scope.authentication.user._id){
+                            $scope.posts[i].ngLike = true; 
                             break;
                         }
                     }
@@ -126,14 +126,14 @@ angular.module('posts').controller('PostsController', ['$scope', '$stateParams',
         };
         
         $scope.findOne = function() {
-            $scope.ng_like = false; 
+            $scope.ngLike = false; 
             $scope.post = Posts.get({
                 postId: $stateParams.postId
             });
             $scope.post.$promise.then(function(post){
                 for (var i = post.likes.length - 1; i >= 0; i--) {
-                    if(post.likes[i].user == $scope.authentication.user._id){
-                        $scope.ng_like = true; // te gusta 
+                    if(post.likes[i].user === $scope.authentication.user._id){
+                        $scope.ngLike = true; // te gusta 
                         return;
                     }
                 }
