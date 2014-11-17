@@ -56,7 +56,7 @@ exports.birthdaysPerUser = function(req, res, next) {
             if(actualMonth === monthOfBirth){
                 usersBirthdays.push(users[i]);
             }
-        };
+        }
         return res.json(usersBirthdays);
     });
 };
