@@ -52,7 +52,7 @@ angular.module('events').controller('EventsController', ['$scope', '$stateParams
         };
 
         $scope.findOne = function() {
-            $scope.evt = Events.get({ eventId: $stateParams.eventId })
+            $scope.evt = Events.get({ eventId: $stateParams.eventId });
         };
     }
 ]);

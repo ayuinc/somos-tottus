@@ -23,7 +23,7 @@ exports.list = function(req, res) {
 	});
 };
 
-exports.postsPerUser = function(req, res) {
+exports.postsPerUser = function(req, res, next) {
 	Post.find({ 'user': req.params.userId})
     .populate('users', 'personal.displayName', { '_id': req.params.userId })
     .populate('user', 'personal.displayName')
