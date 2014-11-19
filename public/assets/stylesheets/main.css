@@ -2717,8 +2717,8 @@ a.not-underline:hover {
     text-fill-color: transparent; } }
 @font-face {
   font-family: 'icomoon';
-  src: url("/assets/icons/icomoon_v3.eot?cldmqa");
-  src: url("/assets/icons/icomoon_v3.eot?#iefixcldmqa") format("embedded-opentype"), url("/assets/icons/icomoon_v3.woff?cldmqa") format("woff"), url("/assets/icons/icomoon_v3.ttf?cldmqa") format("truetype"), url("/assets/icons/icomoon_v3.svg?cldmqa#icomoon") format("svg");
+  src: url("/assets/icons/icomoon_v2.eot?-di7ya");
+  src: url("/assets/icons/icomoon_v2.eot?#iefix-di7ya") format("embedded-opentype"), url("/assets/icons/icomoon_v2.woff?-di7ya") format("woff"), url("/assets/icons/icomoon_v2.ttf?-di7ya") format("truetype"), url("/assets/icons/icomoon_v2.svg?-di7ya#icomoon") format("svg");
   font-weight: normal;
   font-style: normal; }
 [class^="icon-"], [class*=" icon-"] {
@@ -2732,9 +2732,6 @@ a.not-underline:hover {
   /* Better Font Rendering =========== */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale; }
-
-.icon-arrow-right-filled:before {
-  content: "\e613"; }
 
 .icon-cart-filled:before {
   content: "\e600"; }
@@ -2793,11 +2790,8 @@ a.not-underline:hover {
 .icon-times-filled:before {
   content: "\e612"; }
 
-.icon-tags:before {
-  content: "\e682"; }
-
-.icon-clock5:before {
-  content: "\e72b"; }
+.icon-picture:before {
+  content: "\e66f"; }
 
 html,
 body {
