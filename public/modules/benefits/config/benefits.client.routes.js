@@ -7,7 +7,8 @@ angular.module('benefits').config(['$stateProvider',
         $stateProvider.
         state('listBenefits', {
             url: '/benefits',
-            templateUrl: 'modules/benefits/views/list-benefits.client.view.html'
+            templateUrl: 'modules/benefits/views/list-benefits.client.view.html',
+            controller: 'BenefitsController'
         }).
         state('newBenefit', {
             url: '/benefits/new',
