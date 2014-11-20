@@ -1,56 +1,23 @@
-<div class="benefits">
-	<div class="separator bg-info p-14 text-white">
-		<span>{{test}}</span>
+<section data-ng-init="find()">
+	<div class="benefits">
+		<div class="separator bg-gray-light p-14">
+			<span>Próximos beneficios</span>
+		</div>
+		<div class="list">
+			<a data-ng-repeat="benefit in benefits" href="#!/benefits/{{benefit._id}}" class="item item-thumbnail-left bg-white">
+				<div class="col-xs-3">
+					<img src="assets/img/img-sq.png" alt="" class="img-thumbnail">
+				</div>
+				<div class="col-xs-8 pv-28">
+					<span class="bold text-gray-dark" data-ng-bind="benefit.post.name"></span><br>
+					<span class="small text-gray" data-ng-bind="benefit.post.detail"></span><br>
+					<small>Inicio: {{ benefit.start | date:'yyyy-MM-dd HH:ss a' }}</small><br>
+					<small>Fin: {{ benefit.end | date:'yyyy-MM-dd HH:ss a' }}</small>
+				</div>
+				<div class="item-go">
+					<i class="icon-arrow-right-filled"></i>
+				</div>
+			</a>
+		</div>
 	</div>
-	<div class="list">
-		<a href="#!/benefits/benefit" class="item item-thumbnail-left bg-white">
-			<div class="col-xs-3">
-				<img src="assets/img/img-sq.png" alt="" class="img-thumbnail">
-			</div>
-			<div class="col-xs-8 pv-28">
-				<span class="bold text-gray-dark">Tarjeta Somos Salud</span><br>
-				<span class="small text-gray">Vigencia hasta diciembre del 2014</span>
-			</div>
-			<div class="item-go">
-				<i class="icon-arrow-right-filled"></i>
-			</div>
-		</a>
-		<a href="#" class="item item-thumbnail-left bg-white">
-			<div class="col-xs-3">
-				<img src="assets/img/img-sq.png" alt="" class="img-thumbnail">
-			</div>
-			<div class="col-xs-8 pv-28">
-				<span class="bold text-gray-dark">Tarjeta Somos Salud</span><br>
-				<span class="small text-gray">Vigencia hasta diciembre del 2014</span>
-			</div>
-		</a>
-	</div>
-	<div class="separator bg-events p-14 text-white">
-		<span>Disfrútalo</span>
-	</div>
-	<div class="list">
-		<a href="#" class="item item-thumbnail-left bg-white">
-			<div class="col-xs-3">
-				<img src="assets/img/img-sq.png" alt="" class="img-thumbnail">
-			</div>
-			<div class="col-xs-8 pv-28">
-				<span class="bold text-gray-dark">Tarjeta Somos Salud</span><br>
-				<span class="small text-gray">Vigencia hasta diciembre del 2014</span>
-			</div>
-		</a>
-	</div>
-	<div class="separator bg-vacancies p-14 text-white">
-		<span>Compártelo</span>
-	</div>
-	<div class="list">
-		<a href="#" class="item item-thumbnail-left bg-white">
-			<div class="col-xs-3">
-				<img src="assets/img/img-sq.png" alt="" class="img-thumbnail">
-			</div>
-			<div class="col-xs-8 pv-28">
-				<span class="bold text-gray-dark">Tarjeta Somos Salud</span><br>
-				<span class="small text-gray">Vigencia hasta diciembre del 2014</span>
-			</div>
-		</a>
-	</div>
-</div>
+</section>

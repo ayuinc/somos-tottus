@@ -12,11 +12,13 @@ angular.module('benefits').config(['$stateProvider',
         }).
         state('newBenefit', {
             url: '/benefits/new',
-            templateUrl: 'modules/benefits/views/new-benefit.client.view.html'
+            templateUrl: 'modules/benefits/views/new-benefit.client.view.html',
+            controller: 'BenefitsController'
         }).
         state('showBenefit', {
-            url: '/benefits/benefit',
-            templateUrl: 'modules/benefits/views/show-benefit.client.view.html'
+            url: '/benefits/:benefitId',
+            templateUrl: 'modules/benefits/views/show-benefit.client.view.html',
+            controller: 'BenefitsController'
         });
     }
 ]);
