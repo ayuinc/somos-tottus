@@ -25,18 +25,12 @@ var BenefitSchema = new Schema({
     end: {
         type: Date,
         required: true
+    },
+    category: {
+      type: String,
+      trim: true,
+      required: false
     }
-    // },
-    // location:     {
-    //     type: String,
-    //     trim: true,
-    //     required: 'Por favor, rellene el cuadro de texto',
-    // },
-    // attendees: [{
-    //     type: Schema.ObjectId,
-    //     ref: 'User',
-    //     required: true
-    // }]
 });
 
 mongoose.model('Benefit', BenefitSchema);
