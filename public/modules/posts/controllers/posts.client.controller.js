@@ -50,7 +50,7 @@ angular.module('posts').controller('PostsController', ['$scope', '$stateParams',
                         $scope.detail = '';
                         $location.path('posts/' + response._id);
                     };
-
+                    
                     uploadItem.upload();
 
                     response.imgFilePath = 'https://s3.amazonaws.com/tottus/post_' + post._id + '.' + uploadItem.file.name.split('.').pop();

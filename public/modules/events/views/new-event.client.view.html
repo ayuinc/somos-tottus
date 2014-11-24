@@ -1,4 +1,4 @@
-<div data-ng-controller="EventsController">
+<div data-ng-controller="EventsController" data-ng-init="getCredentials();">
         <form name="eventForm" data-ng-submit="new()" class="form-custom-full-width" novalidate autocomplete="off" ng-class="{ 'has-error': eventForm.detail.$dirty && eventForm.detail.$invalid }">
             <div class="content-wrapper bg-white">
                 <div class="form-group">
@@ -38,9 +38,29 @@
                         <div class="col-xs-3"><input type="text" class="form-control" placeholder="AAAA" data-ng-model="evt.endDay.yearString"></div>
 
                         <div class="col-xs-3">
-                            <input type="number" class="form-control" placeholder="HH" data-ng-model="evt.endDay.hourString">:
-                            <input type="number" class="form-control" placeholder="MM" data-ng-model="evt.endDay.minuteString">
+                            <div class="col">
+                                <div class="col-xs-6">
+                                    <input type="number" class="form-control" placeholder="HH" data-ng-model="evt.endDay.hourString">:
+                                </div>
+                                <div class="col-xs-6">
+                                    <input type="number" class="form-control" placeholder="MM" data-ng-model="evt.endDay.minuteString">
+                                </div>                    
+                            </div>
                         </div>
+                    </div>
+                </div>
+
+                <div class="form-group upload-img-placeholder">
+                    <div data-ng-repeat="item in uploader.queue">
+                        <div data-ng-show="uploader.isHTML5" data-ng-thumb="{ file: item._file, height: 100 }"></div>
+
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: {{item.progress}}%;">
+                                <span class="sr-only">{{item.progress}}% Completado</span>
+                            </div>
+                        </div>
+
+                        <a href="#" data-ng-click="item.remove()">Quitar</a>
                     </div>
                 </div>
 
@@ -83,8 +103,16 @@
                     <input type="text" class="form-control" id="eventEndHour" name="eventEndHour" data-ng-model="evt.day" placeholder="Escribe aquí...">
                 </div> -->
 
-                <div class="form-group text-right">
-                    <input type="submit" class="btn btn-default btn-sm" value="Crear Evento">
+                <div class="form-group row">
+                    <div class="col-xs-5">
+                        <div class="upload-field">
+                            <a href="#">Cargar imagen</a>
+                            <input type="file" nv-file-select uploader="uploader" class="upload-input" />
+                        </div>
+                    </div>
+                    <div class="col-xs-7 text-right">
+                        <input type="submit" class="btn btn-default btn-sm" value="Crear Evento">
+                    </div>
                 </div>
             </div>
 

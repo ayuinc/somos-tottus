@@ -5,20 +5,20 @@
  */
 var mongoose = require('mongoose'),
     errorHandler = require('./errors.server.controller'),
-    Evt = mongoose.model('Event'),
+    Benefit = mongoose.model('Benefit'),
     User = mongoose.model('User'),
     Post = mongoose.model('Post'),
     _ = require('lodash');
 
 /**
- * Create a Event
+ * Create a Benefit
  */
 exports.create = function(req, res) {
     var post = new Post(req.body.post);
     post.user = req.user;
-    post.category = 'Evento';
+    post.category = 'Benefit';
 
-    var evt = new Evt(req.body.evt);
+    var benefit = new Benefit(req.body.benefit);
 
     post.save(function(err, post) {
         if(err) {
@@ -26,14 +26,14 @@ exports.create = function(req, res) {
                 message: errorHandler.getErrorMessage(err)
             });
         } else {
-            evt.post = post;
-            evt.save(function(err) {
+            benefit.post = post;
+            benefit.save(function(err) {
                 if(err) {
                     return res.status(400).send({
                         message: errorHandler.getErrorMessage(err)
                     });
                 } else {
-                    res.jsonp(evt);
+                    res.jsonp(benefit);
                 }
             });
         }
@@ -41,52 +41,52 @@ exports.create = function(req, res) {
 };
 
 /**
- * Show the current Event
+ * Show the current Benefit
  */
 exports.show = function(req, res) {
-    res.jsonp(req.evt);
+    res.jsonp(req.benefit);
 };
 
 /**
- * Update a Event
+ * Update a Benefit
  */
 exports.update = function(req, res) {
 
 };
 
 /**
- * Delete an Event
+ * Delete an Benefit
  */
 exports.delete = function(req, res) {
 
 };
 
 /**
- * List of Events
+ * List of Benefits
  */
 exports.index = function(req, res) {
-    Evt.find().limit(20)
-        .populate('post', 'name detail imgFilePath')
-        .exec(function(err, events) {
+    Benefit.find().limit(20)
+        .populate('post', 'name detail')
+        .exec(function(err, benefits) {
             if(err) {
                 return res.status(400).send({
                     message: errorHandler.getErrorMessage(err)
                 });
             }
-            res.jsonp(events);
+            res.jsonp(benefits);
         });
 };
 
-exports.eventByID = function(req, res, next, id) {
-    Evt.findById(id)
-        .populate('post', 'name detail imgFilePath')
-        .exec(function(err, evt) {
+exports.benefitByID = function(req, res, next, id) {
+    Benefit.findById(id)
+        .populate('post', 'name detail')
+        .exec(function(err, benefit) {
             if(err) {
                 return res.status(400).send({
                     message: errorHandler.getErrorMessage(err)
                 });
             }
-            req.evt = evt;
+            req.benefit = benefit;
             next();
         });
 };
