@@ -1,5 +1,6 @@
 'use strict';
 
+<<<<<<< HEAD
 angular.module('events').controller('EventsController', ['$scope', '$stateParams', '$location', '$http', 'Authentication', 'Posts', 'Events', 'AWS', 'FileUploader',
     function($scope, $stateParams, $location, $http, Authentication, Posts, Events, AWS, FileUploader) {
         $scope.authentication = Authentication;
@@ -26,6 +27,18 @@ angular.module('events').controller('EventsController', ['$scope', '$stateParams
             });
         };
 
+=======
+angular.module('events').controller('EventsController', ['$scope', '$stateParams', '$location', '$http', 'Authentication', 'Posts', 'Events',
+    function($scope, $stateParams, $location, $http, Authentication, Posts, Events) {
+        $scope.authentication = Authentication;
+        // $scope.evt = {
+        //     startDay: Date.now,
+        //     endDay: Date.now
+        // };
+
+        if(!$scope.authentication.user) $location.path('/');
+
+>>>>>>> events
         $scope.new = function() {
             var startDate = new Date(
                     $scope.evt.startDay.yearString,
@@ -55,6 +68,7 @@ angular.module('events').controller('EventsController', ['$scope', '$stateParams
                 }
             });
 
+<<<<<<< HEAD
             if($scope.uploader.queue[0]) {
                 var uploadItem = $scope.uploader.queue[0];
                 uploadItem.onSuccess = function() {
@@ -97,6 +111,14 @@ angular.module('events').controller('EventsController', ['$scope', '$stateParams
             //     console.log('houston', errorResponse.data.message);
             //     $scope.error = errorResponse.data.message;
             // });
+=======
+            newEvent.$save(function(response) {
+               $location.path('events/' + response._id);
+            }, function(errorResponse) {
+                console.log('houston', errorResponse.data.message);
+                $scope.error = errorResponse.data.message;
+            });
+>>>>>>> events
         };
 
         $scope.find = function() {
@@ -104,7 +126,11 @@ angular.module('events').controller('EventsController', ['$scope', '$stateParams
         };
 
         $scope.findOne = function() {
+<<<<<<< HEAD
             $scope.evt = Events.get({ eventId: $stateParams.eventId });
+=======
+            $scope.evt = Events.get({ eventId: $stateParams.eventId })
+>>>>>>> events
         };
     }
 ]);

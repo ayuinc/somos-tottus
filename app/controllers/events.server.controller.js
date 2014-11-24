@@ -16,7 +16,10 @@ var mongoose = require('mongoose'),
 exports.create = function(req, res) {
     var post = new Post(req.body.post);
     post.user = req.user;
+<<<<<<< HEAD
     post.category = 'Evento';
+=======
+>>>>>>> events
 
     var evt = new Evt(req.body.evt);
 
