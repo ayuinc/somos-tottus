@@ -7,15 +7,18 @@ angular.module('benefits').config(['$stateProvider',
         $stateProvider.
         state('listBenefits', {
             url: '/benefits',
-            templateUrl: 'modules/benefits/views/list-benefits.client.view.html'
+            templateUrl: 'modules/benefits/views/list-benefits.client.view.html',
+            controller: 'BenefitsController'
         }).
         state('newBenefit', {
             url: '/benefits/new',
-            templateUrl: 'modules/benefits/views/new-benefit.client.view.html'
+            templateUrl: 'modules/benefits/views/new-benefit.client.view.html',
+            controller: 'BenefitsController'
         }).
         state('showBenefit', {
-            url: '/benefits/benefit',
-            templateUrl: 'modules/benefits/views/show-benefit.client.view.html'
+            url: '/benefits/:benefitId',
+            templateUrl: 'modules/benefits/views/show-benefit.client.view.html',
+            controller: 'BenefitsController'
         });
     }
 ]);
