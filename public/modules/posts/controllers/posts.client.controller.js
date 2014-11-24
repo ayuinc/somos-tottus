@@ -34,6 +34,10 @@ angular.module('posts').controller('PostsController', ['$scope', '$stateParams',
             if($scope.uploader.queue[0])
             {
                 var uploadItem = $scope.uploader.queue[0];
+                uploadItem.onSuccess = function() {
+                    $scope.detail = '';
+                    $location.path('posts/' + response._id);
+                };
 
                 post.$save(function(response) {
                     uploadItem.formData = [{
@@ -45,11 +49,6 @@ angular.module('posts').controller('PostsController', ['$scope', '$stateParams',
                         'Content-Type': 'application/octet-stream',
                         filename: 'post_' + response._id + '.' + uploadItem.file.name.split('.').pop(),
                     }];
-
-                    uploadItem.onSuccess = function() {
-                        $scope.detail = '';
-                        $location.path('posts/' + response._id);
-                    };
 
                     uploadItem.upload();
 
