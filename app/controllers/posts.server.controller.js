@@ -60,7 +60,8 @@ exports.update = function(req, res) {
     post.save(function (err) {
         if(err) {
             return res.status(400).send({
-                message: errorHandler.getErrorMessage(err)
+                message: errorHandler.getErrorMessage(err),
+                error: err
             });
         } else {
             res.jsonp(post);

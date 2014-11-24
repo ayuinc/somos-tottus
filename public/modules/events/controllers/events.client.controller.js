@@ -1,6 +1,5 @@
 'use strict';
 
-<<<<<<< HEAD
 angular.module('events').controller('EventsController', ['$scope', '$stateParams', '$location', '$http', 'Authentication', 'Posts', 'Events', 'AWS', 'FileUploader',
     function($scope, $stateParams, $location, $http, Authentication, Posts, Events, AWS, FileUploader) {
         $scope.authentication = Authentication;
@@ -27,18 +26,6 @@ angular.module('events').controller('EventsController', ['$scope', '$stateParams
             });
         };
 
-=======
-angular.module('events').controller('EventsController', ['$scope', '$stateParams', '$location', '$http', 'Authentication', 'Posts', 'Events',
-    function($scope, $stateParams, $location, $http, Authentication, Posts, Events) {
-        $scope.authentication = Authentication;
-        // $scope.evt = {
-        //     startDay: Date.now,
-        //     endDay: Date.now
-        // };
-
-        if(!$scope.authentication.user) $location.path('/');
-
->>>>>>> events
         $scope.new = function() {
             var startDate = new Date(
                     $scope.evt.startDay.yearString,
@@ -68,13 +55,8 @@ angular.module('events').controller('EventsController', ['$scope', '$stateParams
                 }
             });
 
-<<<<<<< HEAD
             if($scope.uploader.queue[0]) {
                 var uploadItem = $scope.uploader.queue[0];
-                uploadItem.onSuccess = function() {
-                    $scope.detail = '';
-                    $location.path('posts/' + response._id);
-                };
 
                 newEvent.$save(function(response) {
                     uploadItem.formData = [{
@@ -87,13 +69,18 @@ angular.module('events').controller('EventsController', ['$scope', '$stateParams
                         filename: 'post_' + response._id + '.' + uploadItem.file.name.split('.').pop(),
                     }];
 
+                    uploadItem.onSuccess = function() {
+                        $scope.detail = '';
+                        $location.path('events/' + response._id);
+                    };
+
                     uploadItem.upload();
 
-                    Posts.get(response.post, function(err, response) {
-                        if(err) console.log(err);
-                        response.imgFilePath = 'https://s3.amazonaws.com/tottus/post_' + post._id + '.' + uploadItem.file.name.split('.').pop();
-                        response.$update();
+                    var post = Posts.get({ postId: response.post }, function() {
+                        post.imgFilePath = 'https://s3.amazonaws.com/tottus/post_' + response.post + '.' + uploadItem.file.name.split('.').pop();
+                        post.$update();
                     });
+
                 }, function(errorResponse) {
                     $scope.error = errorResponse.data.message;
                 });
@@ -105,20 +92,6 @@ angular.module('events').controller('EventsController', ['$scope', '$stateParams
                     $scope.error = errorResponse.data.message;
                 });
             }
-            // newEvent.$save(function(response) {
-            //    $location.path('events/' + response._id);
-            // }, function(errorResponse) {
-            //     console.log('houston', errorResponse.data.message);
-            //     $scope.error = errorResponse.data.message;
-            // });
-=======
-            newEvent.$save(function(response) {
-               $location.path('events/' + response._id);
-            }, function(errorResponse) {
-                console.log('houston', errorResponse.data.message);
-                $scope.error = errorResponse.data.message;
-            });
->>>>>>> events
         };
 
         $scope.find = function() {
@@ -126,11 +99,7 @@ angular.module('events').controller('EventsController', ['$scope', '$stateParams
         };
 
         $scope.findOne = function() {
-<<<<<<< HEAD
             $scope.evt = Events.get({ eventId: $stateParams.eventId });
-=======
-            $scope.evt = Events.get({ eventId: $stateParams.eventId })
->>>>>>> events
         };
     }
 ]);
