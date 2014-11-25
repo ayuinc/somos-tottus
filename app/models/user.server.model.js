@@ -162,7 +162,7 @@ var UserSchema = new Schema({
             type: String,
             trim: true,
             //required: true,
-            default: ''
+            default: 'assets/img/user-silhouette.png'
         }
     },
     address: {

@@ -60,13 +60,13 @@ angular.module('events').controller('EventsController', ['$scope', '$stateParams
 
                 newEvent.$save(function(response) {
                     uploadItem.formData = [{
-                        key: 'post_' + response._id + '.' + uploadItem.file.name.split('.').pop(),
+                        key: 'post_' + response.post + '.' + uploadItem.file.name.split('.').pop(),
                         AWSAccessKeyId: $scope.credentials.access_key, 
                         acl: 'private',
                         policy: $scope.credentials.policy,
                         signature: $scope.credentials.signature,
                         'Content-Type': 'application/octet-stream',
-                        filename: 'post_' + response._id + '.' + uploadItem.file.name.split('.').pop(),
+                        filename: 'post_' + response.post + '.' + uploadItem.file.name.split('.').pop(),
                     }];
 
                     uploadItem.onSuccess = function() {

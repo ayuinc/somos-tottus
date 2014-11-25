@@ -1,3 +1,7 @@
-<section data-ng-controller="EventsController">
-	This is the View event
+<section data-ng-controller="EventsController" data-ng-init="findOne()">
+	<div class="container-fluid">
+        <h2 data-ng-bind="evt.post.name"></h2>
+        <p>{{evt.post.detail}} {{evt.post.imgFilePath}}</p>
+        <img src="{{evt.post.imgFilePath}}">
+    </div>
 </section>

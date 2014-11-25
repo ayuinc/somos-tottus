@@ -35,7 +35,22 @@ var EventSchema = new Schema({
         type: Schema.ObjectId,
         ref: 'User',
         required: true
-    }]
+    }],
+    updated: {
+        type: Date
+    },
+    created: {
+        type: Date,
+        default: Date.now
+    }
+});
+
+EventSchema.pre('save', function(next) {
+    var now = new Date();
+    this.updated = now;
+
+    if (!this.created) this.created = now;
+    next();
 });
 
 mongoose.model('Event', EventSchema);

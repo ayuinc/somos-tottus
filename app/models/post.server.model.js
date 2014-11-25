@@ -56,7 +56,7 @@ var PostSchema = new Schema({
     created: {
         type: Date,
         default: Date.now
-    },
+    }
 });
 
 PostSchema.pre('save', function(next) {
