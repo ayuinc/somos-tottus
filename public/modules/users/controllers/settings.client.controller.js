@@ -113,15 +113,63 @@ angular.module('users').controller('SettingsController', ['$scope', '$http', '$l
         // Fin de métodos parar upload image en AWS S3
 
 		$scope.firstupdateUserProfile = function(isValid) {
-			console.log($scope.uploader.queue[0]);
-			console.log(isValid);
+			var bday = new Date($scope.user.personal.yearString, $scope.user.personal.monthString -1, $scope.user.personal.dayString);
+			var user = new Users($scope.user);
 
-				/*var bday = new Date($scope.user.personal.yearString, $scope.user.personal.monthString -1, $scope.user.personal.dayString);
+			/*var bday = new Date($scope.user.personal.yearString, $scope.user.personal.monthString -1, $scope.user.personal.dayString);
+			$scope.success = $scope.error = null;
+			var user = new Users($scope.user);
+			user.personal.dateOfBirth = bday;
+			//user.isRegistered = true;
+
+			user.$update(function(response) {
+				$scope.success = true;
+				Authentication.user = response;
+				//$location.path('/');
+				$location.path('/posts'); //ruta provicional para la presentacion con Hana
+			}, function(response) {
+				$scope.error = response.data.message;
+			});*/
+
+			if($scope.uploader.queue[0] !== null)
+			{	
+				var uploadItem = $scope.uploader.queue[0];
 				$scope.success = $scope.error = null;
-				var user = new Users($scope.user);
 				user.personal.dateOfBirth = bday;
-				//user.isRegistered = true;
-	
+				user.isRegistered = true; 
+				
+				user.$update(function(response) {
+					$scope.success = true;
+					Authentication.user = response;
+					uploadItem.formData = [{
+			            key: 'user_' + response._id + '.' + uploadItem.file.name.split('.').pop(),
+			            AWSAccessKeyId: $scope.credentials.access_key, 
+			            acl: 'private',
+			            policy: $scope.credentials.policy,
+			            signature: $scope.credentials.signature,
+			            'Content-Type': 'application/octet-stream',
+			            filename: 'user_' + response._id + '.' + uploadItem.file.name.split('.').pop(),
+			        }];
+					
+					uploadItem.onSuccess = function() {
+			            $scope.detail = '';
+			            $location.path('/posts');//ruta provicional para la presentacion con Hana
+			        };
+
+			        uploadItem.upload();
+					response.assets.profilePicURL = 'https://s3.amazonaws.com/tottus/user_' + user._id + '.' + uploadItem.file.name.split('.').pop();
+			        console.log(response);
+			        response.$update();
+
+				}, function(response) {
+					$scope.error = response.data.message;
+				});
+			}
+			
+			else {
+				$scope.success = $scope.error = null;
+				user.personal.dateOfBirth = bday;
+				user.isRegistered = true;
 				user.$update(function(response) {
 					$scope.success = true;
 					Authentication.user = response;
@@ -129,63 +177,8 @@ angular.module('users').controller('SettingsController', ['$scope', '$http', '$l
 					$location.path('/posts'); //ruta provicional para la presentacion con Hana
 				}, function(response) {
 					$scope.error = response.data.message;
-				});*/
-				
-				// user.assets.profilePicURL
-				console.log($scope.uploader.queue[0]);
-				if($scope.uploader.queue[0]!=null)
-				{	
-					var uploadItem = $scope.uploader.queue[0];
-					var bday = new Date($scope.user.personal.yearString, $scope.user.personal.monthString -1, $scope.user.personal.dayString);
-					$scope.success = $scope.error = null;
-					var user = new Users($scope.user);
-					user.personal.dateOfBirth = bday;
-					//user.isRegistered = true; //Desactivado por motivos de testing
-					
-					user.$update(function(response) {
-						$scope.success = true;
-						Authentication.user = response;
-						uploadItem.formData = [{
-				            key: 'user_' + response._id + '.' + uploadItem.file.name.split('.').pop(),
-				            AWSAccessKeyId: $scope.credentials.access_key, 
-				            acl: 'private',
-				            policy: $scope.credentials.policy,
-				            signature: $scope.credentials.signature,
-				            'Content-Type': 'application/octet-stream',
-				            filename: 'user_' + response._id + '.' + uploadItem.file.name.split('.').pop(),
-				        }];
-						
-						uploadItem.onSuccess = function() {
-				            $scope.detail = '';
-				            $location.path('/posts');//ruta provicional para la presentacion con Hana
-				        };
-
-				        uploadItem.upload();
-						response.assets.profilePicURL = 'https://s3.amazonaws.com/tottus/user_' + user._id + '.' + uploadItem.file.name.split('.').pop();
-				        console.log(response);
-				        response.$update();
-
-					}, function(response) {
-						$scope.error = response.data.message;
-					});
-				}
-				else
-	            {
-	                var bday = new Date($scope.user.personal.yearString, $scope.user.personal.monthString -1, $scope.user.personal.dayString);
-    				$scope.success = $scope.error = null;
-    				var user = new Users($scope.user);
-    				user.personal.dateOfBirth = bday;
-    				//user.isRegistered = true;
-    	
-    				user.$update(function(response) {
-    					$scope.success = true;
-    					Authentication.user = response;
-    					//$location.path('/');
-    					$location.path('/posts'); //ruta provicional para la presentacion con Hana
-    				}, function(response) {
-    					$scope.error = response.data.message;
-    				});
-	            }
+				});
+            }
 				
 			
 		};
