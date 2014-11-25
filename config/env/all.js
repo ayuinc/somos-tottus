@@ -13,8 +13,7 @@ module.exports = {
 	assets: {
 		lib: {
 			css: [
-				'public/lib/angular-bootstrap-datetimepicker/src/css/datetimepicker.css',
-				'public/lib/bootstrap/dist/css/bootstrap.css'
+				// 'public/lib/bootstrap/dist/css/bootstrap.css'
 				// 'public/lib/bootstrap/dist/css/bootstrap-theme.css',
 			],
 			js: [
@@ -26,15 +25,9 @@ module.exports = {
 				'public/lib/angular-sanitize/angular-sanitize.js', 
 				'public/lib/angular-ui-router/release/angular-ui-router.js',
 				'public/lib/angular-ui-utils/ui-utils.js',
-				'public/lib/es5-shim/es5-shim.min.js',
-				'public/lib/es5-shim/es5-sham.min.js',
 				'public/lib/jquery/dist/jquery.min.js',
 				'public/lib/angular-bootstrap/ui-bootstrap-tpls.js',
-				'public/lib/angular-file-upload/angular-file-upload.js',
-				'public/lib/angular-bootstrap-datetimepicker/src/js/datetimepicker.js',
-				'public/lib/moment/moment.js',
-				'public/lib/angular-animate/angular-animate.js',
-				'public/lib/bootstrap/js/dropdown.js'
+				'public/lib/angular-file-upload/angular-file-upload.js'
 				// 'public/lib/b3/js/modal.js',
 				// 'public/lib/b3/js/transition.js',
 			]
