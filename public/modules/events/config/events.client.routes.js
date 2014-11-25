@@ -10,11 +10,7 @@ angular.module('events').config(['$stateProvider',
 			templateUrl: 'modules/events/views/list-events.client.view.html'
 		}).
         state('createEvent', {
-<<<<<<< HEAD
             url: '/events/new',
-=======
-            url: '/events/create',
->>>>>>> events
             templateUrl: 'modules/events/views/new-event.client.view.html'
         }).
         state('viewEvent', {
@@ -22,8 +18,4 @@ angular.module('events').config(['$stateProvider',
             templateUrl: 'modules/events/views/view-event.client.view.html'
         });
 	}
-<<<<<<< HEAD
 ]);
-=======
-]);
->>>>>>> events

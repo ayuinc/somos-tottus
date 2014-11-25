@@ -32,11 +32,11 @@ exports.index = function(req, res) {
         .limit(20)
         .populate('comments', 'text')
         .populate('likes')
-        .populate('user', 'personal.displayName')
+        .populate('user', 'personal.displayName assets.profilePicURL')
         .exec(function(err, posts) {
             User.populate(posts, {
                 path: 'user',
-                select: 'personal.displayName',
+                select: 'personal.displayName assets.profilePicURL',
             }, function(err, data) {
                 if (err) {
                     return res.status(400).send({
@@ -60,7 +60,8 @@ exports.update = function(req, res) {
     post.save(function (err) {
         if(err) {
             return res.status(400).send({
-                message: errorHandler.getErrorMessage(err)
+                message: errorHandler.getErrorMessage(err),
+                error: err
             });
         } else {
             res.jsonp(post);
@@ -84,7 +85,7 @@ exports.delete = function(req, res) {
 
 exports.postByID = function(req, res, next, id) {
     Post.findById(id)
-        .populate('user', 'personal.displayName')
+        .populate('user', 'personal.displayName assets.profilePicURL')
         .populate('comments')
         .populate('likes')
         .exec(function(err, post) {
@@ -93,7 +94,7 @@ exports.postByID = function(req, res, next, id) {
 
             Post.populate(post, {
                 path: 'comments.user',
-                select: 'personal.displayName',
+                select: 'personal.displayName assets.profilePicURL',
                 model: 'User'
             }, function(err, data) {
                 if(err) return next(err);

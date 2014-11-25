@@ -16,10 +16,7 @@ var mongoose = require('mongoose'),
 exports.create = function(req, res) {
     var post = new Post(req.body.post);
     post.user = req.user;
-<<<<<<< HEAD
     post.category = 'Evento';
-=======
->>>>>>> events
 
     var evt = new Evt(req.body.evt);
 
@@ -69,7 +66,7 @@ exports.delete = function(req, res) {
  */
 exports.index = function(req, res) {
     Evt.find().limit(20)
-        .populate('post', 'name detail')
+        .populate('post', 'name detail imgFilePath')
         .exec(function(err, events) {
             if(err) {
                 return res.status(400).send({
@@ -82,7 +79,7 @@ exports.index = function(req, res) {
 
 exports.eventByID = function(req, res, next, id) {
     Evt.findById(id)
-        .populate('post', 'name detail')
+        .populate('post', 'name detail imgFilePath')
         .exec(function(err, evt) {
             if(err) {
                 return res.status(400).send({

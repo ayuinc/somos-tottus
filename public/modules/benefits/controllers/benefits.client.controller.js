@@ -37,7 +37,7 @@ angular.module('benefits').controller('BenefitsController', ['$scope', '$statePa
           });
 
           newBenefit.$save(function(response) {
-              console.log('response', response)
+              console.log('response', response);
              $location.path('benefits/' + response._id);
           }, function(errorResponse) {
               console.log('houston', errorResponse.data.message);

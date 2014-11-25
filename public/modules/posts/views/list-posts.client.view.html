@@ -10,7 +10,7 @@
                         <div class="user">
                             <div class="user-card">
                                 <div class="profile-pic col-xs-2">
-                                  <a data-ng-href="#!/users/{{post.user._id}}"><img src="assets/img/user-placeholder-2.png" /></a>
+                                  <a data-ng-href="#!/users/{{post.user._id}}"><!-- <img src="assets/img/user-placeholder-2.png" />--><img src="{{post.user.assets.profilePicURL}}" /></a>
                                 </div>
                                 <div class="info col-xs-10">
                                   <p>

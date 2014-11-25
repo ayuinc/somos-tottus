@@ -1,17 +1,18 @@
 <div ng-controller="ModalController" data-ng-init="modalFirstProfileUpdate()"></div>
 
-<div data-ng-controller="SettingsController">
+<div data-ng-controller="SettingsController" data-ng-init="getCredentials();">
     <form class="form-custom-full-width" name="userForm" data-ng-submit="firstupdateUserProfile(userForm.$valid)" autocomplete="off">
         <div class="content-wrapper bg-white">
             <div class="section-heading">Información De Contacto</div>
             <div class="form-group">
                 <div class="user-card">
                     <div class="profile-pic col-xs-2">
-                      <a href="#"><img src="assets/img/user-placeholder-2.png" /></a>
+                      <a href="#"><img src="{{user.assets.profilePicURL}}" /></a>
+                      <input type="file" id="profilePicURL" name="profilePicURL" nv-file-select uploader="uploader" class="upload-input"/>
                     </div>
                     <div class="info col-xs-10">
                       <p>
-                        <a href="#" class="name">{{user.personal.firstName}} {{user.personal.lastName}}</a><br> <span class="job-position">Gerente Gral.</span> en <span class="area">Tottus Atocongo</span>
+                        <a href="#" class="name">{{user.personal.firstName}} {{user.personal.lastName}}</a><br> <span class="job-position">{{user.organizational.currentJobPosition}}</span> en <span class="area">{{user.organizational.branch}}</span>
                       </p>
                     </div>
                 </div>
