@@ -70,44 +70,16 @@ angular.module('posts').controller('PostsController', ['$scope', '$stateParams',
             }
         };
 
-        $scope.likeListPosts = function(id, post_like) {
+        $scope.like = function(post) {
             var like = new Likes({
-                post: id
+                post: post._id
             });
-            post_like.likes.push(
-                { user: 
-                    { _id: $scope.authentication.user._id, 
-                        personal: { 
-                            displayName: $scope.authentication.user.personal.displayName
-                        } 
-                    }
-                }
-            );
-            
-            like.create(post_like._id);
-            for (var i = $scope.posts.length - 1; i >= 0; i--) {
-                if( $scope.posts[i]._id === id ){
-                    $scope.posts[i].ngLike = true;
-                }
-            }
-        };
 
-        $scope.likeShowPost = function() {
-            var like = new Likes({
-                post: $scope.post._id
-            });
-            $scope.post.likes.push(
-                { user: 
-                    { _id: $scope.authentication.user._id, 
-                        personal: {
-                            displayName: $scope.authentication.user.personal.displayName
-                        } 
-                    }
-                }
-            );
+            post.likes.push($scope.authentication.user);
             
-            like.create($scope.post._id);
-            $scope.ngLike =  true; // me gusta
+            like.create(post._id);
+
+            post.ngLike = true;
         };
 
         $scope.find = function() {
@@ -138,7 +110,6 @@ angular.module('posts').controller('PostsController', ['$scope', '$stateParams',
                     }
                 }
             });
-            
         };
 
         $scope.remove = function(post) {

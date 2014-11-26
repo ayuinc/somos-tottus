@@ -14,7 +14,7 @@
                                 </div>
                                 <div class="info col-xs-10">
                                   <p>
-                                    <a data-ng-href="#!/users/{{post.user._id}}" class="name" >{{ post.user.personal.displayName }}</a><br> <span class="job-position">Gerente Gral.</span> en <span class="area">Tottus Atocongo</span><br><span data-ng-bind="post.created | date:'mediumDate'"></span>
+                                    <a data-ng-href="#!/users/{{post.user._id}}" class="name" >{{ post.user.personal.displayName }}</a><br> <span class="job-position">Gerente Gral.</span> en <span class="area">Tottus Atocongo</span><br><span data-ng-bind="post.created | amCalendar"></span><!-- <span data-ng-bind="post.created | date:'mediumDate'"></span> -->
                                   </p>
                                 </div>
                             </div>
@@ -27,14 +27,14 @@
                             <a data-ng-href="#!/posts/{{post._id}}"><img lazy-src="{{post.imgFilePath}}" data-ng-src="{{post.imgFilePath}}" /></a>
                         </div>
                         <ul class="counts-and-share list-unstyled">
-                            <li class="counts-likes"><a href="#!">{{post.likes.length}} Me Gusta</a></li>
-                            <li class="counts-comments"><a href="#!">{{post.comments.length}} Comentarios</a></li>
+                            <li class="counts-likes"><a data-ng-href="#!/users/{{post.user._id}}">{{post.likes.length}} Me Gusta</a></li>
+                            <li class="counts-comments"><a data-ng-href="#!/users/{{post.user._id}}">{{post.comments.length}} Comentarios</a></li>
                             <!-- <li class="share"><a href="#!">Compartir</a></li> -->
                         </ul>
                         <div class="actions">
                             <div ng-cloak class="col-xs-6 data-ng-cloak">
                                 <div ng-if="post.ngLike == false">
-                                    <a ng-click="likeListPosts(post._id, post)" class="btn btn-action active">Me Gusta</a>
+                                    <a ng-click="like(post)" class="btn btn-action active">Me Gusta</a>
                                 </div>
                                 <div ng-if="post.ngLike == true">
                                     <a class="btn btn-action ">Te Gusta</a>

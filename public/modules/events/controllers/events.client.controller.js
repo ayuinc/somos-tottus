@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('events').controller('EventsController', ['$scope', '$stateParams', '$location', '$http', 'Authentication', 'Posts', 'Events', 'AWS', 'FileUploader',
-    function($scope, $stateParams, $location, $http, Authentication, Posts, Events, AWS, FileUploader) {
+angular.module('events').controller('EventsController', ['$scope', '$stateParams', '$location', '$http', 'Authentication', 'Posts', 'Events', 'AWS', 'FileUploader', 'Attendees',
+    function($scope, $stateParams, $location, $http, Authentication, Posts, Events, AWS, FileUploader, Attendees) {
         $scope.authentication = Authentication;
         $scope.uploader = new FileUploader({
             url: 'https://s3.amazonaws.com/tottus/',
@@ -96,10 +96,38 @@ angular.module('events').controller('EventsController', ['$scope', '$stateParams
 
         $scope.find = function() {
             $scope.events = Events.query();
+
+            $scope.events.$promise.then(function(events) {
+                for (var i=events.length; i > 0; i--) {
+                    $scope.events[i].attended = false;
+                    for (var j = events[i].attendees.length; j > 0; j--) {
+                        if(events[i].attendees[j] === $scope.authentication.user._id){
+                            $scope.events[i].attended = true; 
+                            return;
+                        }
+                    }
+                }
+            });
         };
 
         $scope.findOne = function() {
             $scope.evt = Events.get({ eventId: $stateParams.eventId });
+
+            $scope.evt.$promise.then(function(evt) {
+                for (var j = evt.attendees.length; j > 0; j--) {
+                    if(evt.attendees[j] === $scope.authentication.user._id){
+                        $scope.evt.attended = true; 
+                        return;
+                    }
+                }
+
+                console.log(evt);
+            });
+        };
+
+        $scope.registerAttendee = function() {
+            $scope.evt = Attendees.registerAttendee($scope.evt._id, $scope.authentication.user);
+            console.log('log', $scope.evt);
         };
     }
 ]);
