@@ -121,7 +121,7 @@ angular.module('events').controller('EventsController', ['$scope', '$stateParams
                         evt.attended = true;
                         return;
                     }
-                };
+                }
             });
         };
 
