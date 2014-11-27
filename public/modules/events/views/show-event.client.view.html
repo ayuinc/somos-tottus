@@ -25,7 +25,7 @@
         </div>
         <ul class="counts-and-share list-unstyled p-14 mb-0">
             <li class="counts-likes"><a>{{evt.attendees.length}} Asistente(s)</a></li>
-            <li class="counts-comments"><a>3 Comentarios</a></li>
+            <li class="counts-comments"><a>{{evt.post.comments.length}} Comentarios</a></li>
         </ul>
         <div class="actions">
             <div class="ng-cloak col-xs-6">
@@ -37,7 +37,7 @@
                 </div>
             </div>
             <div class="col-xs-6">
-                <a class="btn btn-action">Comentar</a>
+                <a data-ng-href="#!/posts/{{evt.post._id}}/comments/new" class="btn btn-action active">Comentar</a>
             </div>
         </div>
     </div>
@@ -45,17 +45,18 @@
         <div class="panel">
             <h4 class="panel-title">Comentarios</h4>
             <hr class="m-0">
-            <ul>
+            <ul data-ng-repeat="comment in evt.post.comments">
                 <li>
                     <div class="profile-pic col-xs-2">
-                        <a data-ng-href="#"><img src="assets/img/user-placeholder-2.png" /></a>
+                        <a data-ng-href="#!/users/{{evt.post.user._id}}"><!--<img src="assets/img/user-placeholder-2.png" />--><img src="{{comment.user.assets.profilePicURL}}" /></a>
                     </div>
                     <div class="comment-content col-xs-10">
-                        <p><a data-ng-href="#" >Usuario</a> Comentario de este post</p>
+                        <p><a data-ng-href="#!/users/{{comment.user._id}}" >{{ comment.user.personal.displayName }}</a> {{ comment.text }}</p>
+                        <span am-time-ago="comment.created"></span>
                     </div>
                 </li>
             </ul>
         </div>
-    </div>  
+    </div>
 </div>
 </section>

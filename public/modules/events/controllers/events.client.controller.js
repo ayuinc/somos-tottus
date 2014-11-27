@@ -116,6 +116,8 @@ angular.module('events').controller('EventsController', ['$scope', '$stateParams
 
             $scope.evt.$promise.then(function(evt) {
                 evt.attended = false;
+                evt.post = Posts.get({ postId: evt.post });
+
                 for (var i = evt.attendees.length - 1; i >= 0; i--) {
                     if(evt.attendees[i] === $scope.authentication.user._id) {
                         evt.attended = true;

@@ -101,7 +101,7 @@ exports.registerAttendee = function(req, res) {
 
 exports.eventByID = function(req, res, next, id) {
     Evt.findById(id)
-        .populate('post', 'name detail imgFilePath category')
+        // .populate('post', 'name detail imgFilePath category')
         .exec(function(err, evt) {
             if(err) {
                 return res.status(400).send({
