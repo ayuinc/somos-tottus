@@ -98,15 +98,16 @@ angular.module('events').controller('EventsController', ['$scope', '$stateParams
             $scope.events = Events.query();
 
             $scope.events.$promise.then(function(events) {
-                for (var i=events.length; i > 0; i--) {
-                    $scope.events[i].attended = false;
-                    for (var j = events[i].attendees.length; j > 0; j--) {
-                        if(events[i].attendees[j] === $scope.authentication.user._id){
-                            $scope.events[i].attended = true; 
-                            return;
-                        }
-                    }
-                }
+                console.log('events', events);
+                // for (var i=events.length; i > 0; i--) {
+                //     $scope.events[i].attended = false;
+                //     for (var j = events[i].attendees.length; j > 0; j--) {
+                //         if(events[i].attendees[j] === $scope.authentication.user._id){
+                //             $scope.events[i].attended = true; 
+                //             return;
+                //         }
+                //     }
+                // }
             });
         };
 
@@ -114,20 +115,20 @@ angular.module('events').controller('EventsController', ['$scope', '$stateParams
             $scope.evt = Events.get({ eventId: $stateParams.eventId });
 
             $scope.evt.$promise.then(function(evt) {
-                for (var j = evt.attendees.length; j > 0; j--) {
-                    if(evt.attendees[j] === $scope.authentication.user._id){
-                        $scope.evt.attended = true; 
+                evt.attended = false;
+                for (var i = evt.attendees.length - 1; i >= 0; i--) {
+                    if(evt.attendees[i] === $scope.authentication.user._id) {
+                        evt.attended = true;
                         return;
                     }
-                }
-
-                console.log(evt);
+                };
             });
         };
 
         $scope.registerAttendee = function() {
-            $scope.evt = Attendees.registerAttendee($scope.evt._id, $scope.authentication.user);
-            console.log('log', $scope.evt);
+            $scope.evt.attended = true;
+            $scope.evt.attendees.push($scope.authentication.user._id);
+            Attendees.registerAttendee($scope.evt._id).then();
         };
     }
 ]);
