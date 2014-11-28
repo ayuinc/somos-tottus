@@ -272,13 +272,13 @@ angular.module('core').service('Layout', [
           hasThis: false
         }
       },
-      'showEvent': {
+      'viewEvent': {
         navViewActionBar: {
           hasThis: true,
           // actionButtonText: 'Opciones',
           // actionButtonAction: '',
           isURL: true,
-          previousPage: '/benefits'
+          previousPage: '/events'
         },
         navViewIndicator: {
           hasThis: true,
