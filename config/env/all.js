@@ -27,7 +27,10 @@ module.exports = {
 				'public/lib/angular-ui-utils/ui-utils.js',
 				'public/lib/jquery/dist/jquery.min.js',
 				'public/lib/angular-bootstrap/ui-bootstrap-tpls.js',
-				'public/lib/angular-file-upload/angular-file-upload.js'
+				'public/lib/angular-file-upload/angular-file-upload.js',
+				'public/lib/moment/moment.js',
+				'public/lib/moment/locale/es.js',
+				'public/lib/angular-moment/angular-moment.js'
 				// 'public/lib/b3/js/modal.js',
 				// 'public/lib/b3/js/transition.js',
 			]

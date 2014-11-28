@@ -66,7 +66,7 @@ exports.delete = function(req, res) {
  */
 exports.index = function(req, res) {
     Evt.find().limit(20)
-        .populate('post', 'name detail imgFilePath')
+        .populate('post', 'name detail imgFilePath category')
         .exec(function(err, events) {
             if(err) {
                 return res.status(400).send({
@@ -77,9 +77,31 @@ exports.index = function(req, res) {
         });
 };
 
+
+exports.registerAttendee = function(req, res) {
+    var evt = req.evt,
+        usr = req.user;
+    if(_.indexOf(evt.attendees, usr._id) === -1) {
+        evt.attendees.push(usr);
+        evt.save(function(err, evt) {
+            if(err) {
+                return res.status(400).send({
+                    message: errorHandler.getErrorMessage(err)
+                });
+            } else {
+                res.jsonp(evt);
+            }
+        });
+    } else {
+        return res.status(400).send({
+            message: 'Asistencia ya registrada'
+        });
+    }
+};
+
 exports.eventByID = function(req, res, next, id) {
     Evt.findById(id)
-        .populate('post', 'name detail imgFilePath')
+        // .populate('post', 'name detail imgFilePath category')
         .exec(function(err, evt) {
             if(err) {
                 return res.status(400).send({

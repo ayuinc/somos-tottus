@@ -15,7 +15,7 @@ angular.module('events').config(['$stateProvider',
         }).
         state('viewEvent', {
             url: '/events/:eventId',
-            templateUrl: 'modules/events/views/view-event.client.view.html'
+            templateUrl: 'modules/events/views/show-event.client.view.html'
         });
 	}
 ]);

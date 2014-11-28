@@ -53,4 +53,11 @@ EventSchema.pre('save', function(next) {
     next();
 });
 
+EventSchema.methods.registerAttendee = function(user) {
+    var _this = this;
+
+    _this.attendees.push(user);
+    _this.save();
+};
+
 mongoose.model('Event', EventSchema);

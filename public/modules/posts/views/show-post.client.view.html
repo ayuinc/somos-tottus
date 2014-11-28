@@ -4,7 +4,7 @@
             <section data-ng-controller="PostsController" data-ng-init="findOne()">
                 <div class="posts-show-item">
                     <div class="meta">
-                        <span class="benefit">Beneficios</span>
+                        <span class="benefit" data-ng-bind="post.category"></span>
                     </div>
                     <div class="user">
                         <div class="user-card">
@@ -17,7 +17,7 @@
                             </div>
                             <div class="info col-xs-10">
                               <p>
-                                <a data-ng-href="#!/users/{{post.user._id}}" class="name" >{{ post.user.personal.displayName }}</a><br> <span class="job-position">Gerente Gral.</span> en <span class="area">Tottus Atocongo</span><br><span data-ng-bind="post.created | date:'mediumDate'"></span>
+                                <a data-ng-href="#!/users/{{post.user._id}}" class="name" >{{ post.user.personal.displayName }}</a><br> <span class="job-position">Gerente Gral.</span> en <span class="area">Tottus Atocongo</span><br><span data-ng-bind="post.created | amCalendar"></span>
                               </p>
                             </div>
                         </div>
@@ -36,9 +36,9 @@
                     <div class="actions">
                         <div ng-cloak class="col-xs-6 data-ng-cloak">
                             <div ng-if="ngLike == false">
-                                <a ng-click="likeShowPost()" class="btn btn-action active">Me Gusta</a>
+                                <a data-ng-click="like(post)" class="btn btn-action active">Me Gusta</a>
                             </div>
-                            <div ng-if="ngLike == true">
+                            <div data-ng-if="ngLike == true">
                                 <a class="btn btn-action ">Te Gusta</a>
                             </div>
                         </div>
@@ -59,6 +59,7 @@
                                 </div>
                                 <div class="comment-content col-xs-10">
                                     <p><a data-ng-href="#!/users/{{comment.user._id}}" >{{ comment.user.personal.displayName }}</a> {{ comment.text }}</p>
+                                    <span am-time-ago="comment.created"></span>
                                 </div>
                             </li>
                         </ul>

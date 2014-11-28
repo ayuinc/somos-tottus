@@ -1,51 +1,62 @@
+<section data-ng-controller="EventsController" data-ng-init="findOne()">
 <div class="container-fluid">
-  <div class="posts-show-item">
-    <div class="meta">
-      <span class="benefit">Beneficios</span>
-    </div>
-    <div class="content-text-placeholder">
-      <h3 class="bold mb-0">Tarjeta Somos Salud</h3>
-      <span class="small">Publicado por Tottus Central el Martes 10 de Septiembre a las 2:45pm</span>
-      <p class="pv-7">La nueva tarjeta Somos Salud de Tottus brinda a todos sus colaboradores beneficios en casos de emergencia para toda tu familia!</p>
-    </div>
-    <!-- <div class="content-img-placeholder"></div> -->
-    <div class="list pl-ch-21">
-      <div class="item item-icon-left">
-        <i class="icon-tags text-info h3"></i>
-        <span class="text-gray-light">Vívelo</span>
-      </div>
-      <div class="item item-icon-left">
-        <i class="icon-clock5  h3"></i>
-        <span class="text-gray-light">Válido hasta el 28 de Agosto del 2014</span>
-      </div>
-    </div>
-    <ul class="counts-and-share list-unstyled p-14 mb-0">
-      <li class="counts-likes"><a>21 Me Gusta</a></li>
-      <li class="counts-comments"><a>3 Comentarios</a></li>
-    </ul>
-    <div class="actions">
-      <div class="col-xs-6">
-        <a class="btn btn-action">Me Gusta</a>
-      </div>
-      <div class="col-xs-6">
-        <a class="btn btn-action">Comentar</a>
-      </div>
-    </div>
-  </div>
-  <div class="post-show-comments">
-    <div class="panel">
-        <h4 class="panel-title">Comentarios</h4>
-        <hr class="m-0">
-        <ul>
-          <li>
-            <div class="profile-pic col-xs-2">
-                <a data-ng-href="#"><img src="assets/img/user-placeholder-2.png" /></a>
+    <div class="posts-show-item">
+        <div class="meta">
+            <span class="benefit" data-ng-bind="evt.post.category">Beneficios</span>
+        </div>
+        <div class="content-text-placeholder">
+            <h3 class="bold mb-0" data-ng-bind="evt.post.name"></h3>
+            <span class="small">Publicado por Tottus Central el {{evt.created}}</span>
+            <p class="pv-7" data-ng-bind="evt.post.detail"></p>
+        </div>
+        <div data-ng-show="(evt.post.imgFilePath)" class="content-img-placeholder">
+            <a href="#!"><img data-ng-src="{{evt.post.imgFilePath}}" /></a>
+        </div>
+        <!-- <div class="content-img-placeholder"></div> -->
+        <div class="list pl-ch-21">
+            <div class="item item-icon-left">
+                <i class="icon-tags text-info h3"></i>
+                <span class="text-gray-light">Vívelo</span>
             </div>
-            <div class="comment-content col-xs-10">
-                <p><a data-ng-href="#" >Usuario</a> Comentario de este post</p>
+            <div class="item item-icon-left">
+                <i class="icon-clock5  h3"></i>
+                <span class="text-gray-light">Válido hasta el 28 de Agosto del 2014</span>
             </div>
-          </li>
+        </div>
+        <ul class="counts-and-share list-unstyled p-14 mb-0">
+            <li class="counts-likes"><a>{{evt.attendees.length}} Asistente(s)</a></li>
+            <li class="counts-comments"><a>{{evt.post.comments.length}} Comentarios</a></li>
         </ul>
+        <div class="actions">
+            <div class="ng-cloak col-xs-6">
+                <div ng-if="evt.attended == false">
+                    <a data-ng-click="registerAttendee()" class="btn btn-action active">Asistiré</a>
+                </div>
+                <div ng-if="evt.attended == true">
+                    <a class="btn btn-action">Asistiré</a>
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <a data-ng-href="#!/posts/{{evt.post._id}}/comments/new" class="btn btn-action active">Comentar</a>
+            </div>
+        </div>
     </div>
-  </div>  
+    <div class="post-show-comments">
+        <div class="panel">
+            <h4 class="panel-title">Comentarios</h4>
+            <hr class="m-0">
+            <ul data-ng-repeat="comment in evt.post.comments">
+                <li>
+                    <div class="profile-pic col-xs-2">
+                        <a data-ng-href="#!/users/{{evt.post.user._id}}"><!--<img src="assets/img/user-placeholder-2.png" />--><img src="{{comment.user.assets.profilePicURL}}" /></a>
+                    </div>
+                    <div class="comment-content col-xs-10">
+                        <p><a data-ng-href="#!/users/{{comment.user._id}}" >{{ comment.user.personal.displayName }}</a> {{ comment.text }}</p>
+                        <span am-time-ago="comment.created"></span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
 </div>
+</section>
