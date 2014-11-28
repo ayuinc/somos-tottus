@@ -1,4 +1,5 @@
 // RESPONSIVE FONT RESIZE
+$em-base: $font-size-base;
 html {
   font-size: $font-size-base;
   @media #{$sm-only} {

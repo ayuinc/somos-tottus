@@ -22,11 +22,8 @@
                         <div class="col-xs-2"><input type="text" name="eventDay" class="form-control" placeholder="DD" data-ng-model="evt.startDay.dayString"></div>
                         <div class="col-xs-2"><input type="text" class="form-control" placeholder="MM" data-ng-model="evt.startDay.monthString"></div>
                         <div class="col-xs-3"><input type="text" class="form-control" placeholder="AAAA" data-ng-model="evt.startDay.yearString"></div>
-
-                        <div class="col-xs-3">
-                            <input type="number" class="form-control" placeholder="HH" data-ng-model="evt.startDay.hourString">:
-                            <input type="number" class="form-control" placeholder="MM" data-ng-model="evt.startDay.minuteString">
-                        </div>
+                        <div class="col-xs-2"><input type="number" class="form-control" placeholder="HH" data-ng-model="evt.startDay.hourString"></div>
+                        <div class="col-xs-2"><input type="number" class="form-control" placeholder="MM" data-ng-model="evt.startDay.minuteString"></div>
                     </div>
                 </div>
 
@@ -36,17 +33,8 @@
                         <div class="col-xs-2"><input type="text" class="form-control" placeholder="DD" data-ng-model="evt.endDay.dayString"></div>
                         <div class="col-xs-2"><input type="text" class="form-control" placeholder="MM" data-ng-model="evt.endDay.monthString"></div>
                         <div class="col-xs-3"><input type="text" class="form-control" placeholder="AAAA" data-ng-model="evt.endDay.yearString"></div>
-
-                        <div class="col-xs-3">
-                            <div class="col">
-                                <div class="col-xs-6">
-                                    <input type="number" class="form-control" placeholder="HH" data-ng-model="evt.endDay.hourString">:
-                                </div>
-                                <div class="col-xs-6">
-                                    <input type="number" class="form-control" placeholder="MM" data-ng-model="evt.endDay.minuteString">
-                                </div>                    
-                            </div>
-                        </div>
+                        <div class="col-xs-2"><input type="number" class="form-control" placeholder="HH" data-ng-model="evt.endDay.hourString"></div>
+                        <div class="col-xs-2"><input type="number" class="form-control" placeholder="MM" data-ng-model="evt.endDay.minuteString"></div>
                     </div>
                 </div>
 
@@ -106,7 +94,7 @@
                 <div class="form-group row">
                     <div class="col-xs-5">
                         <div class="upload-field">
-                            <a href="#">Cargar imagen</a>
+                            <a href="#"><i class="icon-picture"></i><small class="h6 ml-14">Cargar imagen</small></a>
                             <input type="file" nv-file-select uploader="uploader" class="upload-input" />
                         </div>
                     </div>

@@ -21,12 +21,12 @@ $color: #313233;
 $alpha: 0.15;
 
 @import 
-  "times-range",
-  "strip-units",
-  "px-to-rems",
-  "prefixer",
-  "clearfix",
-  "list-unstyled",
-  "media-queries",
+  "helpers/times-range",
+  "helpers/strip-units",
+  "helpers/px-to-rems",
+  "helpers/prefixer",
+  "helpers/clearfix",
+  "helpers/list-unstyled",
+  "helpers/media-queries",
   "box-shadow",
-  "vertical-align";
+  "helpers/vertical-align";
