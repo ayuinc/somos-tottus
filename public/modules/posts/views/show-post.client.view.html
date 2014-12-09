@@ -1,17 +1,16 @@
 <div>
     <div class="container-fluid">
         <div class="clearfix">
-            <section data-ng-controller="PostsController" data-ng-init="findOne()">
+            <section data-ng-controller="PostsController" data-ng-init="findOne();">
                 <div class="posts-show-item">
                     <div class="meta">
+                        <a data-ng-if="authentication.user._id == post.user._id" data-ng-click="remove();">Remover</a>
                         <span class="benefit" data-ng-bind="post.category"></span>
                     </div>
                     <div class="user">
                         <div class="user-card">
                             <div class="profile-pic col-xs-2">
                               <a data-ng-href="#!/users/{{post.user._id}}">
-
-                                <!-- <img src="assets/img/user-placeholder-2.png" /> -->
                                 <img src="{{post.user.assets.profilePicURL}}" />
                                 </a>
                             </div>
@@ -35,10 +34,10 @@
                     </ul>
                     <div class="actions">
                         <div ng-cloak class="col-xs-6 data-ng-cloak">
-                            <div ng-if="ngLike == false">
+                            <div ng-if="post.ngLike == false">
                                 <a data-ng-click="like(post)" class="btn btn-action active">Me Gusta</a>
                             </div>
-                            <div data-ng-if="ngLike == true">
+                            <div data-ng-if="post.ngLike == true">
                                 <a class="btn btn-action ">Te Gusta</a>
                             </div>
                         </div>

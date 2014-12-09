@@ -71,15 +71,16 @@ angular.module('posts').controller('PostsController', ['$scope', '$stateParams',
         };
 
         $scope.like = function(post) {
+            console.log('post', post);
             var like = new Likes({
                 post: post._id
             });
 
+            post.ngLike = true;
+
             post.likes.push($scope.authentication.user);
             
             like.create(post._id);
-
-            post.ngLike = true;
         };
 
         $scope.find = function() {
@@ -98,18 +99,21 @@ angular.module('posts').controller('PostsController', ['$scope', '$stateParams',
         };
         
         $scope.findOne = function() {
-            $scope.ngLike = false; 
             $scope.post = Posts.get({
                 postId: $stateParams.postId
             });
+
             $scope.post.$promise.then(function(post){
+                $scope.post.ngLike = false;
                 for (var i = post.likes.length - 1; i >= 0; i--) {
                     if(post.likes[i].user === $scope.authentication.user._id){
-                        $scope.ngLike = true; // te gusta 
+                        $scope.post.ngLike = true; // te gusta 
                         return;
                     }
                 }
             });
+
+            console.log('post', $scope.post);
         };
 
         $scope.remove = function(post) {

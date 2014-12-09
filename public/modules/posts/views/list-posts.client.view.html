@@ -1,10 +1,11 @@
 <div>
     <div class="container-fluid">
         <div class="clearfix">
-            <section data-ng-controller="PostsController" data-ng-init="find()">
+            <section data-ng-controller="PostsController" data-ng-init="find();">
                 <div data-ng-repeat="post in posts" ng-class-odd="odd">
                     <div class="posts-index-item">
                         <div class="meta">
+                            <a data-ng-if="authentication.user._id == post.user._id" data-ng-click="remove(post);">Remover</a>
                             <span class="benefit" data-ng-bind="post.category"></span>
                         </div>
                         <div class="user">
@@ -27,8 +28,8 @@
                             <a data-ng-href="#!/posts/{{post._id}}"><img lazy-src="{{post.imgFilePath}}" data-ng-src="{{post.imgFilePath}}" /></a>
                         </div>
                         <ul class="counts-and-share list-unstyled">
-                            <li class="counts-likes"><a data-ng-href="#!/users/{{post.user._id}}">{{post.likes.length}} Me Gusta</a></li>
-                            <li class="counts-comments"><a data-ng-href="#!/users/{{post.user._id}}">{{post.comments.length}} Comentarios</a></li>
+                            <li class="counts-likes"><a data-ng-href="#!/posts/{{post._id}}">{{post.likes.length}} Me Gusta</a></li>
+                            <li class="counts-comments"><a data-ng-href="#!/posts/{{post._id}}">{{post.comments.length}} Comentarios</a></li>
                             <!-- <li class="share"><a href="#!">Compartir</a></li> -->
                         </ul>
                         <div class="actions">

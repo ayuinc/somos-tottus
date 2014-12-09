@@ -8,6 +8,7 @@ angular.module('events').controller('EventsController', ['$scope', '$stateParams
             method: 'POST',
             queueLimit: 1
         });
+        $scope.detailLetterLimit = 170;
 
         // If user is signed in then redirect back home
         if(!$scope.authentication.user) $location.path('/');
