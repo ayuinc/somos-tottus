@@ -36,7 +36,7 @@
 		  WebFontConfig = {google: { families: [ 'Open+Sans:300italic,400italic,400,600,700,300:latin' ] }};(function() {var wf = document.createElement('script');wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +'://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';wf.type = 'text/javascript';wf.async = 'true';var s = document.getElementsByTagName('script')[0];s.parentNode.insertBefore(wf, s);})(); 
 		</script>
 	</head>
-	<body data-ng-class="{'bg-primary': isAuth, 'bg-white': isCreatePath}" data-ng-controller="LayoutController" class="ng-cloak">
+	<body data-ng-class="{'bg-primary': isAuth, 'bg-white': isCreatePath}" data-ng-controller="LayoutController" class="ng-cloak" autoscroll="true">
 		<div data-ng-class="{'on-bg-green': isAuth}" class="site-wrapper">
 			<div class="nav-view-action-bar" data-ng-if="hasNavViewActionBar" data-ng-include="'/modules/core/views/view-action-bar.client.view.html'"></div>
 	    <div class="nav-view-indicator" data-ng-if="hasNavViewIndicator" data-ng-include="'/modules/core/views/view-indicator.client.view.html'"></div>

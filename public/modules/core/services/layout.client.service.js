@@ -17,7 +17,8 @@ angular.module('core').service('Layout', [
           indicatorText: 'Muro'
         },
         navSubnavTabs: {
-          hasThis: true
+          hasThis: true,
+          isActive: true
         }
       },
       'newPost': {
@@ -73,7 +74,22 @@ angular.module('core').service('Layout', [
       },
 
       // USERS
-      'public-profile': {},
+      'public-profile': {
+        navViewActionBar: {
+          hasThis: true,
+          // actionButtonText: 'Publicar',
+          // actionButtonAction: '/#!/posts/new',
+          isURL: true,
+          // previousPage: '/settings/profile'
+        },
+        navViewIndicator: {
+          hasThis: true,
+          indicatorText: 'Perfil'
+        },
+        navSubnavTabs: {
+          hasThis: true
+        }
+      },
       'profile': {
         navViewActionBar: {
           hasThis: true,
@@ -187,7 +203,8 @@ angular.module('core').service('Layout', [
           indicatorText: 'Menú'
         },
         navSubnavTabs: {
-          hasThis: true
+          hasThis: true,
+          isActive: true
         }
       },
 
@@ -256,7 +273,7 @@ angular.module('core').service('Layout', [
           hasThis: true
         }
       },
-      'newEvent': {
+      'createEvent': {
         navViewActionBar: {
           hasThis: true,
           // actionButtonText: 'Opciones',

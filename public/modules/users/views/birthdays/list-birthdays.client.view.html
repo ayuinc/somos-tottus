@@ -1,6 +1,6 @@
 <div class="birthdays">
 	<div class="separator bg-gray-light p-14">
-		<span>Próximos cumpleaños</span>
+		<span>Cumpleaños del mes</span>
 	</div>
 	<div class="list">
 		<section data-ng-controller="BirthdaysController" data-ng-init="getBirthdays();">
@@ -11,7 +11,7 @@
 					</div>
 					<div class="col-xs-8 pv-28">
 						<span class="bold text-gray-dark">{{userBirthday.personal.displayName}}</span><br>
-						<span class="small text-gray">{{userBirthday.organizational.currentJobPosition}} en {{userBirthday.organizational.branch}} cumpleaños el {{ userBirthday.personal.dateOfBirth | date:'dd/MM' }}</span>
+						<span class="small text-gray">Cumple el {{ userBirthday.personal.dateOfBirth | date:'dd/MM' }}</span>
 					</div>
 					<div class="item-go">
 						<i class="icon-arrow-right-filled"></i>
