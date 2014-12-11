@@ -2,7 +2,7 @@
 	position: relative;
 	.item {
 		display: block;
-		padding: $grid-gutter-width $container-fluid;
+		padding: ($grid-gutter-width + 4) $container-fluid;
 		@include clearfix;
 		border-bottom: 1px solid $gray-lighter;
 		position: relative;
