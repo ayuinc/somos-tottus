@@ -1,6 +1,6 @@
 <div class="nav-drawer" data-ng-controller="HomeController">
 	<div class="top">
-    <a data-ng-href="#" class="user-card bg-white pv-21 relative">
+    <a data-ng-href="#!/users/{{user._id}}" class="user-card bg-white pv-21 relative">
       <div class="profile-pic col-xs-2">
         <span>
           <img data-ng-src="{{user.assets.profilePicURL}}" />
@@ -20,10 +20,10 @@
   <hr class="m-0">
   <div class="center bg-white">
   	<div class="list">
-  		<a href="#!/vacancies" class="item item-icon-left">
+  		<!-- <a href="#!/vacancies" class="item item-icon-left">
   			<i class="icon-chart-filled bg-vacancies"></i>
   			<span>Oportunidades de cambio interno</span>
-  		</a>
+  		</a> -->
   		<a href="#!/events" class="item item-icon-left">
   			<i class="icon-calendar-filled bg-events"></i>
   			<span>Eventos</span>
@@ -36,11 +36,14 @@
   			<i class="icon-cake-filled bg-birthdays"></i>
   			<span>Cumpleaños</span>
   		</a>
-      <a href="/auth/signout" class="item item-icon-left">
-        <i class="icon-cake-filled bg-birthdays"></i>
-        <span>Salir</span>
-      </a>
   	</div>
   </div>
-  <div class="bottom"></div>
+  <div class="bottom">
+    <div class="list">
+      <a href="/auth/signout" class="item item-icon-left">
+        <i class=""></i>
+        <span class="ml-14">Salir</span>
+      </a>
+    </div>
+  </div>
 </div>
