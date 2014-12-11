@@ -42,6 +42,7 @@ exports.birthdaysPerUser = function(req, res, next) {
     var usersBirthdays = [];
     var itertaciones = 0;
     User.find()
+        .select('assets.profilePicURL')
         .select('personal.dateOfBirth')
         .select('personal.displayName')
         .select('organizational.currentJobPosition')
