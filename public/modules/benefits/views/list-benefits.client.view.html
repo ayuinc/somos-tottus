@@ -1,6 +1,6 @@
 <section data-ng-init="find()">
 	<div class="benefits">
-		<div class="separator bg-gray-light p-14">
+		<div class="separator bg-gray-lighter p-7 uppercase">
 			<span>Próximos beneficios</span>
 		</div>
 		<div class="list">
@@ -8,14 +8,19 @@
 				<div class="col-xs-3">
 					<img src="assets/img/img-sq.png" alt="" class="img-thumbnail">
 				</div>
-				<div class="col-xs-8 pv-28">
+				<div class="col-xs-8">
 					<span class="bold text-gray-dark" data-ng-bind="benefit.post.name"></span><br>
 					<span class="small text-gray" data-ng-bind="benefit.post.detail"></span><br>
-					<small>Inicio: {{ benefit.start | date:'yyyy-MM-dd HH:ss a' }}</small><br>
-					<small>Fin: {{ benefit.end | date:'yyyy-MM-dd HH:ss a' }}</small>
+					<div class="text-gray-light">
+						<small>Inicio: {{ benefit.start | date:'yyyy-MM-dd HH:ss a' }}</small> -
+						<small>Fin: {{ benefit.end | date:'yyyy-MM-dd HH:ss a' }}</small>
+					</div>
 				</div>
 				<div class="item-go">
 					<i class="icon-arrow-right-filled"></i>
+				</div>
+				<div class="meta">
+					<small class="benefit pinned">Beneficios</small>
 				</div>
 			</a>
 		</div>

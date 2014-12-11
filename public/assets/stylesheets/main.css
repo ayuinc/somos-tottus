@@ -3143,7 +3143,7 @@ input[type="submit"].btn-tabs {
   position: relative; }
   .list .item {
     display: block;
-    padding: 14px 7px;
+    padding: 18px 7px;
     border-bottom: 1px solid #ededed;
     position: relative; }
     .list .item:before, .list .item:after {
@@ -3387,7 +3387,9 @@ input[type="submit"].btn-tabs {
   margin-top: 7px;
   -webkit-box-shadow: 0px 3px 3px 0px rgba(49, 50, 51, 0.15);
   -moz-box-shadow: 0px 3px 3px 0px rgba(49, 50, 51, 0.15);
-  box-shadow: 0px 3px 3px 0px rgba(49, 50, 51, 0.15); }
+  box-shadow: 0px 3px 3px 0px rgba(49, 50, 51, 0.15);
+  position: relative;
+  padding-top: 21px; }
   .posts-index-item div:before, .posts-index-item div:after,
   .posts-show-item div:before,
   .posts-show-item div:after {
@@ -3401,7 +3403,12 @@ input[type="submit"].btn-tabs {
     padding: 7px; }
   .posts-index-item .meta,
   .posts-show-item .meta {
-    text-align: right; }
+    text-align: right;
+    position: absolute;
+    top: 0;
+    right: 21px;
+    left: 0;
+    width: 100%; }
     .posts-index-item .meta span,
     .posts-show-item .meta span {
       display: block;
@@ -3540,40 +3547,50 @@ input[type="submit"].btn-tabs {
     color: #6f7474; }
 
 .meta {
-  padding: 7px; }
-
-.meta span,
-.meta small {
-  display: block;
-  font-size: 10px;
-  color: #6f7474; }
-  .meta span:after,
-  .meta small:after {
-    content: " ";
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    display: inline-block;
-    margin-top: 4px;
-    margin-left: 7px; }
-  .meta span.benefit:after,
-  .meta small.benefit:after {
-    border: 1px solid #58A742; }
-  .meta span.benefit.pinned:after,
-  .meta small.benefit.pinned:after {
-    background: #58A742; }
-  .meta span.event:after,
-  .meta small.event:after {
-    border: 1px solid #DA427E; }
-  .meta span.event.pinned:after,
-  .meta small.event.pinned:after {
-    background: #DA427E; }
-  .meta span.vacancy:after,
-  .meta small.vacancy:after {
-    border: 1px solid #EA8B32; }
-  .meta span.vacancy.pinned:after,
-  .meta small.vacancy.pinned:after {
-    background: #EA8B32; }
+  padding: 4px 0;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 14px;
+  width: 100%; }
+  .meta span,
+  .meta small {
+    display: block;
+    font-size: 10px;
+    color: #6f7474; }
+    .meta span:after,
+    .meta small:after {
+      content: " ";
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      display: inline-block;
+      margin-top: 4px;
+      margin-left: 7px; }
+    .meta span.benefit:after,
+    .meta small.benefit:after {
+      border: 1px solid #58A742; }
+    .meta span.benefit.pinned:after,
+    .meta small.benefit.pinned:after {
+      background: #58A742; }
+    .meta span.event:after,
+    .meta small.event:after {
+      border: 1px solid #DA427E; }
+    .meta span.event.pinned:after,
+    .meta small.event.pinned:after {
+      background: #DA427E; }
+    .meta span.vacancy:after,
+    .meta small.vacancy:after {
+      border: 1px solid #EA8B32; }
+    .meta span.vacancy.pinned:after,
+    .meta small.vacancy.pinned:after {
+      background: #EA8B32; }
+    .meta span.birthday:after,
+    .meta small.birthday:after {
+      border: 1px solid #DA3A2F; }
+    .meta span.birthday.pinned:after,
+    .meta small.birthday.pinned:after {
+      background: #DA3A2F; }
 
 .user-auth-wrapper {
   height: 100%;
