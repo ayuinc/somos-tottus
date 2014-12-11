@@ -41,7 +41,10 @@ label {
 
 // ANCHORS
 a {
-  &:hover {
+  &:hover,
+  &:focus,
+  &:active
+  &.active {
     text-decoration: none;
   }
 }

@@ -1,12 +1,12 @@
 <div class="container-fluid">
   <ul class="list-unstyled row">
-    <li class="col-xs-4 posts-index">
+    <li class="col-xs-4 posts-index" data-ng-class="{active: isRoute('listPosts')}">
       <a href="#!/posts"><i class="icon-tottus"></i></a>
     </li>
     <li class="col-xs-4 notifications-index">
       <a href="#"><i class="icon-bell-filled"></i></a>
     </li>
-    <li class="col-xs-4 nav-drawer">
+    <li class="col-xs-4 nav-drawer" data-ng-class="{active: isRoute('navigationDrawer')}">
       <a href="#!/menu"><i class="icon-options-filled"></i></a>
     </li>
   </ul>
