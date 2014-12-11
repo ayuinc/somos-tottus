@@ -7,7 +7,7 @@
 			 <div data-ng-repeat="userBirthday in usersBirthday">
 				<a href="#!/users/{{userBirthday._id}}" class="item item-thumbnail-left bg-white">
 					<div class="col-xs-3">
-						<img src="assets/img/img-sq.png" alt="" class="img-thumbnail">
+						<img data-ng-src="{{userBirthday.assets.profilePicURL}}" alt="" class="img-thumbnail">
 					</div>
 					<div class="col-xs-8">
 						<span class="bold text-gray-dark">{{userBirthday.personal.displayName}}</span><br>
