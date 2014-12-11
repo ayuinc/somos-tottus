@@ -15,9 +15,11 @@ angular.module('users').controller('UsersController', ['$scope', '$http', '$loca
                 personalInfo : 'active',
                 userPosts : ''
             };
+
             getUser.getProfile($stateParams.userId).then(function(user){
                 $scope.userProfile = user;
             });
+            
             getPostsPerUser.getPosts($stateParams.userId).then(function(posts){
                 for (var i = posts.length - 1; i >= 0; i--) {
                     posts[i].ngLike = false;
@@ -30,7 +32,6 @@ angular.module('users').controller('UsersController', ['$scope', '$http', '$loca
                 }
                 $scope.posts = posts;
             });
-            
         };
 
 		$scope.switchPublicProfile = function( option ) {

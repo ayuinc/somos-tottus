@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('posts').controller('PostsController', ['$scope', '$stateParams', '$location', '$http', 'Authentication', 'Posts', 'Comments', 'Likes', 'AWS', 'FileUploader',
-    function($scope, $stateParams, $location, $http, Authentication, Posts, Comments, Likes, AWS, FileUploader) {
+angular.module('posts').controller('PostsController', ['$scope', '$stateParams', '$location', '$http', 'Authentication', 'Posts', 'Comments', 'Likes', 'AWS', 'FileUploader', 'getPostsPerUser',
+    function($scope, $stateParams, $location, $http, Authentication, Posts, Comments, Likes, AWS, FileUploader, getPostsPerUser) {
         $scope.authentication = Authentication;
         $scope.uploader = new FileUploader({
             url: 'https://s3.amazonaws.com/tottus/',
@@ -132,5 +132,16 @@ angular.module('posts').controller('PostsController', ['$scope', '$stateParams',
             }
         };
 
+        $scope.removeFromProfile = function(post) {
+            if(post) {
+                getPostsPerUser.delete(post._id);
+
+                for (var i in $scope.posts) {
+                    if ($scope.posts[i] === post) {
+                        $scope.posts.splice(i, 1);
+                    }
+                }
+            }
+        };
     }
 ]);

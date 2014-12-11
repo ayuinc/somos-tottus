@@ -5,7 +5,7 @@
                 <div data-ng-repeat="post in posts" ng-class-odd="odd">
                     <div class="posts-index-item">
                         <div class="meta">
-                            <a data-ng-if="authentication.user._id == post.user._id" data-ng-click="remove(post);">Remover</a>
+                            <!-- <a data-ng-if="authentication.user._id == post.user._id" data-ng-click="remove(post);">Remover</a> -->
                             <span class="benefit" data-ng-bind="post.category"></span>
                         </div>
                         <div class="user">
@@ -15,7 +15,7 @@
                                 </div>
                                 <div class="info col-xs-10">
                                   <p>
-                                    <a data-ng-href="#!/users/{{post.user._id}}" class="name" >{{ post.user.personal.displayName }}</a><br> <span class="job-position">Gerente Gral.</span> en <span class="area">Tottus Atocongo</span><br><span data-ng-bind="post.created | amCalendar"></span><!-- <span data-ng-bind="post.created | date:'mediumDate'"></span> -->
+                                    <a data-ng-href="#!/users/{{post.user._id}}" class="name" >{{ post.user.personal.displayName }}</a><br><span class="job-position">{{post.user.organizational.currentJobPosition}}</span> en <span class="area">{{post.user.organizational.branch}}</span><br><span data-ng-bind="post.created | amCalendar"></span><!-- <span data-ng-bind="post.created | date:'mediumDate'"></span> -->
                                   </p>
                                 </div>
                             </div>
