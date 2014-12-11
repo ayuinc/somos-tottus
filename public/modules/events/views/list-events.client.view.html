@@ -10,11 +10,9 @@
 				</div>
 				<div class="col-xs-8">
 					<span class="bold text-gray-dark" data-ng-bind="evt.post.name"></span><br>
-					<span class="small text-gray" data-ng-bind="evt.post.detail"></span><br>
-					<div class="text-gray-light">
-						<small>Inicio: {{ evt.start | date:'yyyy-MM-dd HH:ss a' }}</small> - 
-						<small>Fin: {{ evt.end | date:'yyyy-MM-dd HH:ss a' }}</small>
-					</div>
+					<span class="small text-gray">{{evt.post.detail | limitTo: detailLetterLimit}}...</span><br>
+					<small>Inicio: {{ evt.start | date:'yyyy-MM-dd HH:ss a' }}</small><br>
+					<small>Fin: {{ evt.end | date:'yyyy-MM-dd HH:ss a' }}</small>
 				</div>
 				<div class="item-go">
 					<i class="icon-arrow-right-filled"></i>

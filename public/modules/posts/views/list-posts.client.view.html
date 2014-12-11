@@ -1,10 +1,11 @@
 <div>
     <div class="container-fluid">
         <div class="clearfix">
-            <section data-ng-controller="PostsController" data-ng-init="find()">
+            <section data-ng-controller="PostsController" data-ng-init="find();">
                 <div data-ng-repeat="post in posts" ng-class-odd="odd">
                     <div class="posts-index-item">
                         <div class="meta">
+                            <a data-ng-if="authentication.user._id == post.user._id" data-ng-click="remove(post);">Remover</a>
                             <span class="benefit" data-ng-bind="post.category"></span>
                         </div>
                         <div class="user">
