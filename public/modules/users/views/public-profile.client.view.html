@@ -5,7 +5,7 @@
       <div class="user-card">
         <div class="profile-pic col-xs-2">
           <!-- <a href="#"><img src="assets/img/user-placeholder-2.png" /></a> -->
-          <a href="#"><img src="{{user.assets.profilePicURL}}" /></a>
+          <a href="#"><img data-ng-src="{{userProfile.assets.profilePicURL}}" /></a>
         </div>
         <div class="info col-xs-10">
           <p>
@@ -133,7 +133,7 @@
                     <div class="user">
                         <div class="user-card">
                             <div class="profile-pic col-xs-2">
-                              <a data-ng-href="#!/users/{{post.user._id}}"><img src="{{post.user.assets.profilePicURL}}" /></a>
+                              <a data-ng-href="#!/users/{{post.user._id}}"><img data-ng-src="{{post.user.assets.profilePicURL}}" /></a>
                             </div>
                             <div class="info col-xs-10">
                               <p>

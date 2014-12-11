@@ -1,16 +1,15 @@
-<div class="nav-drawer">
+<div class="nav-drawer" data-ng-controller="HomeController">
 	<div class="top">
     <a data-ng-href="#" class="user-card bg-white pv-21 relative">
       <div class="profile-pic col-xs-2">
         <span>
-          <img src="assets/img/user-placeholder-2.png" />
+          <img data-ng-src="{{user.assets.profilePicURL}}" />
         </span>
       </div>
       <div class="info col-xs-10">
-        {{ user }}
         <p>
 
-          <span data-ng-href="#" class="name" >{{ user.personal.displayName }}</span><br><span class="job-position">Gerente Gral.</span> en <span class="area">Tottus Atocongo</span>
+          <span data-ng-href="#" class="name" >{{ user.personal.displayName }}</span><br><span class="job-position">{{user.organizational.currentJobPosition}}</span> en <span class="area">{{user.organizational.branch}}</span>
         </p>
       </div>
       <div class="item-go">
