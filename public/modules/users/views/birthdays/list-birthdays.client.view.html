@@ -1,5 +1,5 @@
 <div class="birthdays">
-	<div class="separator bg-gray-light p-14">
+	<div class="separator bg-gray-lighter p-7 uppercase">
 		<span>Cumpleaños del mes</span>
 	</div>
 	<div class="list">
@@ -9,12 +9,15 @@
 					<div class="col-xs-3">
 						<img src="assets/img/img-sq.png" alt="" class="img-thumbnail">
 					</div>
-					<div class="col-xs-8 pv-28">
+					<div class="col-xs-8">
 						<span class="bold text-gray-dark">{{userBirthday.personal.displayName}}</span><br>
 						<span class="small text-gray">Cumple el {{ userBirthday.personal.dateOfBirth | date:'dd/MM' }}</span>
 					</div>
 					<div class="item-go">
 						<i class="icon-arrow-right-filled"></i>
+					</div>
+					<div class="meta">
+						<small class="birthday pinned">Cumpleaños</small>
 					</div>
 				</a>
 			</div>

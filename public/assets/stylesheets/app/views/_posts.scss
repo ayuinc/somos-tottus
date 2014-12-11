@@ -5,6 +5,8 @@
 	border-radius: $border-radius-base;
 	margin-top: $container-fluid;
 	@include box-shadow-default;
+	position: relative;
+	padding-top: $container-fluid * 3;
 	div {
 		@include clearfix;
 	}
@@ -13,6 +15,8 @@
 	}
 	.meta {
 		text-align: right;
+		@include position(absolute, 0 21px null 0);
+		width: 100%;
 		span {
 			display: block;
 			font-size: 10px;
@@ -155,11 +159,10 @@
 	}
 }
 
-.meta {
-	padding: $container-fluid;
-}
-.meta {
-	// text-align: right;
+.meta {	
+	padding: 4px 0;
+	@include position(absolute, null 0 0 14px);
+	width: 100%;
 	span,
 	small {
 		display: block;
@@ -203,6 +206,16 @@
 		&.vacancy.pinned {
 			&:after {
 				background: $brand-vacancies;
+			}
+		}
+		&.birthday {
+			&:after {
+				border: 1px solid $brand-birthdays;
+			}
+		}
+		&.birthday.pinned {
+			&:after {
+				background: $brand-birthdays;
 			}
 		}
 	}
