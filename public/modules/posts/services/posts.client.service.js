@@ -19,6 +19,12 @@ angular.module('posts')
                 return res.data;
             });
         };
+
+        postsPerUser.delete = function(postId) {
+            return $http.delete('/posts/' + postId).then(function(res) {
+                return res.data;
+            });
+        };
         return postsPerUser;
     }   
 ]);

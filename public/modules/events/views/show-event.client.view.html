@@ -2,11 +2,11 @@
 <div class="container-fluid">
     <div class="posts-show-item">
         <div class="meta">
-            <span class="benefit" data-ng-bind="evt.post.category">Beneficios</span>
+            <span class="benefit" data-ng-bind="evt.post.category"></span>
         </div>
         <div class="content-text-placeholder">
             <h3 class="bold mb-0" data-ng-bind="evt.post.name"></h3>
-            <span class="small">Publicado por Tottus Central el {{evt.created}}</span>
+            <span class="small">Publicado por {{evt.post.user.personal.displayName}} el {{evt.created}}</span>
             <p class="pv-7" data-ng-bind="evt.post.detail"></p>
         </div>
         <div data-ng-show="(evt.post.imgFilePath)" class="content-img-placeholder">
@@ -23,7 +23,7 @@
             </div>
             <div class="item item-icon-left">
                 <i class="icon-marker-filled  h3"></i>
-                <span class="text-gray-light">{{evt.eventLocation}}</span>
+                <span class="text-gray-light">{{evt.location}}</span>
             </div>
         </div>
         <ul class="counts-and-share list-unstyled p-14 mb-0">

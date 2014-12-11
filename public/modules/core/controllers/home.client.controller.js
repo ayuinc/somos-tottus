@@ -7,5 +7,8 @@ angular.module('core').controller('HomeController', ['$scope', '$location', 'Aut
         $scope.authentication = Authentication;
 
         if (!$scope.authentication.user) $location.path('/signin');
+
+        $scope.user = $scope.authentication.user;
+        console.log('user', $scope.user);
     }   
 ]);

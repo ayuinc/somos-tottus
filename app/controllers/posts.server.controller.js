@@ -32,11 +32,11 @@ exports.index = function(req, res) {
         .limit(20)
         .populate('comments', 'text')
         .populate('likes')
-        .populate('user', 'personal.displayName assets.profilePicURL')
+        .populate('user', 'personal.displayName assets.profilePicURL organizational.currentJobPosition organizational.branch')
         .exec(function(err, posts) {
             User.populate(posts, {
                 path: 'user',
-                select: 'personal.displayName assets.profilePicURL',
+                select: 'personal.displayName assets.profilePicURL organizational.currentJobPosition organizational.branch',
             }, function(err, data) {
                 if (err) {
                     return res.status(400).send({
