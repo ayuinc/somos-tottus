@@ -6,6 +6,7 @@
 var mongoose = require('mongoose'),
     errorHandler = require('./errors'),
     Like = mongoose.model('Like'),
+    Post = mongoose.model('Post'),
     _ = require('lodash');
 
 /**
@@ -22,7 +23,17 @@ exports.create = function(req, res) {
                 message: errorHandler.getErrorMessage(err)
             });
         } else {
-            res.jsonp(like);
+            Post.findById(like.post, function(err, post) {
+                if(err) {
+                    return res.status(400).send({
+                        message: errorHandler.getErrorMessage(err)
+                    });
+                } else {
+                    post.likes.push(like);
+                    post.save();
+                    return res.jsonp(like);
+                }
+            });
         }
     });
 };

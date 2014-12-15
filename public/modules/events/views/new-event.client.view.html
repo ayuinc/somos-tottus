@@ -1,0 +1,123 @@
+<div data-ng-controller="EventsController" data-ng-init="getCredentials();">
+        <form name="eventForm" data-ng-submit="new()" class="form-custom-full-width" novalidate autocomplete="off" ng-class="{ 'has-error': eventForm.detail.$dirty && eventForm.detail.$invalid }">
+            <div class="content-wrapper bg-white">
+                <div class="form-group">
+                    <label for="eventName">NOMBRE DEL EVENTO</label>
+                    <input type="text" class="form-control" id="eventName" name="eventName" data-ng-model="post.name">
+                </div>
+
+                <div class="form-group">
+                    <label for="eventDetail">DETALLES DEL EVENTO</label>
+                    <textarea data-ng-model="post.detail" name="eventDetail" id="eventDetail" class="form-control" rows="5" placeholder="Escribe aquí..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="eventLocation">UBICACIÓN DEL EVENTO</label>
+                    <input type="text" class="form-control" id="eventLocation" name="eventLocation" data-ng-model="evt.eventLocation" placeholder="Escribe aquí...">
+                </div>
+
+                <div class="form-group">
+                    <label for="eventDay">DÍA Y HORA DE INICIO</label>
+                    <div class="clearfix">
+                        <div class="col-xs-2"><input type="text" name="eventDay" class="form-control" placeholder="DD" data-ng-model="evt.startDay.dayString"></div>
+                        <div class="col-xs-2"><input type="text" class="form-control" placeholder="MM" data-ng-model="evt.startDay.monthString"></div>
+                        <div class="col-xs-3"><input type="text" class="form-control" placeholder="AAAA" data-ng-model="evt.startDay.yearString"></div>
+                        <div class="col-xs-2"><input type="number" class="form-control" placeholder="HH" data-ng-model="evt.startDay.hourString"></div>
+                        <div class="col-xs-2"><input type="number" class="form-control" placeholder="MM" data-ng-model="evt.startDay.minuteString"></div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="eventDay">DÍA Y HORA DE FIN</label>
+                    <div class="clearfix">
+                        <div class="col-xs-2"><input type="text" class="form-control" placeholder="DD" data-ng-model="evt.endDay.dayString"></div>
+                        <div class="col-xs-2"><input type="text" class="form-control" placeholder="MM" data-ng-model="evt.endDay.monthString"></div>
+                        <div class="col-xs-3"><input type="text" class="form-control" placeholder="AAAA" data-ng-model="evt.endDay.yearString"></div>
+                        <div class="col-xs-2"><input type="number" class="form-control" placeholder="HH" data-ng-model="evt.endDay.hourString"></div>
+                        <div class="col-xs-2"><input type="number" class="form-control" placeholder="MM" data-ng-model="evt.endDay.minuteString"></div>
+                    </div>
+                </div>
+
+                <div class="form-group upload-img-placeholder">
+                    <div data-ng-repeat="item in uploader.queue">
+                        <div data-ng-show="uploader.isHTML5" data-ng-thumb="{ file: item._file, height: 100 }"></div>
+
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: {{item.progress}}%;">
+                                <span class="sr-only">{{item.progress}}% Completado</span>
+                            </div>
+                        </div>
+
+                        <a href="#" data-ng-click="item.remove()">Quitar</a>
+                    </div>
+                </div>
+
+                <!-- <div class="form-group">
+                    <label for="eventDay">DÍA Y HORA DEL INICIO</label>
+                    <div class="dropdown">
+                        <a class="dropdown-toggle" id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="">
+                            Selecciona una fecha
+                        </a>
+                        <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                            <datetimepicker data-ng-model="evt.startDay"
+                                            data-datetimepicker-config="{ dropdownSelector: '.dropdown-toggle', minView: 'hour' }"></datetimepicker>
+                        </ul>
+                        Selected Date: {{ evt.startDay | date:'yyyy-MM-dd HH:ss a' }}
+                    </div>
+                </div> -->
+
+                <!-- <div class="form-group">
+                    <label for="eventDay">DÍA Y HORA DEL INICIO</label>
+                    <div class="dropdown">
+                        <a class="dropdown-toggle" id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="">
+                            Selecciona una fecha
+                        </a>
+                        <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                            <datetimepicker data-ng-model="evt.endDay"
+                                            data-datetimepicker-config="{ dropdownSelector: '.dropdown-toggle', minView: 'hour' }"></datetimepicker>
+                        </ul>
+                        Selected Date: {{ evt.endDay | date:'yyyy-MM-dd HH:ss a' }}
+                    </div>
+                </div> -->
+
+
+                <!-- <div class="form-group">
+                    <label for="eventStartHour">HORA DE INICIO</label>
+                    <input type="text" class="form-control" id="eventStartHour" name="eventStartHour" data-ng-model="evt.day" placeholder="Escribe aquí...">
+                </div> -->
+
+                <!-- <div class="form-group">
+                    <label for="eventEndHour">HORA DE FIN</label>
+                    <input type="text" class="form-control" id="eventEndHour" name="eventEndHour" data-ng-model="evt.day" placeholder="Escribe aquí...">
+                </div> -->
+
+                <div class="form-group row">
+                    <div class="col-xs-5">
+                        <div class="upload-field">
+                            <a href="#"><i class="icon-picture"></i><small class="h6 ml-14">Cargar imagen</small></a>
+                            <input type="file" nv-file-select uploader="uploader" class="upload-input" />
+                        </div>
+                    </div>
+                    <div class="col-xs-7 text-right">
+                        <input type="submit" class="btn btn-default btn-sm" value="Crear Evento">
+                    </div>
+                </div>
+            </div>
+
+            <!-- <div class="form-group">
+                <input data-ng-model="post.name" type="text" class="form-control" placeholder="Nombre de evento" autofocus>
+            </div>
+
+            <div class="form-group">
+                <textarea data-ng-model="post.detail" id="detail" class="form-control" rows="5" placeholder="Detalles del evento"></textarea>
+            </div>
+
+            <div class="form-group">
+                <input data-ng-model="evt.location" type="text" class="form-control" placeholder="Nombre de evento" autofocus>
+            </div>
+
+            <div class="form-group">
+                <input data-ng-model="evt.day" type="text" class="form-control" placeholder="Nombre de evento" autofocus>
+            </div> -->
+        </form>
+</div>

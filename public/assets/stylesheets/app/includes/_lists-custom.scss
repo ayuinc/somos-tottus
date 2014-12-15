@@ -1,0 +1,113 @@
+.list {
+	position: relative;
+	.item {
+		display: block;
+		padding: ($grid-gutter-width + 4) $container-fluid;
+		@include clearfix;
+		border-bottom: 1px solid $gray-lighter;
+		position: relative;
+		span {
+			line-height: 0;
+		}
+		&.item-icon-left {
+			i {
+				margin-right: $container-fluid * 2;
+			}
+		}
+		&.item-thumbnail-left {
+			> div {
+				img {
+					// width: 100%;
+					max-width: 83px;
+					max-height: 83px;
+				}
+			}
+		}
+		.item-go {
+			position: absolute;
+			width: 35px;
+			height: 100%;
+			right: 0;
+			top: 0;
+			text-align: center;
+			@include display(flex);
+			@include flex-direction(column);
+			@include justify-content(center);
+			@include align-items(center);
+		}
+	}
+	.meta {	
+		padding: 4px 0;
+		@include position(absolute, null 0 0 14px);
+		width: 100%;
+		span,
+		small {
+			display: block;
+			font-size: 10px;
+			color: $gray;
+			&:after {
+				content: " ";
+				width: 7px;
+				height: 7px;
+				border-radius: 50%;
+				display: inline-block;
+				// float: right;
+				margin-top: 4px;
+				margin-left: 7px;
+			}
+			&.benefit {
+				&:after {
+					border: 1px solid $brand-primary;
+				}
+			}
+			&.benefit.pinned {
+				&:after {
+					background: $brand-primary;
+				}
+			}
+			&.event {
+				&:after {
+					border: 1px solid $brand-events;
+				}
+			}
+			&.event.pinned {
+				&:after {
+					background: $brand-events;
+				}
+			}
+			&.vacancy {
+				&:after {
+					border: 1px solid $brand-vacancies;
+				}
+			}
+			&.vacancy.pinned {
+				&:after {
+					background: $brand-vacancies;
+				}
+			}
+			&.birthday {
+				&:after {
+					border: 1px solid $brand-birthdays;
+				}
+			}
+			&.birthday.pinned {
+				&:after {
+					background: $brand-birthdays;
+				}
+			}
+		}
+	}
+}
+
+.item-go {
+	position: absolute;
+	width: 35px;
+	height: 100%;
+	right: 0;
+	top: 0;
+	text-align: center;
+	@include display(flex);
+	@include flex-direction(column);
+	@include justify-content(center);
+	@include align-items(center);
+}

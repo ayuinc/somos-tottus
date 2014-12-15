@@ -41,13 +41,13 @@ var UserSchema = new Schema({
         trim: true,
         unique: true,
         default: '',
-        validate: [validateLocalStrategyProperty, 'Please fill in your email'],
-        match: [/.+\@.+\..+/, 'Please fill a valid email address']
+        validate: [validateLocalStrategyProperty, 'Por favor, ingrese su email'],
+        match: [/.+\@.+\..+/, 'Por favor, ingrese una dirección de email válida']
     },
     username: {
         type: String,
-        unique: 'testing error message',
-        required: 'Please fill in a username',
+        unique: 'El nombre de usuario ya existe',
+        required: 'Por favor, ingrese un nombre de usuario',
         trim: true
     },
     isRegistered: {
@@ -77,7 +77,7 @@ var UserSchema = new Schema({
     password: {
         type: String,
         default: '',
-        validate: [validateLocalStrategyPassword, 'Password should be longer']
+        validate: [validateLocalStrategyPassword, 'El password debe ser más largo']
     },
     salt: {
         type: String
@@ -99,8 +99,7 @@ var UserSchema = new Schema({
         type: Date
     },
     created: {
-        type: Date,
-        default: Date.now
+        type: Date
     },
     /* For reset password */
     resetPasswordToken: {
@@ -113,7 +112,7 @@ var UserSchema = new Schema({
         DNI: {
             type: String,
             trim: true,
-            //required: true,
+            required: 'Por favor, ingrese su DNI',
             default: ''
         },
         displayName: {
@@ -124,18 +123,19 @@ var UserSchema = new Schema({
         firstName: {
             type: String,
             trim: true,
-            required: true,
+            required: 'Por favor, ingrese su nombre',
             default: ''
         },
         lastName: {
             type: String,
             trim: true,
-            //required: true,
+            required: 'Por favor, ingrese su apellido',
             default: ''
         },
         dateOfBirth: {
             type: String,
             trim: true,
+            required: 'Por favor, ingrese su fecha de nacimiento',
             default: null
         },
         educationLevel: {
@@ -162,7 +162,7 @@ var UserSchema = new Schema({
             type: String,
             trim: true,
             //required: true,
-            default: ''
+            default: 'assets/img/user-silhouette.png'
         }
     },
     address: {
@@ -260,9 +260,19 @@ var UserSchema = new Schema({
 });
 
 /**
- * Hook a pre save method to hash the password
+ * Hook a pre save method to save created and updated fields
  */
 UserSchema.pre('save', function(next) {
+    var now = new Date();
+    this.updated = now;
+    if (!this.created) this.created = now;
+    next();
+});
+
+/**
+ * Hook a pre save method to hash the password
+ */
+UserSchema.pre('save', function(next) {    
     if (this.password && this.password.length > 6) {
         this.salt = new Buffer(crypto.randomBytes(16).toString('base64'), 'base64');
         this.password = this.hashPassword(this.password);

@@ -23,11 +23,10 @@ exports.signup = function(req, res) {
 	// Add missing user fields
 	user.provider = 'local';
 	user.personal.displayName = user.personal.firstName + ' ' + user.personal.lastName;
-	console.log(user.personal.displayName);
+
 	// Then save the user 
 	user.save(function(err) {
 		if (err) {
-			console.log(err);
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
 			});
@@ -53,7 +52,9 @@ exports.signup = function(req, res) {
 exports.signin = function(req, res, next) {
 	passport.authenticate('local', function(err, user, info) {
 		if (err || !user) {
-			res.status(400).send(info);
+			res.status(400).send({
+				message: 'Por favor, ingrese datos válidos'
+			});
 		} else {
 			// Remove sensitive data before login
 			user.password = undefined;

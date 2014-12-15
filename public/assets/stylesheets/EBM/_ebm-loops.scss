@@ -1,26 +1,51 @@
-// Box Model abbreviations list
-$box-model-abbr: p, pt, pr, pb, pl, m, mt, mr, mb, ml;
-$box-model-sides: padding, padding-top, padding-right, padding-bottom, padding-left, margin, margin-top, margin-right, margin-bottom, margin-left;
+/* 
 
-@for $i from 0 to 11 {
-  @for $j from 1 to length($box-model-sides) {
-    .#{nth($box-model-abbr, $j)}-#{$i*$times} {
-      // For <IE8
-      #{nth($box-model-sides, $j)}: ($i*$times) + px !important;
-      // REMs for modern browsers
-      @if $px-to-rems == true {
-        #{nth($box-model-sides, $j)}: rem($i*$times) !important;
-      }
-    }
-    @media #{$xs-only} {
-      .#{nth($box-model-abbr, $j)}-#{$i*$times}-mob {
-        // For <IE8
-        #{nth($box-model-sides, $j)}: ($i*$times) + px !important;
-        // REMs for modern browsers
-        @if $px-to-rems == true {
-          #{nth($box-model-sides, $j)}: rem($i*$times) !important;
-        }
-      }
-    }
-  }
-}
+  Description: EBM or Easy Box Model allows you to easily edit your UI box model margins and paddings 
+  through the browser inspector "elements" tab and make your elements fit on their parent container without
+  recurring to your CSS too often.
+  
+  Author: @MadeByGus
+  Version: 0.5
+  GitHub: https://github.com/netpoe/EBM.git
+
+*/
+
+// Set the global measure (range: 1 - 9)
+$times: 7; 
+
+// Define the em-base for rems to px conversion
+$px-to-rems: true;    // True if you want them on rems 
+$em-base: 14px; 
+
+// Include EBM in "%" units?
+$percentage: true;
+
+// Include and determine border radius:
+$rounded-borders: true;  // If no bootstrap
+
+@import 
+  "helpers/times-range",
+  "helpers/strip-units",
+  "helpers/px-to-rems",
+  "helpers/prefixer",
+  "helpers/clearfix",
+  "helpers/list-unstyled",
+  "helpers/vertical-align",
+  "helpers/media-queries";
+  
+@import 
+  "easy-box-model",
+  "ebm-loops-small",
+  "min-heights",
+  // "min-heights_deprecated",
+  "box-shadow",
+  "horizontal-rules",
+  "borders",
+  "color-control",
+  "z-index",
+  "positions",
+  "flexbox", 
+  "displays",
+  "gbo",
+  "grid-lists",
+  "containers-custom";

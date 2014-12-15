@@ -1,0 +1,180 @@
+<div>
+  <div class="container pt-14" data-ng-controller="SettingsController" data-ng-init="showUserProfile();">
+    <div class="panel panel-tabs">
+      <a href="#" class="edit">Editar</a>
+      <div class="user-card">
+        <div class="profile-pic col-xs-2">
+          <a href="#"><img src="assets/img/user-placeholder-2.png" /></a>
+        </div>
+        <div class="info col-xs-10">
+          <p>
+            <a href="#" class="name">{{ user.personal.displayName }}</a><br> <span class="job-position">{{user.organizational.currentJobPosition}}</span> en <span class="area">{{user.organizational.branch}}</span>
+          </p>
+        </div>
+      </div>
+      <!-- {{user}} --> 
+      <div class="tabs p-ch-0">
+        <div class="col-xs-6">
+          <a href="#" data-ng-click="switchPublicProfile('posts')" class="btn btn-tabs {{showProfile.userPosts}}">Publicaciones</a>
+        </div>
+        <div class="col-xs-6">
+          <a href="#" data-ng-click="switchPublicProfile('profile')" class="btn btn-tabs {{showProfile.personalInfo}}">Información</a>
+        </div>
+      </div>
+    </div>
+    <!-- Inicio de sección profile -->
+    <div data-ng-show="showProfile.statePersonalInfo">
+      <div class="panel panel-highlight">
+        <a href="#" class="edit" data-ng-click="personalInfo = !personalInfo"><span data-ng-show="personalInfo" class="text-danger">Cancelar</span><span data-ng-show="!personalInfo">Editar</span></a>
+        <div class="p-14">
+          <h3 class="panel-title">Información personal</h3>
+          <div class="panel-row">
+            <label>Nombre de usuario: <a href="#" class="edit" data-ng-show="personalInfo">Editar</a></label>
+            <span>{{user.username}}</span>
+          </div>
+          <div class="panel-row">
+            <label>Correo electrónico: <a href="#" class="edit" data-ng-show="personalInfo">Editar</a></label>
+            <span>{{user.email}}</span>
+          </div>
+          <div class="panel-row">
+            <label for="DNI">DNI: <a href="#" class="edit" data-ng-show="personalInfo">Editar</a></label>
+            <span>{{user.personal.DNI}}</span>
+          </div>
+          <div class="panel-row">
+            <label>¿Cuentas con Carnet CONADIS?: <a href="#" class="edit" data-ng-show="personalInfo">Editar</a></label>
+            <span>{{user.personal.carnetCONADIS}}</span>
+          </div>
+          <div class="panel-row">
+            <label for="dateOfBirth">Cumpleaños: <a href="#" class="edit" data-ng-show="personalInfo">Editar</a></label>
+            <span>{{user.personal.dateOfBirth | date: 'd/M/yyyy'}}</span>
+          </div>
+        </div>
+      </div>
+      <div class="panel panel-highlight">
+        <a href="#" class="edit" data-ng-click="jobInfo = !jobInfo"><span data-ng-show="jobInfo" class="text-danger">Cancelar</span><span data-ng-show="!jobInfo">Editar</span></a>
+        <div class="p-14">
+          <h3 class="panel-title">Información laboral</h3>
+          <div class="panel-row">
+            <label for="currentJobPosition">Cargo Actual: <a href="#" class="edit" data-ng-show="jobInfo">Editar</a></label>
+            <span>{{user.organizational.currentJobPosition}}</span>
+          </div>
+          <div class="panel-row">
+            <label for="area">Sección: <a href="#" class="edit" data-ng-show="jobInfo">Editar</a></label>
+            <span>{{user.organizational.area}}</span>
+          </div>
+          <div class="panel-row">
+            <label for="branch">Unidad / Tienda: <a href="#" class="edit" data-ng-show="jobInfo">Editar</a></label>
+            <span>{{user.organizational.branch}}</span>
+          </div>
+          <div class="panel-row">
+            <label for="branchId">Número de Unidad: <a href="#" class="edit" data-ng-show="jobInfo">Editar</a></label>
+            <span>{{user.organizational.branchId}}</span>
+          </div>
+          <div class="panel-row">
+            <label for="jobType">Modalidad de Trabajo: <a href="#" class="edit" data-ng-show="jobInfo">Editar</a></label>
+            <span>{{user.organizational.jobType}}</span>
+          </div>
+        </div>
+      </div>
+      <div class="panel panel-highlight">
+        <a href="#" class="edit" data-ng-click="contactInfo = !contactInfo"><span data-ng-show="contactInfo" class="text-danger">Cancelar</span><span data-ng-show="!contactInfo">Editar</span></a>
+        <div class="p-14">
+          <h3 class="panel-title">Información de contacto</h3>
+          <div class="panel-row">
+            <label for="address">Dirección: <a href="#" class="edit" data-ng-show="contactInfo">Editar</a></label>
+            <span>{{user.address.address}}</span>
+          </div>
+          <div class="panel-row">
+            <label for="city">Ciudad: <a href="#" class="edit" data-ng-show="contactInfo">Editar</a></label>
+            <span>{{user.address.city}}</span>
+          </div>
+          <div class="panel-row">
+            <label for="phoneNumTottus">Celular Tottus: <a href="#" class="edit" data-ng-show="contactInfo">Editar</a></label>
+            <span>{{user.organizational.phoneNumTottus}}</span>
+          </div>
+          <div class="panel-row">
+            <label for="phoneNumHome">Teléfono de domicilio: <a href="#" class="edit" data-ng-show="contactInfo">Editar</a></label>
+            <span>{{user.contact.phoneNumHome}}</span>
+          </div>
+        </div>
+      </div>
+      <div class="panel panel-highlight">
+        <a href="#" class="edit" data-ng-click="extraInfo = !extraInfo"><span data-ng-show="extraInfo" class="text-danger">Cancelar</span><span data-ng-show="!extraInfo">Editar</span></a>
+        <div class="p-14">
+          <h3 class="panel-title">Información adicional</h3>
+          <div class="panel-row">
+            <label for="educationLevel">Nivel de instrucción: <a href="#" class="edit" data-ng-show="extraInfo">Editar</a></label>
+            <span>{{user.personal.educationLevel}}</span>
+          </div>
+          <div class="panel-row">
+            <label for="maritalStatus">Estado civil: <a href="#" class="edit" data-ng-show="extraInfo">Editar</a></label>
+            <span>{{user.demographic.maritalStatus}}</span>
+          </div>
+          <div class="panel-row">
+            <label for="children">Número de Hijos: <a href="#" class="edit" data-ng-show="extraInfo">Editar</a></label>
+            <span>{{user.demographic.children}}</span>
+          </div>
+          <div class="panel-row">
+            <label for="interests">Intereses o Hobbies: <a href="#" class="edit" data-ng-show="extraInfo">Editar</a></label>
+            <span>{{user.personal.interests}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Fin de sección profile-->
+    <!-- Inicio de sección publicaciones -->
+    <div data-ng-show="showProfile.statePosts">
+      <div class="container-fluid">
+        <div class="clearfix">
+          <section data-ng-controller="PostsController">
+            <div data-ng-repeat="post in posts" ng-class-odd="odd">
+                <div class="posts-index-item">
+                    <div class="meta">
+                        <span class="benefit">Beneficios</span>
+                    </div>
+                    <div class="user">
+                        <div class="user-card">
+                            <div class="profile-pic col-xs-2">
+                              <a data-ng-href="#!/users/{{post.user._id}}"><img src="assets/img/user-placeholder-2.png" /></a>
+                            </div>
+                            <div class="info col-xs-10">
+                              <p>
+                                <a data-ng-href="#!/users/{{post.user._id}}" class="name" >{{ post.user.personal.displayName }}</a><br> <span class="job-position">Gerente Gral.</span> en <span class="area">Tottus Atocongo</span><br><span data-ng-bind="post.created | date:'mediumDate'"></span>
+                              </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="content-text-placeholder">
+                        <a data-ng-href="#!/posts/{{post._id}}" data-ng-bind="post.detail"></a>
+                        <!-- <a data-ng-href="#!/posts/{{post._id}}" class="see-more">Ver más..</a> -->
+                    </div>
+                    <div data-ng-show="(post.imgFilePath | imageFilter)" class="content-img-placeholder">
+                        <a data-ng-href="#!/posts/{{post._id}}"><img lazy-src="{{post.imgFilePath}}" data-ng-src="{{post.imgFilePath}}" /></a>
+                    </div>
+                    <ul class="counts-and-share list-unstyled">
+                        <li class="counts-likes"><a href="#!">{{post.likes.length}} Me Gusta</a></li>
+                        <li class="counts-comments"><a href="#!">{{post.comments.length}} Comentarios</a></li>
+                        <!-- <li class="share"><a href="#!">Compartir</a></li> -->
+                    </ul>
+                    <div class="actions">
+                        <div ng-cloak class="col-xs-6 data-ng-cloak">
+                            <div ng-if="post.ngLike == false">
+                                <a ng-click="like(post)" class="btn btn-action active">Me Gusta</a>
+                            </div>
+                            <div ng-if="post.ngLike == true">
+                                <a class="btn btn-action ">Te Gusta</a>
+                            </div>
+                        </div>
+                        <div class="col-xs-6">
+                            <a href="#!/posts/{{post._id}}/comments/new" class="btn btn-action active">Comentar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+    <!-- Fin de sección publicaciones-->
+  </div>
+</div>

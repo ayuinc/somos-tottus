@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('users').controller('AuthenticationController', ['$scope', '$http', '$location', 'Authentication',
-	function($scope, $http, $location, Authentication) {
+	function($scope, $http, $location, Authentication) {		
 		$scope.authentication = Authentication;
 
 		// If user is signed in then redirect back home
@@ -25,7 +25,13 @@ angular.module('users').controller('AuthenticationController', ['$scope', '$http
 				$scope.authentication.user = response;
 
 				// And redirect to the index page
-				$location.path('/');
+				if($scope.authentication.user.isRegistered){
+					//$location.path('/');
+					$location.path('/posts'); //ruta provicional para la presentacion con Hana
+				}
+				else{
+					$location.path('/settings/first-change-password');
+				}
 			}).error(function(response) {
 				$scope.error = response.message;
 			});
@@ -39,7 +45,7 @@ angular.module('users').controller('AuthenticationController', ['$scope', '$http
 					$location.path('/');
 				}
 				else{
-					$location.path('/settings/first_change_password');
+					$location.path('/settings/first-change-password');
 				}
 			}).error(function(response) {
 				$scope.error = response.message;

@@ -1,4 +1,5 @@
 // RESPONSIVE FONT RESIZE
+$em-base: $font-size-base;
 html {
   font-size: $font-size-base;
   @media #{$sm-only} {
@@ -33,14 +34,17 @@ ul      { font-size: rem($font-size-base);}
 
 // TEXT IN FORMS
 label {
-  text-transform: uppercase;
-  @include medium;
+  // text-transform: capitalize;
+  @include light;
   color: $gray-light;
 }
 
 // ANCHORS
 a {
-  &:hover {
+  &:hover,
+  &:focus,
+  &:active
+  &.active {
     text-decoration: none;
   }
 }

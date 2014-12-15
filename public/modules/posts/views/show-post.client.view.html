@@ -1,34 +1,77 @@
-<section data-ng-controller="PostsController" data-ng-init="findOne()">
-    <div class="pull-right" data-ng-show="authentication.user._id == post.user._id">
-        <a class="btn btn-primary" data-ng-click="remove();">
-            <i class="glyphicon glyphicon-trash"></i>
-        </a>
-    </div>
-    <small>
-        <em class="text-muted">
-            Posted on
-            <span data-ng-bind="post.created | date:'mediumDate'"></span>
-            by
-            <span data-ng-bind="post.user.personal.displayName"></span>
-        </em>
-    </small>
-    <p class="lead" data-ng-bind="post.detail"></p>
-    
-    <form name="commentForm" data-ng-submit="comment()" class="signin form-horizontal" novalidate autocomplete="off">
-        <fieldset>
-            <div class="form-group" ng-class="{ 'has-error': commentForm.detail.$dirty && commentForm.detail.$invalid }">
-                <label class="control-label" for="detail">Detail</label>
-                <div class="controls">
-                    <textarea name="text" data-ng-model="text" id="text" class="form-control" cols="30" rows="10" placeholder="text"></textarea>
+<div>
+    <div class="container-fluid">
+        <div class="clearfix">
+            <section data-ng-controller="PostsController" data-ng-init="findOne();">
+                <div class="posts-show-item">
+                    <div class="meta">
+                        <a data-ng-if="authentication.user._id == post.user._id" confirm-click="¿Estás seguro de querer eliminar el post?" confirmed-click="remove()">Eliminar</a>
+                        <span class="benefit" data-ng-bind="post.category"></span>
+                    </div>
+                    <div class="user">
+                        <div class="user-card">
+                            <div class="profile-pic col-xs-2">
+                              <a data-ng-href="#!/users/{{post.user._id}}">
+                                <img src="{{post.user.assets.profilePicURL}}" />
+                                </a>
+                            </div>
+                            <div class="info col-xs-10">
+                              <p>
+                                <a data-ng-href="#!/users/{{post.user._id}}" class="name" >{{ post.user.personal.displayName }}</a><br> <span class="job-position">Gerente Gral.</span> en <span class="area">Tottus Atocongo</span><br><span data-ng-bind="post.created | amCalendar"></span>
+                              </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="content-text-placeholder">
+                        <p data-ng-bind="post.detail"></p>
+                    </div>
+                    <div data-ng-show="(post.imgFilePath | imageFilter)" class="content-img-placeholder">
+                        <a href="#!"><img data-ng-src="{{post.imgFilePath}}" /></a>
+                    </div>
+                    <ul class="counts-and-share list-unstyled">
+                        <li class="counts-likes"><a>{{post.likes.length}} Me Gusta</a></li>
+                        <li class="counts-comments"><a>{{post.comments.length}} Comentarios</a></li>
+                        <!-- <li class="share"><a href="#">Compartir</a></li> -->
+                    </ul>
+                    <div class="actions">
+                        <div ng-cloak class="col-xs-6 data-ng-cloak">
+                            <div ng-if="post.ngLike == false">
+                                <a data-ng-click="like(post)" class="btn btn-action active">Me Gusta</a>
+                            </div>
+                            <div data-ng-if="post.ngLike == true">
+                                <a class="btn btn-action ">Te Gusta</a>
+                            </div>
+                        </div>
+                        <div class="col-xs-6">
+                            <a data-ng-href="#!/posts/{{post._id}}/comments/new" class="btn btn-action active">Comentar</a>
+                        </div>
+                    </div>
+
                 </div>
-            </div>
-            
-            <div class="form-group">
-                <input type="submit" class="btn btn-default">
-            </div>
-            <div data-ng-show="error" class="text-danger">
-                <strong data-ng-bind="error"></strong>
-            </div>
-        </fieldset>
-    </form>
-</section>
+                <div class="post-show-comments">
+                    <div class="panel">
+                        <h4 class="panel-title">Comentarios</h4>
+                        <hr class="m-0">
+                        <ul data-ng-repeat="comment in post.comments">
+                            <li>
+                                <div class="profile-pic col-xs-2">
+                                    <a data-ng-href="#!/users/{{post.user._id}}"><!--<img src="assets/img/user-placeholder-2.png" />--><img src="{{comment.user.assets.profilePicURL}}" /></a>
+                                </div>
+                                <div class="comment-content col-xs-10">
+                                    <p><a data-ng-href="#!/users/{{comment.user._id}}" >{{ comment.user.personal.displayName }}</a> {{ comment.text }}</p>
+                                    <span am-time-ago="comment.created" class="text-gray-light"></span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- ESTE TEXTAREA debe ir en su propia vista: new-comment.client... -->
+                <!-- <div class="form-group" ng-class="{ 'has-error': commentForm.text.$dirty && commentForm.text.$invalid }">
+                    <label class="control-label" for="text">Text</label>
+                    <div class="controls">
+                        <textarea data-ng-enter="comment()" name="text" data-ng-model="text" id="text" class="form-control" cols="30" rows="10" placeholder="Enter a new comment..."></textarea>
+                    </div>
+                </div>   -->          
+            </section>
+        </div>
+    </div>
+</div>

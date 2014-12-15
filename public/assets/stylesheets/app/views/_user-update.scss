@@ -1,0 +1,61 @@
+.toggle-switch {
+	padding-top: ($container-fluid * 2) !important;
+	padding-bottom: ($container-fluid * 2) !important;
+	@include clearfix;
+	.label-name {
+		float: left;
+		padding-top: $container-fluid;
+	}
+	.toggle {
+		float: right;
+	}
+	input[type="checkbox"] {
+		display: none;
+	}
+	label {
+		position: relative;
+		background: $gray-lighter;
+		display: block;
+		width: 56px;
+		height: 30px;
+		border-radius: 50px;
+		border: 1px solid $gray-light;
+		.toggle-handle {
+			position: absolute;
+			height: 28px;
+			width: 28px;
+			background: white;
+			border-radius: 50%;
+			border: 1px solid $gray-light;	
+			@include transition(all 0.2s ease-in-out);
+			z-index: 30;
+		}
+		&:before,
+		&:after {
+			position: absolute;
+			font-size: 9px;
+			padding: 9px;
+		}
+		&:after {
+			content: "No";
+			right: 0;
+		}
+		&:before {
+			content: "Si";
+			color: white;
+		}
+	}
+	input:checked {
+		~ label {
+			background: $brand-primary;
+			@include transition(all 0.2s ease-in-out);
+			.toggle-handle {
+				@include transform(translateX(100%));
+				@include transition(all 0.2s ease-in-out);
+			}
+			&:after {
+				display: none;
+			}
+		}
+	}
+}

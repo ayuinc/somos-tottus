@@ -11,22 +11,28 @@
     border: 1px solid white;
     text-transform: capitalize;
 	}
+  .form-control {
+    &:focus {
+      @include box-shadow(none);
+    }
+  }
 }
 
 .form-custom-full-width {
   label {
-    font-size: 12px;
-    font-size: rem(12);
+    // font-size: 14px;
+    // font-size: rem(14);
     margin: 0;
   }
   input[type="text"],
   input[type="password"],
   textarea {
     background: white;
-    border-bottom: 1px solid darken(white, 7%);
+    // border-bottom: 1px solid darken(white, 7%);
     border-top: none;
     border-left: none;
     border-right: none;
+    border-bottom: none;
     outline: none;
     @include box-shadow(none);
     border-radius: 0px;
@@ -58,6 +64,11 @@
       .help-block {
         color: $brand-danger;
       }
+    }
+  }
+  .form-control {
+    &:focus {
+      @include box-shadow(none);
     }
   }
 }

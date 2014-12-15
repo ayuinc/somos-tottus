@@ -1,18 +1,24 @@
 // Box Shadows
+// Include and determine box shadows:
+$box-shadows: true;
+
+$x-axis: 0px;
+$y-axis: 3px;
+$blur: 3px;
+$size: 0px;
+$color: #313233;
+$alpha: 0.15;
+
 @mixin box-shadow($shadow...) {
-	@if $box-shadows == true {
-	  -webkit-box-shadow: $shadow; 
-	  -moz-box-shadow: $shadow; 
-	  box-shadow: $shadow;
-	}
+  -webkit-box-shadow: $shadow; 
+  -moz-box-shadow: $shadow; 
+  box-shadow: $shadow;
 }
 .box-shadow {
   @include box-shadow($x-axis $y-axis $blur $size rgba($color, $alpha));
 }
 
 @mixin box-shadow-default {
-	@if $box-shadows == true {
-	  @include box-shadow($x-axis $y-axis $blur $size rgba($color, $alpha));
-	}
+	@include box-shadow($x-axis $y-axis $blur $size rgba($color, $alpha));
 }
 // END:BOX-SHADOW

@@ -4,7 +4,9 @@
  * Module dependencies.
  */
 var mongoose = require('mongoose'),
-    errorHandler = require('./errors'),
+    errorHandler = require('./errors.server.controller'),
+    Comment = mongoose.model('Comment'),
+    User = mongoose.model('User'),
     Post = mongoose.model('Post'),
     _ = require('lodash');
 
@@ -24,15 +26,31 @@ exports.create = function(req, res) {
 };
 
 exports.index = function(req, res) {
-    Post.find().sort('-created').populate('user', 'personal.displayName').exec(function(err, posts) {
-        if (err) {
-            return res.status(400).send({
-                message: errorHandler.getErrorMessage(err)
-            });
-        } else {
+    Post.find()
+        .where('category').equals('Publicación')
+        .sort('-created')
+        .limit(30)
+        .populate('likes')
+        .populate('user', 'personal.displayName assets.profilePicURL organizational.currentJobPosition organizational.branch')
+        .exec(function(err, posts) {
+            if (err) {
+                return res.status(400).send({
+                    message: errorHandler.getErrorMessage(err)
+                });
+            }
             res.jsonp(posts);
-        }
-    });
+            // User.populate(posts, {
+            //     path: 'user',
+            //     select: 'personal.displayName assets.profilePicURL organizational.currentJobPosition organizational.branch',
+            // }, function(err, data) {
+            //     if (err) {
+            //         return res.status(400).send({
+            //             message: errorHandler.getErrorMessage(err)
+            //         });
+            //     }
+            //     res.jsonp(data);
+            // });
+        });
 };
 
 exports.show = function(req, res) {
@@ -47,7 +65,8 @@ exports.update = function(req, res) {
     post.save(function (err) {
         if(err) {
             return res.status(400).send({
-                message: errorHandler.getErrorMessage(err)
+                message: errorHandler.getErrorMessage(err),
+                error: err
             });
         } else {
             res.jsonp(post);
@@ -70,18 +89,36 @@ exports.delete = function(req, res) {
 };
 
 exports.postByID = function(req, res, next, id) {
-    Post.findById(id).populate('user', 'personal.displayName').exec(function(err, post) {
-        if(err) return next(err);
-        if(!post) return next(new Error('Error leyendo post ' + id));
-        req.post = post;
-        next();
-    });
+    Post.findById(id)
+        .populate('user', 'personal.displayName assets.profilePicURL')
+        .populate('comments')
+        .populate('likes')
+        .exec(function(err, post) {
+            if(err) return next(err);
+            if(!post) return next(new Error('Error leyendo post ' + id));
+
+            Post.populate(post, {
+                path: 'comments.user',
+                select: 'personal.displayName assets.profilePicURL',
+                model: 'User'
+            }, function(err, data) {
+                if(err) return next(err);
+
+                req.post = data;
+                next();
+            });
+
+            // req.post = post;
+            // next();
+        });
 };
 
 exports.hasAuthorization = function(req, res, next) {
     if (req.post.user.id !== req.user.id) {
         return res.status(403).send({
-            message: 'Usuario no autorizado'
+            message: 'Usuario no autorizado',
+            reqPostUserId: req.post.user.id,
+            reqUserId: req.user.id
         });
     }
     next();

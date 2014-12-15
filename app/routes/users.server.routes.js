@@ -12,7 +12,10 @@ module.exports = function(app) {
 	// Setting up the users profile api
 	app.route('/users').get(users.list);
 	app.route('/users').put(users.update);
+	app.route('/users/birthdays').get(users.birthdaysPerUser); // cumpleaños por usuarios
 	app.route('/users/me').get(users.me);
+	app.route('/users/:userId').get(users.show);
+	app.route('/users/:userId/posts').get(users.postsPerUser); // posts por usuarios
 	app.route('/users/accounts').delete(users.removeOAuthProvider);
 
 	// Setting up the users password api
@@ -27,5 +30,6 @@ module.exports = function(app) {
 	app.route('/auth/signout').get(users.signout);
 	
 	// Finish by binding the user middleware
-	app.param('userId', users.userByID);
+	app.param('userId', users.userByID 	);
+	//app.param('user', users.postsPerUser);
 };

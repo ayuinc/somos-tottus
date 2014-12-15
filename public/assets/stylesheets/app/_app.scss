@@ -7,7 +7,8 @@
   // TYPE
   "includes/fonts-custom",
   "includes/type-custom",
-  "includes/icons",
+  "includes/icons-v2",
+  "includes/icons-v3",
   // LAYOUT
   "includes/layout-global",
   // "includes/layout-header",
@@ -18,6 +19,12 @@
   // FORMS
   "includes/forms-custom",
   // "includes/forms-multiuser",
+  // PANELS
+  "includes/panels-custom",
+  // LISTS 
+  "includes/lists-custom",
+  // SEPARATORS
+  "includes/separator",
   // ALERTS
   "includes/alert-mobile",
   // USERS
@@ -25,6 +32,7 @@
   // NAVS
   "includes/nav-view-action-bar",
   "includes/nav-view-indicator",
+  "includes/nav-drawer",
   "includes/nav-subnav-tabs";
 
 // APP Views
@@ -32,7 +40,9 @@
   // VIEW NAME
 
     // POSTS
-    "views/posts-index",
+    "views/posts",
     // USERS
     "views/user-new",
+    "views/user-update",
+    "views/user-profile",
     "views/user-login";
