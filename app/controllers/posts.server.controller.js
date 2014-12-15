@@ -29,22 +29,27 @@ exports.index = function(req, res) {
     Post.find()
         .where('category').equals('Publicación')
         .sort('-created')
-        .limit(20)
-        .populate('comments', 'text')
+        .limit(30)
         .populate('likes')
         .populate('user', 'personal.displayName assets.profilePicURL organizational.currentJobPosition organizational.branch')
         .exec(function(err, posts) {
-            User.populate(posts, {
-                path: 'user',
-                select: 'personal.displayName assets.profilePicURL organizational.currentJobPosition organizational.branch',
-            }, function(err, data) {
-                if (err) {
-                    return res.status(400).send({
-                        message: errorHandler.getErrorMessage(err)
-                    });
-                }
-                res.jsonp(data);
-            });
+            if (err) {
+                return res.status(400).send({
+                    message: errorHandler.getErrorMessage(err)
+                });
+            }
+            res.jsonp(posts);
+            // User.populate(posts, {
+            //     path: 'user',
+            //     select: 'personal.displayName assets.profilePicURL organizational.currentJobPosition organizational.branch',
+            // }, function(err, data) {
+            //     if (err) {
+            //         return res.status(400).send({
+            //             message: errorHandler.getErrorMessage(err)
+            //         });
+            //     }
+            //     res.jsonp(data);
+            // });
         });
 };
 

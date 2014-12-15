@@ -65,8 +65,16 @@ exports.delete = function(req, res) {
  * List of Events
  */
 exports.index = function(req, res) {
-    Evt.find().limit(20)
+    var now = new Date();
+
+    Evt.find({
+            start: { 
+                $gte: now
+            }
+        })
+        .limit(30)
         .populate('post', 'name detail imgFilePath category')
+        .sort('start')
         .exec(function(err, events) {
             if(err) {
                 return res.status(400).send({
