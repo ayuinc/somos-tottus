@@ -16,7 +16,7 @@
                             </div>
                             <div class="info col-xs-10">
                               <p>
-                                <a data-ng-href="#!/users/{{post.user._id}}" class="name" >{{ post.user.personal.displayName }}</a><br> <span class="job-position">Gerente Gral.</span> en <span class="area">Tottus Atocongo</span><br><span data-ng-bind="post.created | amCalendar"></span>
+                                <a data-ng-href="#!/users/{{post.user._id}}" class="name" >{{ post.user.personal.displayName }}</a><br> <span class="job-position">{{post.user.organizational.currentJobPosition}}</span> en <span class="area">{{post.user.organizational.branch}}</span><br><span data-ng-bind="post.created | amCalendar"></span>
                               </p>
                             </div>
                         </div>
@@ -58,7 +58,7 @@
                                 </div>
                                 <div class="comment-content col-xs-10">
                                     <p><a data-ng-href="#!/users/{{comment.user._id}}" >{{ comment.user.personal.displayName }}</a> {{ comment.text }}</p>
-                                    <span am-time-ago="comment.created" class="text-gray-light"></span>
+                                    <span data-ng-bind="comment.created | amCalendar" class="text-gray-light"></span>
                                 </div>
                             </li>
                         </ul>
