@@ -2,6 +2,8 @@
 
 angular.module('core').controller('LayoutController', ['$scope', '$location', 'Authentication', 'Layout', '$anchorScroll',
   function($scope, $location, Authentication, Layout, $anchorScroll) {
+    $scope.authentication = Authentication;
+    console.log('$user', $scope.authentication.user);
     // AUTH PATHS
   	var isAuthPath = {
   		'signin': true,
@@ -30,6 +32,7 @@ angular.module('core').controller('LayoutController', ['$scope', '$location', 'A
         // VIEW ACTION BAR
         $scope.hasNavViewActionBar = navViewActionBar.hasThis;
         if(navViewActionBar.hasThis) {
+          $scope.shouldRender = navViewActionBar.shouldRender($scope.authentication.user);
           $scope.actionButtonText = navViewActionBar.actionButtonText;
           $scope.actionButtonAction = navViewActionBar.actionButtonAction;
           $scope.previousPage = navViewActionBar.previousPage && '#!' + navViewActionBar.previousPage;
