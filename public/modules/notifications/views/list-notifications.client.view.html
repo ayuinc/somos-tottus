@@ -1,0 +1,26 @@
+<section data-ng-controller="NotificationsController" data-ng-init="find()">
+  <div class="benefits">
+    <div class="separator bg-gray-lighter p-7 uppercase">
+      <span>Próximos Notificationes</span>
+    </div>
+    <div class="list">
+      <a data-ng-repeat="ntfcn in notifications" href="#!/notifications/{{ntfcn._id}}" class="item item-thumbnail-left bg-white">
+        <div class="col-xs-3">
+          <!-- <img data-ng-src="{{ntfcn.post.imgFilePath}}" alt="" class="img-thumbnail"> -->
+        </div>
+        <div class="col-xs-8">
+          <span class="bold text-gray-dark" data-ng-bind="ntfcn.post.name"></span><br>
+          <span class="small text-gray">{{ntfcn.post.detail | limitTo: detailLetterLimit}}...</span><br>
+          <small>Inicio: {{ ntfcn.start | date:'yyyy-MM-dd HH:ss a' }}</small><br>
+          <small>Fin: {{ ntfcn.end | date:'yyyy-MM-dd HH:ss a' }}</small>
+        </div>
+        <div class="item-go">
+          <i class="icon-arrow-right-filled"></i>
+        </div>
+        <div class="meta">
+          <small class="notification pinned">Notificationes</small>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>

@@ -1,10 +1,8 @@
-notifications.server.routes.js
-
 'use strict';
 
 module.exports = function(app) {
   var users = require('../../app/controllers/users'),
-      notification = require('../../app/controllers/notifications');
+      notifications = require('../../app/controllers/notifications');
 
   // --------------------backend--------------------
   // route                      verb                method
@@ -21,11 +19,11 @@ module.exports = function(app) {
   // /notification/new          GET                 create on angular
 
 
-  app.route('/notification').get(notification.index);
-  app.route('/notification').post(users.requiresLogin, users.hasAuthorization, notification.create);
-  app.route('/notification/:notificationId').get(notification.show);
-  app.route('/notification/:notificationId').put(users.requiresLogin, notification.hasAuthorization, notification.update);
-  app.route('/notification/:notificationId').delete(users.requiresLogin, notification.hasAuthorization, notification.delete);
+  app.route('/notifications').get(notifications.index);
+  app.route('/notifications').post(users.requiresLogin, notifications.create);
+  app.route('/notifications/:notificationId').get(notifications.show);
+  app.route('/notifications/:notificationId').put(users.requiresLogin, notifications.hasAuthorization, notifications.update);
+  app.route('/notifications/:notificationId').delete(users.requiresLogin, notifications.hasAuthorization, notifications.delete);
 
-  app.param('notificationId', notification.notificationByID);
+  app.param('notificationId', notifications.notificationByID);
 };

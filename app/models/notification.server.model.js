@@ -6,6 +6,7 @@
 var mongoose = require('mongoose'),
   Schema = mongoose.Schema;
 
+
 /**
  * Notification Schema
  */
@@ -15,11 +16,12 @@ var NotificationSchema = new Schema({
     type: Schema.ObjectId,
     ref: 'User'
   },
-  notifications:     {
-    type: Object,
-    required: 'Please fill in a textfield',
-    trim: true
-  },
+  notifications: [{
+      title : String,
+      content : String
+      // created: Date,
+      // updated: Date
+  }],
   updated: {
     type: Date
   },
@@ -27,6 +29,14 @@ var NotificationSchema = new Schema({
     type: Date,
     default: Date.now
   }
+});
+
+NotificationSchema.pre('save', function(next) {
+    var now = new Date();
+    this.updated = now;
+
+    if (!this.created) this.created = now;
+    next();
 });
 
 mongoose.model('Notification', NotificationSchema);
