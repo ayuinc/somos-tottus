@@ -32,7 +32,11 @@ angular.module('core').controller('LayoutController', ['$scope', '$location', 'A
         // VIEW ACTION BAR
         $scope.hasNavViewActionBar = navViewActionBar.hasThis;
         if(navViewActionBar.hasThis) {
-          $scope.shouldRender = navViewActionBar.shouldRender($scope.authentication.user);
+          if(navViewActionBar.shouldRender) {
+            $scope.shouldRender = navViewActionBar.shouldRender($scope.authentication.user) && navViewActionBar.actionButtonText;
+          } else {
+            $scope.shouldRender = navViewActionBar.actionButtonText;
+          }
           $scope.actionButtonText = navViewActionBar.actionButtonText;
           $scope.actionButtonAction = navViewActionBar.actionButtonAction;
           $scope.previousPage = navViewActionBar.previousPage && '#!' + navViewActionBar.previousPage;
