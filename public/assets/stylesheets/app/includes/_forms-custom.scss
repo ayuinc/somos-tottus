@@ -26,6 +26,8 @@
   }
   input[type="text"],
   input[type="password"],
+  input[type="date"],
+  input[type="time"],
   textarea {
     background: white;
     // border-bottom: 1px solid darken(white, 7%);
@@ -84,3 +86,18 @@
     // background: white url(/img/arrow-down.svg) no-repeat 98%;
   }
 }
+
+// DATE TIME INPUTS
+// .date-time-inputs {
+//   input[type="date"],
+//   input[type="time"] {
+//     background: white;
+//     border: none;
+//     outline: none;
+//     border-radius: 0px;
+//     padding: 6px 0px;
+//     &:focus {
+//       border-bottom: 1px solid $brand-info;
+//     }
+//   }
+// }

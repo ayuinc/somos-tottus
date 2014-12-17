@@ -3022,6 +3022,8 @@ input[type="submit"].btn-tabs {
   margin: 0; }
 .form-custom-full-width input[type="text"],
 .form-custom-full-width input[type="password"],
+.form-custom-full-width input[type="date"],
+.form-custom-full-width input[type="time"],
 .form-custom-full-width textarea {
   background: white;
   border-top: none;
@@ -3036,6 +3038,8 @@ input[type="submit"].btn-tabs {
   padding: 6px 0px; }
   .form-custom-full-width input[type="text"]:focus,
   .form-custom-full-width input[type="password"]:focus,
+  .form-custom-full-width input[type="date"]:focus,
+  .form-custom-full-width input[type="time"]:focus,
   .form-custom-full-width textarea:focus {
     border-bottom: 1px solid #43A6DD; }
 .form-custom-full-width .form-group {
