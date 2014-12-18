@@ -58,7 +58,25 @@ exports.update = function(req, res) {
  * Delete an Event
  */
 exports.delete = function(req, res) {
+    var evt = req.evt;
 
+    evt.remove(function(err) {
+        if(err) {
+            return res.status(400).send({
+                message: errorHandler.getErrorMessage(err)
+            });
+        } else {
+            Post.remove({ _id: evt.post }, function(err) {
+                if(err) {
+                    return res.status(400).send({
+                        message: errorHandler.getErrorMessage(err)
+                    });
+                } else {
+                    res.jsonp(evt);
+                }
+            });
+        }
+    });
 };
 
 /**
@@ -122,10 +140,13 @@ exports.eventByID = function(req, res, next, id) {
 };
 
 exports.hasAuthorization = function(req, res, next) {
-    if (req.post.user.id !== req.user.id) {
-        return res.status(403).send({
-            message: 'Usuario no autorizado'
-        });
+    console.log('user', req.user.roles);
+    if (req.user.roles.indexOf('admin') === -1) {
+        if (req.post.user.id !== req.user.id) {
+            return res.status(403).send({
+                message: 'Usuario no autorizado'
+            });
+        }
     }
     next();
 };

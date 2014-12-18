@@ -2,6 +2,7 @@
 <div class="container-fluid">
     <div class="posts-show-item">
         <div class="meta">
+            <a data-ng-if="canRemove(evt)" confirm-click="¿Estás seguro de querer eliminar el evento?" confirmed-click="remove()">Eliminar</a>
             <span class="benefit" data-ng-bind="evt.post.category"></span>
         </div>
         <div class="content-text-placeholder">
