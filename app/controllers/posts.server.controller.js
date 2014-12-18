@@ -114,12 +114,13 @@ exports.postByID = function(req, res, next, id) {
 };
 
 exports.hasAuthorization = function(req, res, next) {
-    if (req.post.user.id !== req.user.id) {
-        return res.status(403).send({
-            message: 'Usuario no autorizado',
-            reqPostUserId: req.post.user.id,
-            reqUserId: req.user.id
-        });
+    if (req.user.roles.indexOf('admin') === -1) {
+        if (req.post.user.id !== req.user.id) {
+            return res.status(403).send({
+                message: 'Usuario no autorizado'
+            });
+        }
     }
+    
     next();
 };
