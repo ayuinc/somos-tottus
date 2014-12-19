@@ -112,8 +112,6 @@ angular.module('posts').controller('PostsController', ['$scope', '$stateParams',
                     }
                 }
             });
-
-            console.log('post', $scope.post);
         };
 
         $scope.canRemove = function(post) {

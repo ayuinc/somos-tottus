@@ -236,7 +236,9 @@ angular.module('core').service('Layout', [
           hasThis: true,
           actionButtonText: 'Publicar beneficio',
           actionButtonAction: '/#!/benefits/new',
-          isURL: true
+          isURL: true,
+          shouldRender: shouldRender,
+          roles: ['admin']
         },
         navViewIndicator: {
           hasThis: true,

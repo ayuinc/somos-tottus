@@ -60,6 +60,7 @@ angular.module('users').controller('SettingsController', ['$scope', '$http', '$l
 				user.$update(function(response) {
 					$scope.success = true;
 					Authentication.user = response;
+                    $location.path('/users/' + Authentication.user._id);
 				}, function(response) {
 					$scope.error = response.data.message;
 				});
