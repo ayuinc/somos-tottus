@@ -2,11 +2,12 @@
 <div class="container-fluid">
     <div class="posts-show-item">
         <div class="meta">
+            <a data-ng-if="canRemove(evt)" confirm-click="¿Estás seguro de querer eliminar el evento?" confirmed-click="remove()">Eliminar</a>
             <span class="benefit" data-ng-bind="evt.post.category"></span>
         </div>
         <div class="content-text-placeholder">
             <h3 class="bold mb-0" data-ng-bind="evt.post.name"></h3>
-            <span class="small">Publicado por {{evt.post.user.personal.displayName}} el {{evt.created}}</span>
+            <span class="small">Publicado por {{evt.post.user.personal.displayName}} el {{evt.created | amCalendar }}</span>
             <p class="pv-7" data-ng-bind="evt.post.detail"></p>
         </div>
         <div data-ng-show="(evt.post.imgFilePath)" class="content-img-placeholder">
@@ -17,8 +18,8 @@
             <div class="item item-icon-left">
                 <i class="icon-clock5 h3"></i>
                 <div class="text-gray-light inline-block">
-                    <small>Inicio: {{ evt.start | date:'yyyy-MM-dd HH:ss a' }}</small> -<br>
-                    <small>Fin: {{ evt.end | date:'yyyy-MM-dd HH:ss a' }}</small>
+                    <small>Inicio: {{ evt.start | amDateFormat:"dddd D [de] MMM [a las] h:mm a" }}</small> -<br>
+                    <small>Fin: {{ evt.end | amDateFormat:"dddd D [de] MMM [a las] h:mm a" }}</small>
                 </div>
             </div>
             <div class="item item-icon-left">

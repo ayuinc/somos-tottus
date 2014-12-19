@@ -4,8 +4,8 @@
             <section data-ng-controller="PostsController" data-ng-init="findOne();">
                 <div class="posts-show-item">
                     <div class="meta">
-                        <a data-ng-if="authentication.user._id == post.user._id" data-ng-click="remove();">Eliminar</a>
-                        <span class="benefit"></span>
+                        <a data-ng-if="canRemove(post)" confirm-click="¿Estás seguro de querer eliminar la publicación?" confirmed-click="remove()">Eliminar</a>
+                        <span class="benefit" data-ng-bind="post.category"></span>
                     </div>
                     <div class="user">
                         <div class="user-card">
@@ -16,7 +16,7 @@
                             </div>
                             <div class="info col-xs-10">
                               <p>
-                                <a data-ng-href="#!/users/{{post.user._id}}" class="name" >{{ post.user.personal.displayName }}</a><br> <span class="job-position">Gerente Gral.</span> en <span class="area">Tottus Atocongo</span><br><span data-ng-bind="post.created | amCalendar"></span>
+                                <a data-ng-href="#!/users/{{post.user._id}}" class="name" >{{ post.user.personal.displayName }}</a><br> <span class="job-position">{{post.user.organizational.currentJobPosition}}</span> en <span class="area">{{post.user.organizational.branch}}</span><br><span data-ng-bind="post.created | amCalendar"></span>
                               </p>
                             </div>
                         </div>
@@ -25,7 +25,7 @@
                         <p data-ng-bind="post.detail"></p>
                     </div>
                     <div data-ng-show="(post.imgFilePath | imageFilter)" class="content-img-placeholder">
-                        <a href="#!"><img data-ng-src="{{post.imgFilePath}}" /></a>
+                        <a><img data-ng-src="{{post.imgFilePath}}" /></a>
                     </div>
                     <ul class="counts-and-share list-unstyled">
                         <li class="counts-likes"><a>{{post.likes.length}} Me Gusta</a></li>
@@ -58,7 +58,7 @@
                                 </div>
                                 <div class="comment-content col-xs-10">
                                     <p><a data-ng-href="#!/users/{{comment.user._id}}" >{{ comment.user.personal.displayName }}</a> {{ comment.text }}</p>
-                                    <span am-time-ago="comment.created" class="text-gray-light"></span>
+                                    <span data-ng-bind="comment.created | amCalendar" class="text-gray-light"></span>
                                 </div>
                             </li>
                         </ul>

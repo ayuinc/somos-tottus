@@ -2,6 +2,26 @@
 
 angular.module('core').service('Layout', [
   function() {
+    // A private function for rendering decision 
+    var shouldRender = function(user) {
+      if (user) {
+        if (!!~this.roles.indexOf('*')) {
+          return true;
+        } else {
+          for (var userRoleIndex in user.roles) {
+            for (var roleIndex in this.roles) {
+              if (this.roles[roleIndex] === user.roles[userRoleIndex]) {
+                return true;
+              }
+            }
+          }
+        }
+      } else {
+        return this.isPublic;
+      }
+      return false;
+    };
+
    	// NAVIGATION CONTROL
     var pageContentHash = {
       // POSTS
@@ -10,7 +30,9 @@ angular.module('core').service('Layout', [
           hasThis: true,
           actionButtonText: 'Publicar',
           actionButtonAction: '/#!/posts/new',
-          isURL: true
+          isURL: true,
+          shouldRender: shouldRender,
+          roles: ['*']
         },
         navViewIndicator: {
           hasThis: true,
@@ -214,7 +236,9 @@ angular.module('core').service('Layout', [
           hasThis: true,
           actionButtonText: 'Publicar beneficio',
           actionButtonAction: '/#!/benefits/new',
-          isURL: true
+          isURL: true,
+          shouldRender: shouldRender,
+          roles: ['admin']
         },
         navViewIndicator: {
           hasThis: true,
@@ -263,7 +287,9 @@ angular.module('core').service('Layout', [
           hasThis: true,
           actionButtonText: 'Publicar evento',
           actionButtonAction: '/#!/events/new',
-          isURL: true
+          isURL: true,
+          shouldRender: shouldRender,
+          roles: ['admin']
         },
         navViewIndicator: {
           hasThis: true,
