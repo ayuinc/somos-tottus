@@ -11,17 +11,22 @@ var mongoose = require('mongoose'),
  * Notification Schema
  */
 var NotificationSchema = new Schema({
-
-  user: {
+  post: {
     type: Schema.ObjectId,
-    ref: 'User'
+    ref: 'Post'
   },
-  notifications: [{
-      title : String,
-      content : String
-      // created: Date,
-      // updated: Date
-  }],
+  match: {
+    type: [{
+      user: { type: Schema.ObjectId, ref: 'User'},
+      isRead: { type: Boolean, default: false}
+    }],
+
+    default: []
+  },
+  nextUrl: {
+    type: String,
+    required: true
+  },
   updated: {
     type: Date
   },

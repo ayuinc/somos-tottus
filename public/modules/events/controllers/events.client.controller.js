@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('events').controller('EventsController', ['$scope', '$stateParams', '$location', '$http', 'Authentication', 'Posts', 'Events', 'AWS', 'FileUploader', 'Attendees',
-    function($scope, $stateParams, $location, $http, Authentication, Posts, Events, AWS, FileUploader, Attendees) {
+angular.module('events').controller('EventsController', ['$scope', '$stateParams', '$location', '$http', 'Authentication', 'Posts', 'Events', 'AWS', 'FileUploader', 'Attendees', 'Notifications',
+    function($scope, $stateParams, $location, $http, Authentication, Posts, Events, AWS, FileUploader, Attendees, Notifications) {
         $scope.authentication = Authentication;
         $scope.uploader = new FileUploader({
             url: 'https://s3.amazonaws.com/tottus/',
@@ -20,6 +20,25 @@ angular.module('events').controller('EventsController', ['$scope', '$stateParams
                 return '|jpg|png|jpeg|bmp|gif|'.indexOf(type) !== -1;
             }
         });
+
+        var registerNotification = function(post, nextUrl) {
+            if(!!~$scope.authentication.user.roles.indexOf('admin')) {
+                // is admin
+                var newNot = new Notifications({
+                    post: post,
+                    nextUrl: nextUrl
+                });
+
+                newNot.$save(function(response) {
+                    console.log('success!');
+                }, function(errorResponse) {
+                    console.log('error!');
+                });
+
+            } else {
+                return false;
+            }
+        };
 
         $scope.getCredentials = function() {
             AWS.getCredentials().then(function(res) {
@@ -88,6 +107,9 @@ angular.module('events').controller('EventsController', ['$scope', '$stateParams
 
                             uploadItem.upload();
 
+                            var nextUrl = 'events/' + response._id;
+                            registerNotification(response.post, nextUrl);
+
                             var post = Posts.get({ postId: response.post }, function() {
                                 post.imgFilePath = 'https://s3.amazonaws.com/tottus/post_' + response.post + '.' + uploadItem.file.name.split('.').pop();
                                 post.$update();
@@ -99,7 +121,10 @@ angular.module('events').controller('EventsController', ['$scope', '$stateParams
                     } 
                     else {
                         newEvent.$save(function(response) {
-                           $location.path('events/' + response._id);
+                            var nextUrl = 'events/' + response._id;
+                            registerNotification(response.post, nextUrl);
+
+                            $location.path('events/' + response._id);
                         }, function(errorResponse) {
                             $scope.error = errorResponse.data.message;
                         });

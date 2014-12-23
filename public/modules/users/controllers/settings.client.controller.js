@@ -132,7 +132,7 @@ angular.module('users').controller('SettingsController', ['$scope', '$http', '$l
 				$scope.error = response.data.message;
 			});*/
 
-			if($scope.uploader.queue[0] !== null)
+			if($scope.uploader.queue[0])
 			{	
 				var uploadItem = $scope.uploader.queue[0];
 				$scope.success = $scope.error = null;

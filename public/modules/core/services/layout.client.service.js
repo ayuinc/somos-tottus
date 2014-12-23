@@ -412,6 +412,23 @@ angular.module('core').service('Layout', [
         navSubnavTabs: {
           hasThis: true
         }
+      },
+
+      // NOTIFICATIONS
+      'listNotifications': {
+        navViewActionBar: {
+          hasThis: true,
+          // actionButtonText: 'Publicar notificaciones',
+          // actionButtonAction: '/#!/notifications/new',
+          isURL: true
+        },
+        navViewIndicator: {
+          hasThis: true,
+          indicatorText: 'Notificaciones'
+        },
+        navSubnavTabs: {
+          hasThis: true
+        }
       }
     };
     this.getPageContent = function(stateObj){
