@@ -427,7 +427,8 @@ angular.module('core').service('Layout', [
           indicatorText: 'Notificaciones'
         },
         navSubnavTabs: {
-          hasThis: true
+          hasThis: true,
+          isActive: true
         }
       }
     };
