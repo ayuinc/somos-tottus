@@ -30,7 +30,7 @@
           <h3 class="panel-title">Información personal</h3>
           <div class="panel-row">
             <label for="username">Nombre de usuario:</label>
-            <input type="text" class="form-control" id="username" name="username" data-ng-model="user.username">
+            <input type="text" class="form-control" id="username" name="username" data-ng-model="user.username" disabled>
             <!-- <span>{{user.username}}</span> -->
           </div>
           <div class="panel-row">
@@ -40,18 +40,22 @@
           </div>
           <div class="panel-row">
             <label for="DNI">DNI:</label>
-            <input type="text" class="form-control" id="DNI" name="DNI" data-ng-model="user.personal.DNI">
+            <input type="text" class="form-control" id="DNI" name="DNI" data-ng-model="user.personal.DNI" disabled>
             <!-- <span>{{user.personal.DNI}}</span> -->
           </div>
-          <div class="panel-row">
+          <!-- <div class="panel-row">
             <label for="carnet">¿Cuentas con Carnet CONADIS?:</label>
             <input type="text" class="form-control" id="carnet" name="carnet" data-ng-model="user.personal.carnetCONADIS">
-            <!-- <span>{{user.personal.carnetCONADIS}}</span> -->
-          </div>
+            <span>{{user.personal.carnetCONADIS}}</span>
+          </div> -->
           <div class="panel-row">
-            <label for="birthday">Cumpleaños: <a href="#" class="edit" data-ng-show="personalInfo">Editar</a></label>
+            <label for="birthday">Cumpleaños:</label>
             <input type="date" class="form-control" id="birthday" name="birthday" data-ng-model="user.personal.dateOfBirth">
             <!-- <span>{{user.personal.dateOfBirth | date: 'd/M/yyyy'}}</span> -->
+          </div>
+
+          <div class="panel-row">
+            <label for="showBirthYear">¿Mostrar el año de nacimiento?: <input type="checkbox" class="form-control" id="showBirthYear" name="showBirthYear" data-ng-model="user.personal.showBirthYear"></label>      
           </div>
         </div>
       </div>
@@ -74,49 +78,47 @@
             <input type="text" class="form-control" id="branch" name="branch" data-ng-model="user.organizational.branch">
             <!-- <span>{{user.organizational.branch}}</span> -->
           </div>
-          <div class="panel-row">
+          <!-- <div class="panel-row">
             <label for="branchId">Número de Unidad:</label>
             <input type="text" class="form-control" id="branchId" name="branchId" data-ng-model="user.organizational.branchId">
-            <!-- <span>{{user.organizational.branchId}}</span> -->
-          </div>
-          <div class="panel-row">
+            <span>{{user.organizational.branchId}}</span>
+          </div> -->
+          <!-- <div class="panel-row">
             <label for="jobType">Modalidad de Trabajo:</label>
             <select name="jobType" id="jobType" class="form-control select-override" data-ng-model="user.organizational.jobType">
                 <option value="Tiempo completo" ng-selected="selected">Tiempo completo</option>
                 <option value="Medio tiempo">Medio tiempo</option>
             </select>
-            <!-- <span>{{user.organizational.jobType}}</span> -->
-          </div>
+            <span>{{user.organizational.jobType}}</span>
+          </div> -->
         </div>
       </div>
-      <div class="panel panel-highlight">
-        <!-- <a href="#" class="edit" data-ng-click="contactInfo = !contactInfo"><span data-ng-show="contactInfo" class="text-danger">Cancelar</span><span data-ng-show="!contactInfo">Editar</span></a> -->
+      <!-- <div class="panel panel-highlight">
         <div class="p-14">
           <h3 class="panel-title">Información de contacto</h3>
           <div class="panel-row">
             <label for="address">Dirección:</label>
             <input type="text" class="form-control" id="address" name="address" data-ng-model="user.address.address">
-            <!-- <span>{{user.address.address}}</span> -->
+            <span>{{user.address.address}}</span>
           </div>
           <div class="panel-row">
             <label for="city">Ciudad:</label>
             <input type="text" class="form-control" id="city" name="city" data-ng-model="user.address.city">
-            <!-- <span>{{user.address.city}}</span> -->
+            <span>{{user.address.city}}</span>
           </div>
           <div class="panel-row">
             <label for="phoneNumTottus">Celular Tottus:</label>
             <input type="text" class="form-control" id="phoneNumTottus" name="phoneNumTottus" data-ng-model="user.organizational.phoneNumTottus">
-            <!-- <span>{{user.organizational.phoneNumTottus}}</span> -->
+            <span>{{user.organizational.phoneNumTottus}}</span>
           </div>
           <div class="panel-row">
             <label for="phoneNumHome">Teléfono de domicilio:</label>
             <input type="text" class="form-control" id="phoneNumHome" name="phoneNumHome" data-ng-model="user.contact.phoneNumHome">
-            <!-- <span>{{user.contact.phoneNumHome}}</span> -->
+            <span>{{user.contact.phoneNumHome}}</span>
           </div>
         </div>
-      </div>
-      <div class="panel panel-highlight">
-        <!-- <a href="#" class="edit" data-ng-click="extraInfo = !extraInfo"><span data-ng-show="extraInfo" class="text-danger">Cancelar</span><span data-ng-show="!extraInfo">Editar</span></a> -->
+      </div> -->
+      <!-- <div class="panel panel-highlight">
         <div class="p-14">
           <h3 class="panel-title">Información adicional</h3>
           <div class="panel-row">
@@ -129,7 +131,7 @@
                 <option value="Universitaria Incompleta">Universitaria Incompleta</option>
                 <option value="PostGrado">PostGrado</option>
             </select>
-            <!-- <span>{{user.personal.educationLevel}}</span> -->
+            <span>{{user.personal.educationLevel}}</span>
           </div>
           <div class="panel-row">
             <label for="maritalStatus">Estado civil:</label>
@@ -140,20 +142,20 @@
                 <option value="Divorciado">Divorciado</option>
                 <option value="En una relación">En una relación</option>
             </select>
-            <!-- <span>{{user.demographic.maritalStatus}}</span> -->
+            <span>{{user.demographic.maritalStatus}}</span>
           </div>
           <div class="panel-row">
             <label for="children">Número de Hijos:</label>
             <input type="text" class="form-control" id="children" name="children" data-ng-model="user.demographic.children">
-            <!-- <span>{{user.demographic.children}}</span> -->
+            <span>{{user.demographic.children}}</span>
           </div>
           <div class="panel-row">
             <label for="interests">Intereses o Hobbies:</label>
             <input type="text" class="form-control" id="interests" name="interests" data-ng-model="user.personal.interests">
-            <!-- <span>{{user.personal.interests}}</span> -->
+            <span>{{user.personal.interests}}</span>
           </div>
         </div>
-      </div>
+      </div> -->
 
       <div class="text-center p-21">
           <input type="submit" value="Confirmar datos" class="btn btn-primary btn-lg">

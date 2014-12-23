@@ -45,9 +45,13 @@
             <label>¿Cuentas con Carnet CONADIS?:</label>
             <span>{{userProfile.personal.carnetCONADIS}}</span>
           </div> -->
-          <div class="panel-row">
-            <label for="dateOfBirth">Cumpleaños:</label>
-            <span>{{userProfile.personal.dateOfBirth | date: 'd/M/yyyy'}}</span>
+          <div class="panel-row" data-ng-if="userProfile.personal.showBirthYear">
+            <label for="dateOfBirth">Fecha de Nacimiento:</label>
+            <span>{{userProfile.personal.dateOfBirth | amDateFormat:"D [de] MMMM [de] YYYY" }}</span>
+          </div>
+          <div class="panel-row" data-ng-if="!userProfile.personal.showBirthYear">
+            <label for="dateOfBirth">Fecha de Nacimiento:</label>
+            <span>{{userProfile.personal.dateOfBirth | amDateFormat:"D [de] MMMM"}}</span>
           </div>
         </div>
       </div>
@@ -67,17 +71,17 @@
             <label for="branch">Unidad / Tienda:</label>
             <span>{{userProfile.organizational.branch}}</span>
           </div>
-          <div class="panel-row">
+          <!-- <div class="panel-row">
             <label for="branchId">Número de Unidad:</label>
             <span>{{userProfile.organizational.branchId}}</span>
-          </div>
-          <div class="panel-row">
+          </div> -->
+          <!-- <div class="panel-row">
             <label for="jobType">Modalidad de Trabajo:</label>
             <span>{{userProfile.organizational.jobType}}</span>
-          </div>
+          </div> -->
         </div>
       </div>
-      <div class="panel panel-highlight">
+      <!-- <div class="panel panel-highlight">
         <a data-ng-href="#!/settings/profile" class="edit"><span data-ng-show="!personalInfo">Editar</span></a>
         <div class="p-14">
           <h3 class="panel-title">Información de contacto</h3>
@@ -98,8 +102,8 @@
             <span>{{userProfile.contact.phoneNumHome}}</span>
           </div>
         </div>
-      </div>
-      <div class="panel panel-highlight">
+      </div> -->
+      <!-- <div class="panel panel-highlight">
         <a data-ng-href="#!/settings/profile" class="edit"><span data-ng-show="!personalInfo">Editar</span></a>
         <div class="p-14">
           <h3 class="panel-title">Información adicional</h3>
@@ -120,7 +124,7 @@
             <span>{{userProfile.personal.interests}}</span>
           </div>
         </div>
-      </div>
+      </div> -->
     </div>
     <!-- Fin de sección profile-->
     <!-- Inicio de sección publicaciones -->
