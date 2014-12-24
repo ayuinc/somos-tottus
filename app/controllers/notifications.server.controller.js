@@ -23,7 +23,7 @@ exports.create = function(req, res) {
                 match.push({ user: users[i] });
             }
 
-            notification.match = match;
+            notification.match = match;            
             notification.save(function(err) {
                 if(err) {
                     return res.status(400).send({

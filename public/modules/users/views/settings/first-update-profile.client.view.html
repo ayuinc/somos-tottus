@@ -6,8 +6,12 @@
             <div class="section-heading">Información De Contacto</div>
             <div class="form-group">
                 <div class="user-card">
-                    <div class="profile-pic col-xs-2">
-                      <a href="#"><img src="{{user.assets.profilePicURL}}" /></a>
+                    <div class="profile-pic col-xs-2" data-ng-if="uploader.queue.length === 0">
+                      <a href="#"><img data-ng-src="{{user.assets.profilePicURL}}" /></a>
+                    </div>
+                    <div data-ng-repeat="item in uploader.queue" class="profile-pic col-xs-2">
+                        <div data-ng-show="uploader.isHTML5" data-ng-thumb="{ file: item._file, height: 49, width: 49 }"></div>
+                        <a href="#" data-ng-click="item.remove()">Quitar</a>
                     </div>
                     <div class="info col-xs-10">
                       <p>
@@ -15,7 +19,7 @@
                       </p>
                     </div>
                 </div>
-                <div class="upload-field">
+                <div class="upload-field ml-7">
                     <a href="#"><i class="icon-picture"></i></a>
                     <input type="file" name="profilePicURL" id="profilePicURL" nv-file-select uploader="uploader" class="upload-input" /> <small>Pulsa para cambiar tu foto</small>
                 </div>
@@ -30,29 +34,29 @@
                 <input type="text" class="form-control" id="email" name="email" data-ng-model="user.email">
                 <small class="help-block">En caso de olvidar tu contraseña enviaremos información al correo que coloques aquí. Asegúrate de incluir un correo actualizado.</small>
             </div>
-            <div class="form-group">
+            <!-- <div class="form-group">
                 <label for="address">Dirección</label>
                 <textarea class="form-control" id="address" name="address" data-ng-model="user.address.address"></textarea>
-            </div>
-            <div class="form-group">
+            </div> -->
+            <!-- <div class="form-group">
                 <label for="city">Ciudad</label>
                 <input type="text" class="form-control" id="city" name="city" data-ng-model="user.address.city">
-            </div>
-            <div class="form-group">
+            </div> -->
+            <!-- <div class="form-group">
                 <label for="phoneNumTottus">Celular Tottus</label>
                 <input type="text" class="form-control" id="phoneNumTottus" name="phoneNumTottus" data-ng-model="user.organizational.phoneNumTottus">
-            </div>
+            </div> -->
             <div class="section-heading">Información Personal</div>
             <div class="form-group">
-                <label for="firstName">Nombre</label>
+                <label for="firstName">Nombre(s)</label>
                 <input type="text" class="form-control" id="firstName" name="firstName" data-ng-model="user.personal.firstName">
                 <!-- <small class="help-block">Debes ingresar un nombre real</small> -->
             </div>
             <div class="form-group">
-                <label for="lastName">Apellido</label>
+                <label for="lastName">Apellido(s)</label>
                 <input type="text" class="form-control" id="lastName" name="lastName" data-ng-model="user.personal.lastName">
             </div>
-            <div class="form-group toggle-switch">
+            <!-- <div class="form-group toggle-switch">
                 <div class="label-name">
                     <span>¿Cuentas con Carnet CONADIS?</span>
                 </div>
@@ -62,20 +66,33 @@
                         <div class="toggle-handle"></div>
                     </label>
                 </div>
-            </div>
+            </div> -->
             <!-- <div class="form-group">
                 <label for="carnetCONADIS">carnetCONADIS</label>
                 <input type="text" class="form-control" id="carnetCONADIS" name="carnetCONADIS" data-ng-model="user.organizational.carnetCONADIS">
             </div> -->
             <div class="form-group">
-                <label for="dateOfBirth">Cumpleaños</label>
+                <label for="dateOfBirth">Fecha de nacimiento</label>
                 <div class="clearfix">
                     <div class="col-xs-2"><input type="text" class="form-control" placeholder="DD" data-ng-model="user.personal.dayString"></div>
                     <div class="col-xs-2"><input type="text" class="form-control" placeholder="MM" data-ng-model="user.personal.monthString"></div>
                     <div class="col-xs-3"><input type="text" class="form-control" placeholder="AAAA" data-ng-model="user.personal.yearString"></div>
                 </div>
             </div>
-            <div class="form-group">
+
+            <div class="form-group toggle-switch">
+                <div class="label-name">
+                    <span>¿Mostrar el año de nacimiento?</span>
+                </div>
+                <div class="toggle">
+                    <input type="checkbox" id="showBirthYear" name="showBirthYear" data-ng-model="user.personal.showBirthYear">
+                    <label for="showBirthYear">
+                        <div class="toggle-handle"></div>
+                    </label>
+                </div>
+            </div>
+            
+            <!-- <div class="form-group">
                 <label for="educationLevel">Nivel de instrucción</label>
                 <select name="educationLevel" id="educationLevel" class="form-control select-override" data-ng-model="user.personal.educationLevel">
                     <option value="Secundaria completa" ng-selected="selected">Secundaria completa</option>
@@ -85,8 +102,8 @@
                     <option value="Universitaria Incompleta">Universitaria Incompleta</option>
                     <option value="PostGrado">PostGrado</option>
                 </select>
-            </div>
-            <div class="form-group">
+            </div> -->
+            <!-- <div class="form-group">
                 <label for="maritalStatus">Estado civil</label>
                 <select name="maritalStatus" id="maritalStatus" class="form-control select-override" data-ng-model="user.demographic.maritalStatus">
                     <option value="Soltero" ng-selected="selected">Soltero</option>
@@ -95,19 +112,19 @@
                     <option value="Divorciado">Divorciado</option>
                     <option value="En una relación">En una relación</option>
                 </select>
-            </div>
-            <div class="form-group">
+            </div> -->
+            <!-- <div class="form-group">
                 <label for="children">Número de hijos</label>
                 <input type="number" class="form-control" id="children" name="children" data-ng-model="user.demographic.children" value="0">
-            </div>
-            <div class="form-group">
+            </div> -->
+            <!-- <div class="form-group">
                 <label for="interests">Intereses o Hobbies</label>
                 <textarea class="form-control" id="interests" name="interests" data-ng-model="user.personal.interests"></textarea>
-            </div>
-            <div class="form-group">
+            </div> -->
+            <!-- <div class="form-group">
                 <label for="phoneNumHome">Teléfono de domicilio</label>
                 <input type="text" class="form-control" id="phoneNumHome" name="phoneNumHome" data-ng-model="user.contact.phoneNumHome">
-            </div>
+            </div> -->
             <div class="section-heading">Información Laboral</div>
             <div class="form-group">
                 <label for="currentJobPosition">Cargo Actual</label>
@@ -125,17 +142,27 @@
                 <label for="branch">Unidad / Tienda</label>
                 <input type="text" class="form-control" value="Escribe tu unidad actual" id="branch" name="branch" data-ng-model="user.organizational.branch">
             </div>
-            <div class="form-group">
+            <!-- <div class="form-group">
                 <label for="branchId">Número de Unidad</label>
                 <input type="text" class="form-control" value="Escribe número de tu unidad" id="branchId" name="branchId" data-ng-model="user.organizational.branchId">
-            </div>
-            <div class="form-group">
+            </div> -->
+            <!-- <div class="form-group">
                 <label for="jobType">Modalidad de Trabajo</label>
                 <select name="jobType" id="jobType" class="form-control select-override" data-ng-model="user.organizational.jobType">
                     <option value="Tiempo completo" ng-selected="selected">Tiempo completo</option>
                     <option value="Medio tiempo">Medio tiempo</option>
                 </select>
+            </div> -->
+            <div class="form-group ">
+                <div data-ng-repeat="item in uploader.queue">
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: {{item.progress}}%;">
+                            <span class="sr-only">{{item.progress}}% Completado</span>
+                        </div>
+                    </div>
+                </div>
             </div>
+            
             <div data-ng-show="error" class="text-center text-danger">
               <strong data-ng-bind="error"></strong>
             </div>

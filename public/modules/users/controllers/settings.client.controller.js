@@ -53,20 +53,63 @@ angular.module('users').controller('SettingsController', ['$scope', '$http', '$l
 		};
 
 		$scope.updateUserProfile = function(isValid) {
-			if (isValid){
-				$scope.success = $scope.error = null;
-				var user = new Users($scope.user);
+            if (isValid){
+                var uploadItem = $scope.uploader.queue[0];
+                var user = new Users($scope.user);
+                $scope.success = $scope.error = null;
+
+                if($scope.uploader.queue[0]) {
+                    user.$update(function(response) {
+                        $scope.success = true;
+                        Authentication.user = response;
+                        uploadItem.formData = [{
+                            key: 'user_' + response._id + '.' + uploadItem.file.name.split('.').pop(),
+                            AWSAccessKeyId: $scope.credentials.access_key, 
+                            acl: 'private',
+                            policy: $scope.credentials.policy,
+                            signature: $scope.credentials.signature,
+                            'Content-Type': 'application/octet-stream',
+                            filename: 'user_' + response._id + '.' + uploadItem.file.name.split('.').pop(),
+                        }];
+                        
+                        uploadItem.onSuccess = function() {
+                            $scope.detail = '';
+                            $location.path('/users/' + Authentication.user._id); 
+                        };
+
+                        uploadItem.upload();
+                        response.assets.profilePicURL = 'https://s3.amazonaws.com/tottus/user_' + user._id + '.' + uploadItem.file.name.split('.').pop();
+                        response.$update();
+                    }, function(response) {
+                        $scope.error = response.data.message;
+                    });
+                } else {
+                    user.$update(function(response) {
+                        $scope.success = true;
+                        Authentication.user = response;
+                        $location.path('/users/' + Authentication.user._id);
+                    }, function(response) {
+                        $scope.error = response.data.message;
+                    });
+                }
+            } else {
+                $scope.submitted = true;
+            }
+
+			// if (isValid){
+			// 	$scope.success = $scope.error = null;
+			// 	var user = new Users($scope.user);
 	
-				user.$update(function(response) {
-					$scope.success = true;
-					Authentication.user = response;
-                    $location.path('/users/' + Authentication.user._id);
-				}, function(response) {
-					$scope.error = response.data.message;
-				});
-			} else {
-				$scope.submitted = true;
-			}
+			// 	user.$update(function(response) {
+			// 		$scope.success = true;
+			// 		Authentication.user = response;
+   //                  $location.path('/users/' + Authentication.user._id);
+			// 	}, function(response) {
+			// 		$scope.error = response.data.message;
+			// 	});
+			// } else {
+			// 	$scope.submitted = true;
+			// }
 		};
 
 		// Change user password
