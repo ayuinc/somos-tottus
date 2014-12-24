@@ -194,7 +194,7 @@ angular.module('events').controller('EventsController', ['$scope', '$stateParams
         };
 
         $scope.canRemove = function(evt) {
-            return !!~$scope.authentication.user.roles.indexOf('admin') || $scope.authentication.user._id === evt.user._id;
+            return !!~$scope.authentication.user.roles.indexOf('admin');
         };
     }
 ]);

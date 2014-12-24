@@ -1,15 +1,23 @@
 <div>
-  <div class="container pt-14" data-ng-controller="SettingsController" data-ng-init="showUserProfile();">
+  <div class="container pt-14" data-ng-controller="SettingsController" data-ng-init="showUserProfile();getCredentials();">
     <div class="panel panel-tabs">
       <div class="user-card">
-        <div class="profile-pic col-xs-2">
-          <a href="#"><img data-ng-src="{{user.assets.profilePicURL}}" /></a>
-        </div>
-        <div class="info col-xs-10">
-          <p>
-            <a href="#" class="name">{{ user.personal.displayName }}</a><br> <span class="job-position">{{user.organizational.currentJobPosition}}</span> en <span class="area">{{user.organizational.branch}}</span>
-          </p>
-        </div>
+          <div class="profile-pic col-xs-2" data-ng-if="uploader.queue.length === 0">
+            <a href="#"><img data-ng-src="{{user.assets.profilePicURL}}" /></a>
+          </div>
+          <div data-ng-repeat="item in uploader.queue" class="profile-pic col-xs-2">
+              <div data-ng-show="uploader.isHTML5" data-ng-thumb="{ file: item._file, height: 49, width: 49 }"></div>
+              <a href="#" data-ng-click="item.remove()">Quitar</a>
+          </div>
+          <div class="info col-xs-10">
+            <p>
+              <a href="#" class="name">{{user.personal.firstName}} {{user.personal.lastName}}</a><br> <span class="job-position">{{user.organizational.currentJobPosition}}</span> en <span class="area">{{user.organizational.branch}}</span>
+            </p>
+          </div>
+      </div>
+      <div class="upload-field ml-7">
+          <a href="#"><i class="icon-picture"></i></a>
+          <input type="file" name="profilePicURL" id="profilePicURL" nv-file-select uploader="uploader" class="upload-input" /> <small>Pulsa para cambiar tu foto</small>
       </div>
       <!-- {{user}} --> 
       <!-- <div class="tabs p-ch-0">
@@ -156,7 +164,16 @@
           </div>
         </div>
       </div> -->
-
+      <div class="form-group ">
+          <div data-ng-repeat="item in uploader.queue">
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: {{item.progress}}%;">
+                      <span class="sr-only">{{item.progress}}% Completado</span>
+                  </div>
+              </div>
+          </div>
+      </div>
+      
       <div class="text-center p-21">
           <input type="submit" value="Confirmar datos" class="btn btn-primary btn-lg">
       </div>

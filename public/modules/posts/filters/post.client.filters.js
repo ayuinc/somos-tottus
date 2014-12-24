@@ -2,6 +2,6 @@
 
 angular.module('posts').filter('imageFilter', function() { 
     return function(input) {
-        return input !== 'assets/img/img-placeholder.png' ? true : false;
+        return input !== 'assets/img/posts-placeholder.png' ? true : false;
     };
 });

@@ -10,7 +10,7 @@
             <span class="small">Publicado por {{evt.post.user.personal.displayName}} el {{evt.created | amCalendar }}</span>
             <p class="pv-7" data-ng-bind="evt.post.detail"></p>
         </div>
-        <div data-ng-show="(evt.post.imgFilePath)" class="content-img-placeholder">
+        <div data-ng-show="(evt.post.imgFilePath | eventImageFilter)" class="content-img-placeholder">
             <a><img data-ng-src="{{evt.post.imgFilePath}}" /></a>
         </div>
         <!-- <div class="content-img-placeholder"></div> -->

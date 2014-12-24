@@ -37,7 +37,7 @@ var PostSchema = new Schema({
     },
     imgFilePath: {
         type: String,
-        default: 'assets/img/img-placeholder.png'
+        default: 'assets/img/posts-placeholder.png'
     },
     category: {
         type: String

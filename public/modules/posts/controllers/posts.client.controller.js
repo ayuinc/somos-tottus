@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('posts').controller('PostsController', ['$scope', '$stateParams', '$location', '$http', 'Authentication', 'Posts', 'Comments', 'Likes', 'AWS', 'FileUploader', 'getPostsPerUser',
-    function($scope, $stateParams, $location, $http, Authentication, Posts, Comments, Likes, AWS, FileUploader, getPostsPerUser) {
+angular.module('posts').controller('PostsController', ['$scope', '$stateParams', '$location', '$http', 'Authentication', 'Posts', 'Comments', 'Likes', 'AWS', 'FileUploader', 'getPostsPerUser', 'Notifications',
+    function($scope, $stateParams, $location, $http, Authentication, Posts, Comments, Likes, AWS, FileUploader, getPostsPerUser, Notifications) {
         $scope.authentication = Authentication;
         $scope.uploader = new FileUploader({
             url: 'https://s3.amazonaws.com/tottus/',
@@ -24,6 +24,25 @@ angular.module('posts').controller('PostsController', ['$scope', '$stateParams',
             AWS.getCredentials().then(function(res) {
                 $scope.credentials = res.data;
             });
+        };
+
+        var registerNotification = function(post, nextUrl) {
+            if(!!~$scope.authentication.user.roles.indexOf('admin')) {
+                // is admin
+                var newNot = new Notifications({
+                    post: post,
+                    nextUrl: nextUrl
+                });
+
+                newNot.$save(function(response) {
+                    console.log('success!');
+                }, function(errorResponse) {
+                    console.log('error!', errorResponse);
+                });
+
+            } else {
+                return false;
+            }
         };
 
         $scope.new = function() {
@@ -51,6 +70,9 @@ angular.module('posts').controller('PostsController', ['$scope', '$stateParams',
                         $location.path('posts/' + response._id);
                     };
                     
+                    var nextUrl = 'posts/' + response._id;
+                    registerNotification(response._id, nextUrl);
+
                     uploadItem.upload();
 
                     response.imgFilePath = 'https://s3.amazonaws.com/tottus/post_' + post._id + '.' + uploadItem.file.name.split('.').pop();
@@ -62,6 +84,9 @@ angular.module('posts').controller('PostsController', ['$scope', '$stateParams',
             else
             {
                 post.$save(function(response) {
+                    var nextUrl = 'posts/' + response._id;
+                    registerNotification(response._id, nextUrl);
+
                     $location.path('posts/' + response._id);
                     $scope.detail = '';
                 }, function(errorResponse) {
@@ -115,7 +140,8 @@ angular.module('posts').controller('PostsController', ['$scope', '$stateParams',
         };
 
         $scope.canRemove = function(post) {
-            return !!~$scope.authentication.user.roles.indexOf('admin') || $scope.authentication.user._id === post.user._id;
+            if(post.$resolved)
+                return !!~$scope.authentication.user.roles.indexOf('admin') || $scope.authentication.user._id === post.user._id;
         };
 
         $scope.remove = function(post) {

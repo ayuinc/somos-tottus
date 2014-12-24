@@ -7,7 +7,7 @@
       <a href="#!/notifications">
         <i class="icon-bell-filled"></i>
         <div class="subnav-notifications">
-          <span class="notifications-counter">{{unreadNotifications}}</span>
+          <span data-ng-if="unreadNotifications>0" class="notifications-counter">{{unreadNotifications}}</span>
         </div>
       </a>
     </li>

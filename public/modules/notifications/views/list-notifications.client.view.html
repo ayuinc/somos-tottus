@@ -11,13 +11,13 @@
         <div class="col-xs-8">
           <span class="bold text-gray-dark" data-ng-bind="ntfcn.post.name"></span><br>
           <span class="small text-gray">{{ntfcn.post.detail | limitTo: detailLetterLimit}}...</span><br>
-          <small><span data-ng-if="ntfcn.isRead">Leída</span> <span data-ng-if="!ntfcn.isRead">No leída</span></small>
+          <small><span data-ng-if="!ntfcn.isRead">Nuevo!</span></small>
         </div>
         <div class="item-go">
           <i class="icon-arrow-right-filled"></i>
         </div>
         <div class="meta">
-          <small class="notification pinned">{{ntfcn.post.category}}</small>
+          <small class="pinned">{{ntfcn.post.category}}</small> 
         </div>
       </a>
     </div>
