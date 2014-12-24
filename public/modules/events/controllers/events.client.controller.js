@@ -82,7 +82,8 @@ angular.module('events').controller('EventsController', ['$scope', '$stateParams
                         },
                         post: {
                             name: this.post.name,
-                            detail: this.post.detail
+                            detail: this.post.detail,
+                            imgFilePath: 'assets/img/img-placeholder.png'
                         }
                     });
 
