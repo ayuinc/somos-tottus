@@ -7,7 +7,7 @@
         </div>
         <div class="content-text-placeholder">
             <h3 class="bold mb-0" data-ng-bind="evt.post.name"></h3>
-            <span class="small">Publicado por {{evt.post.user.personal.displayName}} el {{evt.created | amCalendar }}</span>
+            <span class="small">Publicado por {{evt.post.user.personal.displayName}} {{evt.created | amCalendar }}</span>
             <p class="pv-7" data-ng-bind="evt.post.detail"></p>
         </div>
         <div data-ng-show="(evt.post.imgFilePath | eventImageFilter)" class="content-img-placeholder">
