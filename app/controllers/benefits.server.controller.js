@@ -8,6 +8,7 @@ var mongoose = require('mongoose'),
     Benefit = mongoose.model('Benefit'),
     User = mongoose.model('User'),
     Post = mongoose.model('Post'),
+    Notification = mongoose.model('Notification'),
     _ = require('lodash');
 
 /**
@@ -16,7 +17,7 @@ var mongoose = require('mongoose'),
 exports.create = function(req, res) {
     var post = new Post(req.body.post);
     post.user = req.user;
-    post.category = 'Benefit';
+    post.category = 'Beneficio';
 
     var benefit = new Benefit(req.body.benefit);
 
@@ -58,15 +59,49 @@ exports.update = function(req, res) {
  * Delete an Benefit
  */
 exports.delete = function(req, res) {
+    var benefit = req.benefit;
 
+    benefit.remove(function(err) {
+        if(err) {
+            return res.status(400).send({
+                message: errorHandler.getErrorMessage(err)
+            });
+        } else {
+            Notification.remove({ post: benefit.post }, function(err) {
+                if(err) {
+                    return res.status(400).send({
+                        message: errorHandler.getErrorMessage(err)
+                    });
+                }
+            });
+
+            Post.remove({ _id: benefit.post }, function(err) {
+                if(err) {
+                    return res.status(400).send({
+                        message: errorHandler.getErrorMessage(err)
+                    });
+                } else {
+                    res.jsonp(benefit);
+                }
+            });
+        }
+    })
 };
 
 /**
  * List of Benefits
  */
 exports.index = function(req, res) {
-    Benefit.find().limit(20)
-        .populate('post', 'name detail')
+    var now = new Date();
+
+    Benefit.find({
+            end: { 
+                $gte: now
+            }
+        })
+        .limit(20)
+        .populate('post', 'name detail imgFilePath')
+        .sort('-created')
         .exec(function(err, benefits) {
             if(err) {
                 return res.status(400).send({
@@ -79,7 +114,7 @@ exports.index = function(req, res) {
 
 exports.benefitByID = function(req, res, next, id) {
     Benefit.findById(id)
-        .populate('post', 'name detail')
+        // .populate('post', 'name detail')
         .exec(function(err, benefit) {
             if(err) {
                 return res.status(400).send({
@@ -92,10 +127,12 @@ exports.benefitByID = function(req, res, next, id) {
 };
 
 exports.hasAuthorization = function(req, res, next) {
-    if (req.post.user.id !== req.user.id) {
-        return res.status(403).send({
-            message: 'Usuario no autorizado'
-        });
+    if (req.user.roles.indexOf('admin') === -1) {
+        if (req.benefit.post.user.id !== req.user.id) {
+            return res.status(403).send({
+                message: 'Usuario no autorizado'
+            });
+        }
     }
     next();
 };

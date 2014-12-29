@@ -6,15 +6,15 @@
 		<div class="list">
 			<a data-ng-repeat="benefit in benefits" href="#!/benefits/{{benefit._id}}" class="item item-thumbnail-left bg-white">
 				<div class="col-xs-3">
-					<img src="assets/img/img-sq.png" alt="" class="img-thumbnail">
+					<img data-ng-src="{{benefit.post.imgFilePath}}" alt="" class="img-thumbnail">
 				</div>
 				<div class="col-xs-8">
 					<span class="bold text-gray-dark" data-ng-bind="benefit.post.name"></span><br>
-					<span class="small text-gray" data-ng-bind="benefit.post.detail"></span><br>
-					<div class="text-gray-light">
+					<span class="small text-gray">{{benefit.post.detail | limitTo: detailLetterLimit}}...</span><br>
+					<!-- <div class="text-gray-light">
 						<small>Inicio: {{ benefit.start | date:'yyyy-MM-dd HH:ss a' }}</small> -
 						<small>Fin: {{ benefit.end | date:'yyyy-MM-dd HH:ss a' }}</small>
-					</div>
+					</div> -->
 				</div>
 				<div class="item-go">
 					<i class="icon-arrow-right-filled"></i>
