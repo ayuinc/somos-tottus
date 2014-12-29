@@ -3,15 +3,16 @@
 angular.module('events').controller('EventsController', ['$scope', '$stateParams', '$location', '$http', 'Authentication', 'Posts', 'Events', 'AWS', 'FileUploader', 'Attendees', 'Notifications',
     function($scope, $stateParams, $location, $http, Authentication, Posts, Events, AWS, FileUploader, Attendees, Notifications) {
         $scope.authentication = Authentication;
+        $scope.detailLetterLimit = 170;
+
+        // If user is signed in then redirect back home
+        if(!$scope.authentication.user) $location.path('/');
+
         $scope.uploader = new FileUploader({
             url: 'https://s3.amazonaws.com/tottus/',
             method: 'POST',
             queueLimit: 1
         });
-        $scope.detailLetterLimit = 170;
-
-        // If user is signed in then redirect back home
-        if(!$scope.authentication.user) $location.path('/');
 
         $scope.uploader.filters.push({
             name: 'imageFilter',
@@ -132,11 +133,11 @@ angular.module('events').controller('EventsController', ['$scope', '$stateParams
                     }
 
                 } else {
-                    $scope.error = 'Completa los campos restantes.';
+                    $scope.error = 'Completa los campos requeridos.';
                 }
 
             } else {
-                $scope.error = 'Completa los campos restantes.';
+                $scope.error = 'Completa los campos requeridos.';
             }
         };
 
@@ -144,7 +145,6 @@ angular.module('events').controller('EventsController', ['$scope', '$stateParams
             $scope.events = Events.query();
 
             $scope.events.$promise.then(function(events) {
-                console.log('events', events);
                 // for (var i=events.length; i > 0; i--) {
                 //     $scope.events[i].attended = false;
                 //     for (var j = events[i].attendees.length; j > 0; j--) {
@@ -194,7 +194,7 @@ angular.module('events').controller('EventsController', ['$scope', '$stateParams
             }
         };
 
-        $scope.canRemove = function(evt) {
+        $scope.canRemove = function() {
             return !!~$scope.authentication.user.roles.indexOf('admin');
         };
     }

@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('comments').controller('CommentsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Posts', 'Comments', 
-    function($scope, $stateParams, $location, Authentication, Posts, Comments) {
+angular.module('comments').controller('CommentsController', ['$scope', '$stateParams', '$window', 'Authentication', 'Posts', 'Comments', 
+    function($scope, $stateParams, $window, Authentication, Posts, Comments) {
         $scope.authentication = Authentication;
 
         $scope.text = '';
@@ -19,7 +19,7 @@ angular.module('comments').controller('CommentsController', ['$scope', '$statePa
             });
 
             comment.$save(function () {
-                window.location.href = '#!/posts/' + $stateParams.postId ;
+                $window.history.back();
             }, function (errorResponse) {
                 $scope.error = errorResponse.data.message;
             });
