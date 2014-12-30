@@ -99,7 +99,7 @@ exports.delete = function(req, res) {
 
 exports.postByID = function(req, res, next, id) {
     Post.findById(id)
-        .populate('user', 'personal.displayName assets.profilePicURL')
+        .populate('user', 'personal.displayName assets.profilePicURL organizational.currentJobPosition organizational.branch')
         .populate('comments')
         .populate('likes')
         .exec(function(err, post) {

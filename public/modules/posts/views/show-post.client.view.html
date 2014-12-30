@@ -51,8 +51,8 @@
                     <div class="panel">
                         <h4 class="panel-title">Comentarios</h4>
                         <hr class="m-0">
-                        <ul data-ng-repeat="comment in post.comments">
-                            <li>
+                        <ul data-ng-if="post.comments.length > 0">
+                            <li data-ng-repeat="comment in post.comments">
                                 <div class="profile-pic col-xs-2">
                                     <a data-ng-href="#!/users/{{post.user._id}}"><!--<img src="assets/img/user-placeholder-2.png" />--><img data-ng-src="{{comment.user.assets.profilePicURL}}" /></a>
                                 </div>
@@ -62,6 +62,7 @@
                                 </div>
                             </li>
                         </ul>
+                        <p class="small m-14" data-ng-if="post.comments.length == 0">Se el primero en comentar!</p>
                     </div>
                 </div>
                 <!-- ESTE TEXTAREA debe ir en su propia vista: new-comment.client... -->
