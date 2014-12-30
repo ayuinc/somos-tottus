@@ -3,7 +3,7 @@
 angular.module('benefits').controller('BenefitsController', ['$scope', '$stateParams', '$location', '$http', 'Authentication', 'Posts', 'Benefits', 'AWS', 'FileUploader', 'Notifications',
     function($scope, $stateParams, $location, $http, Authentication, Posts, Benefits, AWS, FileUploader, Notifications) {
         $scope.authentication = Authentication;
-        $scope.detailLetterLimit = 170;
+        $scope.detailLetterLimit = 110;
 
         // If user is signed in then redirect back home
         if(!$scope.authentication.user) $location.path('/');
