@@ -1,20 +1,67 @@
 <section data-ng-init="find()">
 	<div class="benefits">
 		<div class="separator bg-gray-lighter p-7 uppercase">
-			<span>Próximos beneficios</span>
+			<span>VÍVELO</span>
 		</div>
 		<div class="list">
-			<a data-ng-repeat="benefit in benefits" href="#!/benefits/{{benefit._id}}" class="item item-thumbnail-left bg-white">
+			<a data-ng-repeat="benefit in filteredBenefits = (benefits | filter:{ category: 'Vívelo'})" href="#!/benefits/{{benefit._id}}" class="item item-thumbnail-left bg-white">
 				<div class="col-xs-3">
 					<img data-ng-src="{{benefit.post.imgFilePath}}" alt="" class="img-thumbnail">
 				</div>
 				<div class="col-xs-8">
 					<span class="bold text-gray-dark" data-ng-bind="benefit.post.name"></span><br>
 					<span class="small text-gray">{{benefit.post.detail | limitTo: detailLetterLimit}}...</span><br>
-					<!-- <div class="text-gray-light">
-						<small>Inicio: {{ benefit.start | date:'yyyy-MM-dd HH:ss a' }}</small> -
-						<small>Fin: {{ benefit.end | date:'yyyy-MM-dd HH:ss a' }}</small>
-					</div> -->
+					<div class="text-gray-light">
+						<small>Válido hasta: {{ benefit.end | amDateFormat:"D [de] MMM [del] YYYY" }}</small>
+					</div>
+				</div>
+				<div class="item-go">
+					<i class="icon-arrow-right-filled"></i>
+				</div>
+				<div class="meta">
+					<small class="benefit pinned">Beneficios</small>
+				</div>
+			</a>
+		</div>
+
+		<div class="separator bg-gray-lighter p-7 uppercase">
+			<span>DISFRÚTALO</span>
+		</div>
+		<div class="list">
+			<a data-ng-repeat="benefit in filteredBenefits = (benefits | filter:{ category: 'Disfrútalo'})" href="#!/benefits/{{benefit._id}}" class="item item-thumbnail-left bg-white">
+				<div class="col-xs-3">
+					<img data-ng-src="{{benefit.post.imgFilePath}}" alt="" class="img-thumbnail">
+				</div>
+				<div class="col-xs-8">
+					<span class="bold text-gray-dark" data-ng-bind="benefit.post.name"></span><br>
+					<span class="small text-gray">{{benefit.post.detail | limitTo: detailLetterLimit}}...</span><br>
+					<div class="text-gray-light">
+						<small>Válido hasta: {{ benefit.end | amDateFormat:"D [de] MMM [del] YYYY" }}</small>
+					</div>
+				</div>
+				<div class="item-go">
+					<i class="icon-arrow-right-filled"></i>
+				</div>
+				<div class="meta">
+					<small class="benefit pinned">Beneficios</small>
+				</div>
+			</a>
+		</div>
+
+		<div class="separator bg-gray-lighter p-7 uppercase">
+			<span>COMPÁRTELO</span>
+		</div>
+		<div class="list">
+			<a data-ng-repeat="benefit in filteredBenefits = (benefits | filter:{ category: 'Compártelo'})" href="#!/benefits/{{benefit._id}}" class="item item-thumbnail-left bg-white">
+				<div class="col-xs-3">
+					<img data-ng-src="{{benefit.post.imgFilePath}}" alt="" class="img-thumbnail">
+				</div>
+				<div class="col-xs-8">
+					<span class="bold text-gray-dark" data-ng-bind="benefit.post.name"></span><br>
+					<span class="small text-gray">{{benefit.post.detail | limitTo: detailLetterLimit}}...</span><br>
+					<div class="text-gray-light">
+						<small>Válido hasta: {{ benefit.end | amDateFormat:"D [de] MMM [del] YYYY" }}</small>
+					</div>
 				</div>
 				<div class="item-go">
 					<i class="icon-arrow-right-filled"></i>

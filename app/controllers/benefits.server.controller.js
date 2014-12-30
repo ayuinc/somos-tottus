@@ -101,7 +101,7 @@ exports.index = function(req, res) {
         })
         .limit(20)
         .populate('post', 'name detail imgFilePath')
-        .sort('-created')
+        .sort('end')
         .exec(function(err, benefits) {
             if(err) {
                 return res.status(400).send({
