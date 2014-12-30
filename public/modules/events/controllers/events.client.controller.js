@@ -173,6 +173,12 @@ angular.module('events').controller('EventsController', ['$scope', '$stateParams
             });
         };
 
+        $scope.getAttendees = function() {
+            Attendees.getAttendees($stateParams.eventId).then(function(res) {
+                $scope.evtAttendees = res;
+            });
+        };
+
         $scope.registerAttendee = function() {
             $scope.evt.attended = true;
             $scope.evt.attendees.push($scope.authentication.user._id);

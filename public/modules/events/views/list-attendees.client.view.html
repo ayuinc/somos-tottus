@@ -1,0 +1,24 @@
+<section data-ng-controller="EventsController" data-ng-init="getAttendees();">
+    <div>
+        <div class="separator bg-gray-lighter p-7 uppercase">
+            <span>Evento: {{evtAttendees.post.name}}</span>
+        </div>
+        
+        <div class="list" data-ng-if="evtAttendees.attendees.length">
+            <a data-ng-repeat="attendee in evtAttendees.attendees" href="#!/events/{{evt._id}}" class="item item-thumbnail-left bg-white">
+                <div class="col-xs-3">
+                    <img data-ng-src="{{attendee.assets.profilePicURL}}" alt="">
+                </div>
+                <div class="col-xs-8">
+                    <span class="bold text-gray-dark" data-ng-bind="attendee.personal.displayName"></span><br>
+                    <span class="small text-gray" >{{ attendee.organizational.currentJobPosition }} en {{ attendee.organizational.branch }}</span>
+                </div>
+                <div class="item-go">
+                    <i class="icon-arrow-right-filled"></i>
+                </div>
+            </a>
+        </div>
+
+        <p class="m-7" data-ng-if="evtAttendees.attendees.length == 0">Aún no hay asistentes, se el primero!</p>
+    </div>
+</section>

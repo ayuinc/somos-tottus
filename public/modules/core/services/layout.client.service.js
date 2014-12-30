@@ -331,6 +331,22 @@ angular.module('core').service('Layout', [
           hasThis: true
         }
       },
+      'listAttendees': {
+        navViewActionBar: {
+          hasThis: true,
+          // actionButtonText: 'Opciones',
+          // actionButtonAction: '',
+          isURL: true,
+          previousPage: '/events'
+        },
+        navViewIndicator: {
+          hasThis: true,
+          indicatorText: 'Asistentes'
+        },
+        navSubnavTabs: {
+          hasThis: true
+        }
+      },
 
       // VACANCIES
       'listVacancies': {

@@ -134,6 +134,33 @@ exports.registerAttendee = function(req, res) {
     }
 };
 
+exports.getAttendees = function(req, res) {
+    var evt = req.evt;
+
+    Evt.findById(evt._id)
+        .populate('post', 'name')
+        .exec(function(err, evt) {
+            if(err) {
+                return res.status(400).send({
+                    message: errorHandler.getErrorMessage(err)
+                });
+            }
+
+            User.populate(evt, {
+                    path: 'attendees',
+                    select: 'personal.displayName assets.profilePicURL organizational.currentJobPosition organizational.branch',
+                }, function(err, data) {
+                    if (err) {
+                        return res.status(400).send({
+                            message: errorHandler.getErrorMessage(err)
+                        });
+                    }
+                    res.jsonp(data);
+                });
+
+        });
+};
+
 exports.eventByID = function(req, res, next, id) {
     Evt.findById(id)
         // .populate('post', 'name detail imgFilePath category')
