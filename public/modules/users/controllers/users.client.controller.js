@@ -7,6 +7,11 @@ angular.module('users').controller('UsersController', ['$scope', '$http', '$loca
         // If user is not signed in then redirect back home
         if (!$scope.user) $location.path('/');
 
+        $scope.canEdit = function() {
+            if($scope.userProfile)
+                return $scope.user._id === $scope.userProfile._id;
+        };
+
         // Update a user profile
         $scope.find = function() {
         	$scope.showProfile = {
