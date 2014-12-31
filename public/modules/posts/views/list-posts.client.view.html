@@ -10,7 +10,7 @@
                         <div class="user">
                             <div class="user-card">
                                 <div class="profile-pic col-xs-2">
-                                  <a data-ng-href="#!/users/{{post.user._id}}"><img data-ng-src="{{post.user.assets.profilePicURL}}" /></a>
+                                  <a data-ng-href="#!/users/{{post.user._id}}"><img lazy-src="{{post.user.assets.profilePicURL}}" /></a>
                                 </div>
                                 <div class="info col-xs-10">
                                   <p>
@@ -23,7 +23,7 @@
                             <a data-ng-href="#!/posts/{{post._id}}" data-ng-bind="post.detail"></a>
                         </div>
                         <div data-ng-show="(post.imgFilePath | imageFilter)" class="content-img-placeholder">
-                            <a data-ng-href="#!/posts/{{post._id}}"><img data-ng-src="{{post.imgFilePath}}" /></a>
+                            <a data-ng-href="#!/posts/{{post._id}}"><img lazy-src="{{post.imgFilePath}}" /></a>
                         </div>
                         <ul class="counts-and-share list-unstyled">
                             <li class="counts-likes"><a data-ng-href="#!/posts/{{post._id}}">{{post.likes.length}} Me Gusta</a></li>

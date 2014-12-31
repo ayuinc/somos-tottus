@@ -10,7 +10,7 @@ angular.module('core').config(['$stateProvider', '$urlRouterProvider',
 		$stateProvider.
 		state('home', {
 			url: '/',
-			templateUrl: 'modules/core/views/home.client.view.html'
+			templateUrl: 'modules/posts/views/list-posts.client.view.html'
 		}).
 		state('navigationDrawer', {
 			url: '/menu',
