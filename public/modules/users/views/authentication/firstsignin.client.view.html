@@ -18,6 +18,16 @@
             <label for="password">Contraseña Temporal</label>
             <input type="password" id="password" name="password" class="form-control" data-ng-model="credentials.password">
           </div>
+          <div class="form-group clearfix mb-0">
+            <div class="col-xs-1 p-0 m-0">
+              <input type="checkbox" id="terms" class="pull-left block" required> 
+            </div>
+            <div class="col-xs-11 p-0 m-0">
+              <label for="terms" class="text-primary bold pull-right">
+                He leído los <a href="#" class="underline">términos y condiciones</a> de uso de la plataforma y estoy de acuerdo.
+              </label>
+            </div>
+          </div>
           <div data-ng-show="error" class="text-center text-danger">
             <strong data-ng-bind="error"></strong>
           </div>
