@@ -6,7 +6,8 @@
 		<div class="list" data-ng-show="vivelo.length">
 			<a data-ng-repeat="benefit in vivelo = (benefits | filter:{ category: 'Vívelo'})" href="#!/benefits/{{benefit._id}}" class="item item-thumbnail-left bg-white">
 				<div class="col-xs-3">
-					<img data-ng-src="{{benefit.post.imgFilePath}}" alt="" class="img-thumbnail">
+					<div class="pic" style="background-image: url({{benefit.post.imgFilePath}})"></div>
+					<!-- <img data-ng-src="{{benefit.post.imgFilePath}}" alt="" class="img-thumbnail"> -->
 				</div>
 				<div class="col-xs-8">
 					<span class="bold text-gray-dark" data-ng-bind="benefit.post.name"></span><br>
@@ -33,7 +34,8 @@
 		<div class="list" data-ng-show="disfrutalo.length">
 			<a data-ng-repeat="benefit in disfrutalo = (benefits | filter:{ category: 'Disfrútalo'})" href="#!/benefits/{{benefit._id}}" class="item item-thumbnail-left bg-white">
 				<div class="col-xs-3">
-					<img data-ng-src="{{benefit.post.imgFilePath}}" alt="" class="img-thumbnail">
+					<div class="pic" style="background-image: url({{benefit.post.imgFilePath}})"></div>
+					<!-- <img data-ng-src="{{benefit.post.imgFilePath}}" alt="" class="img-thumbnail"> -->
 				</div>
 				<div class="col-xs-8">
 					<span class="bold text-gray-dark" data-ng-bind="benefit.post.name"></span><br>
@@ -60,7 +62,8 @@
 		<div class="list" data-ng-show="compartelo.length">
 			<a data-ng-repeat="benefit in compartelo = (benefits | filter:{ category: 'Compártelo'})" href="#!/benefits/{{benefit._id}}" class="item item-thumbnail-left bg-white">
 				<div class="col-xs-3">
-					<img data-ng-src="{{benefit.post.imgFilePath}}" alt="" class="img-thumbnail">
+					<div class="pic" style="background-image: url({{benefit.post.imgFilePath}})"></div>
+					<!-- <img data-ng-src="{{benefit.post.imgFilePath}}" alt="" class="img-thumbnail"> -->
 				</div>
 				<div class="col-xs-8">
 					<span class="bold text-gray-dark" data-ng-bind="benefit.post.name"></span><br>

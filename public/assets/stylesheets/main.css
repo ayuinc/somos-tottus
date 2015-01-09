@@ -3201,6 +3201,14 @@ input[type="submit"].btn-tabs {
       -o-align-items: center;
       align-items: center;
       -ms-flex-align: center; }
+    .list .item .pic {
+      width: 70px;
+      height: 70px;
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-size: cover;
+      background-color: #ededed;
+      border-radius: 3px; }
   .list .meta {
     padding: 4px 0;
     position: absolute;
@@ -3318,13 +3326,15 @@ input[type="submit"].btn-tabs {
   .user-card .profile-pic {
     padding-right: 0; }
     .user-card .profile-pic a, .user-card .profile-pic span {
-      display: block; }
-      .user-card .profile-pic a img, .user-card .profile-pic span img {
-        width: 49px;
-        height: 49px;
-        border-radius: 3px;
-        background: #ededed;
-        padding: 1px; }
+      display: block;
+      width: 49px;
+      height: 49px;
+      border-radius: 3px;
+      background-color: #ededed;
+      padding: 1px;
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-size: cover; }
   .user-card .info {
     color: #6f7474;
     font-size: 0.71429rem;
@@ -3574,11 +3584,14 @@ input[type="submit"].btn-tabs {
     .post-show-comments ul li .profile-pic {
       padding-right: 0; }
       .post-show-comments ul li .profile-pic a {
-        display: block; }
-        .post-show-comments ul li .profile-pic a img {
-          width: 35px;
-          height: 35px;
-          border-radius: 3px; }
+        display: block;
+        width: 42px;
+        height: 42px;
+        border-radius: 3px;
+        background-color: #ededed;
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: cover; }
     .post-show-comments ul li .comment-content {
       padding: 3px 0; }
       .post-show-comments ul li .comment-content p {

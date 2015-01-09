@@ -6,7 +6,8 @@
 		<div class="list">
 			<a data-ng-repeat="evt in events" href="#!/events/{{evt._id}}" class="item item-thumbnail-left bg-white">
 				<div class="col-xs-3">
-					<img data-ng-src="{{evt.post.imgFilePath}}" alt="" class="img-thumbnail">
+					<div class="pic" style="background-image: url({{evt.post.imgFilePath}})"></div>
+					<!-- <img data-ng-src="{{evt.post.imgFilePath}}" alt="" class="img-thumbnail"> -->
 				</div>
 				<div class="col-xs-8">
 					<span class="bold text-gray-dark" data-ng-bind="evt.post.name"></span><br>

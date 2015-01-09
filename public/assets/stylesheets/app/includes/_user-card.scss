@@ -8,12 +8,13 @@
 		padding-right: 0;
 		a, span {
 			display: block;
+			width: 49px;
+			height: 49px;
+			border-radius: $border-radius-base;
+			background-color: $gray-lighter;
+			padding: 1px;
+			@include bg-img-control;
 			img {
-				width: 49px;
-				height: 49px;
-				border-radius: $border-radius-base;
-				background: $gray-lighter;
-				padding: 1px;
 			}
 		}
 	}

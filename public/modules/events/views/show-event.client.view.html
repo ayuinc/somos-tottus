@@ -52,7 +52,7 @@
             <ul data-ng-if="evt.post.comments.length > 0">
                 <li data-ng-repeat="comment in evt.post.comments">
                     <div class="profile-pic col-xs-2">
-                        <a data-ng-href="#!/users/{{evt.post.user._id}}"><!--<img src="assets/img/user-placeholder-2.png" />--><img data-ng-src="{{comment.user.assets.profilePicURL}}" /></a>
+                        <a data-ng-href="#!/users/{{evt.post.user._id}}" style="background-image: url({{comment.user.assets.profilePicURL}})"></a>
                     </div>
                     <div class="comment-content col-xs-10">
                         <p><a data-ng-href="#!/users/{{comment.user._id}}" >{{ comment.user.personal.displayName }}</a> {{ comment.text }}</p>

@@ -6,7 +6,7 @@
     <div class="list">
       <a data-ng-repeat="ntfcn in notifications" data-ng-click="nextRedirect(ntfcn);" class="item item-thumbnail-left bg-white">
         <div class="col-xs-3">
-          <img data-ng-src="{{ntfcn.post.imgFilePath}}" alt="" class="img-thumbnail">
+          <div class="pic" style="background-image: url({{ntfcn.post.imgFilePath}})"></div>
         </div>
         <div class="col-xs-8">
           <span class="bold text-gray-dark" data-ng-bind="ntfcn.post.name"></span><br>

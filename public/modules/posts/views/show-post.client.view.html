@@ -10,9 +10,7 @@
                     <div class="user">
                         <div class="user-card">
                             <div class="profile-pic col-xs-2">
-                              <a data-ng-href="#!/users/{{post.user._id}}">
-                                <img data-ng-src="{{post.user.assets.profilePicURL}}" />
-                                </a>
+                                <a data-ng-href="#!/users/{{post.user._id}}" style="background-image: url({{post.user.assets.profilePicURL}})"></a>
                             </div>
                             <div class="info col-xs-10">
                               <p>
@@ -54,7 +52,7 @@
                         <ul data-ng-if="post.comments.length > 0">
                             <li data-ng-repeat="comment in post.comments">
                                 <div class="profile-pic col-xs-2">
-                                    <a data-ng-href="#!/users/{{post.user._id}}"><!--<img src="assets/img/user-placeholder-2.png" />--><img data-ng-src="{{comment.user.assets.profilePicURL}}" /></a>
+                                    <a data-ng-href="#!/users/{{post.user._id}}" style="background-image: url({{comment.user.assets.profilePicURL}})"></a>
                                 </div>
                                 <div class="comment-content col-xs-10">
                                     <p><a data-ng-href="#!/users/{{comment.user._id}}" >{{ comment.user.personal.displayName }}</a> {{ comment.text }}</p>
@@ -62,7 +60,7 @@
                                 </div>
                             </li>
                         </ul>
-                        <p class="small m-14" data-ng-if="post.comments.length == 0">Se el primero en comentar!</p>
+                        <p class="small m-14" data-ng-if="post.comments.length == 0">Sé el primero en comentar!</p>
                     </div>
                 </div>
                 <!-- ESTE TEXTAREA debe ir en su propia vista: new-comment.client... -->

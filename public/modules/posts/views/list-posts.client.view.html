@@ -10,11 +10,11 @@
                         <div class="user">
                             <div class="user-card">
                                 <div class="profile-pic col-xs-2">
-                                  <a data-ng-href="#!/users/{{post.user._id}}"><img lazy-src="{{post.user.assets.profilePicURL}}" /></a>
+                                    <a data-ng-href="#!/users/{{post.user._id}}" style="background-image: url({{post.user.assets.profilePicURL}})"></a>
                                 </div>
                                 <div class="info col-xs-10">
                                   <p>
-                                    <a data-ng-href="#!/users/{{post.user._id}}" class="name" >{{ post.user.personal.displayName }}</a><br><span class="job-position">{{post.user.organizational.currentJobPosition}}</span> en <span class="area">{{post.user.organizational.branch}}</span><br><span data-ng-bind="post.created | amCalendar"></span><!-- <span data-ng-bind="post.created | date:'mediumDate'"></span> -->
+                                    <a data-ng-href="#!/users/{{post.user._id}}" class="name" >{{ post.user.personal.displayName }}</a><br><span class="job-position">{{post.user.organizational.currentJobPosition}}</span> en <span class="area">{{post.user.organizational.branch}}</span><br><span class="text-gray-light" data-ng-bind="post.created | amCalendar"></span><!-- <span data-ng-bind="post.created | date:'mediumDate'"></span> -->
                                   </p>
                                 </div>
                             </div>

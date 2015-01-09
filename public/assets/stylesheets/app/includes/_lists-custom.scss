@@ -35,6 +35,13 @@
 			@include justify-content(center);
 			@include align-items(center);
 		}
+		.pic {
+			width: 70px;
+			height: 70px;
+			@include bg-img-control;
+			background-color: $gray-lighter;
+			border-radius: $border-radius-base;
+		}
 	}
 	.meta {	
 		padding: 4px 0;
