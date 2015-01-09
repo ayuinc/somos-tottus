@@ -2980,6 +2980,7 @@ input[type="submit"].btn-action {
   input[type="submit"].btn-action.active {
     color: #58A742;
     border: none;
+    text-decoration: none;
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
     box-shadow: none; }
@@ -3214,13 +3215,12 @@ input[type="submit"].btn-tabs {
     position: absolute;
     right: 0;
     bottom: 0;
-    left: 14px;
-    width: 100%; }
+    left: 14px; }
     .list .meta span,
     .list .meta small {
       display: block;
       font-size: 10px;
-      color: #6f7474; }
+      color: #b8bbbb; }
       .list .meta span:after,
       .list .meta small:after {
         content: " ";
@@ -3482,7 +3482,6 @@ input[type="submit"].btn-tabs {
     width: 100%; }
     .posts-index-item .meta span,
     .posts-show-item .meta span {
-      display: block;
       font-size: 10px;
       color: #6f7474; }
       .posts-index-item .meta span:after,

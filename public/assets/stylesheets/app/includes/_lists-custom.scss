@@ -46,12 +46,12 @@
 	.meta {	
 		padding: 4px 0;
 		@include position(absolute, null 0 0 14px);
-		width: 100%;
+		// width: 100%;
 		span,
 		small {
 			display: block;
 			font-size: 10px;
-			color: $gray;
+			color: $gray-light;
 			&:after {
 				content: " ";
 				width: 7px;

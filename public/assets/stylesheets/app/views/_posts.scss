@@ -18,7 +18,7 @@
 		@include position(absolute, 0 21px null 0);
 		width: 100%;
 		span {
-			display: block;
+			// display: block;
 			font-size: 10px;
 			color: $gray;
 			&:after {

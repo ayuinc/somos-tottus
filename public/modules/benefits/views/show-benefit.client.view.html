@@ -2,14 +2,14 @@
   <div class="container-fluid">
     <div class="posts-show-item">
       <div class="meta">
-        <a data-ng-if="canRemove(evt)" confirm-click="¿Estás seguro de querer eliminar el beneficio?" confirmed-click="remove()">Eliminar</a>
-        <span class="benefit" data-ng-bind="evt.post.category"></span>
+        <small><a data-ng-if="canRemove(evt)" confirm-click="¿Estás seguro de querer eliminar el beneficio?" confirmed-click="remove()" class="text-gray-light">Eliminar</a></small>
+        <span class="benefit inline-block" data-ng-bind="evt.post.category"></span>
       </div>
       <div class="content-text-placeholder">
         <h3 class="bold mb-0" data-ng-bind="benefit.post.name">Tarjeta Somos Salud</h3>
         <span class="small">Publicado por {{benefit.post.user.personal.displayName}} {{benefit.created | amCalendar }}</span><br>
         <em class="small" data-ng-bind="benefit.subtitle"></em>
-        <p class="pv-7" data-ng-bind="benefit.post.detail"></p>
+        <p class="pv-14 text-gray light" data-ng-bind="benefit.post.detail"></p>
       </div>
       <div data-ng-show="(benefit.post.imgFilePath | benefitImageFilter)" class="content-img-placeholder">
           <a><img data-ng-src="{{benefit.post.imgFilePath}}" /></a>
