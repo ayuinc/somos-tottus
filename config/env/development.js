@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = {
-	db: 'mongodb://root:root@proximus.modulusmongo.net:27017/qI8piduh',
+	db: 'mongodb://root:root@proximus.modulusmongo.net:27017/r7ewoniW',
 	// db: 'mongodb://localhost:27017/smstts',
 	app: {
 		title: 'somos-tottus - Development Environment'

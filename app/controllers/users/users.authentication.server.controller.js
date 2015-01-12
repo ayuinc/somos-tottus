@@ -56,6 +56,34 @@ exports.signin = function(req, res, next) {
 				message: 'Por favor, ingrese datos válidos'
 			});
 		} else {
+			if(!user.isRegistered) {
+				res.status(400).send({
+					message: 'Por favor, regístrate para poder ingresar'
+				});
+			} else {
+				// Remove sensitive data before login
+				user.password = undefined;
+				user.salt = undefined;
+
+				req.login(user, function(err) {
+					if (err) {
+						res.status(400).send(err);
+					} else {
+						res.jsonp(user);
+					}
+				});
+			}
+		}
+	})(req, res, next);
+};
+
+exports.firstSignin = function(req, res, next) {
+	passport.authenticate('local', function(err, user, info) {
+		if (err || !user) {
+			res.status(400).send({
+				message: 'Por favor, ingrese datos válidos'
+			});
+		} else {
 			// Remove sensitive data before login
 			user.password = undefined;
 			user.salt = undefined;
@@ -67,6 +95,7 @@ exports.signin = function(req, res, next) {
 					res.jsonp(user);
 				}
 			});
+			
 		}
 	})(req, res, next);
 };

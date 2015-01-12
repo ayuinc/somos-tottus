@@ -10,7 +10,9 @@ angular.module('core').config(['$stateProvider', '$urlRouterProvider',
 		$stateProvider.
 		state('home', {
 			url: '/',
-			templateUrl: 'modules/posts/views/list-posts.client.view.html'
+			controller: function($scope, $location) {
+				if ($scope.authentication.user) $location.path('/posts');
+			}
 		}).
 		state('navigationDrawer', {
 			url: '/menu',
