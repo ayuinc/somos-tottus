@@ -16,6 +16,7 @@
 				font-size: 28px;
 				font-size: rem(28);
 				color: $gray;
+				position: relative;
 			}
 			&.active {
 				a {
@@ -38,5 +39,14 @@
 				}
 			}
 		}
+	}
+}
+
+.subnav-notifications {
+	@include position(absolute, -14px null null 63%);
+	.notifications-counter {
+		font-size: 12px;
+		color: $brand-danger;
+		@include bold;
 	}
 }

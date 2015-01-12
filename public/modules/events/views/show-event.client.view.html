@@ -2,15 +2,16 @@
 <div class="container-fluid">
     <div class="posts-show-item">
         <div class="meta">
+            <a data-ng-if="canRemove(evt)" confirm-click="¿Estás seguro de querer eliminar el evento?" confirmed-click="remove()">Eliminar</a>
             <span class="benefit" data-ng-bind="evt.post.category"></span>
         </div>
         <div class="content-text-placeholder">
             <h3 class="bold mb-0" data-ng-bind="evt.post.name"></h3>
-            <span class="small">Publicado por {{evt.post.user.personal.displayName}} el {{evt.created | amCalendar }}</span>
+            <span class="small">Publicado por {{evt.post.user.personal.displayName}} {{evt.created | amCalendar }}</span>
             <p class="pv-7" data-ng-bind="evt.post.detail"></p>
         </div>
-        <div data-ng-show="(evt.post.imgFilePath)" class="content-img-placeholder">
-            <a href="#!"><img data-ng-src="{{evt.post.imgFilePath}}" /></a>
+        <div data-ng-show="(evt.post.imgFilePath | eventImageFilter)" class="content-img-placeholder">
+            <a><img data-ng-src="{{evt.post.imgFilePath}}" /></a>
         </div>
         <!-- <div class="content-img-placeholder"></div> -->
         <div class="list pl-ch-21">
@@ -27,7 +28,7 @@
             </div>
         </div>
         <ul class="counts-and-share list-unstyled p-14 mb-0">
-            <li class="counts-likes"><a>{{evt.attendees.length}} Asistente(s)</a></li>
+            <li class="counts-likes"><a data-ng-href="#!/events/{{evt._id}}/attendees">{{evt.attendees.length}} Asistente(s)</a></li>
             <li class="counts-comments"><a>{{evt.post.comments.length}} Comentarios</a></li>
         </ul>
         <div class="actions">
@@ -48,10 +49,10 @@
         <div class="panel">
             <h4 class="panel-title">Comentarios</h4>
             <hr class="m-0">
-            <ul data-ng-repeat="comment in evt.post.comments">
-                <li>
+            <ul data-ng-if="evt.post.comments.length > 0">
+                <li data-ng-repeat="comment in evt.post.comments">
                     <div class="profile-pic col-xs-2">
-                        <a data-ng-href="#!/users/{{evt.post.user._id}}"><!--<img src="assets/img/user-placeholder-2.png" />--><img src="{{comment.user.assets.profilePicURL}}" /></a>
+                        <a data-ng-href="#!/users/{{evt.post.user._id}}" style="background-image: url({{comment.user.assets.profilePicURL}})"></a>
                     </div>
                     <div class="comment-content col-xs-10">
                         <p><a data-ng-href="#!/users/{{comment.user._id}}" >{{ comment.user.personal.displayName }}</a> {{ comment.text }}</p>
@@ -59,6 +60,7 @@
                     </div>
                 </li>
             </ul>
+            <p class="small m-14" data-ng-if="evt.post.comments.length == 0">Se el primero en comentar!</p>
         </div>
     </div>
 </div>

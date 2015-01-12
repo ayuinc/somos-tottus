@@ -236,7 +236,9 @@ angular.module('core').service('Layout', [
           hasThis: true,
           actionButtonText: 'Publicar beneficio',
           actionButtonAction: '/#!/benefits/new',
-          isURL: true
+          isURL: true,
+          shouldRender: shouldRender,
+          roles: ['admin']
         },
         navViewIndicator: {
           hasThis: true,
@@ -329,6 +331,74 @@ angular.module('core').service('Layout', [
           hasThis: true
         }
       },
+      'listAttendees': {
+        navViewActionBar: {
+          hasThis: true,
+          // actionButtonText: 'Opciones',
+          // actionButtonAction: '',
+          isURL: true,
+          previousPage: '/events'
+        },
+        navViewIndicator: {
+          hasThis: true,
+          indicatorText: 'Asistentes'
+        },
+        navSubnavTabs: {
+          hasThis: true
+        }
+      },
+
+      // STORES
+      'listStores': {
+        navViewActionBar: {
+          hasThis: true,
+          // actionButtonText: 'Nueva tienda',
+          // actionButtonAction: '/#!/stores/new',
+          isURL: true,
+          shouldRender: shouldRender,
+          roles: ['admin']
+        },
+        navViewIndicator: {
+          hasThis: true,
+          indicatorText: 'Tiendas'
+        },
+        navSubnavTabs: {
+          hasThis: true
+        }
+      },
+      'newStore': {
+        navViewActionBar: {
+          hasThis: true,
+          // actionButtonText: 'Opciones',
+          actionButtonAction: '',
+          isURL: true,
+          previousPage: '/stores'
+        },
+        navViewIndicator: {
+          hasThis: true,
+          indicatorText: 'Nueva tienda'
+        },
+        navSubnavTabs: {
+          hasThis: false
+        }
+      },
+
+      'storeWall': {
+        navViewActionBar: {
+          hasThis: true,
+          // actionButtonText: 'Stores',
+          // actionButtonAction: '/stores',
+          isURL: true,
+          previousPage: '/stores'
+        },
+        navViewIndicator: {
+          hasThis: true,
+          indicatorText: 'Publicaciones'
+        },
+        navSubnavTabs: {
+          hasThis: true
+        }
+      },
 
       // VACANCIES
       'listVacancies': {
@@ -409,6 +479,24 @@ angular.module('core').service('Layout', [
         },
         navSubnavTabs: {
           hasThis: true
+        }
+      },
+
+      // NOTIFICATIONS
+      'listNotifications': {
+        navViewActionBar: {
+          hasThis: true,
+          // actionButtonText: 'Publicar notificaciones',
+          // actionButtonAction: '/#!/notifications/new',
+          isURL: true
+        },
+        navViewIndicator: {
+          hasThis: true,
+          indicatorText: 'Notificaciones'
+        },
+        navSubnavTabs: {
+          hasThis: true,
+          isActive: true
         }
       }
     };

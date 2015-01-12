@@ -1,51 +1,66 @@
-<div class="container-fluid">
-  <div class="posts-show-item">
-    <div class="meta">
-      <span class="benefit">Beneficios</span>
-    </div>
-    <div class="content-text-placeholder">
-      <h3 class="bold mb-0">Tarjeta Somos Salud</h3>
-      <span class="small">Publicado por Tottus Central el Martes 10 de Septiembre a las 2:45pm</span>
-      <p class="pv-7">La nueva tarjeta Somos Salud de Tottus brinda a todos sus colaboradores beneficios en casos de emergencia para toda tu familia!</p>
-    </div>
-    <!-- <div class="content-img-placeholder"></div> -->
-    <div class="list pl-ch-21">
-      <div class="item item-icon-left">
-        <i class="icon-tags text-info h3"></i>
-        <span class="text-gray-light">Vívelo</span>
+<section data-ng-controller="BenefitsController" data-ng-init="findOne()">
+  <div class="container-fluid">
+    <div class="posts-show-item">
+      <div class="meta">
+        <small><a data-ng-if="canRemove(evt)" confirm-click="¿Estás seguro de querer eliminar el beneficio?" confirmed-click="remove()" class="text-gray-light">Eliminar</a></small>
+        <span class="benefit inline-block" data-ng-bind="evt.post.category"></span>
       </div>
-      <div class="item item-icon-left">
-        <i class="icon-clock5  h3"></i>
-        <span class="text-gray-light">Válido hasta el 28 de Agosto del 2014</span>
+      <div class="content-text-placeholder">
+        <h3 class="bold mb-0" data-ng-bind="benefit.post.name">Tarjeta Somos Salud</h3>
+        <span class="small">Publicado por {{benefit.post.user.personal.displayName}} {{benefit.created | amCalendar }}</span><br>
+        <em class="small" data-ng-bind="benefit.subtitle"></em>
+        <p class="pv-14 text-gray light" data-ng-bind="benefit.post.detail"></p>
+      </div>
+      <div data-ng-show="(benefit.post.imgFilePath | benefitImageFilter)" class="content-img-placeholder">
+          <a><img data-ng-src="{{benefit.post.imgFilePath}}" /></a>
+      </div>
+
+      <!-- <div class="content-img-placeholder"></div> -->
+      <div class="list pl-ch-21">
+        <div class="item item-icon-left">
+          <i class="icon-tags text-info h3"></i>
+          <span class="text-gray-light" data-ng-bind="benefit.category"></span>
+        </div>
+        <div class="item item-icon-left">
+          <i class="icon-clock5  h3"></i>
+          <span class="text-gray-light">Válido hasta el {{ benefit.end | amDateFormat:"D [de] MMMM [del] YYYY" }}</span>
+        </div>
+      </div>
+      <ul class="counts-and-share list-unstyled p-14 mb-0">
+        <li class="counts-likes"><a>{{benefit.post.likes.length}} Me Gusta</a></li>
+        <li class="counts-comments"><a>{{benefit.post.comments.length}} Comentarios</a></li>
+      </ul>
+      <div class="actions" data-ng-controller="PostsController">
+        <div ng-cloak class="col-xs-6 data-ng-cloak">
+            <div ng-if="benefit.post.ngLike == false">
+                <a data-ng-click="like(benefit.post)" class="btn btn-action active">Me Gusta</a>
+            </div>
+            <div data-ng-if="benefit.post.ngLike == true">
+                <a class="btn btn-action ">Te Gusta</a>
+            </div>
+        </div>
+        <div class="col-xs-6">
+          <a data-ng-href="#!/posts/{{benefit.post._id}}/comments/new" class="btn btn-action active">Comentar</a>
+        </div>
       </div>
     </div>
-    <ul class="counts-and-share list-unstyled p-14 mb-0">
-      <li class="counts-likes"><a>21 Me Gusta</a></li>
-      <li class="counts-comments"><a>3 Comentarios</a></li>
-    </ul>
-    <div class="actions">
-      <div class="col-xs-6">
-        <a class="btn btn-action">Me Gusta</a>
+    <div class="post-show-comments">
+      <div class="panel">
+          <h4 class="panel-title">Comentarios</h4>
+          <hr class="m-0">
+          <ul data-ng-if="benefit.post.comments.length > 0">
+            <li data-ng-repeat="comment in benefit.post.comments">
+              <div class="profile-pic col-xs-2">
+                <a data-ng-href="#!/users/{{post.user._id}}" style="background-image: url({{comment.user.assets.profilePicURL}})"></a>
+              </div>
+              <div class="comment-content col-xs-10">
+                  <p><a data-ng-href="#!/users/{{comment.user._id}}" >{{ comment.user.personal.displayName }}</a> {{ comment.text }}</p>
+                  <span data-ng-bind="comment.created | amCalendar" class="text-gray-light"></span>
+              </div>
+            </li>
+          </ul>
+          <p class="small m-14" data-ng-if="benefit.post.comments.length == 0">Se el primero en comentar!</p>
       </div>
-      <div class="col-xs-6">
-        <a class="btn btn-action">Comentar</a>
-      </div>
-    </div>
+    </div>  
   </div>
-  <div class="post-show-comments">
-    <div class="panel">
-        <h4 class="panel-title">Comentarios</h4>
-        <hr class="m-0">
-        <ul>
-          <li>
-            <div class="profile-pic col-xs-2">
-                <a data-ng-href="#"><img src="assets/img/user-placeholder-2.png" /></a>
-            </div>
-            <div class="comment-content col-xs-10">
-                <p><a data-ng-href="#" >Usuario</a> Comentario de este post</p>
-            </div>
-          </li>
-        </ul>
-    </div>
-  </div>  
-</div>
+</section>

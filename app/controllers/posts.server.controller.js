@@ -8,6 +8,7 @@ var mongoose = require('mongoose'),
     Comment = mongoose.model('Comment'),
     User = mongoose.model('User'),
     Post = mongoose.model('Post'),
+    Notification = mongoose.model('Notification'),
     _ = require('lodash');
 
 exports.create = function(req, res) {
@@ -83,6 +84,14 @@ exports.delete = function(req, res) {
                 message: errorHandler.getErrorMessage(err)
             });
         } else {
+            Notification.remove({ post: post }, function(err) {
+                if(err) {
+                    return res.status(400).send({
+                        message: errorHandler.getErrorMessage(err)
+                    });
+                }
+            });
+
             res.jsonp(post);
         }
     });
@@ -90,7 +99,7 @@ exports.delete = function(req, res) {
 
 exports.postByID = function(req, res, next, id) {
     Post.findById(id)
-        .populate('user', 'personal.displayName assets.profilePicURL')
+        .populate('user', 'personal.displayName assets.profilePicURL organizational.currentJobPosition organizational.branch')
         .populate('comments')
         .populate('likes')
         .exec(function(err, post) {

@@ -37,7 +37,7 @@ var PostSchema = new Schema({
     },
     imgFilePath: {
         type: String,
-        default: 'assets/img/img-placeholder.png'
+        default: 'assets/img/posts-placeholder.png'
     },
     category: {
         type: String
@@ -49,6 +49,10 @@ var PostSchema = new Schema({
     comments:       {
         type    : [{ type: Schema.ObjectId, ref: 'Comment' }],
         default : []
+    },
+    store: {
+        type: Schema.ObjectId,
+        ref: 'Store'
     },
     updated: {
         type: Date

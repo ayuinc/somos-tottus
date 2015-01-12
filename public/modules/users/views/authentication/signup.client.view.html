@@ -1,14 +1,14 @@
 <section class="row" data-ng-controller="AuthenticationController">
-	<h3 class="col-md-12 text-center">Sign up</h3> 
+	<h3 class="col-md-12 text-center">Registro</h3> 
 	<div class="col-xs-offset-2 col-xs-8 col-md-offset-5 col-md-2">
 		<form name="userForm" data-ng-submit="signup()" class="signin form-horizontal" novalidate autocomplete="off">
 			<fieldset>
 				<div class="form-group">
-					<label for="firstName">First Name</label>
+					<label for="firstName">Nombres</label>
 					<input type="text" required id="firstName" name="firstName" class="form-control" data-ng-model="credentials.personal.firstName" placeholder="First Name">
 				</div>
 				<div class="form-group">
-					<label for="lastName">Last Name</label>
+					<label for="lastName">Apellidos</label>
 					<input type="text" id="lastName" name="lastName" class="form-control" data-ng-model="credentials.personal.lastName" placeholder="Last Name">
 				</div>
 				<div class="form-group">
@@ -16,25 +16,36 @@
 					<input type="email" id="email" name="email" class="form-control" data-ng-model="credentials.email" placeholder="Email">
 				</div>
 				<div class="form-group">
-					<label for="DNI">DNI</label>
+					<label for="DNI">DNI (Nombre de usuario)</label>
 					<input type="text" id="DNI" name="DNI" class="form-control" data-ng-model="credentials.personal.DNI" placeholder="DNI">
 				</div>
-				<div class="form-group">
-					<label for="dateOfBirth">dateOfBirth</label>
-					<input type="dateOfBirth" id="dateOfBirth" name="dateOfBirth" class="form-control" data-ng-model="credentials.personal.dateOfBirth" placeholder="dateOfBirth">
-				</div>
-				<div class="form-group">
-					<label for="placeOfBirth">placeOfBirth</label>
-					<input type="placeOfBirth" id="placeOfBirth" name="placeOfBirth" class="form-control" data-ng-model="credentials.personal.placeOfBirth" placeholder="placeOfBirth">
-				</div>
-				<div class="form-group">
+				<!-- <div class="form-group">
 					<label for="username">Username</label>
 					<input type="text" id="username" name="username" class="form-control" data-ng-model="credentials.username" placeholder="Username">
+				</div> -->
+
+				<div class="form-group">
+					<label for="dateOfBirth">Fecha de Nacimiento</label>
+					<input type="dateOfBirth" id="dateOfBirth" name="dateOfBirth" class="form-control" data-ng-model="credentials.personal.dateOfBirth" placeholder="dateOfBirth">
 				</div>
+				<!-- <div class="form-group">
+					<label for="placeOfBirth">placeOfBirth</label>
+					<input type="placeOfBirth" id="placeOfBirth" name="placeOfBirth" class="form-control" data-ng-model="credentials.personal.placeOfBirth" placeholder="placeOfBirth">
+				</div> -->
+				<div class="form-group">
+					<label for="password">Cargo Actual</label>
+					<input type="text" class="form-control" id="currentJobPosition" name="currentJobPosition" data-ng-model="credentials.organizational.currentJobPosition">
+				</div>
+				<div class="form-group">
+					<label for="password">Unidad / Tienda</label>
+					<input type="text" class="form-control" id="currentJobPosition" name="currentJobPosition" data-ng-model="credentials.organizational.branch">
+				</div>
+				
 				<div class="form-group">
 					<label for="password">Password</label>
 					<input type="password" id="password" name="password" class="form-control" data-ng-model="credentials.password" placeholder="Password">
 				</div>
+				
 				<div class="text-center form-group">
 					<button type="submit" class="btn btn-large btn-primary">Sign up</button>&nbsp; or&nbsp;
 					<a href="/#!/signin" class="show-signup">Sign in</a>

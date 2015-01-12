@@ -1,12 +1,18 @@
 'use strict';
 
 angular.module('events').factory('Attendees', ['$http', function($http) {
-        var Atendees = {};
-        Atendees.registerAttendee = function (eventId) {
+        var Attendees = {};
+        Attendees.registerAttendee = function (eventId) {
             return $http.post('/events/' + eventId + '/registerAttendee').then(function(res) {
                 return res.data;
             });
         };
-        return Atendees;
+
+        Attendees.getAttendees = function(eventId) {
+            return $http.get('/events/' + eventId + '/attendees').then(function(res) {
+                return res.data;
+            });
+        };
+        return Attendees;
     }   
 ]);

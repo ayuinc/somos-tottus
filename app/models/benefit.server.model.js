@@ -10,27 +10,45 @@ var mongoose = require('mongoose'),
  * Benefit Schema
  */
 var BenefitSchema = new Schema({
-  // Benefit model fields
-  // ...
-
-    post:    {
+    post: {
         type: Schema.ObjectId,
         ref: 'Post',
         required: true
     },
+    subtitle: {
+        type: String,
+        trim: true,
+        required: 'Ingresa el subtítulo del beneficio.'
+    },
     start: {
         type: Date,
-        required: true
+        // required: true
     },
     end: {
         type: Date,
-        required: true
+        // required: true
     },
     category: {
-      type: String,
-      trim: true,
-      required: false
+        type: String,
+        trim: true,
+        required: 'Elíge una categoría.'
+    },
+    updated: {
+        type: Date
+    },
+    created: {
+        type: Date,
+        default: Date.now
     }
 });
+
+BenefitSchema.pre('save', function(next) {
+    var now = new Date();
+    this.updated = now;
+
+    if (!this.created) this.created = now;
+    next();
+});
+
 
 mongoose.model('Benefit', BenefitSchema);

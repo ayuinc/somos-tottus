@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('posts').filter('detailFilter', function() {
+angular.module('events').filter('eventImageFilter', function() { 
     return function(input) {
-        
+        return input !== 'assets/img/img-placeholder.png' ? true : false;
     };
 });

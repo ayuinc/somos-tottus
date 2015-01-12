@@ -2,9 +2,7 @@
 	<div class="top">
     <a data-ng-href="#!/users/{{user._id}}" class="user-card bg-white pv-21 relative">
       <div class="profile-pic col-xs-2">
-        <span>
-          <img data-ng-src="{{user.assets.profilePicURL}}" />
-        </span>
+        <span style="background-image: url({{user.assets.profilePicURL}})"></span>        
       </div>
       <div class="info col-xs-10">
         <p>
@@ -36,6 +34,10 @@
   			<i class="icon-cake-filled bg-birthdays"></i>
   			<span>Cumpleaños</span>
   		</a>
+      <a href="#!/stores" class="item item-icon-left">
+        <i class="icon-calendar-filled bg-events"></i>
+        <span>Tiendas</span>
+      </a>
   	</div>
   </div>
   <div class="bottom">

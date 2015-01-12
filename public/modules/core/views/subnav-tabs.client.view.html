@@ -3,8 +3,13 @@
     <li class="col-xs-4 posts-index" data-ng-class="{active: isRoute('listPosts')}">
       <a href="#!/posts"><i class="icon-tottus"></i></a>
     </li>
-    <li class="col-xs-4 notifications-index">
-      <a href="#"><i class="icon-bell-filled"></i></a>
+    <li class="col-xs-4 notifications-index" data-ng-class="{active: isRoute('listNotifications')}">
+      <a href="#!/notifications">
+        <i class="icon-bell-filled"></i>
+        <div class="subnav-notifications">
+          <span data-ng-if="unreadNotifications>0" class="notifications-counter">{{unreadNotifications}}</span>
+        </div>
+      </a>
     </li>
     <li class="col-xs-4 nav-drawer" data-ng-class="{active: isRoute('navigationDrawer')}">
       <a href="#!/menu"><i class="icon-options-filled"></i></a>

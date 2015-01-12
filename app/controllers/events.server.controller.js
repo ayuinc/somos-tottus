@@ -8,6 +8,7 @@ var mongoose = require('mongoose'),
     Evt = mongoose.model('Event'),
     User = mongoose.model('User'),
     Post = mongoose.model('Post'),
+    Notification = mongoose.model('Notification'),
     _ = require('lodash');
 
 /**
@@ -58,7 +59,33 @@ exports.update = function(req, res) {
  * Delete an Event
  */
 exports.delete = function(req, res) {
+    var evt = req.evt;
 
+    evt.remove(function(err) {
+        if(err) {
+            return res.status(400).send({
+                message: errorHandler.getErrorMessage(err)
+            });
+        } else {
+            Notification.remove({ post: evt.post }, function(err) {
+                if(err) {
+                    return res.status(400).send({
+                        message: errorHandler.getErrorMessage(err)
+                    });
+                }
+            });
+
+            Post.remove({ _id: evt.post }, function(err) {
+                if(err) {
+                    return res.status(400).send({
+                        message: errorHandler.getErrorMessage(err)
+                    });
+                } else {
+                    res.jsonp(evt);
+                }
+            });
+        }
+    });
 };
 
 /**
@@ -107,6 +134,33 @@ exports.registerAttendee = function(req, res) {
     }
 };
 
+exports.getAttendees = function(req, res) {
+    var evt = req.evt;
+
+    Evt.findById(evt._id)
+        .populate('post', 'name')
+        .exec(function(err, evt) {
+            if(err) {
+                return res.status(400).send({
+                    message: errorHandler.getErrorMessage(err)
+                });
+            }
+
+            User.populate(evt, {
+                    path: 'attendees',
+                    select: 'personal.displayName assets.profilePicURL organizational.currentJobPosition organizational.branch',
+                }, function(err, data) {
+                    if (err) {
+                        return res.status(400).send({
+                            message: errorHandler.getErrorMessage(err)
+                        });
+                    }
+                    res.jsonp(data);
+                });
+
+        });
+};
+
 exports.eventByID = function(req, res, next, id) {
     Evt.findById(id)
         // .populate('post', 'name detail imgFilePath category')
@@ -122,10 +176,12 @@ exports.eventByID = function(req, res, next, id) {
 };
 
 exports.hasAuthorization = function(req, res, next) {
-    if (req.post.user.id !== req.user.id) {
-        return res.status(403).send({
-            message: 'Usuario no autorizado'
-        });
+    if (req.user.roles.indexOf('admin') === -1) {
+        if (req.evt.post.user.id !== req.user.id) {
+            return res.status(403).send({
+                message: 'Usuario no autorizado'
+            });
+        }
     }
     next();
 };

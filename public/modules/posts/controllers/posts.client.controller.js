@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('posts').controller('PostsController', ['$scope', '$stateParams', '$location', '$http', 'Authentication', 'Posts', 'Comments', 'Likes', 'AWS', 'FileUploader', 'getPostsPerUser',
-    function($scope, $stateParams, $location, $http, Authentication, Posts, Comments, Likes, AWS, FileUploader, getPostsPerUser) {
+angular.module('posts').controller('PostsController', ['$scope', '$stateParams', '$location', '$http', 'Authentication', 'Posts', 'Comments', 'Likes', 'AWS', 'FileUploader', 'getPostsPerUser', 'getPostsPerStore', 'Notifications', 'Stores',
+    function($scope, $stateParams, $location, $http, Authentication, Posts, Comments, Likes, AWS, FileUploader, getPostsPerUser, getPostsPerStore, Notifications, Stores) {
         $scope.authentication = Authentication;
         $scope.uploader = new FileUploader({
             url: 'https://s3.amazonaws.com/tottus/',
@@ -26,9 +26,35 @@ angular.module('posts').controller('PostsController', ['$scope', '$stateParams',
             });
         };
 
+        $scope.getStores = function() {
+            $scope.stores = Stores.query();
+        };
+
+        var registerNotification = function(post, nextUrl) {
+            if(!!~$scope.authentication.user.roles.indexOf('admin')) {
+                // is admin
+                var newNot = new Notifications({
+                    post: post,
+                    nextUrl: nextUrl
+                });
+
+                newNot.$save(function(response) {
+                    console.log('success!');
+                }, function(errorResponse) {
+                    console.log('error!', errorResponse);
+                });
+
+            } else {
+                return false;
+            }
+        };
+
         $scope.new = function() {
+            console.log(this.storeId);
+            
             var post = new Posts({
-                detail: this.detail
+                detail: this.detail,
+                store: this.storeId
             });
 
             if($scope.uploader.queue[0])
@@ -51,6 +77,9 @@ angular.module('posts').controller('PostsController', ['$scope', '$stateParams',
                         $location.path('posts/' + response._id);
                     };
                     
+                    var nextUrl = 'posts/' + response._id;
+                    registerNotification(response._id, nextUrl);
+
                     uploadItem.upload();
 
                     response.imgFilePath = 'https://s3.amazonaws.com/tottus/post_' + post._id + '.' + uploadItem.file.name.split('.').pop();
@@ -62,6 +91,9 @@ angular.module('posts').controller('PostsController', ['$scope', '$stateParams',
             else
             {
                 post.$save(function(response) {
+                    var nextUrl = 'posts/' + response._id;
+                    registerNotification(response._id, nextUrl);
+
                     $location.path('posts/' + response._id);
                     $scope.detail = '';
                 }, function(errorResponse) {
@@ -112,12 +144,27 @@ angular.module('posts').controller('PostsController', ['$scope', '$stateParams',
                     }
                 }
             });
+        };
 
-            console.log('post', $scope.post);
+        $scope.findByStore = function() {
+                getPostsPerStore.getPosts($stateParams.storeId).then(function(posts){
+                    for (var i = posts.length - 1; i >= 0; i--) {
+                        posts[i].ngLike = false;
+                        for (var j = posts[i].likes.length - 1; j >= 0; j--) {
+                            if(posts[i].likes[j].user === $scope.authentication.user._id){
+                                posts[i].ngLike = true; 
+                                break;
+                            }
+                        }
+                    }
+
+                    $scope.posts = posts;
+                });
         };
 
         $scope.canRemove = function(post) {
-            return !!~$scope.authentication.user.roles.indexOf('admin') || $scope.authentication.user._id === post.user._id;
+            if(post.$resolved)
+                return !!~$scope.authentication.user.roles.indexOf('admin') || $scope.authentication.user._id === post.user._id;
         };
 
         $scope.remove = function(post) {

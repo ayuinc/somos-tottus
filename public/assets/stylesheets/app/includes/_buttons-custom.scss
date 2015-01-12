@@ -65,6 +65,7 @@ input[type="submit"] {
 		&.active {
 			color: $brand-primary;
 			border: none;
+			text-decoration: none;
 			@include box-shadow(none);
 		}
 	}

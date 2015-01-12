@@ -5,16 +5,16 @@
                 <div data-ng-repeat="post in posts" ng-class-odd="odd">
                     <div class="posts-index-item">
                         <div class="meta" style="height: 5%;">
-                            <span class="benefit" data-ng-bind="post.category"></span>
+                            <span class="benefit"></span>
                         </div>
                         <div class="user">
                             <div class="user-card">
                                 <div class="profile-pic col-xs-2">
-                                  <a data-ng-href="#!/users/{{post.user._id}}"><img data-ng-src="{{post.user.assets.profilePicURL}}" /></a>
+                                    <a data-ng-href="#!/users/{{post.user._id}}" style="background-image: url({{post.user.assets.profilePicURL}})"></a>
                                 </div>
                                 <div class="info col-xs-10">
                                   <p>
-                                    <a data-ng-href="#!/users/{{post.user._id}}" class="name" >{{ post.user.personal.displayName }}</a><br><span class="job-position">{{post.user.organizational.currentJobPosition}}</span> en <span class="area">{{post.user.organizational.branch}}</span><br><span data-ng-bind="post.created | amCalendar"></span><!-- <span data-ng-bind="post.created | date:'mediumDate'"></span> -->
+                                    <a data-ng-href="#!/users/{{post.user._id}}" class="name" >{{ post.user.personal.displayName }}</a><br><span class="job-position">{{post.user.organizational.currentJobPosition}}</span> en <span class="area">{{post.user.organizational.branch}}</span><br><span class="text-gray-light" data-ng-bind="post.created | amCalendar"></span><!-- <span data-ng-bind="post.created | date:'mediumDate'"></span> -->
                                   </p>
                                 </div>
                             </div>
@@ -23,7 +23,7 @@
                             <a data-ng-href="#!/posts/{{post._id}}" data-ng-bind="post.detail"></a>
                         </div>
                         <div data-ng-show="(post.imgFilePath | imageFilter)" class="content-img-placeholder">
-                            <a data-ng-href="#!/posts/{{post._id}}"><img data-ng-src="{{post.imgFilePath}}" /></a>
+                            <a data-ng-href="#!/posts/{{post._id}}"><img lazy-src="{{post.imgFilePath}}" /></a>
                         </div>
                         <ul class="counts-and-share list-unstyled">
                             <li class="counts-likes"><a data-ng-href="#!/posts/{{post._id}}">{{post.likes.length}} Me Gusta</a></li>

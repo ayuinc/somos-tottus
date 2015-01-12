@@ -18,7 +18,7 @@
 		@include position(absolute, 0 21px null 0);
 		width: 100%;
 		span {
-			display: block;
+			// display: block;
 			font-size: 10px;
 			color: $gray;
 			&:after {
@@ -114,10 +114,12 @@
 			.profile-pic {
 				a {
 					display: block;
+					width: 42px;
+					height: 42px;
+					border-radius: $border-radius-base;
+					background-color: $gray-lighter;
+					@include bg-img-control;
 					img {
-						width: 35px;
-						height: 35px;
-						border-radius: $border-radius-base;
 					}
 				}
 				padding-right: 0;

@@ -1,19 +1,19 @@
 <section data-ng-init="find()">
 	<div class="benefits">
 		<div class="separator bg-gray-lighter p-7 uppercase">
-			<span>Próximos beneficios</span>
+			<span>VÍVELO</span>
 		</div>
-		<div class="list">
-			<a data-ng-repeat="benefit in benefits" href="#!/benefits/{{benefit._id}}" class="item item-thumbnail-left bg-white">
+		<div class="list" data-ng-show="vivelo.length">
+			<a data-ng-repeat="benefit in vivelo = (benefits | filter:{ category: 'Vívelo'})" href="#!/benefits/{{benefit._id}}" class="item item-thumbnail-left bg-white">
 				<div class="col-xs-3">
-					<img src="assets/img/img-sq.png" alt="" class="img-thumbnail">
+					<div class="pic" style="background-image: url({{benefit.post.imgFilePath}})"></div>
+					<!-- <img data-ng-src="{{benefit.post.imgFilePath}}" alt="" class="img-thumbnail"> -->
 				</div>
 				<div class="col-xs-8">
 					<span class="bold text-gray-dark" data-ng-bind="benefit.post.name"></span><br>
-					<span class="small text-gray" data-ng-bind="benefit.post.detail"></span><br>
+					<span class="small text-gray">{{benefit.post.detail | limitTo: detailLetterLimit}}...</span><br>
 					<div class="text-gray-light">
-						<small>Inicio: {{ benefit.start | date:'yyyy-MM-dd HH:ss a' }}</small> -
-						<small>Fin: {{ benefit.end | date:'yyyy-MM-dd HH:ss a' }}</small>
+						<small>Válido hasta: {{ benefit.end | amDateFormat:"D [de] MMM [del] YYYY" }}</small>
 					</div>
 				</div>
 				<div class="item-go">
@@ -23,6 +23,65 @@
 					<small class="benefit pinned">Beneficios</small>
 				</div>
 			</a>
+		</div>
+		<div data-ng-show="vivelo.length == 0">
+			<p class="p-7">Aún no hay beneficios "Vívelo".</p>
+		</div>
+
+		<div class="separator bg-gray-lighter p-7 uppercase">
+			<span>DISFRÚTALO</span>
+		</div>
+		<div class="list" data-ng-show="disfrutalo.length">
+			<a data-ng-repeat="benefit in disfrutalo = (benefits | filter:{ category: 'Disfrútalo'})" href="#!/benefits/{{benefit._id}}" class="item item-thumbnail-left bg-white">
+				<div class="col-xs-3">
+					<div class="pic" style="background-image: url({{benefit.post.imgFilePath}})"></div>
+					<!-- <img data-ng-src="{{benefit.post.imgFilePath}}" alt="" class="img-thumbnail"> -->
+				</div>
+				<div class="col-xs-8">
+					<span class="bold text-gray-dark" data-ng-bind="benefit.post.name"></span><br>
+					<span class="small text-gray">{{benefit.post.detail | limitTo: detailLetterLimit}}...</span><br>
+					<div class="text-gray-light">
+						<small>Válido hasta: {{ benefit.end | amDateFormat:"D [de] MMM [del] YYYY" }}</small>
+					</div>
+				</div>
+				<div class="item-go">
+					<i class="icon-arrow-right-filled"></i>
+				</div>
+				<div class="meta">
+					<small class="benefit pinned">Beneficios</small>
+				</div>
+			</a>
+		</div>
+		<div data-ng-show="disfrutalo.length == 0">
+			<p class="p-7">Aún no hay beneficios "Disfrútalo".</p>
+		</div>
+
+		<div class="separator bg-gray-lighter p-7 uppercase">
+			<span>COMPÁRTELO</span>
+		</div>
+		<div class="list" data-ng-show="compartelo.length">
+			<a data-ng-repeat="benefit in compartelo = (benefits | filter:{ category: 'Compártelo'})" href="#!/benefits/{{benefit._id}}" class="item item-thumbnail-left bg-white">
+				<div class="col-xs-3">
+					<div class="pic" style="background-image: url({{benefit.post.imgFilePath}})"></div>
+					<!-- <img data-ng-src="{{benefit.post.imgFilePath}}" alt="" class="img-thumbnail"> -->
+				</div>
+				<div class="col-xs-8">
+					<span class="bold text-gray-dark" data-ng-bind="benefit.post.name"></span><br>
+					<span class="small text-gray">{{benefit.post.detail | limitTo: detailLetterLimit}}...</span><br>
+					<div class="text-gray-light">
+						<small>Válido hasta: {{ benefit.end | amDateFormat:"D [de] MMM [del] YYYY" }}</small>
+					</div>
+				</div>
+				<div class="item-go">
+					<i class="icon-arrow-right-filled"></i>
+				</div>
+				<div class="meta">
+					<small class="benefit pinned">Beneficios</small>
+				</div>
+			</a>
+		</div>
+		<div data-ng-show="compartelo.length == 0">
+			<p class="p-7">Aún no hay beneficios "Compártelo".</p>
 		</div>
 	</div>
 </section>

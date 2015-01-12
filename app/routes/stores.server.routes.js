@@ -12,6 +12,8 @@ module.exports = function(app) {
 	app.route('/stores/:storeId').put(users.requiresLogin, stores.hasAuthorization, stores.update);
 	app.route('/stores/:storeId').delete(users.requiresLogin, stores.hasAuthorization, stores.delete);
 
+	app.route('/stores/:storeId/posts').get(stores.getPosts);
+
 	// Finish by binding the Store middleware
 	app.param('storeId', stores.storeByID);
 };

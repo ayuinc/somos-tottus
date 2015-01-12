@@ -1,9 +1,10 @@
 'use strict';
 
-angular.module('core').controller('LayoutController', ['$scope', '$location', 'Authentication', 'Layout', '$anchorScroll',
-  function($scope, $location, Authentication, Layout, $anchorScroll) {
+angular.module('core').controller('LayoutController', ['$scope', '$location', 'Authentication', 'Layout', '$anchorScroll', 'NotificationsExtra',
+  function($scope, $location, Authentication, Layout, $anchorScroll, NotificationsExtra) {
     $scope.authentication = Authentication;
-    console.log('$user', $scope.authentication.user);
+    // console.log('$user', $scope.authentication.user);
+    
     // AUTH PATHS
   	var isAuthPath = {
   		'signin': true,
@@ -23,6 +24,12 @@ angular.module('core').controller('LayoutController', ['$scope', '$location', 'A
       $scope.isAuth = isAuth; // Check if it's on auth paths
       $scope.isCreatePath = isCreate;
       // console.log(state);
+
+      // update notifications counter
+      NotificationsExtra.countUnRead().then(function(data) {
+        $scope.unreadNotifications = data.unread;
+      });
+
       var stateObj = Layout.getPageContent({state: state});
       if (stateObj) {
         var navViewActionBar = stateObj.navViewActionBar;

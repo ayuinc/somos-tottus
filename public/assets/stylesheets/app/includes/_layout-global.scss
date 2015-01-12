@@ -4,6 +4,13 @@ body {
 	min-height: 100%;
 }
 
+// CONTROL FULL WIDTH BG IMAGES
+@mixin bg-img-control {
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: cover;
+}
+
 .site-wrapper-auth {
 	padding: 21px 0 21px 0 !important;
 }
