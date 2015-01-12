@@ -27,4 +27,20 @@ angular.module('posts')
         };
         return postsPerUser;
     }   
-]);
+])
+.factory('getPostsPerStore', ['$http', function($http) {
+        var getPostsPerStore = {};
+        getPostsPerStore.getPosts = function (storeId) {
+            return $http.get('/stores/'+storeId+'/posts').then(function(res) {
+                return res.data;
+            });
+        };
+
+        getPostsPerStore.delete = function(postId) {
+            return $http.delete('/posts/' + postId).then(function(res) {
+                return res.data;
+            });
+        };
+        return getPostsPerStore;
+    }   
+])

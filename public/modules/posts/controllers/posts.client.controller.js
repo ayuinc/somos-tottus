@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('posts').controller('PostsController', ['$scope', '$stateParams', '$location', '$http', 'Authentication', 'Posts', 'Comments', 'Likes', 'AWS', 'FileUploader', 'getPostsPerUser', 'Notifications',
-    function($scope, $stateParams, $location, $http, Authentication, Posts, Comments, Likes, AWS, FileUploader, getPostsPerUser, Notifications) {
+angular.module('posts').controller('PostsController', ['$scope', '$stateParams', '$location', '$http', 'Authentication', 'Posts', 'Comments', 'Likes', 'AWS', 'FileUploader', 'getPostsPerUser', 'getPostsPerStore', 'Notifications', 'Stores',
+    function($scope, $stateParams, $location, $http, Authentication, Posts, Comments, Likes, AWS, FileUploader, getPostsPerUser, getPostsPerStore, Notifications, Stores) {
         $scope.authentication = Authentication;
         $scope.uploader = new FileUploader({
             url: 'https://s3.amazonaws.com/tottus/',
@@ -26,6 +26,10 @@ angular.module('posts').controller('PostsController', ['$scope', '$stateParams',
             });
         };
 
+        $scope.getStores = function() {
+            $scope.stores = Stores.query();
+        };
+
         var registerNotification = function(post, nextUrl) {
             if(!!~$scope.authentication.user.roles.indexOf('admin')) {
                 // is admin
@@ -46,8 +50,11 @@ angular.module('posts').controller('PostsController', ['$scope', '$stateParams',
         };
 
         $scope.new = function() {
+            console.log(this.storeId);
+            
             var post = new Posts({
-                detail: this.detail
+                detail: this.detail,
+                store: this.storeId
             });
 
             if($scope.uploader.queue[0])
@@ -137,6 +144,22 @@ angular.module('posts').controller('PostsController', ['$scope', '$stateParams',
                     }
                 }
             });
+        };
+
+        $scope.findByStore = function() {
+                getPostsPerStore.getPosts($stateParams.storeId).then(function(posts){
+                    for (var i = posts.length - 1; i >= 0; i--) {
+                        posts[i].ngLike = false;
+                        for (var j = posts[i].likes.length - 1; j >= 0; j--) {
+                            if(posts[i].likes[j].user === $scope.authentication.user._id){
+                                posts[i].ngLike = true; 
+                                break;
+                            }
+                        }
+                    }
+
+                    $scope.posts = posts;
+                });
         };
 
         $scope.canRemove = function(post) {

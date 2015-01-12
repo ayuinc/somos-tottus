@@ -50,6 +50,10 @@ var PostSchema = new Schema({
         type    : [{ type: Schema.ObjectId, ref: 'Comment' }],
         default : []
     },
+    store: {
+        type: Schema.ObjectId,
+        ref: 'Store'
+    },
     updated: {
         type: Date
     },
