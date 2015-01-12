@@ -9,9 +9,13 @@ angular.module('stores').config(['$stateProvider',
 			url: '/stores',
 			templateUrl: 'modules/stores/views/list-stores.client.view.html'
 		}).
-		state('createStore', {
-			url: '/stores/create',
-			templateUrl: 'modules/stores/views/create-store.client.view.html'
+		state('newStore', {
+			url: '/stores/new',
+			templateUrl: 'modules/stores/views/new-store.client.view.html'
+		}).
+		state('storeWall', {
+			url: '/stores/:storeId/wall',
+			templateUrl: 'modules/stores/views/store-wall.client.view.html'
 		}).
 		state('viewStore', {
 			url: '/stores/:storeId',

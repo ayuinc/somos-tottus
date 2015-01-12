@@ -1,4 +1,4 @@
-<div data-ng-controller="PostsController" data-ng-init="getCredentials();">
+<div data-ng-controller="PostsController" data-ng-init="getCredentials();getStores();">
     <div class="bg-white p-14">
         <form name="postForm" data-ng-submit="new()" class="signin" novalidate autocomplete="off">
             <div class="form-group" ng-class="{ 'has-error': postForm.detail.$dirty && postForm.detail.$invalid }">
@@ -17,6 +17,13 @@
 
                     <a href="#" data-ng-click="item.remove()">Quitar</a>
                 </div>
+            </div>
+            <div class="form-group row">
+                <span>Compartir con:</span>
+                <select ng-model="storeId">
+                    <option value="" selected>TODOS</option>
+                    <option ng-repeat="store in stores" value="{{store._id}}">{{store.name}}</option>
+                </select>
             </div>
             <div class="form-group row">
                 <div class="col-xs-5">

@@ -348,6 +348,58 @@ angular.module('core').service('Layout', [
         }
       },
 
+      // STORES
+      'listStores': {
+        navViewActionBar: {
+          hasThis: true,
+          // actionButtonText: 'Nueva tienda',
+          // actionButtonAction: '/#!/stores/new',
+          isURL: true,
+          shouldRender: shouldRender,
+          roles: ['admin']
+        },
+        navViewIndicator: {
+          hasThis: true,
+          indicatorText: 'Tiendas'
+        },
+        navSubnavTabs: {
+          hasThis: true
+        }
+      },
+      'newStore': {
+        navViewActionBar: {
+          hasThis: true,
+          // actionButtonText: 'Opciones',
+          actionButtonAction: '',
+          isURL: true,
+          previousPage: '/stores'
+        },
+        navViewIndicator: {
+          hasThis: true,
+          indicatorText: 'Nueva tienda'
+        },
+        navSubnavTabs: {
+          hasThis: false
+        }
+      },
+
+      'storeWall': {
+        navViewActionBar: {
+          hasThis: true,
+          // actionButtonText: 'Stores',
+          // actionButtonAction: '/stores',
+          isURL: true,
+          previousPage: '/stores'
+        },
+        navViewIndicator: {
+          hasThis: true,
+          indicatorText: 'Publicaciones'
+        },
+        navSubnavTabs: {
+          hasThis: true
+        }
+      },
+
       // VACANCIES
       'listVacancies': {
         navViewActionBar: {
