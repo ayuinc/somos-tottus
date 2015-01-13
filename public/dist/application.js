@@ -318,7 +318,10 @@ angular.module('core').config([
     // Home state routing
     $stateProvider.state('home', {
       url: '/',
-      templateUrl: 'modules/posts/views/list-posts.client.view.html'
+      controller: function ($scope, $location) {
+        if ($scope.authentication.user)
+          $location.path('/posts');
+      }
     }).state('navigationDrawer', {
       url: '/menu',
       templateUrl: 'modules/core/views/nav-drawer.client.view.html'
@@ -690,6 +693,44 @@ angular.module('core').service('Layout', [function () {
           navViewIndicator: {
             hasThis: true,
             indicatorText: 'Asistentes'
+          },
+          navSubnavTabs: { hasThis: true }
+        },
+        'listStores': {
+          navViewActionBar: {
+            hasThis: true,
+            isURL: true,
+            shouldRender: shouldRender,
+            roles: ['admin']
+          },
+          navViewIndicator: {
+            hasThis: true,
+            indicatorText: 'Tiendas'
+          },
+          navSubnavTabs: { hasThis: true }
+        },
+        'newStore': {
+          navViewActionBar: {
+            hasThis: true,
+            actionButtonAction: '',
+            isURL: true,
+            previousPage: '/stores'
+          },
+          navViewIndicator: {
+            hasThis: true,
+            indicatorText: 'Nueva tienda'
+          },
+          navSubnavTabs: { hasThis: false }
+        },
+        'storeWall': {
+          navViewActionBar: {
+            hasThis: true,
+            isURL: true,
+            previousPage: '/stores'
+          },
+          navViewIndicator: {
+            hasThis: true,
+            indicatorText: 'Publicaciones'
           },
           navSubnavTabs: { hasThis: true }
         },
@@ -1265,8 +1306,10 @@ angular.module('posts').controller('PostsController', [
   'AWS',
   'FileUploader',
   'getPostsPerUser',
+  'getPostsPerStore',
   'Notifications',
-  function ($scope, $stateParams, $location, $http, Authentication, Posts, Comments, Likes, AWS, FileUploader, getPostsPerUser, Notifications) {
+  'Stores',
+  function ($scope, $stateParams, $location, $http, Authentication, Posts, Comments, Likes, AWS, FileUploader, getPostsPerUser, getPostsPerStore, Notifications, Stores) {
     $scope.authentication = Authentication;
     $scope.uploader = new FileUploader({
       url: 'https://s3.amazonaws.com/tottus/',
@@ -1288,6 +1331,9 @@ angular.module('posts').controller('PostsController', [
         $scope.credentials = res.data;
       });
     };
+    $scope.getStores = function () {
+      $scope.stores = Stores.query();
+    };
     var registerNotification = function (post, nextUrl) {
       if (!!~$scope.authentication.user.roles.indexOf('admin')) {
         // is admin
@@ -1305,7 +1351,11 @@ angular.module('posts').controller('PostsController', [
       }
     };
     $scope.new = function () {
-      var post = new Posts({ detail: this.detail });
+      console.log(this.storeId);
+      var post = new Posts({
+          detail: this.detail,
+          store: this.storeId
+        });
       if ($scope.uploader.queue[0]) {
         var uploadItem = $scope.uploader.queue[0];
         post.$save(function (response) {
@@ -1373,6 +1423,20 @@ angular.module('posts').controller('PostsController', [
             return;
           }
         }
+      });
+    };
+    $scope.findByStore = function () {
+      getPostsPerStore.getPosts($stateParams.storeId).then(function (posts) {
+        for (var i = posts.length - 1; i >= 0; i--) {
+          posts[i].ngLike = false;
+          for (var j = posts[i].likes.length - 1; j >= 0; j--) {
+            if (posts[i].likes[j].user === $scope.authentication.user._id) {
+              posts[i].ngLike = true;
+              break;
+            }
+          }
+        }
+        $scope.posts = posts;
       });
     };
     $scope.canRemove = function (post) {
@@ -1655,6 +1719,22 @@ angular.module('posts').factory('Posts', [
     };
     return postsPerUser;
   }
+]).factory('getPostsPerStore', [
+  '$http',
+  function ($http) {
+    var getPostsPerStore = {};
+    getPostsPerStore.getPosts = function (storeId) {
+      return $http.get('/stores/' + storeId + '/posts').then(function (res) {
+        return res.data;
+      });
+    };
+    getPostsPerStore.delete = function (postId) {
+      return $http.delete('/posts/' + postId).then(function (res) {
+        return res.data;
+      });
+    };
+    return getPostsPerStore;
+  }
 ]);'use strict';
 //Setting up route
 angular.module('stores').config([
@@ -1664,9 +1744,12 @@ angular.module('stores').config([
     $stateProvider.state('listStores', {
       url: '/stores',
       templateUrl: 'modules/stores/views/list-stores.client.view.html'
-    }).state('createStore', {
-      url: '/stores/create',
-      templateUrl: 'modules/stores/views/create-store.client.view.html'
+    }).state('newStore', {
+      url: '/stores/new',
+      templateUrl: 'modules/stores/views/new-store.client.view.html'
+    }).state('storeWall', {
+      url: '/stores/:storeId/wall',
+      templateUrl: 'modules/stores/views/store-wall.client.view.html'
     }).state('viewStore', {
       url: '/stores/:storeId',
       templateUrl: 'modules/stores/views/view-store.client.view.html'
@@ -1874,7 +1957,7 @@ angular.module('users').controller('AuthenticationController', [
         // If successful we assign the response to the global user model
         $scope.authentication.user = response;
         // And redirect to the index page
-        $location.path('/');
+        $location.path('/posts');
       }).error(function (response) {
         $scope.error = response.message;
       });
@@ -1895,17 +1978,21 @@ angular.module('users').controller('AuthenticationController', [
       });
     };
     $scope.firstsignin = function () {
-      $http.post('/auth/signin', $scope.credentials).success(function (response) {
-        // If successful we assign the response to the global user model
-        $scope.authentication.user = response;
-        if ($scope.authentication.user.isRegistered) {
-          $location.path('/');
-        } else {
-          $location.path('/settings/first-change-password');
-        }
-      }).error(function (response) {
-        $scope.error = response.message;
-      });
+      if (!$scope.credentials.acceptTerms) {
+        $scope.error = 'Lo sentimos. No podr\xe1s registrarte en Somos Tottus si no aceptas los t\xe9rminos y condiciones expuestos anteriormente.';
+      } else {
+        $http.post('/auth/firstSignin', $scope.credentials).success(function (response) {
+          // If successful we assign the response to the global user model
+          $scope.authentication.user = response;
+          if ($scope.authentication.user.isRegistered) {
+            $location.path('/posts');
+          } else {
+            $location.path('/settings/first-change-password');
+          }
+        }).error(function (response) {
+          $scope.error = response.message;
+        });
+      }
     };
   }
 ]);'use strict';
