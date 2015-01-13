@@ -3339,7 +3339,8 @@ input[type="submit"].btn-tabs {
     color: #6f7474;
     font-size: 0.71429rem;
     height: 52px;
-    display: table; }
+    display: table;
+    padding-left: 21px; }
     .user-card .info p {
       margin-top: 0;
       display: table-cell;
@@ -3481,24 +3482,35 @@ input[type="submit"].btn-tabs {
     left: 0;
     width: 100%; }
     .posts-index-item .meta span,
-    .posts-show-item .meta span {
-      font-size: 10px;
-      color: #6f7474; }
+    .posts-index-item .meta a,
+    .posts-show-item .meta span,
+    .posts-show-item .meta a {
+      font-size: 9px;
+      color: #6f7474;
+      line-height: .7;
+      display: block;
+      position: relative;
+      height: 7px; }
       .posts-index-item .meta span:after,
-      .posts-show-item .meta span:after {
+      .posts-index-item .meta a:after,
+      .posts-show-item .meta span:after,
+      .posts-show-item .meta a:after {
         content: " ";
         width: 7px;
         height: 7px;
         border-radius: 50%;
         display: block;
         float: right;
-        margin-top: 4px;
         margin-left: 7px; }
       .posts-index-item .meta span.benefit:after,
-      .posts-show-item .meta span.benefit:after {
+      .posts-index-item .meta a.benefit:after,
+      .posts-show-item .meta span.benefit:after,
+      .posts-show-item .meta a.benefit:after {
         border: 1px solid #58A742; }
       .posts-index-item .meta span.benefit.pinned:after,
-      .posts-show-item .meta span.benefit.pinned:after {
+      .posts-index-item .meta a.benefit.pinned:after,
+      .posts-show-item .meta span.benefit.pinned:after,
+      .posts-show-item .meta a.benefit.pinned:after {
         background: #58A742; }
   .posts-index-item .content-text-placeholder,
   .posts-show-item .content-text-placeholder {
