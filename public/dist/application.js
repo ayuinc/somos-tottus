@@ -414,6 +414,11 @@ angular.module('core').controller('LayoutController', [
         if (navViewIndicator.hasThis) {
           $scope.indicatorText = navViewIndicator.indicatorText;
         }
+        $scope.hasNavIndicatorFilter = navViewIndicator.hasFilter;
+        // if(navViewIndicator.getStoreName) {
+        //   console.log(navViewIndicator.getStoreName(fromState.storeId));
+        //   $scope.indicatorText = navViewIndicator.getStoreName(fromState.storeId);
+        // }
         // NAV SUBNAV TABS
         $scope.hasNavSubnavTabs = navSubnavTabs.hasThis;
         $scope.isRoute = function ($state) {
@@ -444,7 +449,9 @@ angular.module('core').directive('ngEnter', function () {
     });
   };
 });'use strict';
-angular.module('core').service('Layout', [function () {
+angular.module('core').service('Layout', [
+  'Stores',
+  function (Stores) {
     // A private function for rendering decision 
     var shouldRender = function (user) {
       if (user) {
@@ -477,7 +484,8 @@ angular.module('core').service('Layout', [function () {
           },
           navViewIndicator: {
             hasThis: true,
-            indicatorText: 'Muro'
+            indicatorText: 'Muro',
+            hasFilter: true
           },
           navSubnavTabs: {
             hasThis: true,
@@ -730,7 +738,22 @@ angular.module('core').service('Layout', [function () {
           },
           navViewIndicator: {
             hasThis: true,
-            indicatorText: 'Publicaciones'
+            indicatorText: 'Publicaciones por tienda',
+            getStoreName: function (storeId) {
+              var $storeId = Stores.get({ storeId: storeId });
+              console.log($storeId);
+              var name;
+              var funcCaller = function (storeName) {
+                console.log(storeName);
+                return storeName;
+              };
+              $storeId.$promise.then(function (store) {
+                name = store.name;
+                if (name) {
+                  funcCaller(name);
+                }
+              });
+            }
           },
           navSubnavTabs: { hasThis: true }
         },
@@ -818,7 +841,8 @@ angular.module('core').service('Layout', [function () {
       pageContent = pageContentHash[state];
       return pageContent;
     };
-  }]);'use strict';
+  }
+]);'use strict';
 //Menu service used for managing  menus
 angular.module('core').service('Menus', [function () {
     // Define a set of default roles
