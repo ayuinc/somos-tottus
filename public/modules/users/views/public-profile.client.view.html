@@ -134,8 +134,8 @@
             <div data-ng-repeat="post in posts" ng-class-odd="odd">
                 <div class="posts-index-item">
                     <div class="meta">
-                      <a data-ng-if="canRemove(post)" confirm-click="¿Estás seguro de querer eliminar el post?" confirmed-click="removeFromProfile(post);">Eliminar</a>
-                      <span class="benefit" data-ng-bind="post.category"></span>
+                      <a class="benefit" data-ng-if="canRemove(post)" confirm-click="¿Estás seguro de querer eliminar el post?" confirmed-click="removeFromProfile(post);">Eliminar</a>
+                      <!-- <span class="benefit"></span> -->
                     </div>
                     <div class="user">
                         <div class="user-card">

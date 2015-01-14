@@ -54,6 +54,11 @@ angular.module('core').controller('LayoutController', ['$scope', '$location', 'A
         if(navViewIndicator.hasThis) {
           $scope.indicatorText = navViewIndicator.indicatorText;
         }
+        $scope.hasNavIndicatorFilter = navViewIndicator.hasFilter;
+        // if(navViewIndicator.getStoreName) {
+        //   console.log(navViewIndicator.getStoreName(fromState.storeId));
+        //   $scope.indicatorText = navViewIndicator.getStoreName(fromState.storeId);
+        // }
 
         // NAV SUBNAV TABS
         $scope.hasNavSubnavTabs = navSubnavTabs.hasThis;

@@ -7,6 +7,7 @@
 	@include box-shadow-default;
 	position: relative;
 	padding-top: $container-fluid * 3;
+	overflow-x: hidden;
 	div {
 		@include clearfix;
 	}
@@ -57,6 +58,8 @@
 	}
 	.content-text-placeholder {
 		padding: $container-fluid;
+		white-space: pre-line;
+		word-wrap: break-word;
 		p,
 		a {
 			font-size: $font-size-base;
@@ -134,7 +137,8 @@
 				padding-right: 0;
 			}
 			.comment-content {
-				padding: 3px 0;
+				// padding: 3px 0;
+				padding-left: 14px;
 				p {
 					font-size: 12px;
 					a {
