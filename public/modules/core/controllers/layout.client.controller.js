@@ -55,10 +55,13 @@ angular.module('core').controller('LayoutController', ['$scope', '$location', 'A
           $scope.indicatorText = navViewIndicator.indicatorText;
         }
         $scope.hasNavIndicatorFilter = navViewIndicator.hasFilter;
-        // if(navViewIndicator.getStoreName) {
-        //   console.log(navViewIndicator.getStoreName(fromState.storeId));
-        //   $scope.indicatorText = navViewIndicator.getStoreName(fromState.storeId);
-        // }
+
+        if(navViewIndicator.getStore) {
+          var store = navViewIndicator.getStore(fromState.storeId);
+          store.$promise.then(function(store){
+            $scope.indicatorText = store.name;
+          });
+        }
 
         // NAV SUBNAV TABS
         $scope.hasNavSubnavTabs = navSubnavTabs.hasThis;

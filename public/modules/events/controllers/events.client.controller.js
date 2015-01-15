@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('events').controller('EventsController', ['$scope', '$stateParams', '$location', '$http', 'Authentication', 'Posts', 'Events', 'AWS', 'FileUploader', 'Attendees', 'Notifications',
-    function($scope, $stateParams, $location, $http, Authentication, Posts, Events, AWS, FileUploader, Attendees, Notifications) {
+angular.module('events').controller('EventsController', ['$scope', '$stateParams', '$location', '$http', 'Authentication', 'Posts', 'Events', 'AWS', 'FileUploader', 'Attendees', 'Notifications', 'Stores',
+    function($scope, $stateParams, $location, $http, Authentication, Posts, Events, AWS, FileUploader, Attendees, Notifications, Stores) {
         $scope.authentication = Authentication;
         $scope.detailLetterLimit = 170;
 
@@ -47,6 +47,10 @@ angular.module('events').controller('EventsController', ['$scope', '$stateParams
             });
         };
 
+        $scope.getStores = function() {
+            $scope.stores = Stores.query();
+        };
+
         $scope.new = function() {
             if($scope.evt && $scope.post) {
                 var startDateArr = $scope.evt.startDate.split('-');
@@ -84,7 +88,8 @@ angular.module('events').controller('EventsController', ['$scope', '$stateParams
                         post: {
                             name: this.post.name,
                             detail: this.post.detail,
-                            imgFilePath: 'assets/img/img-placeholder.png'
+                            imgFilePath: 'assets/img/img-placeholder.png',
+                            store: this.post.storeId
                         }
                     });
 

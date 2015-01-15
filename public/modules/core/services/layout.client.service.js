@@ -395,20 +395,8 @@ angular.module('core').service('Layout', ['Stores',
         navViewIndicator: {
           hasThis: true,
           indicatorText: 'Publicaciones por tienda',
-          getStoreName: function(storeId){
-            var $storeId =  Stores.get({storeId: storeId});
-            console.log($storeId);
-            var name;
-            var funcCaller = function(storeName){
-              console.log(storeName);
-              return storeName;
-            };
-            $storeId.$promise.then(function(store){
-              name = store.name;
-              if (name) {
-                funcCaller(name);
-              }
-            });
+          getStore: function(storeId){
+            return Stores.get({storeId: storeId});
           }
         },
         navSubnavTabs: {

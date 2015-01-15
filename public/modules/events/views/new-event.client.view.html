@@ -1,4 +1,4 @@
-<div data-ng-controller="EventsController" data-ng-init="getCredentials();">
+<div data-ng-controller="EventsController" data-ng-init="getCredentials();getStores();">
         <form name="eventForm" data-ng-submit="new()" class="form-custom-full-width" novalidate autocomplete="off" ng-class="{ 'has-error': eventForm.detail.$dirty && eventForm.detail.$invalid }">
             <div class="content-wrapper bg-white">
                 <div class="form-group">
@@ -52,6 +52,14 @@
                         <div class="col-xs-2"><input type="number" class="form-control" placeholder="HH" data-ng-model="evt.endDay.hourString"></div>
                         <div class="col-xs-2"><input type="number" class="form-control" placeholder="MM" data-ng-model="evt.endDay.minuteString"></div>
                     </div> -->
+                </div>
+
+                <div class="form-group">
+                    <label for="eventStore">COMPARTIR CON:</label>
+                    <select name="eventStore" id="eventStore" class="form-control select-override" ng-model="post.storeId">
+                        <option value="" selected>TODOS</option>
+                        <option ng-repeat="store in stores" value="{{store._id}}">{{store.name}}</option>
+                    </select>
                 </div>
 
                 <div class="form-group upload-img-placeholder">

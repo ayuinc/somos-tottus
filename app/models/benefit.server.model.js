@@ -33,6 +33,11 @@ var BenefitSchema = new Schema({
         trim: true,
         required: 'Elíge una categoría.'
     },
+    pdfUrl: {
+        type: String,
+        trim: true,
+        match: [/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\.(pdf)$/, 'Por favor, ingresa una URL válida.']
+    },
     updated: {
         type: Date
     },
