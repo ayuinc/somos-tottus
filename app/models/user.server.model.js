@@ -77,7 +77,7 @@ var UserSchema = new Schema({
     password: {
         type: String,
         default: '',
-        validate: [validateLocalStrategyPassword, 'El password debe ser más largo']
+        validate: [validateLocalStrategyPassword, 'La contraseña debe tener 6 caracteres como mínimo']
     },
     salt: {
         type: String
