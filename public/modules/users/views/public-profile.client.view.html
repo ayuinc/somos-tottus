@@ -134,14 +134,14 @@
             <div data-ng-repeat="post in posts" ng-class-odd="odd">
                 <div class="posts-index-item">
                     <div class="meta">
-                      <a data-ng-if="canRemove(post)" confirm-click="¿Estás seguro de querer eliminar el post?" confirmed-click="removeFromProfile(post);">Eliminar</a>
-                      <span class="benefit" data-ng-bind="post.category"></span>
+                      <a class="benefit" data-ng-if="canRemove(post)" confirm-click="¿Estás seguro de querer eliminar el post?" confirmed-click="removeFromProfile(post);">Eliminar</a>
+                      <!-- <span class="benefit"></span> -->
                     </div>
                     <div class="user">
                         <div class="user-card">
-                            <div class="profile-pic col-xs-2">
-                              <a data-ng-href="#!/users/{{post.user._id}}"><img data-ng-src="{{post.user.assets.profilePicURL}}" /></a>
-                            </div>
+                          <div class="profile-pic col-xs-2">
+                              <a data-ng-href="#!/users/{{post.user._id}}" style="background-image: url({{post.user.assets.profilePicURL}})"></a>
+                          </div>
                             <div class="info col-xs-10">
                               <p>
                                 <a data-ng-href="#!/users/{{post.user._id}}" class="name" >{{ post.user.personal.displayName }}</a><br> <span class="job-position">{{userProfile.organizational.currentJobPosition}}</span> en <span class="area">{{userProfile.organizational.branch}}</span><br><span data-ng-bind="post.created | date:'mediumDate'"></span>

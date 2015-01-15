@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('core').service('Layout', [
-  function() {
+angular.module('core').service('Layout', ['Stores',
+  function(Stores) {
     // A private function for rendering decision 
     var shouldRender = function(user) {
       if (user) {
@@ -36,7 +36,8 @@ angular.module('core').service('Layout', [
         },
         navViewIndicator: {
           hasThis: true,
-          indicatorText: 'Muro'
+          indicatorText: 'Muro',
+          hasFilter: true
         },
         navSubnavTabs: {
           hasThis: true,
@@ -393,7 +394,22 @@ angular.module('core').service('Layout', [
         },
         navViewIndicator: {
           hasThis: true,
-          indicatorText: 'Publicaciones'
+          indicatorText: 'Publicaciones por tienda',
+          getStoreName: function(storeId){
+            var $storeId =  Stores.get({storeId: storeId});
+            console.log($storeId);
+            var name;
+            var funcCaller = function(storeName){
+              console.log(storeName);
+              return storeName;
+            };
+            $storeId.$promise.then(function(store){
+              name = store.name;
+              if (name) {
+                funcCaller(name);
+              }
+            });
+          }
         },
         navSubnavTabs: {
           hasThis: true

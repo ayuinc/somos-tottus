@@ -4,8 +4,9 @@
             <section data-ng-controller="PostsController" data-ng-init="findOne();">
                 <div class="posts-show-item">
                     <div class="meta">
-                        <a data-ng-if="canRemove(post)" confirm-click="¿Estás seguro de querer eliminar la publicación?" confirmed-click="remove()">Eliminar</a>
-                        <span class="benefit" data-ng-bind="post.category"></span>
+                        <a class="benefit admin-action" data-ng-if="canRemove(post)" confirm-click="¿Estás seguro de querer eliminar la publicación?" confirmed-click="remove()">Eliminar</a>
+                        <!-- <span class="benefit" data-ng-bind="post.category"></span> -->
+                        <!-- <span class="benefit"></span> -->
                     </div>
                     <div class="user">
                         <div class="user-card">

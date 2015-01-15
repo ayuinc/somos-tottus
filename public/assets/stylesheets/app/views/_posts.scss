@@ -7,6 +7,7 @@
 	@include box-shadow-default;
 	position: relative;
 	padding-top: $container-fluid * 3;
+	overflow-x: hidden;
 	div {
 		@include clearfix;
 	}
@@ -17,10 +18,19 @@
 		text-align: right;
 		@include position(absolute, 0 21px null 0);
 		width: 100%;
-		span {
+		// .admin-action {
+		// 	color: $gray;
+		// 	font-size: 9px;
+		// }
+		span,
+		a {
 			// display: block;
-			font-size: 10px;
+			font-size: 9px;
 			color: $gray;
+			line-height: .7;
+			display: block;
+			position: relative;
+			height: 7px;
 			&:after {
 				content: " ";
 				width: 7px;
@@ -28,7 +38,7 @@
 				border-radius: 50%;
 				display: block;
 				float: right;
-				margin-top: 4px;
+				// margin-top: 4px;
 				margin-left: 7px;
 			}
 			&.benefit {
@@ -48,6 +58,8 @@
 	}
 	.content-text-placeholder {
 		padding: $container-fluid;
+		white-space: pre-line;
+		word-wrap: break-word;
 		p,
 		a {
 			font-size: $font-size-base;
@@ -125,7 +137,8 @@
 				padding-right: 0;
 			}
 			.comment-content {
-				padding: 3px 0;
+				// padding: 3px 0;
+				padding-left: 14px;
 				p {
 					font-size: 12px;
 					a {
