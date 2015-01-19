@@ -6,7 +6,8 @@
           <div class="pic" style="background-image: url({{ntfcn.post.imgFilePath}})"></div>
         </div>
         <div class="col-xs-8">
-          {{ntfcn.user.personal.displayName}} publicó: 
+          <small>{{ntfcn.user.personal.displayName}} publicó:</small> 
+          <br>
           <span class="bold text-gray-dark" data-ng-bind="ntfcn.post.name"></span><br>
           <span class="small text-gray">{{ntfcn.post.detail | limitTo: detailLetterLimit}}...</span><br>
           <small>
