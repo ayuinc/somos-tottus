@@ -6,9 +6,14 @@
           <div class="pic" style="background-image: url({{ntfcn.post.imgFilePath}})"></div>
         </div>
         <div class="col-xs-8">
+          {{ntfcn.user.personal.displayName}} publicó: 
           <span class="bold text-gray-dark" data-ng-bind="ntfcn.post.name"></span><br>
           <span class="small text-gray">{{ntfcn.post.detail | limitTo: detailLetterLimit}}...</span><br>
-          <!-- <small><span data-ng-if="!ntfcn.isRead">Nuevo!</span></small> -->
+          <small>
+          <!-- <br>
+          {{ntfcn.user.organizational.branch}} en  {{ntfcn.user.organizational.currentJobPosition}} 
+          <br>-->
+          </small>
         </div>
         <div class="item-go">
           <i class="icon-arrow-right-filled"></i>

@@ -47,28 +47,50 @@ var notificationIsRead = function(notification, user) {
     }
 }
 
+var userPerNotification = function(userId){
+    var userNotification = User.findById(userId).exec(function(err, user){
+        if(err){
+            return res.status(400).send({
+               message: errorHandler.getErrorMessage(err)
+            });
+            return user;
+        }
+    });
+    return userNotification;
+};
+
 exports.index = function(req, res) {
     Notification.find()
         .sort('-created')
-        .populate('post', 'detail name category imgFilePath')
+        .populate('post', 'detail name category imgFilePath user')
         .exec(function(err, notifications) {
             if (err) {
                 return res.status(400).send({
                     message: errorHandler.getErrorMessage(err)
                 });
             } else {
-                var arr = [];
-                for(var i in notifications) {
-                    var elem = {
-                        _id: notifications[i]._id,
-                        post: notifications[i].post,
-                        nextUrl: notifications[i].nextUrl,
-                        isRead: notificationIsRead(notifications[i], req.user)
-                    };
-
-                    arr.push(elem);
-                }
-                res.jsonp(arr);
+                User.populate(notifications, {
+                    path: 'post.user',
+                    select: 'personal.displayName organizational.currentJobPosition organizational.branch',
+                }, function(err, notifications) {
+                    if (err) {
+                        return res.status(400).send({
+                            message: errorHandler.getErrorMessage(err)
+                        });
+                    }
+                    var arr = [];
+                    for(var i in notifications) {
+                        var elem = {
+                            _id: notifications[i]._id,
+                            post: notifications[i].post,
+                            user: notifications[i].post.user,
+                            nextUrl: notifications[i].nextUrl,
+                            isRead: notificationIsRead(notifications[i], req.user)
+                        };
+                        arr.push(elem);
+                    }
+                    res.jsonp(arr);
+                });
             }
         });
 };
