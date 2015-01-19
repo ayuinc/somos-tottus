@@ -415,10 +415,12 @@ angular.module('core').controller('LayoutController', [
           $scope.indicatorText = navViewIndicator.indicatorText;
         }
         $scope.hasNavIndicatorFilter = navViewIndicator.hasFilter;
-        // if(navViewIndicator.getStoreName) {
-        //   console.log(navViewIndicator.getStoreName(fromState.storeId));
-        //   $scope.indicatorText = navViewIndicator.getStoreName(fromState.storeId);
-        // }
+        if (navViewIndicator.getStore) {
+          var store = navViewIndicator.getStore(fromState.storeId);
+          store.$promise.then(function (store) {
+            $scope.indicatorText = store.name;
+          });
+        }
         // NAV SUBNAV TABS
         $scope.hasNavSubnavTabs = navSubnavTabs.hasThis;
         $scope.isRoute = function ($state) {
@@ -739,20 +741,8 @@ angular.module('core').service('Layout', [
           navViewIndicator: {
             hasThis: true,
             indicatorText: 'Publicaciones por tienda',
-            getStoreName: function (storeId) {
-              var $storeId = Stores.get({ storeId: storeId });
-              console.log($storeId);
-              var name;
-              var funcCaller = function (storeName) {
-                console.log(storeName);
-                return storeName;
-              };
-              $storeId.$promise.then(function (store) {
-                name = store.name;
-                if (name) {
-                  funcCaller(name);
-                }
-              });
+            getStore: function (storeId) {
+              return Stores.get({ storeId: storeId });
             }
           },
           navSubnavTabs: { hasThis: true }
@@ -1012,7 +1002,8 @@ angular.module('events').controller('EventsController', [
   'FileUploader',
   'Attendees',
   'Notifications',
-  function ($scope, $stateParams, $location, $http, Authentication, Posts, Events, AWS, FileUploader, Attendees, Notifications) {
+  'Stores',
+  function ($scope, $stateParams, $location, $http, Authentication, Posts, Events, AWS, FileUploader, Attendees, Notifications, Stores) {
     $scope.authentication = Authentication;
     $scope.detailLetterLimit = 170;
     // If user is signed in then redirect back home
@@ -1051,6 +1042,9 @@ angular.module('events').controller('EventsController', [
         $scope.credentials = res.data;
       });
     };
+    $scope.getStores = function () {
+      $scope.stores = Stores.query();
+    };
     $scope.new = function () {
       if ($scope.evt && $scope.post) {
         var startDateArr = $scope.evt.startDate.split('-');
@@ -1069,7 +1063,8 @@ angular.module('events').controller('EventsController', [
               post: {
                 name: this.post.name,
                 detail: this.post.detail,
-                imgFilePath: 'assets/img/img-placeholder.png'
+                imgFilePath: 'assets/img/img-placeholder.png',
+                store: this.post.storeId
               }
             });
           if ($scope.uploader.queue[0]) {
