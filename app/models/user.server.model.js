@@ -264,7 +264,7 @@ var UserSchema = new Schema({
 /**
  * Adds the elastic search plugin
  */
-UserSchema.plugin(elmongo);
+//UserSchema.plugin(elmongo);
 
 /**
  * Hook a pre save method to save created and updated fields

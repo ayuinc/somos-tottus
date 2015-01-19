@@ -36,9 +36,9 @@ exports.signup = function(req, res) {
 			user.salt = undefined;
 
 			// elastic search indexing
-			User.sync(function (err, numSynced) {
+			/*User.sync(function (err, numSynced) {
 			    console.log('number of users synced:', numSynced);
-			})
+			})*/
 
 			req.login(user, function(err) {
 				if (err) {
