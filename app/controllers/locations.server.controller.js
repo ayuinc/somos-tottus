@@ -22,11 +22,51 @@ var locations =
         'Surquillo', 'Barranco', 'San Borja', 'Santiago de Surco', 'Chorrillos', 'Santa Anita', 'Ate',
         'La Molina', 'Lurigancho-Chosica', 'Chaclacayo', 'Cieneguilla', 'Pachacámac', 'San Juan de Miraflores',
         'Villa María del Triunfo', 'Villa El Salvador', 'Lurín', 'Punta Hermosa', 'Punta Negra', 'San Bartolo',
-        'Santa María del Mar','Pucusana']
+        'Santa María del Mar','Pucusana'].sort()
+    },
+    {
+        region: 'Chiclayo',
+        districts: ['Chiclayo']
+    },
+    {
+        region: 'Trujillo',
+        districts: ['Trujillo']
+    },
+    {
+        region: 'Ica',
+        districts: ['Ica']
+    },
+    {
+        region: 'Piura',
+        districts: ['Piura']
+    },
+    {
+        region: 'Arequipa',
+        districts: ['Arequipa']
+    },
+    {
+        region: 'Ancash',
+        districts: ['Ancash']
+    },
+    {
+        region: 'Cañete',
+        districts: ['Cañete']
+    },
+    {
+        region: 'Ucayali',
+        districts: ['Ucayali']
+    },
+    {
+        region: 'Cajamarca',
+        districts: ['Cajamarca']
+    },
+    {
+        region: 'Huánuco',
+        districts: ['Huánuco']
     }
 ];
 
 exports.list = function(req, res) {
-    res.jsonp(locations);
+    res.jsonp(_.sortBy(locations, 'region'));
 };
 
