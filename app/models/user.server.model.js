@@ -4,6 +4,7 @@
  * Module dependencies.
  */
 var mongoose = require('mongoose'),
+    elmongo = require('elmongo'),
     Schema = mongoose.Schema,
     crypto = require('crypto');
 
@@ -259,6 +260,12 @@ var UserSchema = new Schema({
     }  
 });
 
+
+/**
+ * Adds the elastic search plugin
+ */
+UserSchema.plugin(elmongo);
+
 /**
  * Hook a pre save method to save created and updated fields
  */
@@ -323,4 +330,4 @@ UserSchema.statics.findUniqueUsername = function(username, suffix, callback) {
 
 
 
-mongoose.model('User', UserSchema); 
+mongoose.model('User', UserSchema);

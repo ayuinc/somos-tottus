@@ -35,6 +35,11 @@ exports.signup = function(req, res) {
 			user.password = undefined;
 			user.salt = undefined;
 
+			// elastic search indexing
+			User.sync(function (err, numSynced) {
+			    console.log('number of users synced:', numSynced);
+			})
+
 			req.login(user, function(err) {
 				if (err) {
 					res.status(400).send(err);
