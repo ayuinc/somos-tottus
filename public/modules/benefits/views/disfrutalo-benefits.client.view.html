@@ -1,0 +1,31 @@
+<section data-ng-init="find()">
+	<div class="benefits">
+		<div class="separator bg-gray-lighter p-7 uppercase">
+			<span>DISFRÚTALO</span>
+		</div>
+		<div class="list" data-ng-show="disfrutalo.length">
+			<a data-ng-repeat="benefit in disfrutalo = (benefits | filter:{ category: 'Disfrútalo'})" href="#!/benefits/{{benefit._id}}" class="item item-thumbnail-left bg-white">
+				<div class="col-xs-3">
+					<div class="pic" style="background-image: url({{benefit.post.imgFilePath}})"></div>
+					<!-- <img data-ng-src="{{benefit.post.imgFilePath}}" alt="" class="img-thumbnail"> -->
+				</div>
+				<div class="col-xs-8">
+					<span class="bold text-gray-dark" data-ng-bind="benefit.post.name"></span><br>
+					<span class="small text-gray">{{benefit.post.detail | limitTo: detailLetterLimit}}...</span><br>
+					<div class="text-gray-light">
+						<small>Válido hasta: {{ benefit.end | amDateFormat:"D [de] MMM [del] YYYY" }}</small>
+					</div>
+				</div>
+				<div class="item-go">
+					<i class="icon-arrow-right-filled"></i>
+				</div>
+				<div class="meta">
+					<small class="benefit pinned">Beneficios</small>
+				</div>
+			</a>
+		</div>
+		<div data-ng-show="disfrutalo.length == 0">
+			<p class="p-7">Aún no hay beneficios "Disfrútalo".</p>
+		</div>
+	</div>
+</section>

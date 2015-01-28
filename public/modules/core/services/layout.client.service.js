@@ -281,7 +281,70 @@ angular.module('core').service('Layout', ['Stores',
           hasThis: true
         }
       },
-
+      'menuBenefit': {
+        navViewActionBar: {
+          hasThis: true,
+          //actionButtonText: 'Publicar evento',
+          //actionButtonAction: '/#!/events/new',
+          isURL: true,
+          previousPage: '/menu'
+        },
+        navViewIndicator: {
+          hasThis: true,
+          indicatorText: 'Tipos de Beneficios'
+        },
+        navSubnavTabs: {
+          hasThis: true
+        }
+      },
+      'viveloBenefit': {
+        navViewActionBar: {
+          hasThis: true,
+          //actionButtonText: 'Publicar evento',
+          //actionButtonAction: '/#!/events/new',
+          isURL: true,
+          previousPage: '/benefits/menu'
+        },
+        navViewIndicator: {
+          hasThis: true,
+          indicatorText: 'Tipos de Beneficios'
+        },
+        navSubnavTabs: {
+          hasThis: true
+        }
+      },
+      'disfrutaloBenefit': {
+        navViewActionBar: {
+          hasThis: true,
+          //actionButtonText: 'Publicar evento',
+          //actionButtonAction: '/#!/events/new',
+          isURL: true,
+          previousPage: '/benefits/menu'
+        },
+        navViewIndicator: {
+          hasThis: true,
+          indicatorText: 'Tipos de Beneficios'
+        },
+        navSubnavTabs: {
+          hasThis: true
+        }
+      },
+      'comparteloBenefit': {
+        navViewActionBar: {
+          hasThis: true,
+          //actionButtonText: 'Publicar evento',
+          //actionButtonAction: '/#!/events/new',
+          isURL: true,
+          previousPage: '/benefits/menu'
+        },
+        navViewIndicator: {
+          hasThis: true,
+          indicatorText: 'Tipos de Beneficios'
+        },
+        navSubnavTabs: {
+          hasThis: true
+        }
+      },
       // EVENTS
       'listEvents': {
         navViewActionBar: {
