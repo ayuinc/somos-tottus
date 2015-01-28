@@ -5,7 +5,7 @@
                 <div data-ng-repeat="post in posts" ng-class-odd="odd">
                     <div class="posts-index-item">
                         <div class="meta">
-                            <a class="benefit admin-action" data-ng-if="canRemove(post);" confirm-click="¿Estás seguro de querer eliminar la publicación?" confirmed-click="remove();">Eliminar</a>
+                            <a class="benefit admin-action" data-ng-if="canRemove(post);" confirm-click="¿Estás seguro de querer eliminar la publicación?" confirmed-click="remove(post);">Eliminar</a>
                         </div>
                         <div class="user">
                             <div class="user-card">
