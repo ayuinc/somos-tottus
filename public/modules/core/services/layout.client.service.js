@@ -364,7 +364,8 @@ angular.module('core').service('Layout', ['Stores',
         },
         navViewIndicator: {
           hasThis: true,
-          indicatorText: 'Tiendas'
+          indicatorText: 'Tiendas',
+          hasFilter: false,
         },
         navSubnavTabs: {
           hasThis: true
