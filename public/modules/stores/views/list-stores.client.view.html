@@ -1,6 +1,6 @@
 <section data-ng-controller="StoresController" data-ng-init="find();initRoute();">
-    <div class="list-group">
-        <a data-ng-repeat="store in stores" data-ng-href="#!/stores/{{store._id}}/{{route}}" class="list-group-item">
+    <div class="list">
+        <a data-ng-repeat="store in stores" data-ng-href="#!/stores/{{store._id}}/{{route}}" class="bg-white item">
 			<h4 data-ng-bind="store.name"></h4>
             <small data-ng-bind="store.address"></small>
         </a>
