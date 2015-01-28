@@ -60,7 +60,10 @@ angular.module('stores').controller('StoresController', ['$scope', '$stateParams
 		};
 
 		$scope.initRoute = function() {
-			$scope.route = $location.search().category;
+			if($location.search().category)
+				$scope.route = $location.search().category;
+			else
+				$scope.route = 'posts';
 		};
 
 		// Find existing Store
