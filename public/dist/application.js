@@ -82,6 +82,22 @@ angular.module('benefits').config([
       url: '/benefits/new',
       templateUrl: 'modules/benefits/views/new-benefit.client.view.html',
       controller: 'BenefitsController'
+    }).state('menuBenefit', {
+      url: '/benefits/menu',
+      templateUrl: 'modules/benefits/views/menu-benefits.client.view.html',
+      controller: 'BenefitsController'
+    }).state('viveloBenefit', {
+      url: '/benefits/vivelo',
+      templateUrl: 'modules/benefits/views/vivelo-benefits.client.view.html',
+      controller: 'BenefitsController'
+    }).state('disfrutaloBenefit', {
+      url: '/benefits/disfrutalo',
+      templateUrl: 'modules/benefits/views/disfrutalo-benefits.client.view.html',
+      controller: 'BenefitsController'
+    }).state('comparteloBenefit', {
+      url: '/benefits/compartelo',
+      templateUrl: 'modules/benefits/views/compartelo-benefits.client.view.html',
+      controller: 'BenefitsController'
     }).state('showBenefit', {
       url: '/benefits/:benefitId',
       templateUrl: 'modules/benefits/views/show-benefit.client.view.html',
@@ -353,8 +369,7 @@ angular.module('core').controller('HomeController', [
   function ($scope, $location, Authentication, Posts) {
     // This provides Authentication context.
     $scope.authentication = Authentication;
-    if (!$scope.authentication.user)
-      $location.path('/signin');
+    // if (!$scope.authentication.user) $location.path('/signin');
     $scope.user = $scope.authentication.user;
   }
 ]);'use strict';
@@ -414,7 +429,10 @@ angular.module('core').controller('LayoutController', [
         if (navViewIndicator.hasThis) {
           $scope.indicatorText = navViewIndicator.indicatorText;
         }
-        $scope.hasNavIndicatorFilter = navViewIndicator.hasFilter;
+        if (navViewIndicator.hasFilter) {
+          $scope.hasNavIndicatorFilter = navViewIndicator.hasFilter;
+          $scope.filterCategory = navViewIndicator.filterCategory;
+        }
         if (navViewIndicator.getStore) {
           var store = navViewIndicator.getStore(fromState.storeId);
           store.$promise.then(function (store) {
@@ -487,7 +505,8 @@ angular.module('core').service('Layout', [
           navViewIndicator: {
             hasThis: true,
             indicatorText: 'Muro',
-            hasFilter: true
+            hasFilter: true,
+            filterCategory: 'posts'
           },
           navSubnavTabs: {
             hasThis: true,
@@ -654,6 +673,54 @@ angular.module('core').service('Layout', [
           },
           navSubnavTabs: { hasThis: true }
         },
+        'menuBenefit': {
+          navViewActionBar: {
+            hasThis: true,
+            isURL: true,
+            previousPage: '/menu'
+          },
+          navViewIndicator: {
+            hasThis: true,
+            indicatorText: 'Tipos de Beneficios'
+          },
+          navSubnavTabs: { hasThis: true }
+        },
+        'viveloBenefit': {
+          navViewActionBar: {
+            hasThis: true,
+            isURL: true,
+            previousPage: '/benefits/menu'
+          },
+          navViewIndicator: {
+            hasThis: true,
+            indicatorText: 'Tipos de Beneficios'
+          },
+          navSubnavTabs: { hasThis: true }
+        },
+        'disfrutaloBenefit': {
+          navViewActionBar: {
+            hasThis: true,
+            isURL: true,
+            previousPage: '/benefits/menu'
+          },
+          navViewIndicator: {
+            hasThis: true,
+            indicatorText: 'Tipos de Beneficios'
+          },
+          navSubnavTabs: { hasThis: true }
+        },
+        'comparteloBenefit': {
+          navViewActionBar: {
+            hasThis: true,
+            isURL: true,
+            previousPage: '/benefits/menu'
+          },
+          navViewIndicator: {
+            hasThis: true,
+            indicatorText: 'Tipos de Beneficios'
+          },
+          navSubnavTabs: { hasThis: true }
+        },
         'listEvents': {
           navViewActionBar: {
             hasThis: true,
@@ -665,7 +732,9 @@ angular.module('core').service('Layout', [
           },
           navViewIndicator: {
             hasThis: true,
-            indicatorText: 'Eventos'
+            indicatorText: 'Eventos',
+            hasFilter: true,
+            filterCategory: 'events'
           },
           navSubnavTabs: { hasThis: true }
         },
@@ -715,7 +784,8 @@ angular.module('core').service('Layout', [
           },
           navViewIndicator: {
             hasThis: true,
-            indicatorText: 'Tiendas'
+            indicatorText: 'Tiendas',
+            hasFilter: false
           },
           navSubnavTabs: { hasThis: true }
         },
@@ -732,15 +802,30 @@ angular.module('core').service('Layout', [
           },
           navSubnavTabs: { hasThis: false }
         },
-        'storeWall': {
+        'storePosts': {
           navViewActionBar: {
             hasThis: true,
             isURL: true,
-            previousPage: '/stores'
+            previousPage: '/stores?category=posts'
           },
           navViewIndicator: {
             hasThis: true,
             indicatorText: 'Publicaciones por tienda',
+            getStore: function (storeId) {
+              return Stores.get({ storeId: storeId });
+            }
+          },
+          navSubnavTabs: { hasThis: true }
+        },
+        'storeEvents': {
+          navViewActionBar: {
+            hasThis: true,
+            isURL: true,
+            previousPage: '/stores?category=events'
+          },
+          navViewIndicator: {
+            hasThis: true,
+            indicatorText: 'Eventos por tienda',
             getStore: function (storeId) {
               return Stores.get({ storeId: storeId });
             }
@@ -1003,7 +1088,8 @@ angular.module('events').controller('EventsController', [
   'Attendees',
   'Notifications',
   'Stores',
-  function ($scope, $stateParams, $location, $http, Authentication, Posts, Events, AWS, FileUploader, Attendees, Notifications, Stores) {
+  'getEventsPerStore',
+  function ($scope, $stateParams, $location, $http, Authentication, Posts, Events, AWS, FileUploader, Attendees, Notifications, Stores, getEventsPerStore) {
     $scope.authentication = Authentication;
     $scope.detailLetterLimit = 170;
     // If user is signed in then redirect back home
@@ -1127,6 +1213,11 @@ angular.module('events').controller('EventsController', [
         }
       });
     };
+    $scope.findByStore = function () {
+      getEventsPerStore.getStores($stateParams.storeId).then(function (events) {
+        $scope.events = events;
+      });
+    };
     $scope.getAttendees = function () {
       Attendees.getAttendees($stateParams.eventId).then(function (res) {
         $scope.evtAttendees = res;
@@ -1189,6 +1280,22 @@ angular.module('events').factory('Events', [
   '$resource',
   function ($resource) {
     return $resource('events/:eventId', { eventId: '@_id' }, { update: { method: 'PUT' } });
+  }
+]).factory('getEventsPerStore', [
+  '$http',
+  function ($http) {
+    var getEventsPerStore = {};
+    getEventsPerStore.getStores = function (storeId) {
+      return $http.get('/stores/' + storeId + '/events').then(function (res) {
+        return res.data;
+      });
+    };
+    // getEventsPerStore.delete = function(postId) {
+    //     return $http.delete('/posts/' + postId).then(function(res) {
+    //         return res.data;
+    //     });
+    // };
+    return getEventsPerStore;
   }
 ]);'use strict';
 angular.module('likes').config([
@@ -1461,6 +1568,8 @@ angular.module('posts').controller('PostsController', [
     $scope.canRemove = function (post) {
       if (post.$resolved)
         return !!~$scope.authentication.user.roles.indexOf('admin') || $scope.authentication.user._id === post.user._id;
+      else
+        return !!~$scope.authentication.user.roles.indexOf('admin');
     };
     $scope.remove = function (post) {
       if (post) {
@@ -1766,9 +1875,12 @@ angular.module('stores').config([
     }).state('newStore', {
       url: '/stores/new',
       templateUrl: 'modules/stores/views/new-store.client.view.html'
-    }).state('storeWall', {
-      url: '/stores/:storeId/wall',
-      templateUrl: 'modules/stores/views/store-wall.client.view.html'
+    }).state('storePosts', {
+      url: '/stores/:storeId/posts',
+      templateUrl: 'modules/stores/views/store-posts.client.view.html'
+    }).state('storeEvents', {
+      url: '/stores/:storeId/events',
+      templateUrl: 'modules/stores/views/store-events.client.view.html'
     }).state('viewStore', {
       url: '/stores/:storeId',
       templateUrl: 'modules/stores/views/view-store.client.view.html'
@@ -1834,6 +1946,9 @@ angular.module('stores').controller('StoresController', [
     // Find a list of Stores
     $scope.find = function () {
       $scope.stores = Stores.query();
+    };
+    $scope.initRoute = function () {
+      $scope.route = $location.search().category;
     };
     // Find existing Store
     $scope.findOne = function () {
@@ -2114,7 +2229,8 @@ angular.module('users').controller('SettingsController', [
   'AWS',
   'FileUploader',
   'getPostsPerUser',
-  function ($scope, $http, $location, Users, Authentication, AWS, FileUploader, getPostsPerUser) {
+  'Stores',
+  function ($scope, $http, $location, Users, Authentication, AWS, FileUploader, getPostsPerUser, Stores) {
     $scope.user = Authentication.user;
     $scope.uploader = new FileUploader({
       url: 'https://s3.amazonaws.com/tottus/',
@@ -2250,6 +2366,9 @@ angular.module('users').controller('SettingsController', [
       AWS.getCredentials().then(function (res) {
         $scope.credentials = res.data;
       });
+    };
+    $scope.getStores = function () {
+      $scope.stores = Stores.query();
     };
     // Fin de métodos parar upload image en AWS S3
     $scope.firstupdateUserProfile = function (isValid) {

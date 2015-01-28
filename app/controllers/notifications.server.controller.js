@@ -45,18 +45,6 @@ var notificationIsRead = function(notification, user) {
             return isRead;
         }
     }
-}
-
-var userPerNotification = function(userId){
-    var userNotification = User.findById(userId).exec(function(err, user){
-        if(err){
-            return res.status(400).send({
-               message: errorHandler.getErrorMessage(err)
-            });
-            return user;
-        }
-    });
-    return userNotification;
 };
 
 exports.index = function(req, res) {
