@@ -1941,7 +1941,10 @@ angular.module('stores').controller('StoresController', [
       $scope.stores = Stores.query();
     };
     $scope.initRoute = function () {
-      $scope.route = $location.search().category;
+      if ($location.search().category)
+        $scope.route = $location.search().category;
+      else
+        $scope.route = 'posts';
     };
     // Find existing Store
     $scope.findOne = function () {
