@@ -48,6 +48,16 @@ exports.update = function(req, res) {
 	}
 };
 
+exports.search = function(req, res) {
+	User.search({
+	  	query_string: {
+	    	query: req.params.query
+	  	}
+	}, function(err, results) {
+	  	res.jsonp(results)
+	});
+};
+
 /**
  * Send User
  */
