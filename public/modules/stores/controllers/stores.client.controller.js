@@ -59,6 +59,10 @@ angular.module('stores').controller('StoresController', ['$scope', '$stateParams
 			$scope.stores = Stores.query();
 		};
 
+		$scope.initRoute = function() {
+			$scope.route = $location.search().category;
+		};
+
 		// Find existing Store
 		$scope.findOne = function() {
 			$scope.store = Stores.get({ 

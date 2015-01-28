@@ -13,6 +13,7 @@ module.exports = function(app) {
 	app.route('/stores/:storeId').delete(users.requiresLogin, stores.hasAuthorization, stores.delete);
 
 	app.route('/stores/:storeId/posts').get(stores.getPosts);
+	app.route('/stores/:storeId/events').get(stores.getEvents);
 
 	// Finish by binding the Store middleware
 	app.param('storeId', stores.storeByID);

@@ -1,0 +1,33 @@
+<div data-ng-controller="StoresController" data-ng-init="findOne();">
+	<div class="container-fluid">
+    	<div class="clearfix">
+    		<section data-ng-controller="EventsController" data-ng-init="findByStore()">
+    			<div class="benefits">
+    				<div class="separator bg-gray-lighter p-7 uppercase">
+    					<span>Próximos eventos</span>
+    				</div>
+    				<div class="list">
+    					<a data-ng-repeat="evt in events" href="#!/events/{{evt._id}}" class="item item-thumbnail-left bg-white">
+    						<div class="col-xs-3">
+    							<div class="pic" style="background-image: url({{evt.post.imgFilePath}})"></div>
+    							<!-- <img data-ng-src="{{evt.post.imgFilePath}}" alt="" class="img-thumbnail"> -->
+    						</div>
+    						<div class="col-xs-8">
+    							<span class="bold text-gray-dark" data-ng-bind="evt.post.name"></span><br>
+    							<span class="small text-gray">{{evt.post.detail | limitTo: detailLetterLimit}}...</span><br>
+    							<small>Inicio: {{ evt.start | amDateFormat:"dddd D [de] MMM [a las] h:mm a" }}</small><br>
+    							<small>Fin: {{ evt.end | amDateFormat:"dddd D [de] MMM [a las] h:mm a" }}</small>
+    						</div>
+    						<div class="item-go">
+    							<i class="icon-arrow-right-filled"></i>
+    						</div>
+    						<div class="meta">
+    							<small class="event pinned">Eventos</small>
+    						</div>
+    					</a>
+    				</div>
+    			</div>
+    		</section>
+    	</div>
+    </div>
+</div>

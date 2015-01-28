@@ -1,2 +1,2 @@
 <span data-ng-if="!hasNavIndicatorFilter">{{indicatorText}}</span>
-<a data-ng-if="hasNavIndicatorFilter" href="#!/stores" class="text-gray">{{indicatorText}} <i class="icon-arrow-right-filled" style="font-size: 7px;"></i></a>
+<a data-ng-if="hasNavIndicatorFilter" ng-href="#!/stores?category={{filterCategory}}" class="text-gray">{{indicatorText}} <i class="icon-arrow-right-filled" style="font-size: 7px;"></i></a>
