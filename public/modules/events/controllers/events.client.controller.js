@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('events').controller('EventsController', ['$scope', '$stateParams', '$location', '$http', 'Authentication', 'Posts', 'Events', 'AWS', 'FileUploader', 'Attendees', 'Notifications', 'Stores',
-    function($scope, $stateParams, $location, $http, Authentication, Posts, Events, AWS, FileUploader, Attendees, Notifications, Stores) {
+angular.module('events').controller('EventsController', ['$scope', '$stateParams', '$location', '$http', 'Authentication', 'Posts', 'Events', 'AWS', 'FileUploader', 'Attendees', 'Notifications', 'Stores', 'getEventsPerStore',
+    function($scope, $stateParams, $location, $http, Authentication, Posts, Events, AWS, FileUploader, Attendees, Notifications, Stores, getEventsPerStore) {
         $scope.authentication = Authentication;
         $scope.detailLetterLimit = 170;
 
@@ -176,6 +176,12 @@ angular.module('events').controller('EventsController', ['$scope', '$stateParams
                     }
                 }
             });
+        };
+
+        $scope.findByStore = function() {
+            getEventsPerStore.getStores($stateParams.storeId).then(function(events) {
+               $scope.events = events; 
+            })
         };
 
         $scope.getAttendees = function() {

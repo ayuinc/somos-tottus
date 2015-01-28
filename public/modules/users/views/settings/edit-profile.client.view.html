@@ -1,5 +1,5 @@
 <div>
-  <div class="container pt-14" data-ng-controller="SettingsController" data-ng-init="showUserProfile();getCredentials();">
+  <div class="container pt-14" data-ng-controller="SettingsController" data-ng-init="showUserProfile();getCredentials();getStores();">
     <div class="panel panel-tabs">
       <div class="user-card">
           <div class="profile-pic col-xs-2" data-ng-if="uploader.queue.length === 0">
@@ -83,7 +83,10 @@
           </div>
           <div class="panel-row">
             <label for="branch">Unidad / Tienda:</label>
-            <input type="text" class="form-control" id="branch" name="branch" data-ng-model="user.organizational.branch">
+            <select name="branch" id="branch" class="form-control select-override" ng-model="user.organizational.branch">
+              <!-- <option value="" selected>Elige una tienda.</option> -->
+              <option ng-repeat="store in stores | orderBy:name" value="{{store.name}}" ng-selected="store.name==user.organizational.branch">{{store.name}}</option>
+            </select>
             <!-- <span>{{user.organizational.branch}}</span> -->
           </div>
           <!-- <div class="panel-row">

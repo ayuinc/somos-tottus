@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('users').controller('SettingsController', ['$scope', '$http', '$location', 'Users', 'Authentication', 'AWS', 'FileUploader', 'getPostsPerUser',
-	function($scope, $http, $location, Users, Authentication, AWS, FileUploader, getPostsPerUser) {
+angular.module('users').controller('SettingsController', ['$scope', '$http', '$location', 'Users', 'Authentication', 'AWS', 'FileUploader', 'getPostsPerUser', 'Stores',
+	function($scope, $http, $location, Users, Authentication, AWS, FileUploader, getPostsPerUser, Stores) {
 		$scope.user = Authentication.user;
 		$scope.uploader = new FileUploader({
             url: 'https://s3.amazonaws.com/tottus/',
@@ -152,6 +152,10 @@ angular.module('users').controller('SettingsController', ['$scope', '$http', '$l
             AWS.getCredentials().then(function(res) {
                 $scope.credentials = res.data;
             });
+        };
+
+        $scope.getStores = function() {
+            $scope.stores = Stores.query();
         };
 
         // Fin de métodos parar upload image en AWS S3

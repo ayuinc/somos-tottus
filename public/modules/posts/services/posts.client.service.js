@@ -43,4 +43,4 @@ angular.module('posts')
         };
         return getPostsPerStore;
     }   
-])
+]);

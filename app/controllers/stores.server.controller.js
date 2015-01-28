@@ -7,6 +7,7 @@ var mongoose = require('mongoose'),
     errorHandler = require('./errors'),
     Store = mongoose.model('Store'),
     Post = mongoose.model('Post'),
+    Evt = mongoose.model('Event'),
     _ = require('lodash');
 
 /**
@@ -104,6 +105,52 @@ exports.getPosts = function(req, res) {
             res.jsonp(posts);
         });
 }
+
+exports.getEvents = function(req, res) {
+    var now = new Date();
+
+    Post.find({
+            $and: [{store: req.store._id}, {category: 'Evento'}]
+        })
+        .select('_id detail category store')
+        .exec(function(err, posts) {
+            if (err) {
+                return res.status(400).send({
+                    message: errorHandler.getErrorMessage(err)
+                });
+            }
+            
+            var postsArr = [];
+
+            for (var i = posts.length - 1; i >= 0; i--) {
+                postsArr.push(posts[i]._id);
+            };
+
+            console.log("storeId", req.store._id);
+            console.log(posts);
+            console.log(postsArr);
+
+            Evt.find({
+                    start: { 
+                        $gte: now
+                    },
+                    post: {
+                        $in: posts
+                    }
+                })
+                .limit(30)
+                .populate('post', 'name detail imgFilePath category')
+                .sort('start')
+                .exec(function(err, events) {
+                    if(err) {
+                        return res.status(400).send({
+                            message: errorHandler.getErrorMessage(err)
+                        });
+                    }
+                    res.jsonp(events);
+                });
+        });
+};
 
 /**
  * Store middleware

@@ -37,7 +37,8 @@ angular.module('core').service('Layout', ['Stores',
         navViewIndicator: {
           hasThis: true,
           indicatorText: 'Muro',
-          hasFilter: true
+          hasFilter: true,
+          filterCategory: 'posts'
         },
         navSubnavTabs: {
           hasThis: true,
@@ -357,7 +358,9 @@ angular.module('core').service('Layout', ['Stores',
         },
         navViewIndicator: {
           hasThis: true,
-          indicatorText: 'Eventos'
+          indicatorText: 'Eventos',
+          hasFilter: true,
+          filterCategory: 'events'
         },
         navSubnavTabs: {
           hasThis: true
@@ -424,7 +427,8 @@ angular.module('core').service('Layout', ['Stores',
         },
         navViewIndicator: {
           hasThis: true,
-          indicatorText: 'Tiendas'
+          indicatorText: 'Tiendas',
+          hasFilter: false,
         },
         navSubnavTabs: {
           hasThis: true
@@ -447,17 +451,36 @@ angular.module('core').service('Layout', ['Stores',
         }
       },
 
-      'storeWall': {
+      'storePosts': {
         navViewActionBar: {
           hasThis: true,
           // actionButtonText: 'Stores',
           // actionButtonAction: '/stores',
           isURL: true,
-          previousPage: '/stores'
+          previousPage: '/stores?category=posts'
         },
         navViewIndicator: {
           hasThis: true,
           indicatorText: 'Publicaciones por tienda',
+          getStore: function(storeId){
+            return Stores.get({storeId: storeId});
+          }
+        },
+        navSubnavTabs: {
+          hasThis: true
+        }
+      },
+      'storeEvents': {
+        navViewActionBar: {
+          hasThis: true,
+          // actionButtonText: 'Stores',
+          // actionButtonAction: '/stores',
+          isURL: true,
+          previousPage: '/stores?category=events'
+        },
+        navViewIndicator: {
+          hasThis: true,
+          indicatorText: 'Eventos por tienda',
           getStore: function(storeId){
             return Stores.get({storeId: storeId});
           }

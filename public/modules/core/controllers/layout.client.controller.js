@@ -54,7 +54,11 @@ angular.module('core').controller('LayoutController', ['$scope', '$location', 'A
         if(navViewIndicator.hasThis) {
           $scope.indicatorText = navViewIndicator.indicatorText;
         }
-        $scope.hasNavIndicatorFilter = navViewIndicator.hasFilter;
+
+        if(navViewIndicator.hasFilter) {
+          $scope.hasNavIndicatorFilter = navViewIndicator.hasFilter;
+          $scope.filterCategory = navViewIndicator.filterCategory;
+        }
 
         if(navViewIndicator.getStore) {
           var store = navViewIndicator.getStore(fromState.storeId);
