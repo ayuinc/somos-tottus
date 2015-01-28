@@ -58,7 +58,6 @@ angular.module('posts').directive('lazySrc', ['$window', '$document', function($
         }
 
         function checkImages() {
-            console.log( "Checking for visible images..." );
 
             var visible = [];
             var hidden = [];

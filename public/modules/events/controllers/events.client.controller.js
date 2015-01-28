@@ -31,9 +31,7 @@ angular.module('events').controller('EventsController', ['$scope', '$stateParams
                 });
 
                 newNot.$save(function(response) {
-                    console.log('success!');
                 }, function(errorResponse) {
-                    console.log('error!');
                 });
 
             } else {
