@@ -74,9 +74,7 @@ angular.module('stores').controller('StoresController', ['$scope', '$stateParams
 		$scope.getLocations = function() {
 			LocationService.getLocations().then(function(res) {
 				$scope.locations = res.data;
-				console.log('locations', $scope.locations);
 			});
-			console.log('locations', $scope.locations);
 		};
 
 		$scope.updateRegion = function() {

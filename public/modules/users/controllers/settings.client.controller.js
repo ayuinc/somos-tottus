@@ -206,7 +206,6 @@ angular.module('users').controller('SettingsController', ['$scope', '$http', '$l
 
 			        uploadItem.upload();
 					response.assets.profilePicURL = 'https://s3.amazonaws.com/tottus/user_' + user._id + '.' + uploadItem.file.name.split('.').pop();
-			        console.log(response);
 			        response.$update();
 
 				}, function(response) {

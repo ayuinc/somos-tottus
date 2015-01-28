@@ -10,7 +10,6 @@ angular.module('users').controller('BirthdaysController', ['$scope', '$http', '$
         $scope.getBirthdays = function() {
             getUsersBirthdays.getBirthdays().then(function(usersBirthday){
                 $scope.usersBirthday = usersBirthday;
-                console.log(usersBirthday);
             });
         };
     }

@@ -142,9 +142,7 @@ angular.module('benefits').controller('BenefitsController', [
             nextUrl: nextUrl
           });
         newNot.$save(function (response) {
-          console.log('success!');
         }, function (errorResponse) {
-          console.log('error!');
         });
       } else {
         return false;
@@ -1115,9 +1113,7 @@ angular.module('events').controller('EventsController', [
             nextUrl: nextUrl
           });
         newNot.$save(function (response) {
-          console.log('success!');
         }, function (errorResponse) {
-          console.log('error!');
         });
       } else {
         return false;
@@ -1468,9 +1464,7 @@ angular.module('posts').controller('PostsController', [
             nextUrl: nextUrl
           });
         newNot.$save(function (response) {
-          console.log('success!');
         }, function (errorResponse) {
-          console.log('error!', errorResponse);
         });
       } else {
         return false;
@@ -1660,7 +1654,6 @@ angular.module('posts').directive('lazySrc', [
           startRenderTimer();
         }
         function checkImages() {
-          console.log('Checking for visible images...');
           var visible = [];
           var hidden = [];
           var windowHeight = win.height();
@@ -1958,9 +1951,7 @@ angular.module('stores').controller('StoresController', [
     $scope.getLocations = function () {
       LocationService.getLocations().then(function (res) {
         $scope.locations = res.data;
-        console.log('locations', $scope.locations);
       });
-      console.log('locations', $scope.locations);
     };
     $scope.updateRegion = function () {
       $scope.availableDistricts = $scope.region.districts;
@@ -2146,7 +2137,6 @@ angular.module('users').controller('BirthdaysController', [
     $scope.getBirthdays = function () {
       getUsersBirthdays.getBirthdays().then(function (usersBirthday) {
         $scope.usersBirthday = usersBirthday;
-        console.log(usersBirthday);
       });
     };
   }
@@ -2411,7 +2401,6 @@ angular.module('users').controller('SettingsController', [
           };
           uploadItem.upload();
           response.assets.profilePicURL = 'https://s3.amazonaws.com/tottus/user_' + user._id + '.' + uploadItem.file.name.split('.').pop();
-          console.log(response);
           response.$update();
         }, function (response) {
           $scope.error = response.data.message;
