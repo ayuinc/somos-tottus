@@ -571,6 +571,17 @@ angular.module('core').service('Layout', [
           },
           navSubnavTabs: { hasThis: true }
         },
+        'search': {
+          navViewActionBar: {
+            hasThis: true,
+            isURL: true
+          },
+          navViewIndicator: {
+            hasThis: true,
+            indicatorText: 'Busca a tus compa\xf1eros'
+          },
+          navSubnavTabs: { hasThis: true }
+        },
         'password': {},
         'first-change-password': {
           navViewActionBar: { hasThis: false },
@@ -620,6 +631,8 @@ angular.module('core').service('Layout', [
         'navigationDrawer': {
           navViewActionBar: {
             hasThis: true,
+            actionButtonText: 'Buscar',
+            actionButtonAction: '/#!/users/search',
             isURL: true
           },
           navViewIndicator: {
@@ -2015,7 +2028,10 @@ angular.module('users').config([
   '$stateProvider',
   function ($stateProvider) {
     // Users state routing
-    $stateProvider.state('public-profile', {
+    $stateProvider.state('search', {
+      url: '/users/search',
+      templateUrl: 'modules/users/views/search/search.client.view.html'
+    }).state('public-profile', {
       url: '/users/:userId',
       templateUrl: 'modules/users/views/public-profile.client.view.html'
     }).state('password', {
@@ -2441,7 +2457,8 @@ angular.module('users').controller('UsersController', [
   'Posts',
   'getUser',
   'getPostsPerUser',
-  function ($scope, $http, $location, $stateParams, Users, Authentication, Posts, getUser, getPostsPerUser) {
+  'searchUsers',
+  function ($scope, $http, $location, $stateParams, Users, Authentication, Posts, getUser, getPostsPerUser, searchUsers) {
     $scope.user = Authentication.user;
     // If user is not signed in then redirect back home
     if (!$scope.user)
@@ -2490,6 +2507,15 @@ angular.module('users').controller('UsersController', [
           $scope.showProfile.statePosts = false;
           $scope.showProfile.statePersonalInfo = true;
         }
+      }
+    };
+    $scope.search = function () {
+      if ($scope.search.queryString) {
+        searchUsers.search($scope.search.queryString).then(function (results) {
+          $scope.results = results;
+        });
+      } else {
+        $scope.results = [];
       }
     };
   }
@@ -2549,6 +2575,17 @@ angular.module('users').factory('Users', [
       });
     };
     return UsersBirthdays;
+  }
+]).factory('searchUsers', [
+  '$http',
+  function ($http) {
+    var searchUsers = {};
+    searchUsers.search = function (queryString) {
+      return $http.get('/users/search/' + queryString).then(function (res) {
+        return res.data;
+      });
+    };
+    return searchUsers;
   }
 ]);'use strict';
 // Setting up route
