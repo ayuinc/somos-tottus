@@ -58,6 +58,7 @@ exports.search = function(req, res) {
 			var aux = results.hits.hits;
 			var users = [];
 			for (var i = aux.length - 1; i >= 0; i--) {
+				aux[i]._source.password = undefined;
 				users.push(aux[i]._source);
 			};
 
