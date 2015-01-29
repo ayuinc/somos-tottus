@@ -130,6 +130,22 @@ angular.module('core').service('Layout', ['Stores',
           hasThis: true
         }
       },
+      'search': {
+        navViewActionBar: {
+          hasThis: true,
+          // actionButtonText: 'Publicar',
+          // actionButtonAction: '/#!/posts/new',
+          isURL: true,
+          // previousPage: '/settings/profile'
+        },
+        navViewIndicator: {
+          hasThis: true,
+          indicatorText: 'Busca a tus compañeros'
+        },
+        navSubnavTabs: {
+          hasThis: true
+        }
+      },
       'password': {},
       'first-change-password': {
         navViewActionBar: {
@@ -218,8 +234,8 @@ angular.module('core').service('Layout', ['Stores',
       'navigationDrawer': {
         navViewActionBar: {
           hasThis: true,
-          // actionButtonText: 'Publicar',
-          // actionButtonAction: '/#!/posts/new',
+          actionButtonText: 'Buscar',
+          actionButtonAction: '/#!/users/search',
           isURL: true
         },
         navViewIndicator: {
