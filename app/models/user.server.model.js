@@ -334,18 +334,4 @@ UserSchema.statics.findUniqueUsername = function(username, suffix, callback) {
     });
 };
 
-var User = mongoose.model('User', UserSchema)
-  , stream = User.synchronize()
-  , count = 0;
-
-stream.on('data', function(err, doc){
-  count++;
-});
-stream.on('close', function(){
-  console.log('indexed ' + count + ' documents!');
-});
-stream.on('error', function(err){
-  console.log(err);
-});
-
-// mongoose.model('User', UserSchema);
+mongoose.model('User', UserSchema);

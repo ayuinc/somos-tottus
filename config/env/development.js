@@ -22,6 +22,6 @@ module.exports = {
 		secret_key: 'YVrx+7plcTOvjWtvdLlA/AQDBpcxwDzsU25oKKsP'
 	},
 	elasticSearch: {
-		host: '104.236.232.17'
+		host: 'localhost'
 	}
 };
