@@ -6,6 +6,7 @@
 var mongoose = require('mongoose'),
     mongoosastic = require('mongoosastic'),
     Schema = mongoose.Schema,
+    config = require('../../config/config'),
     crypto = require('crypto');
 
 /**
@@ -267,7 +268,9 @@ var UserSchema = new Schema({
 /**
  * Adds the elastic search plugin
  */
-UserSchema.plugin(mongoosastic);
+UserSchema.plugin(mongoosastic, {
+    host: config.elasticSearch.host
+});
 
 /**
  * Hook a pre save method to save created and updated fields
