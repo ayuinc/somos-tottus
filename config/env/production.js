@@ -33,6 +33,9 @@ module.exports = {
 		access_key: 'AKIAJX35ISJYQIF2UHGQ',
 		secret_key: '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'
 	},
+	elasticSearch: {
+		host: '104.236.232.17'
+	},
 	mailer: {
 		from: process.env.MAILER_FROM || 'MAILER_FROM',
 		options: {
