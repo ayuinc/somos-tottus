@@ -5,6 +5,10 @@ angular.module('users').config(['$stateProvider',
 	function($stateProvider) {
 		// Users state routing
 		$stateProvider.
+		state('search', {
+			url: '/users/search',
+			templateUrl: 'modules/users/views/search/search.client.view.html'
+		}).
 		state('public-profile', {
 			url: '/users/:userId',
 			templateUrl: 'modules/users/views/public-profile.client.view.html'

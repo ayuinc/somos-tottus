@@ -43,9 +43,32 @@ exports.update = function(req, res) {
 		});
 	} else {
 		res.status(400).send({
-			message: 'User is not signed in'
+			message: 'Usuario no autorizado'
 		});
 	}
+};
+
+exports.search = function(req, res) {
+	User.search({
+	  	query_string: {
+	    	query: req.params.query + '~'
+	  	}
+	}, function(err, results) {
+		if(results.hits.total) {
+			var aux = results.hits.hits;
+			var users = [];
+			for (var i = aux.length - 1; i >= 0; i--) {
+				aux[i]._source.password = undefined;
+				users.push(aux[i]._source);
+			};
+
+			res.jsonp(users);
+		} else {
+		  	res.jsonp({
+				message: 'No hay coincidencias con tu búsqueda'
+			});
+		}
+	});
 };
 
 /**

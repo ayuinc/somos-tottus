@@ -29,6 +29,14 @@ angular.module('users')
         };
         return UsersBirthdays;
     }   
+])
+.factory('searchUsers', ['$http', function($http) {
+        var searchUsers = {};
+        searchUsers.search = function(queryString) {
+            return $http.get('/users/search/' + queryString).then(function(res) {
+                return res.data;
+            });
+        };
+        return searchUsers;
+    }
 ]);
-
-

@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('users').controller('UsersController', ['$scope', '$http', '$location', '$stateParams', 'Users', 'Authentication','Posts', 'getUser', 'getPostsPerUser',
-    function($scope, $http, $location, $stateParams, Users, Authentication, Posts, getUser, getPostsPerUser) {
+angular.module('users').controller('UsersController', ['$scope', '$http', '$location', '$stateParams', 'Users', 'Authentication','Posts', 'getUser', 'getPostsPerUser', 'searchUsers',
+    function($scope, $http, $location, $stateParams, Users, Authentication, Posts, getUser, getPostsPerUser, searchUsers) {
         $scope.user = Authentication.user;
 
         // If user is not signed in then redirect back home
@@ -57,5 +57,15 @@ angular.module('users').controller('UsersController', ['$scope', '$http', '$loca
 				}
 			}
 		};
+
+        $scope.search = function() {
+            if($scope.search.queryString) {
+                searchUsers.search($scope.search.queryString).then(function(results) {
+                    $scope.results = results;
+                });
+            } else {
+                $scope.results = [];
+            }
+        };
     }
 ]);

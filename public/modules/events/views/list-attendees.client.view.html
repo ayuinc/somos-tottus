@@ -5,7 +5,7 @@
         </div>
         
         <div class="list" data-ng-if="evtAttendees.attendees.length">
-            <a data-ng-repeat="attendee in evtAttendees.attendees" href="#!/events/{{evt._id}}" class="item item-thumbnail-left bg-white">
+            <a data-ng-repeat="attendee in evtAttendees.attendees" href="#!/users/{{attendee._id}}" class="item item-thumbnail-left bg-white">
                 <div class="col-xs-3">
                     <img data-ng-src="{{attendee.assets.profilePicURL}}" alt="">
                 </div>

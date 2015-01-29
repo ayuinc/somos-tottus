@@ -1,0 +1,24 @@
+<div data-ng-controller="UsersController">
+    <div class="content-wrapper bg-white">
+        <form class="form-custom-full-width" autocomplete="off">
+            <div class="form-group">
+                <input type="text" placeholder="Nombres o Apellidos" class="form-control" id="queryString" name="queryString" data-ng-model="search.queryString" data-ng-change="search()">
+            </div>
+        </form>
+    </div>
+
+    <div class="list" data-ng-if="results.length">
+        <a data-ng-repeat="user in results" href="#!/users/{{user._id}}" class="item item-thumbnail-left bg-white">
+            <div class="col-xs-3">
+                <img data-ng-src="{{user.assets.profilePicURL}}" alt="">
+            </div>
+            <div class="col-xs-8">
+                <span class="bold text-gray-dark" data-ng-bind="user.personal.displayName"></span><br>
+                <span class="small text-gray" >{{ user.organizational.currentJobPosition }} en {{ user.organizational.branch }}</span>
+            </div>
+            <div class="item-go">
+                <i class="icon-arrow-right-filled"></i>
+            </div>
+        </a>
+    </div>
+</div>

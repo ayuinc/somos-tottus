@@ -4,6 +4,7 @@
  * Module dependencies.
  */
 var mongoose = require('mongoose'),
+    mongoosastic = require('mongoosastic'),
     Schema = mongoose.Schema,
     crypto = require('crypto');
 
@@ -118,17 +119,20 @@ var UserSchema = new Schema({
         displayName: {
             type: String,
             trim: true,
+            es_indexed: true,
             default: ''
         },
         firstName: {
             type: String,
             trim: true,
+            es_indexed: true,
             required: 'Por favor, ingrese su nombre',
             default: ''
         },
         lastName: {
             type: String,
             trim: true,
+            es_indexed: true,
             required: 'Por favor, ingrese su apellido',
             default: ''
         },
@@ -263,7 +267,7 @@ var UserSchema = new Schema({
 /**
  * Adds the elastic search plugin
  */
-//UserSchema.plugin(elmongo);
+UserSchema.plugin(mongoosastic);
 
 /**
  * Hook a pre save method to save created and updated fields
@@ -327,6 +331,18 @@ UserSchema.statics.findUniqueUsername = function(username, suffix, callback) {
     });
 };
 
+var User = mongoose.model('User', UserSchema)
+  , stream = User.synchronize()
+  , count = 0;
 
+stream.on('data', function(err, doc){
+  count++;
+});
+stream.on('close', function(){
+  console.log('indexed ' + count + ' documents!');
+});
+stream.on('error', function(err){
+  console.log(err);
+});
 
-mongoose.model('User', UserSchema);
+// mongoose.model('User', UserSchema);
