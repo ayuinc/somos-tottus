@@ -1,7 +1,8 @@
 'use strict';
 
 module.exports = {
-	db: 'mongodb://root:root@proximus.modulusmongo.net:27017/qI8piduh',
+	db: 'mongodb://root:root@proximus.modulusmongo.net:27017/S4iqerev',
+	// db: 'mongodb://root:root@proximus.modulusmongo.net:27017/qI8piduh',
 	assets: {
 		lib: {
 			css: [
