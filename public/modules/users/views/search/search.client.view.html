@@ -10,7 +10,8 @@
     <div class="list" data-ng-if="results.length">
         <a data-ng-repeat="user in results" href="#!/users/{{user._id}}" class="item item-thumbnail-left bg-white">
             <div class="col-xs-3">
-                <img data-ng-src="{{user.assets.profilePicURL}}" alt="">
+                <div class="pic" style="background-image: url({{user.assets.profilePicURL}})"></div>
+                <!-- <img data-ng-src="{{user.assets.profilePicURL}}" alt=""> -->
             </div>
             <div class="col-xs-8">
                 <span class="bold text-gray-dark" data-ng-bind="user.personal.displayName"></span><br>
