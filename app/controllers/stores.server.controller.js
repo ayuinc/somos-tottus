@@ -104,7 +104,7 @@ exports.getPosts = function(req, res) {
             }
             res.jsonp(posts);
         });
-}
+};
 
 exports.getEvents = function(req, res) {
     var now = new Date();
@@ -124,11 +124,7 @@ exports.getEvents = function(req, res) {
 
             for (var i = posts.length - 1; i >= 0; i--) {
                 postsArr.push(posts[i]._id);
-            };
-
-            console.log("storeId", req.store._id);
-            console.log(posts);
-            console.log(postsArr);
+            }
 
             Evt.find({
                     start: { 

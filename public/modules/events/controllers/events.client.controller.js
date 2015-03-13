@@ -179,7 +179,7 @@ angular.module('events').controller('EventsController', ['$scope', '$stateParams
         $scope.findByStore = function() {
             getEventsPerStore.getStores($stateParams.storeId).then(function(events) {
                $scope.events = events; 
-            })
+            });
         };
 
         $scope.getAttendees = function() {

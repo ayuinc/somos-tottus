@@ -128,7 +128,7 @@ exports.countUnread = function(req, res) {
                 });
             }
         });
-}
+};
 
 exports.notificationByID = function(req, res, next, id) {
     Notification.findById(id).exec(function(err, notification) {

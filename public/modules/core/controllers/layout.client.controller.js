@@ -74,15 +74,15 @@ angular.module('core').controller('LayoutController', ['$scope', '$location', 'A
             // console.log(state);
             return navSubnavTabs.isActive;
           }
-        }
+        };
       }
     });
 
-    // SCROLL TOP ON EVERY VIEW CHANGE
-    $scope.$on('$stateChangeSuccess', scrollToTop);
-    function scrollToTop() {
-      // console.log('success');
+    var scrollToTop = function() {
       $anchorScroll();
-    }
-  }   
+    };
+
+    // SCROLL TOP ON EVERY VIEW CHANGE
+    $scope.$on('$stateChangeSuccess', scrollToTop); 
+  }
 ]);

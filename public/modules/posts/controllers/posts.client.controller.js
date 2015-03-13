@@ -164,7 +164,7 @@ angular.module('posts').controller('PostsController', ['$scope', '$stateParams',
             if(post.$resolved)
                 return !!~$scope.authentication.user.roles.indexOf('admin') || $scope.authentication.user._id === post.user._id;
             else
-                return !!~$scope.authentication.user.roles.indexOf('admin')
+                return !!~$scope.authentication.user.roles.indexOf('admin');
         };
 
         $scope.remove = function(post) {

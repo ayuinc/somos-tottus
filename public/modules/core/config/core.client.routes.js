@@ -11,7 +11,7 @@ angular.module('core').config(['$stateProvider', '$urlRouterProvider',
 		state('home', {
 			url: '/',
 			controller: function($scope, $location) {
-				if ($scope.authentication.user) $location.path('/posts');
+				if ($scope.authentication.user) { console.log("core ctrl"); $location.path('/posts'); }
 			}
 		}).
 		state('navigationDrawer', {

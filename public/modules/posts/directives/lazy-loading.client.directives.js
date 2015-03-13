@@ -102,8 +102,8 @@ angular.module('posts').directive('lazySrc', ['$window', '$document', function($
         function startWatchingWindow() {
             isWatchingWindow = true;
 
-            win.on("resize.lazySrc", windowChanged);
-            win.on("scroll.lazySrc", windowChanged);
+            win.on('resize.lazySrc', windowChanged);
+            win.on('scroll.lazySrc', windowChanged);
 
             documentTimer = setInterval(checkDocumentHeight, documentDelay);
         }
@@ -111,8 +111,8 @@ angular.module('posts').directive('lazySrc', ['$window', '$document', function($
         function stopWatchingWindow() {
             isWatchingWindow = false;
 
-            win.off("resize.lazySrc");
-            win.off("scroll.lazySrc");
+            win.off('resize.lazySrc');
+            win.off('scroll.lazySrc');
 
             clearInterval(documentTimer);
         }
@@ -151,13 +151,11 @@ angular.module('posts').directive('lazySrc', ['$window', '$document', function($
                     (
                         ( top <= bottomFoldOffset ) &&
                         ( top >= topFoldOffset )
-                    )
-                ||
+                    ) ||
                     (
                         ( bottom <= bottomFoldOffset ) &&
                         ( bottom >= topFoldOffset )
-                    )
-                ||
+                    ) ||
                     (
                         ( top <= topFoldOffset ) &&
                         ( bottom >= bottomFoldOffset )
@@ -194,14 +192,14 @@ angular.module('posts').directive('lazySrc', ['$window', '$document', function($
         lazyLoader.addImage(lazyImage);
 
         attributes.$observe(
-            "lazySrc",
+            'lazySrc',
             function(newSource) {
                 lazyImage.setSource(newSource);
             }
         );
 
         $scope.$on(
-            "$destroy",
+            '$destroy',
             function() {
                 lazyLoader.removeImage(lazyImage);
             }

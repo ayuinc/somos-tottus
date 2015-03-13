@@ -10,14 +10,13 @@ angular.module('users').config(['$httpProvider',
 					responseError: function(rejection) {
 						switch (rejection.status) {
 							case 401:
-								// Deauthenticate the global user
 								Authentication.user = null;
 
-								// Redirect to signin page
-								$location.path('signin');
+								if($location.url() != '/firstsignin' && $location.url() != '/signup') {
+									$location.path('signin');
+								}
 								break;
 							case 403:
-								// Add unauthorized behaviour 
 								break;
 						}
 
