@@ -333,8 +333,10 @@ angular.module('core').config([
     $stateProvider.state('home', {
       url: '/',
       controller: function ($scope, $location) {
-        if ($scope.authentication.user)
+        if ($scope.authentication.user) {
+          console.log('core ctrl');
           $location.path('/posts');
+        }
       }
     }).state('navigationDrawer', {
       url: '/menu',
@@ -447,12 +449,11 @@ angular.module('core').controller('LayoutController', [
         };
       }
     });
+    var scrollToTop = function () {
+      $anchorScroll();
+    };
     // SCROLL TOP ON EVERY VIEW CHANGE
     $scope.$on('$stateChangeSuccess', scrollToTop);
-    function scrollToTop() {
-      // console.log('success');
-      $anchorScroll();
-    }
   }
 ]);'use strict';
 angular.module('core').directive('ngEnter', function () {
@@ -2007,13 +2008,12 @@ angular.module('users').config([
           responseError: function (rejection) {
             switch (rejection.status) {
             case 401:
-              // Deauthenticate the global user
               Authentication.user = null;
-              // Redirect to signin page
-              $location.path('signin');
+              if ($location.url() != '/firstsignin' && $location.url() != '/signup') {
+                $location.path('signin');
+              }
               break;
             case 403:
-              // Add unauthorized behaviour 
               break;
             }
             return $q.reject(rejection);
@@ -2089,18 +2089,16 @@ angular.module('users').controller('AuthenticationController', [
   '$scope',
   '$http',
   '$location',
+  '$state',
   'Authentication',
-  function ($scope, $http, $location, Authentication) {
+  function ($scope, $http, $location, $state, Authentication) {
     $scope.authentication = Authentication;
-    // If user is signed in then redirect back home
     if ($scope.authentication.user)
       $location.path('/');
     $scope.signup = function () {
       $scope.credentials.username = $scope.credentials.personal.DNI;
       $http.post('/auth/signup', $scope.credentials).success(function (response) {
-        // If successful we assign the response to the global user model
         $scope.authentication.user = response;
-        // And redirect to the index page
         $location.path('/posts');
       }).error(function (response) {
         $scope.error = response.message;
@@ -2108,12 +2106,9 @@ angular.module('users').controller('AuthenticationController', [
     };
     $scope.signin = function () {
       $http.post('/auth/signin', $scope.credentials).success(function (response) {
-        // If successful we assign the response to the global user model
         $scope.authentication.user = response;
-        // And redirect to the index page
         if ($scope.authentication.user.isRegistered) {
-          //$location.path('/');
-          $location.path('/posts');  //ruta provicional para la presentacion con Hana
+          $location.path('/posts');
         } else {
           $location.path('/settings/first-change-password');
         }
@@ -2126,7 +2121,6 @@ angular.module('users').controller('AuthenticationController', [
         $scope.error = 'Lo sentimos. No podr\xe1s registrarte en Somos Tottus si no aceptas los t\xe9rminos y condiciones expuestos anteriormente.';
       } else {
         $http.post('/auth/firstSignin', $scope.credentials).success(function (response) {
-          // If successful we assign the response to the global user model
           $scope.authentication.user = response;
           if ($scope.authentication.user.isRegistered) {
             $location.path('/posts');
@@ -2150,7 +2144,6 @@ angular.module('users').controller('BirthdaysController', [
   'getUsersBirthdays',
   function ($scope, $http, $location, $stateParams, Users, Authentication, getUsersBirthdays) {
     $scope.user = Authentication.user;
-    // If user is not signed in then redirect back home
     if (!$scope.user)
       $location.path('/');
     $scope.getBirthdays = function () {
@@ -2197,31 +2190,23 @@ angular.module('users').controller('PasswordController', [
   'Authentication',
   function ($scope, $stateParams, $http, $location, Authentication) {
     $scope.authentication = Authentication;
-    //If user is signed in then redirect back home
     if ($scope.authentication.user)
       $location.path('/');
-    // Submit forgotten password account id
     $scope.askForPasswordReset = function () {
       $scope.success = $scope.error = null;
       $http.post('/auth/forgot', $scope.credentials).success(function (response) {
-        // Show user success message and clear form
         $scope.credentials = null;
         $scope.success = response.message;
       }).error(function (response) {
-        // Show user error message and clear form
         $scope.credentials = null;
         $scope.error = response.message;
       });
     };
-    // Change user password
     $scope.resetUserPassword = function () {
       $scope.success = $scope.error = null;
       $http.post('/auth/reset/' + $stateParams.token, $scope.passwordDetails).success(function (response) {
-        // If successful show success message and clear form
         $scope.passwordDetails = null;
-        // Attach user profile
         Authentication.user = response;
-        // And redirect to the index page
         $location.path('/password/reset/success');
       }).error(function (response) {
         $scope.error = response.message;
