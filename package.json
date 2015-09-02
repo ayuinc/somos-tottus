@@ -35,7 +35,9 @@
     "nodemailer": "~1.1.1",
     "passport": "~0.2.0",
     "passport-local": "~1.0.0",
-    "swig": "~1.4.1"
+    "swig": "~1.4.1",
+    "ldapjs": "mcavage/node-ldapjs",
+    "passport-ldapauth": "0.3.0"
   },
   "devDependencies": {
     "supertest": "~0.13.0",
