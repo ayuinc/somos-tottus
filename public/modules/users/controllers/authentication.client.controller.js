@@ -18,16 +18,29 @@ angular.module('users').controller('AuthenticationController', ['$scope', '$http
 			});
 		};
 
+		// $scope.signin = function() {
+		// 	$http.post('/auth/signin', $scope.credentials).success(function(response) {
+		// 		$scope.authentication.user = response;
+
+		// 		if($scope.authentication.user.isRegistered){
+		// 			$location.path('/posts');
+		// 		}
+		// 		else{
+		// 			$location.path('/settings/first-change-password');
+		// 		}
+		// 	}).error(function(response) {
+		// 		$scope.error = response.message;
+		// 	});
+		// };
+
 		$scope.signin = function() {
-			$http.post('/auth/signin', $scope.credentials).success(function(response) {
+			$http.post('/auth/ldap', $scope.credentials).success(function(response) {
 				$scope.authentication.user = response;
 
-				if($scope.authentication.user.isRegistered){
+				
 					$location.path('/posts');
-				}
-				else{
-					$location.path('/settings/first-change-password');
-				}
+				
+			
 			}).error(function(response) {
 				$scope.error = response.message;
 			});

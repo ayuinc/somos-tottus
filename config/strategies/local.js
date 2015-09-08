@@ -27,7 +27,7 @@ module.exports = function() {
 				}
 				if (!user.authenticate(password)) {
 					return done(null, false, {
-						message: 'Invalid passwordss'
+						message: 'Invalid password'
 					});
 				}
 

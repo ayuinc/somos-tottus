@@ -23,6 +23,7 @@ var validateLocalStrategyPassword = function(password) {
     return (this.provider !== 'local' || (password && password.length > 6));
 };
 
+
 /**
  * User Schema
  */
@@ -114,7 +115,7 @@ var UserSchema = new Schema({
         DNI: {
             type: String,
             trim: true,
-            required: 'Por favor, ingrese su DNI',
+            // required: 'Por favor, ingrese su DNI',
             default: ''
         },
         displayName: {
@@ -127,20 +128,20 @@ var UserSchema = new Schema({
             type: String,
             trim: true,
             es_indexed: true,
-            required: 'Por favor, ingrese su nombre',
+            // required: 'Por favor, ingrese su nombre',
             default: ''
         },
         lastName: {
             type: String,
             trim: true,
             es_indexed: true,
-            required: 'Por favor, ingrese su apellido',
+            // required: 'Por favor, ingrese su apellido',
             default: ''
         },
         dateOfBirth: {
             type: String,
             trim: true,
-            required: 'Por favor, ingrese su fecha de nacimiento',
+            // required: 'Por favor, ingrese su fecha de nacimiento',
             default: null
         },
         educationLevel: {

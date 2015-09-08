@@ -27,8 +27,9 @@ module.exports = function(app) {
 	// Setting up the users authentication api
 	app.route('/auth/firstSignin').post(users.firstSignin);
 	app.route('/auth/signup').post(users.signup);
-	app.route('/auth/signin').post(users.signin);
+	// app.route('/auth/signin').post(users.signin);
 	app.route('/auth/signout').get(users.signout);
+	app.route('/auth/ldap').post(users.ldapauth());
 
 	app.route('/users/search/:query').get(users.search);
 	
